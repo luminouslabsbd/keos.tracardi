@@ -1,13 +1,13 @@
 <?php
 namespace App\Repositories\Admin;
 
+use App\Models\Admin\Category;
 
-use App\Models\Front\Bangladesh;
 
 class CategoryRepository {
     protected $model;
 
-    public function __construct(Bangladesh $model)
+    public function __construct(Category $model)
     {
         $this->model=$model;
     }

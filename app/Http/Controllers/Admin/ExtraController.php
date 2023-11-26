@@ -69,5 +69,6 @@ class ExtraController extends Controller
 
         $file = Storage::disk('local')->path(config('backup.backup.name').'/'.$file);
         return response()->download($file);
+        
     }
 }

@@ -203,3 +203,6 @@ body.dark button.mantine-UnstyledButton-root.mantine-Pagination-control.mantine-
     background-color: rgba(92, 86, 86, 0.103) !important;
     border-radius: 6px;
 }
+.mantine-12fau64[data-with-icon] {
+    border: 1px solid #c5c5c5;
+}

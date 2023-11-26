@@ -1,6 +1,6 @@
 {
-  "_Sidebar-8b916fbd.js": {
-    "file": "assets/Sidebar-8b916fbd.js",
+  "_Sidebar-2eadea10.js": {
+    "file": "assets/Sidebar-2eadea10.js",
     "imports": [
       "resources/js/app.jsx",
       "_ThemeConfig-49c8c6b2.js",
@@ -8,8 +8,8 @@
     ],
     "isDynamicEntry": true
   },
-  "_Table-db86a91e.js": {
-    "file": "assets/Table-db86a91e.js",
+  "_Table-c99497fd.js": {
+    "file": "assets/Table-c99497fd.js",
     "imports": [
       "resources/js/app.jsx"
     ]
@@ -17,44 +17,29 @@
   "_ThemeConfig-49c8c6b2.js": {
     "file": "assets/ThemeConfig-49c8c6b2.js"
   },
-  "_index-e5fc484c.js": {
-    "file": "assets/index-e5fc484c.js",
+  "_index-2e9b143f.js": {
+    "file": "assets/index-2e9b143f.js",
     "imports": [
       "resources/js/app.jsx",
-      "_Table-db86a91e.js"
+      "_Table-c99497fd.js"
     ]
   },
-  "_index.esm-a94fd122.js": {
-    "file": "assets/index.esm-a94fd122.js",
+  "_index.esm-23564ae3.js": {
+    "file": "assets/index.esm-23564ae3.js",
     "imports": [
       "resources/js/app.jsx"
-    ]
-  },
-  "_mantine-react-table.esm-35f7fb09.js": {
-    "css": [
-      "assets/mantine-react-table-a1ae07b3.css"
-    ],
-    "file": "assets/mantine-react-table.esm-35f7fb09.js",
-    "imports": [
-      "resources/js/app.jsx",
-      "_Table-db86a91e.js",
-      "_Sidebar-8b916fbd.js"
     ]
   },
   "_nonIterableRest-c1aee06f.js": {
     "file": "assets/nonIterableRest-c1aee06f.js"
   },
-  "mantine-react-table.css": {
-    "file": "assets/mantine-react-table-a1ae07b3.css",
-    "src": "mantine-react-table.css"
-  },
   "resources/css/app.css": {
-    "file": "assets/app-ee996d87.css",
+    "file": "assets/app-7e76cbbf.css",
     "isEntry": true,
     "src": "resources/css/app.css"
   },
   "resources/js/Pages/Component/DeleteModal.jsx": {
-    "file": "assets/DeleteModal-3165a68e.js",
+    "file": "assets/DeleteModal-d8b9c8b0.js",
     "imports": [
       "resources/js/app.jsx"
     ],
@@ -62,7 +47,7 @@
     "src": "resources/js/Pages/Component/DeleteModal.jsx"
   },
   "resources/js/Pages/Component/Dropdown.jsx": {
-    "file": "assets/Dropdown-7789463b.js",
+    "file": "assets/Dropdown-6906c21e.js",
     "imports": [
       "resources/js/app.jsx"
     ],
@@ -70,7 +55,7 @@
     "src": "resources/js/Pages/Component/Dropdown.jsx"
   },
   "resources/js/Pages/Component/FlashMessage.jsx": {
-    "file": "assets/FlashMessage-c50d4ba1.js",
+    "file": "assets/FlashMessage-2dd6f266.js",
     "imports": [
       "resources/js/app.jsx"
     ],
@@ -78,7 +63,7 @@
     "src": "resources/js/Pages/Component/FlashMessage.jsx"
   },
   "resources/js/Pages/Component/Footer.jsx": {
-    "file": "assets/Footer-25a9ab44.js",
+    "file": "assets/Footer-333a0174.js",
     "imports": [
       "resources/js/app.jsx"
     ],
@@ -86,7 +71,7 @@
     "src": "resources/js/Pages/Component/Footer.jsx"
   },
   "resources/js/Pages/Component/Header.jsx": {
-    "file": "assets/Header-aa2b9656.js",
+    "file": "assets/Header-12964440.js",
     "imports": [
       "resources/js/app.jsx",
       "_ThemeConfig-49c8c6b2.js",
@@ -97,7 +82,7 @@
     "src": "resources/js/Pages/Component/Header.jsx"
   },
   "resources/js/Pages/Component/Portals.jsx": {
-    "file": "assets/Portals-ed74e87d.js",
+    "file": "assets/Portals-04b770c2.js",
     "imports": [
       "resources/js/app.jsx"
     ],
@@ -105,7 +90,7 @@
     "src": "resources/js/Pages/Component/Portals.jsx"
   },
   "resources/js/Pages/Component/Settings.jsx": {
-    "file": "assets/Settings-a7d67ea2.js",
+    "file": "assets/Settings-f7d7b355.js",
     "imports": [
       "resources/js/app.jsx"
     ],
@@ -113,7 +98,7 @@
     "src": "resources/js/Pages/Component/Settings.jsx"
   },
   "resources/js/Pages/Error.jsx": {
-    "file": "assets/Error-f48ffcf4.js",
+    "file": "assets/Error-1803db38.js",
     "imports": [
       "resources/js/app.jsx"
     ],
@@ -128,13 +113,13 @@
     "css": [
       "assets/Mainlayout-4fdd8b83.css"
     ],
-    "file": "assets/Mainlayout-def324d5.js",
+    "file": "assets/Mainlayout-8e2a0417.js",
     "imports": [
       "resources/js/app.jsx",
       "_ThemeConfig-49c8c6b2.js",
       "resources/js/Pages/Component/Footer.jsx",
       "resources/js/Pages/Component/Header.jsx",
-      "_Sidebar-8b916fbd.js",
+      "_Sidebar-2eadea10.js",
       "resources/js/Pages/Component/Dropdown.jsx",
       "_nonIterableRest-c1aee06f.js"
     ],
@@ -142,7 +127,7 @@
     "src": "resources/js/Pages/Layout/Mainlayout.jsx"
   },
   "resources/js/Pages/Module/Auth/Login.jsx": {
-    "file": "assets/Login-3eebce89.js",
+    "file": "assets/Login-2488cb33.js",
     "imports": [
       "resources/js/app.jsx",
       "_ThemeConfig-49c8c6b2.js",
@@ -152,7 +137,7 @@
     "src": "resources/js/Pages/Module/Auth/Login.jsx"
   },
   "resources/js/Pages/Module/Backup/Index.jsx": {
-    "file": "assets/Index-78661945.js",
+    "file": "assets/Index-336b750d.js",
     "imports": [
       "resources/js/app.jsx",
       "resources/js/Pages/Layout/Mainlayout.jsx",
@@ -163,63 +148,13 @@
       "resources/js/Pages/Component/Header.jsx",
       "resources/js/Pages/Component/Dropdown.jsx",
       "_nonIterableRest-c1aee06f.js",
-      "_Sidebar-8b916fbd.js"
+      "_Sidebar-2eadea10.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Module/Backup/Index.jsx"
   },
-  "resources/js/Pages/Module/Bangladesh/Add.jsx": {
-    "file": "assets/Add-2e7bc29b.js",
-    "imports": [
-      "resources/js/app.jsx",
-      "resources/js/Pages/Layout/Mainlayout.jsx",
-      "resources/js/Pages/Component/FlashMessage.jsx",
-      "_ThemeConfig-49c8c6b2.js",
-      "resources/js/Pages/Component/Footer.jsx",
-      "resources/js/Pages/Component/Header.jsx",
-      "resources/js/Pages/Component/Dropdown.jsx",
-      "_nonIterableRest-c1aee06f.js",
-      "_Sidebar-8b916fbd.js"
-    ],
-    "isDynamicEntry": true,
-    "src": "resources/js/Pages/Module/Bangladesh/Add.jsx"
-  },
-  "resources/js/Pages/Module/Bangladesh/Edit.jsx": {
-    "file": "assets/Edit-d933b409.js",
-    "imports": [
-      "resources/js/app.jsx",
-      "resources/js/Pages/Layout/Mainlayout.jsx",
-      "resources/js/Pages/Component/FlashMessage.jsx",
-      "_ThemeConfig-49c8c6b2.js",
-      "resources/js/Pages/Component/Footer.jsx",
-      "resources/js/Pages/Component/Header.jsx",
-      "resources/js/Pages/Component/Dropdown.jsx",
-      "_nonIterableRest-c1aee06f.js",
-      "_Sidebar-8b916fbd.js"
-    ],
-    "isDynamicEntry": true,
-    "src": "resources/js/Pages/Module/Bangladesh/Edit.jsx"
-  },
-  "resources/js/Pages/Module/Bangladesh/Index.jsx": {
-    "file": "assets/Index-b4b653dc.js",
-    "imports": [
-      "resources/js/app.jsx",
-      "resources/js/Pages/Layout/Mainlayout.jsx",
-      "_mantine-react-table.esm-35f7fb09.js",
-      "resources/js/Pages/Component/FlashMessage.jsx",
-      "_ThemeConfig-49c8c6b2.js",
-      "resources/js/Pages/Component/Footer.jsx",
-      "resources/js/Pages/Component/Header.jsx",
-      "resources/js/Pages/Component/Dropdown.jsx",
-      "_nonIterableRest-c1aee06f.js",
-      "_Sidebar-8b916fbd.js",
-      "_Table-db86a91e.js"
-    ],
-    "isDynamicEntry": true,
-    "src": "resources/js/Pages/Module/Bangladesh/Index.jsx"
-  },
   "resources/js/Pages/Module/Category/Add.jsx": {
-    "file": "assets/Add-7ec109b4.js",
+    "file": "assets/Add-363ecad0.js",
     "imports": [
       "resources/js/app.jsx",
       "resources/js/Pages/Layout/Mainlayout.jsx",
@@ -229,13 +164,13 @@
       "resources/js/Pages/Component/Header.jsx",
       "resources/js/Pages/Component/Dropdown.jsx",
       "_nonIterableRest-c1aee06f.js",
-      "_Sidebar-8b916fbd.js"
+      "_Sidebar-2eadea10.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Module/Category/Add.jsx"
   },
   "resources/js/Pages/Module/Category/Edit.jsx": {
-    "file": "assets/Edit-f5095e09.js",
+    "file": "assets/Edit-ff2191ea.js",
     "imports": [
       "resources/js/app.jsx",
       "resources/js/Pages/Layout/Mainlayout.jsx",
@@ -245,65 +180,64 @@
       "resources/js/Pages/Component/Header.jsx",
       "resources/js/Pages/Component/Dropdown.jsx",
       "_nonIterableRest-c1aee06f.js",
-      "_Sidebar-8b916fbd.js"
+      "_Sidebar-2eadea10.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Module/Category/Edit.jsx"
   },
   "resources/js/Pages/Module/Category/Index.jsx": {
-    "file": "assets/Index-c8ad6a11.js",
+    "file": "assets/Index-a7122714.js",
     "imports": [
       "resources/js/app.jsx",
       "resources/js/Pages/Layout/Mainlayout.jsx",
-      "_mantine-react-table.esm-35f7fb09.js",
       "resources/js/Pages/Component/FlashMessage.jsx",
+      "_Table-c99497fd.js",
+      "_Sidebar-2eadea10.js",
       "_ThemeConfig-49c8c6b2.js",
       "resources/js/Pages/Component/Footer.jsx",
       "resources/js/Pages/Component/Header.jsx",
       "resources/js/Pages/Component/Dropdown.jsx",
-      "_nonIterableRest-c1aee06f.js",
-      "_Sidebar-8b916fbd.js",
-      "_Table-db86a91e.js"
+      "_nonIterableRest-c1aee06f.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Module/Category/Index.jsx"
   },
   "resources/js/Pages/Module/Dashboard/Index.jsx": {
-    "file": "assets/Index-fed27258.js",
+    "file": "assets/Index-1cd3fc9c.js",
     "imports": [
       "resources/js/app.jsx",
       "resources/js/Pages/Layout/Mainlayout.jsx",
       "_ThemeConfig-49c8c6b2.js",
       "resources/js/Pages/Component/FlashMessage.jsx",
-      "_index.esm-a94fd122.js",
+      "_index.esm-23564ae3.js",
       "resources/js/Pages/Component/Footer.jsx",
       "resources/js/Pages/Component/Header.jsx",
       "resources/js/Pages/Component/Dropdown.jsx",
       "_nonIterableRest-c1aee06f.js",
-      "_Sidebar-8b916fbd.js"
+      "_Sidebar-2eadea10.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Module/Dashboard/Index.jsx"
   },
   "resources/js/Pages/Module/Extra/Css.jsx": {
-    "file": "assets/Css-7afa257e.js",
+    "file": "assets/Css-930f33c4.js",
     "imports": [
       "resources/js/app.jsx",
       "resources/js/Pages/Layout/Mainlayout.jsx",
       "resources/js/Pages/Component/FlashMessage.jsx",
-      "_index.esm-a94fd122.js",
+      "_index.esm-23564ae3.js",
       "_ThemeConfig-49c8c6b2.js",
       "resources/js/Pages/Component/Footer.jsx",
       "resources/js/Pages/Component/Header.jsx",
       "resources/js/Pages/Component/Dropdown.jsx",
       "_nonIterableRest-c1aee06f.js",
-      "_Sidebar-8b916fbd.js"
+      "_Sidebar-2eadea10.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Module/Extra/Css.jsx"
   },
   "resources/js/Pages/Module/Module/Add.jsx": {
-    "file": "assets/Add-a6145bbc.js",
+    "file": "assets/Add-ae56249d.js",
     "imports": [
       "resources/js/app.jsx",
       "resources/js/Pages/Layout/Mainlayout.jsx",
@@ -313,13 +247,13 @@
       "resources/js/Pages/Component/Header.jsx",
       "resources/js/Pages/Component/Dropdown.jsx",
       "_nonIterableRest-c1aee06f.js",
-      "_Sidebar-8b916fbd.js"
+      "_Sidebar-2eadea10.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Module/Module/Add.jsx"
   },
   "resources/js/Pages/Module/Module/Edit.jsx": {
-    "file": "assets/Edit-c443f393.js",
+    "file": "assets/Edit-11e59178.js",
     "imports": [
       "resources/js/app.jsx",
       "resources/js/Pages/Layout/Mainlayout.jsx",
@@ -329,31 +263,31 @@
       "resources/js/Pages/Component/Header.jsx",
       "resources/js/Pages/Component/Dropdown.jsx",
       "_nonIterableRest-c1aee06f.js",
-      "_Sidebar-8b916fbd.js"
+      "_Sidebar-2eadea10.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Module/Module/Edit.jsx"
   },
   "resources/js/Pages/Module/Module/Index.jsx": {
-    "file": "assets/Index-673ef9bd.js",
+    "file": "assets/Index-d211e08d.js",
     "imports": [
       "resources/js/app.jsx",
       "resources/js/Pages/Layout/Mainlayout.jsx",
-      "_index-e5fc484c.js",
+      "_index-2e9b143f.js",
       "resources/js/Pages/Component/FlashMessage.jsx",
       "_ThemeConfig-49c8c6b2.js",
       "resources/js/Pages/Component/Footer.jsx",
       "resources/js/Pages/Component/Header.jsx",
       "resources/js/Pages/Component/Dropdown.jsx",
       "_nonIterableRest-c1aee06f.js",
-      "_Sidebar-8b916fbd.js",
-      "_Table-db86a91e.js"
+      "_Sidebar-2eadea10.js",
+      "_Table-c99497fd.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Module/Module/Index.jsx"
   },
   "resources/js/Pages/Module/Permission/Createpermission.jsx": {
-    "file": "assets/Createpermission-fe76e2ef.js",
+    "file": "assets/Createpermission-cf080f58.js",
     "imports": [
       "resources/js/app.jsx",
       "resources/js/Pages/Layout/Mainlayout.jsx",
@@ -362,13 +296,13 @@
       "resources/js/Pages/Component/Header.jsx",
       "resources/js/Pages/Component/Dropdown.jsx",
       "_nonIterableRest-c1aee06f.js",
-      "_Sidebar-8b916fbd.js"
+      "_Sidebar-2eadea10.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Module/Permission/Createpermission.jsx"
   },
   "resources/js/Pages/Module/Permission/Editpermission.jsx": {
-    "file": "assets/Editpermission-592a0e56.js",
+    "file": "assets/Editpermission-84a60500.js",
     "imports": [
       "resources/js/app.jsx",
       "resources/js/Pages/Layout/Mainlayout.jsx",
@@ -377,49 +311,49 @@
       "resources/js/Pages/Component/Header.jsx",
       "resources/js/Pages/Component/Dropdown.jsx",
       "_nonIterableRest-c1aee06f.js",
-      "_Sidebar-8b916fbd.js"
+      "_Sidebar-2eadea10.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Module/Permission/Editpermission.jsx"
   },
   "resources/js/Pages/Module/Permission/Permissionlist.jsx": {
-    "file": "assets/Permissionlist-dc71367e.js",
+    "file": "assets/Permissionlist-5c138ad6.js",
     "imports": [
       "resources/js/app.jsx",
       "resources/js/Pages/Layout/Mainlayout.jsx",
       "resources/js/Pages/Component/FlashMessage.jsx",
-      "_index-e5fc484c.js",
-      "_Sidebar-8b916fbd.js",
+      "_index-2e9b143f.js",
+      "_Sidebar-2eadea10.js",
       "_ThemeConfig-49c8c6b2.js",
       "resources/js/Pages/Component/Footer.jsx",
       "resources/js/Pages/Component/Header.jsx",
       "resources/js/Pages/Component/Dropdown.jsx",
       "_nonIterableRest-c1aee06f.js",
-      "_Table-db86a91e.js"
+      "_Table-c99497fd.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Module/Permission/Permissionlist.jsx"
   },
   "resources/js/Pages/Module/Profile/Index.jsx": {
-    "file": "assets/Index-2438df73.js",
+    "file": "assets/Index-9601405d.js",
     "imports": [
       "resources/js/app.jsx",
       "resources/js/Pages/Layout/Mainlayout.jsx",
-      "_index-e5fc484c.js",
+      "_index-2e9b143f.js",
       "resources/js/Pages/Component/FlashMessage.jsx",
       "_ThemeConfig-49c8c6b2.js",
       "resources/js/Pages/Component/Footer.jsx",
       "resources/js/Pages/Component/Header.jsx",
       "resources/js/Pages/Component/Dropdown.jsx",
       "_nonIterableRest-c1aee06f.js",
-      "_Sidebar-8b916fbd.js",
-      "_Table-db86a91e.js"
+      "_Sidebar-2eadea10.js",
+      "_Table-c99497fd.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Module/Profile/Index.jsx"
   },
   "resources/js/Pages/Module/Role/Createrole.jsx": {
-    "file": "assets/Createrole-d05e43cc.js",
+    "file": "assets/Createrole-176d8689.js",
     "imports": [
       "resources/js/app.jsx",
       "resources/js/Pages/Layout/Mainlayout.jsx",
@@ -428,13 +362,13 @@
       "resources/js/Pages/Component/Header.jsx",
       "resources/js/Pages/Component/Dropdown.jsx",
       "_nonIterableRest-c1aee06f.js",
-      "_Sidebar-8b916fbd.js"
+      "_Sidebar-2eadea10.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Module/Role/Createrole.jsx"
   },
   "resources/js/Pages/Module/Role/Editrole.jsx": {
-    "file": "assets/Editrole-335a49d8.js",
+    "file": "assets/Editrole-37f9f06e.js",
     "imports": [
       "resources/js/app.jsx",
       "resources/js/Pages/Layout/Mainlayout.jsx",
@@ -443,19 +377,19 @@
       "resources/js/Pages/Component/Header.jsx",
       "resources/js/Pages/Component/Dropdown.jsx",
       "_nonIterableRest-c1aee06f.js",
-      "_Sidebar-8b916fbd.js"
+      "_Sidebar-2eadea10.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Module/Role/Editrole.jsx"
   },
   "resources/js/Pages/Module/Role/Rolelist.jsx": {
-    "file": "assets/Rolelist-fe945240.js",
+    "file": "assets/Rolelist-9a8413e9.js",
     "imports": [
       "resources/js/app.jsx",
       "_ThemeConfig-49c8c6b2.js",
       "resources/js/Pages/Component/FlashMessage.jsx",
       "resources/js/Pages/Layout/Mainlayout.jsx",
-      "_Sidebar-8b916fbd.js",
+      "_Sidebar-2eadea10.js",
       "resources/js/Pages/Component/Footer.jsx",
       "resources/js/Pages/Component/Header.jsx",
       "resources/js/Pages/Component/Dropdown.jsx",
@@ -465,7 +399,7 @@
     "src": "resources/js/Pages/Module/Role/Rolelist.jsx"
   },
   "resources/js/Pages/Module/User/Createuser.jsx": {
-    "file": "assets/Createuser-2ab8878c.js",
+    "file": "assets/Createuser-c9f4a5c3.js",
     "imports": [
       "resources/js/app.jsx",
       "resources/js/Pages/Layout/Mainlayout.jsx",
@@ -474,13 +408,13 @@
       "resources/js/Pages/Component/Header.jsx",
       "resources/js/Pages/Component/Dropdown.jsx",
       "_nonIterableRest-c1aee06f.js",
-      "_Sidebar-8b916fbd.js"
+      "_Sidebar-2eadea10.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Module/User/Createuser.jsx"
   },
   "resources/js/Pages/Module/User/Edituser.jsx": {
-    "file": "assets/Edituser-d819ad13.js",
+    "file": "assets/Edituser-0de23572.js",
     "imports": [
       "resources/js/app.jsx",
       "resources/js/Pages/Layout/Mainlayout.jsx",
@@ -489,25 +423,25 @@
       "resources/js/Pages/Component/Header.jsx",
       "resources/js/Pages/Component/Dropdown.jsx",
       "_nonIterableRest-c1aee06f.js",
-      "_Sidebar-8b916fbd.js"
+      "_Sidebar-2eadea10.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Module/User/Edituser.jsx"
   },
   "resources/js/Pages/Module/User/Userlist.jsx": {
-    "file": "assets/Userlist-502876e6.js",
+    "file": "assets/Userlist-7b09777b.js",
     "imports": [
       "resources/js/app.jsx",
       "_ThemeConfig-49c8c6b2.js",
       "resources/js/Pages/Layout/Mainlayout.jsx",
       "resources/js/Pages/Component/FlashMessage.jsx",
-      "_index-e5fc484c.js",
-      "_Sidebar-8b916fbd.js",
+      "_index-2e9b143f.js",
+      "_Sidebar-2eadea10.js",
       "resources/js/Pages/Component/Footer.jsx",
       "resources/js/Pages/Component/Header.jsx",
       "resources/js/Pages/Component/Dropdown.jsx",
       "_nonIterableRest-c1aee06f.js",
-      "_Table-db86a91e.js"
+      "_Table-c99497fd.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Module/User/Userlist.jsx"
@@ -521,14 +455,11 @@
       "resources/js/Pages/Component/Header.jsx",
       "resources/js/Pages/Component/Portals.jsx",
       "resources/js/Pages/Component/Settings.jsx",
-      "_Sidebar-8b916fbd.js",
+      "_Sidebar-2eadea10.js",
       "resources/js/Pages/Error.jsx",
       "resources/js/Pages/Layout/Mainlayout.jsx",
       "resources/js/Pages/Module/Auth/Login.jsx",
       "resources/js/Pages/Module/Backup/Index.jsx",
-      "resources/js/Pages/Module/Bangladesh/Add.jsx",
-      "resources/js/Pages/Module/Bangladesh/Edit.jsx",
-      "resources/js/Pages/Module/Bangladesh/Index.jsx",
       "resources/js/Pages/Module/Category/Add.jsx",
       "resources/js/Pages/Module/Category/Edit.jsx",
       "resources/js/Pages/Module/Category/Index.jsx",
@@ -548,7 +479,7 @@
       "resources/js/Pages/Module/User/Edituser.jsx",
       "resources/js/Pages/Module/User/Userlist.jsx"
     ],
-    "file": "assets/app-b5ae46bf.js",
+    "file": "assets/app-de2188b8.js",
     "isEntry": true,
     "src": "resources/js/app.jsx"
   }

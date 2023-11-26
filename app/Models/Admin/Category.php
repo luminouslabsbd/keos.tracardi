@@ -15,6 +15,6 @@ class Category extends Model
         'thumbnail',
     ];
     public function children(){
-        return $this->hasMany(Category::Class,'parent_id')->with('children');
+        return $this->hasMany(Category::class,'parent_id')->with('children');
     }
 }

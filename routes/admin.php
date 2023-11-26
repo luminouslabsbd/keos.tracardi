@@ -13,7 +13,7 @@ use App\Http\Controllers\Admin\AdminProfileController;
 use App\Http\Controllers\Admin\UsersController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
+Route::get('/sajjad', function () {
     return 'Sajjad';
 });
 
@@ -62,17 +62,6 @@ Route::group(['middleware' => ['auth:admin'],'as' =>'admin.'],function() {
         Route::get('/{id}/edit', [PermissionsController::class, 'edit'])->name('permissions.edit');
         Route::post('/update', [PermissionsController::class, 'update'])->name('permissions.update');
         Route::get('/{id}/delete', [PermissionsController::class, 'delete'])->name('permissions.delete');
-    });
-
-    Route::group(['prefix' => 'bangladesh' ],function (){
-        Route::get('', [BangladeshController::class, 'index'])->name('bangladesh');
-        Route::get('data', [BangladeshController::class, 'data'])->name('bangladesh.data');
-        Route::get('/create', [BangladeshController::class, 'create'])->name('bangladesh.create');
-        Route::post('/store', [BangladeshController::class, 'store'])->name('bangladesh.store');
-        Route::get('/edit/{id}', [BangladeshController::class, 'edit'])->name('bangladesh.edit');
-        Route::post('/update', [BangladeshController::class, 'update'])->name('bangladesh.update');
-        Route::get('/delete/{id}', [BangladeshController::class, 'delete'])->name('bangladesh.delete');
-        Route::get('/status/{id}', [BangladeshController::class, 'status'])->name('bangladesh.status');
     });
 
     Route::group(['prefix' => 'modules' ],function (){

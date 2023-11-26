@@ -33,9 +33,6 @@ if (!function_exists('fileUpload')) {
         $path = $fileName;
         return $path;
     }
-
-
-
 }
 
 

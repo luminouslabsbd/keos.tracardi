@@ -17,6 +17,8 @@ return new class extends Migration
             $table->string('slug');
             $table->integer('parent_id')->nullable();
             $table->string('thumbnail');
+            $table->tinyInteger('status')->default(1);
+            $table->softDeletes();
             $table->timestamps();
         });
     }

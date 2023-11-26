@@ -5,15 +5,14 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\BangladeshRequest;
 use App\Models\Admin\Category;
-use App\Models\Front\Bangladesh;
-use App\Repositories\Admin\BangladeshRepository;
+use App\Repositories\Admin\CategoryRepository;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
 class CategoryController extends Controller
 {
     protected $category;
-    public function __construct(BangladeshRepository $category)
+    public function __construct(CategoryRepository $category)
     {
         $this->category = $category;
     }
@@ -49,7 +48,7 @@ class CategoryController extends Controller
             }
         }
         $totalRowCount = $query->count();
-        $data = $query->skip($start)->select('name','slug')->take($size)->get();
+        $data = $query->skip($start)->select('id','name','slug','status')->take($size)->get();
         return response()->json([
             'data' => $data,
             'meta' => [
