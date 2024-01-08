@@ -2,8 +2,7 @@ import React, { useState } from "react";
 import MainLayout from "../../Layout/Mainlayout";
 import { Link, router, usePage } from "@inertiajs/react";
 import FlashMessage from "../../Component/FlashMessage.jsx";
-import Select from 'react-select';
-import { useForm,Controller,useFieldArray } from "react-hook-form";
+import { useForm } from "react-hook-form";
 
 
 function Add() {
