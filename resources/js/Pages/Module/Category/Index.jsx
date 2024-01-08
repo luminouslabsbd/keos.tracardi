@@ -1,10 +1,9 @@
 import React, { useEffect, useState, useMemo } from "react";
 import MainLayout from "../../Layout/Mainlayout";
-import { Link, usePage } from "@inertiajs/react";
+import {Link, router, usePage} from "@inertiajs/react";
 import FlashMessage from "../../Component/FlashMessage";
-
-
 import { MantineReactTable, useMantineReactTable } from 'mantine-react-table';
+import DeleteModal from "../../Component/DeleteModal.jsx";
 
 function Index() {
 
@@ -21,6 +20,11 @@ function Index() {
         pageIndex: 0,
         pageSize: 10,
     });
+
+    const [isDeleteNoteModal, setIsDeleteNoteModal] = useState(false);
+    const [fileToDelete, setFileToDelete] = useState(null);
+
+
     const [data, setData] = useState(initialData || []);
     useEffect(() => {
         const fetchData = async () => {
@@ -74,40 +78,33 @@ function Index() {
         sorting,
     ]);
 
-
-
     function handleEditClick(data) {
-        console.log("edit :" + data)
+        router.get("/admin/category/edit/"+data);
     }
     function handleDeleteClick(data) {
-        alert("delete :" + data)
+        setFileToDelete(data);
+        // router.post("/admin/category/delete", data);
+        setIsDeleteNoteModal(true);
     }
     function handleStatusClick(data) {
-        alert("status :" + data)
+        router.get("/admin/category/status/"+data);
     }
-
-    const ImageRenderer = () => (
-        <div>
-            <img
-                src="https://images.unsplash.com/photo-1575936123452-b67c3203c357?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8aW1hZ2V8ZW58MHx8MHx8fDA%3D"
-                alt="image"
-                className="h-[40px] w-[40px] rounded-full"
-            />
-        </div>
-    );
-
-    //   const ImageRenderer = ({ cell: { value } }) => (
-    //     <div>
-    //       <img src={value} alt="image" />
-    //     </div>
-    //   );
-
+    const ImageRenderer = ({ data }) => {
+        return (
+            <div>
+                <img
+                    src={data ? `/storage/category/${data}` : '/assets/images/user-profile.jpeg'}
+                    alt="image"
+                    className="h-[40px] w-[40px] rounded-full"
+                />
+            </div>
+        );
+    };
     const columns = useMemo(
         () => [
             {
                 header: 'Thumbnail',
-                Cell: () => <ImageRenderer />,
-                // Cell: ({ row }) => <ImageRenderer data={row.original} />,
+                Cell: ({ row }) => <ImageRenderer data={row.original?.thumbnail} />,
             },
             {
                 accessorKey: 'name',
@@ -150,7 +147,6 @@ function Index() {
         ],
         []
     );
-
     const table = useMantineReactTable({
         columns,
         data,
@@ -194,7 +190,6 @@ function Index() {
     return (
         <>
             <FlashMessage flash={flash} />
-
             <div className="panel flex items-center overflow-x-auto whitespace-nowrap p-3 ">
 
                 <div className="rounded-full bg-[#ff6243] p-1.5 text-white ring-2 ring-primary/30 ltr:mr-3 rtl:ml-3 h-[35px] w-[35px] flex items-center justify-center">
@@ -233,7 +228,7 @@ function Index() {
 
                 <div className="ml-auto flex justify-center items-center gap-3">
                     <Link
-                        href={`${base_url}/admin/modules/create`}
+                        href={`${base_url}/admin/category/trashed`}
                         method="get"
                         className="flex items-center px-7 py-2 bg-[#4d4d4d] text-white rounded-md text-[15px] shadow-lg transition-transform transform-gpu hover:scale-105"
                     >
@@ -263,7 +258,7 @@ function Index() {
                         Trash
                     </Link>
                     <Link
-                        href={`${base_url}/admin/modules/create`}
+                        href={`${base_url}/admin/category/create`}
                         method="get"
                         className="flex items-center px-7 py-2 bg-[#ff6243] text-white rounded-md text-[15px] shadow-lg transition-transform transform-gpu hover:scale-105"
                     >
@@ -278,6 +273,7 @@ function Index() {
             </div>
             <br />
             <MantineReactTable table={table} />
+            <DeleteModal isDeleteNoteModal = {isDeleteNoteModal} setIsDeleteNoteModal={setIsDeleteNoteModal} fileToDelete={fileToDelete} name="Category" route="category"></DeleteModal>
         </>
     );
 }

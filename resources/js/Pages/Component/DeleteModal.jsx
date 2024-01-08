@@ -2,7 +2,7 @@ import { Dialog, Transition } from '@headlessui/react';
 import { Link, usePage } from '@inertiajs/react';
 import { Fragment} from 'react';
 
-function DeleteModal({isDeleteNoteModal,setIsDeleteNoteModal ,fileToDelete , name}) {
+function DeleteModal({isDeleteNoteModal,setIsDeleteNoteModal ,fileToDelete , name ,route}) {
     const { flash ,base_url } = usePage().props;
   return (
     <div>
@@ -81,7 +81,7 @@ function DeleteModal({isDeleteNoteModal,setIsDeleteNoteModal ,fileToDelete , nam
                                                         Cancel
                                                     </button>
                                                     <Link
-                                                        href={`${base_url}/admin/backup/delete/`+fileToDelete}
+                                                        href={`${base_url}/admin/${route}/delete/`+fileToDelete}
                                                         method="get"
                                                         className="btn btn-danger"
                                                         >

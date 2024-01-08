@@ -2,6 +2,8 @@
 namespace App\Repositories\Admin;
 
 use App\Models\Admin\Category;
+use Illuminate\Validation\Rule;
+use Illuminate\Support\Str;
 
 
 class CategoryRepository {
@@ -28,7 +30,7 @@ class CategoryRepository {
         try {
             $result=$this->edit($id)->delete();
             if($result){
-                 return ['status'=>true , 'message'=>'Bangladesh Delete successfully'];
+                 return ['status'=>true , 'message'=>'Category Delete successfully'];
             }
          } catch (\Throwable $th) {
             //throw $th;
@@ -55,28 +57,54 @@ class CategoryRepository {
     }
     protected function storeOrUpdate($request, $action)
     {
-        try {
-            $companyId = \App\Models\Admin::where('id', auth()->user()->id)->value('company_id');
-               $data = $this->model::updateOrCreate(
-                   ['id' =>isset( $request->id)?  $request->id : ''],
-                   [
-                        'division' => $request->division,
-                        'district' => $request->district,
-                        'thana' => $request->thana,
-                        'post_office' => $request->post_office,
-                        'post_code' => $request->post_code,
-                   ]
-                );
-            if ($data) {
-                $message = $action == "save" ?"Bangladesh Save Successfully" :"Bangladesh Update Successfully";
-                return ['status' => true, 'message' => $message,];
+        $category = Category::where('id',$request->id)->first();
+        try
+        {
+            $path = "";
+            if($action == 'save'){
+                if($request->thumbnail){
+                    $path =  fileUpload($request->thumbnail[0] , "category");
+                }
+            }
+            if($action == 'update'){
+                if(!empty($request->thumbnail)){
+                    $path =  fileUpload($request->thumbnail[0] , "category");
+                }else if(isset($category->thumbnail)){
+                    $path = $category->thumbnail;
+                }
             }
 
+            $originalSlug = $request->slug ? Str::slug($request->slug) : Str::slug($request->name);
+            $existingSlugs = $this->model::where('slug', 'like', $originalSlug . '%')
+                ->where('id', '!=', $request->id)
+                ->pluck('slug')
+                ->toArray();
+
+            $counter = 1;
+            $slug = $originalSlug;
+
+            while (in_array($slug, $existingSlugs)) {
+                $slug = $originalSlug . '-' . $counter;
+                $counter++;
+            }
+
+
+            $data = $this->model::updateOrCreate(
+                ['id' => isset($request->id) ? $request->id : ''],
+                [
+                    'name' => $request->name,
+                    'slug' => $slug,
+                    'parent_id' => $request->parent_id,
+                    'thumbnail' => $path,
+                ]
+            );
+            if ($data) {
+                $message = $action == "save" ?"Category Save Successfully" :"Category Update Successfully";
+                return ['status' => true, 'message' => $message,];
+            }
 
         } catch (\Exception $e) {
             return ['status' => false, 'errors' =>  $e->getMessage()];
         }
     }
-
-
 }

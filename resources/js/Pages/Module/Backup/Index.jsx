@@ -122,7 +122,7 @@ function Index() {
                 </div>
             </div>
 
-            <DeleteModal isDeleteNoteModal = {isDeleteNoteModal} setIsDeleteNoteModal={setIsDeleteNoteModal} fileToDelete={fileToDelete} name={"Backup"}></DeleteModal>
+            <DeleteModal isDeleteNoteModal = {isDeleteNoteModal} setIsDeleteNoteModal={setIsDeleteNoteModal} fileToDelete={fileToDelete} name={"Backup"} route="backup"></DeleteModal>
         </>
     );
 }

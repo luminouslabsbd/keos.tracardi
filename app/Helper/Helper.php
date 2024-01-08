@@ -1,10 +1,6 @@
 <?php
 
-use App\Models\LateApply;
-use App\Models\Notice;
-use App\Models\SiteSettings;
-use App\Models\TaskManagement;
-use App\Models\User;
+use App\Models\Admin;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
@@ -14,7 +10,9 @@ if (!function_exists('fileUpload')) {
 
     function fileUpload($file,$folder = null)
     {
+
         $getContent = file_get_contents($file);
+
         // Check if the content is empty or if the file doesn't exist
         if ($getContent === false) {
             return ['status' => false, 'message' => 'File not found or unable to read content'];
@@ -41,11 +39,10 @@ if (!function_exists('checkPermissions')) {
     {
         if(Auth::check()){
             // Users Permissions Start
-            $permissions = User::with('permission')->where('id',Auth::id())->get();
+            $permissions = Admin::with('permission')->where('id',Auth::id())->get();
             foreach ($permissions->first()->permission as $item) {
                 $permissionIds[] = $item->pivot->permission_id;
             }
-            // dd($permissionIds);
             $permissionNamesCollection = DB::table('permissions')
             ->whereIn('id', $permissionIds)
             ->pluck('permission_name');
@@ -56,6 +53,7 @@ if (!function_exists('checkPermissions')) {
 
     }
 }
+
 if (!function_exists('clearCache')){
     function clearCache()
     {

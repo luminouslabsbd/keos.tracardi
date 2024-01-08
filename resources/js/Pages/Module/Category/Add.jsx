@@ -1,37 +1,35 @@
 import React, { useState } from "react";
 import MainLayout from "../../Layout/Mainlayout";
+import Tippy from '@tippyjs/react';
 import { Link, router, usePage } from "@inertiajs/react";
 import FlashMessage from "../../Component/FlashMessage.jsx";
+import Select from 'react-select';
+import { useForm,Controller } from "react-hook-form";
+function Add() {
+    const { flash, categories } = usePage().props;
+    const { control,register, handleSubmit, setValue, reset,formState: { errors } } = useForm();
+    const options = categories.map((item) => ({
+        value: item?.id,
+        label: item?.name ? `${item.name}` : '',
+    }));
 
-function Add({ group_company_list }) {
-    const {  flash } = usePage().props;
-    const { errors } = usePage().props;
-    const [values, setValues] = useState({
-        division: "",
-        district: "",
-        thana: "",
-        post_office: "",
-        post_code: "",
-    });
-
-    function handleChange(e) {
-        const key = e.target.id;
-        const value = e.target.value;
-        setValues((values) => ({
-            ...values,
-            [key]: value,
-        }));
+    const handleSelectChange = (selectedOption) => {
+        setValue('parent_id', selectedOption?.value);
+    };
+    const [selectedImage, setSelectedImage] = useState(null);
+    const handleImageChange = (e) => {
+        const file = e.target.files[0];
+        if (file) {
+            setSelectedImage(URL.createObjectURL(file));
+        }
+    };
+    function handleDeleteImage() {
+        setSelectedImage(null);
+        reset({ thumbnail: '' });
     }
-    function handleSubmit(e) {
-        e.preventDefault();
-        router.post("/admin/category/store", values);
-        setValues({
-            division: "",
-            district: "",
-            thana: "",
-            post_office: "",
-            post_code: "",
-        })
+    function onSubmit(data) {
+        // console.log(data);
+        router.post("/admin/category/store", data);
     }
     return (
         <>
@@ -63,7 +61,7 @@ function Add({ group_company_list }) {
                 <ul className="flex space-x-2 rtl:space-x-reverse">
                     <li>
                         <Link href="#" className="text-primary hover:underline">
-                            Title
+                            Category
                         </Link>
                     </li>
                     <li className="before:content-['/'] ltr:before:mr-2 rtl:before:ml-2">
@@ -75,100 +73,113 @@ function Add({ group_company_list }) {
                 <div className="panel" id="forms_grid">
                     <div className="flex items-center justify-between mb-5">
                         <h5 className="font-semibold text-lg dark:text-white-light">
-                            Title
+                            Category Add Form
                         </h5>
                     </div>
                     <div className="mb-5">
-                        <form
-                            className="space-y-5"
-                            onSubmit={handleSubmit}
-                            method="post"
-                        >
+                        <form className="space-y-5" onSubmit={handleSubmit(onSubmit)} method="post">
                             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                                 <div>
-                                    <label>Division</label>
+                                    <label> Name <span className="text-danger">*</span> </label>
                                     <input
-                                        id="division"
+                                        {...register("name",{ required: "Category Name Is required" })}
                                         type="text"
-                                        placeholder="Enter division"
                                         className="form-input"
-                                        value={values.division}
-                                        onChange={handleChange}
+                                        placeholder="Enter Category Name"
                                     />
-                                    {errors.division && (
-                                        <div className="text-red-600 text-[14px]">
-                                            {errors.division}
-                                        </div>
-                                    )}
+                                    {errors.name && <p className="text-red-600 pt-2">{errors.name.message}</p>}
                                 </div>
                                 <div>
-                                    <label>District</label>
+                                    <div className="flex gap-2">
+                                        <label>Slug</label>
+                                        <span>
+                                            <Tippy content="Leave the name field blank, and the slug will auto-generate." className="bg-black text-white p-5 rounded-lg dark:bg-[#2e3249] dark:text-white">
+
+                                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
+                                                         xmlns="http://www.w3.org/2000/svg">
+                                                        <circle opacity="0.5" cx="12" cy="12" r="10"
+                                                                stroke="currentColor" strokeWidth="1.5"/>
+                                                        <path
+                                                            d="M10.125 8.875C10.125 7.83947 10.9645 7 12 7C13.0355 7 13.875 7.83947 13.875 8.875C13.875 9.56245 13.505 10.1635 12.9534 10.4899C12.478 10.7711 12 11.1977 12 11.75V13"
+                                                            stroke="currentColor"
+                                                            strokeWidth="1.5"
+                                                            strokeLinecap="round"
+                                                        />
+                                                        <circle cx="12" cy="16" r="1" fill="currentColor"/>
+                                                    </svg>
+
+                                            </Tippy>
+                                        </span>
+                                    </div>
+
                                     <input
-                                        id="district"
+                                        {...register("slug")}
                                         type="text"
-                                        placeholder="Enter district"
                                         className="form-input"
-                                        value={values.district}
-                                        onChange={handleChange}
+                                        placeholder="Enter Category Slug"
                                     />
-                                    {errors.district && (
-                                        <div className="text-red-600 text-[14px]">
-                                            {errors.district}
-                                        </div>
-                                    )}
                                 </div>
                             </div>
-                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                                <div>
-                                    <label>Thana</label>
-                                    <input
-                                        id="thana"
-                                        type="text"
-                                        placeholder="Enter Thana"
-                                        className="form-input"
-                                        value={values.thana}
-                                        onChange={handleChange}
+                            <div className="grid grid-cols-1 md:grid-cols-4 gap-5">
+                                <div className="md:col-span-2">
+                                    <label>Parent Category</label>
+                                    <Controller
+                                        control={control}
+                                        name="parent_id"
+                                        render={({field}) => (
+                                            <Select
+                                                placeholder="Select an option"
+                                                options={options}
+                                                value={options.find((option) => option.value === field.value)}
+                                                onChange={handleSelectChange}
+                                            />
+                                        )}
                                     />
-                                    {errors.thana && (
-                                        <div className="text-red-600 text-[14px]">
-                                            {errors.thana}
-                                        </div>
-                                    )}
                                 </div>
                                 <div>
-                                    <label>Post Office</label>
+                                    <label>Thumbnail</label>
                                     <input
-                                        id="post_office"
-                                        type="text"
-                                        placeholder="Enter Post Office"
+                                        type="file"
                                         className="form-input"
-                                        value={values.post_office}
-                                        onChange={handleChange}
+                                        {...register("thumbnail")}
+                                        onChange={handleImageChange}
                                     />
-                                    {errors.post_office && (
-                                        <div className="text-red-600 text-[14px]">
-                                            {errors.post_office}
+                                </div>
+                                <>
+                                    {selectedImage && (
+                                        <div style={{ position: 'relative' }}>
+                                            <img className="rounded-lg max-w-[100px]" src={selectedImage} alt="Selected Avatar" />
+                                            <span
+                                                onClick={handleDeleteImage}
+                                                className="absolute top-[-15px] left-[23%] bg-white text-red-700 rounded-full p-1 shadow-[0_10px_20px_-10px_rgba(67,97,238,0.44)]"
+                                            >
+                                                <svg
+                                                    width="40"
+                                                    height="40"
+                                                    viewBox="0 0 24 24"
+                                                    fill="none"
+                                                    xmlns="http://www.w3.org/2000/svg"
+                                                    className="w-6 h-6"
+                                                >
+                                                    <circle
+                                                        opacity="0.5"
+                                                        cx="12"
+                                                        cy="12"
+                                                        r="10"
+                                                        stroke="currentColor"
+                                                        strokeWidth="1.5"
+                                                    ></circle>
+                                                    <path
+                                                        d="M14.5 9.50002L9.5 14.5M9.49998 9.5L14.5 14.5"
+                                                        stroke="currentColor"
+                                                        strokeWidth="1.5"
+                                                        strokeLinecap="round"
+                                                    ></path>
+                                                </svg>
+                                            </span>
                                         </div>
                                     )}
-                                </div>
-                            </div>
-                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                                <div>
-                                    <label>Post Code</label>
-                                    <input
-                                        id="post_code"
-                                        type="text"
-                                        placeholder="Enter Title"
-                                        className="form-input"
-                                        value={values.post_code}
-                                        onChange={handleChange}
-                                    />
-                                    {errors.post_code && (
-                                        <div className="text-red-600 text-[14px]">
-                                            {errors.post_code}
-                                        </div>
-                                    )}
-                                </div>
+                                </>
                             </div>
                             <button
                                 type="submit"

@@ -2,30 +2,44 @@ import React, { useState } from "react";
 import MainLayout from "../../Layout/Mainlayout";
 import { Link, router, usePage } from "@inertiajs/react";
 import FlashMessage from "../../Component/FlashMessage.jsx";
-
-function Edit({ result }) {
-    const {  flash } = usePage().props;
-    const { errors } = usePage().props;
-    const [values, setValues] = useState({
-        id: result.id,
-        division: result.division,
-        district: result.district,
-        thana: result.thana,
-        post_office: result.post_office,
-        post_code: result.post_code,
+import Select from 'react-select';
+import { useForm,Controller } from "react-hook-form";
+function Add() {
+    const { flash, categories,result } = usePage().props;
+    const [isSvgShow , setSvgShow] = useState(false);
+    const { control,register, handleSubmit, setValue, reset,formState: { errors } } = useForm({
+        defaultValues : {
+            id:result.id,
+            name:result.name,
+            slug:result.slug,
+            parent_id:result?.parent_id ? result.parent_id : null,
+        }
     });
 
-    function handleChange(e) {
-        const key = e.target.id;
-        const value = e.target.value;
-        setValues((values) => ({
-            ...values,
-            [key]: value,
-        }));
+
+    const options = categories.map((item) => ({
+        value: item?.id,
+        label: item?.name ? `${item.name}` : '',
+    }));
+
+    const handleSelectChange = (selectedOption) => {
+        setValue('parent_id', selectedOption?.value);
+    };
+    const [selectedImage, setSelectedImage] = useState(result?.thumbnail ? `/storage/category/${result?.thumbnail}` : '/assets/images/user-profile.jpeg');
+    const handleImageChange = (e) => {
+        const file = e.target.files[0];
+        if (file) {
+            setSvgShow(true);
+            setSelectedImage(URL.createObjectURL(file));
+        }
+    };
+    function handleDeleteImage() {
+        setSelectedImage(null);
+        reset({ thumbnail: '' });
     }
-    function handleSubmit(e) {
-        e.preventDefault();
-        router.post("/admin/category/update", values);
+    function onSubmit(data) {
+        // console.log(data);
+        router.post("/admin/category/update", data);
     }
     return (
         <>
@@ -57,11 +71,11 @@ function Edit({ result }) {
                 <ul className="flex space-x-2 rtl:space-x-reverse">
                     <li>
                         <Link href="#" className="text-primary hover:underline">
-                            Bangladesh
+                            Category
                         </Link>
                     </li>
                     <li className="before:content-['/'] ltr:before:mr-2 rtl:before:ml-2">
-                        <span>Edit</span>
+                        <span>Add</span>
                     </li>
                 </ul>
             </div>
@@ -69,102 +83,81 @@ function Edit({ result }) {
                 <div className="panel" id="forms_grid">
                     <div className="flex items-center justify-between mb-5">
                         <h5 className="font-semibold text-lg dark:text-white-light">
-                            Bangladesh
+                            Category Add Form
                         </h5>
                     </div>
                     <div className="mb-5">
-                        <form
-                            className="space-y-5"
-                            onSubmit={handleSubmit}
-                            method="post"
-                        >
+                        <form className="space-y-5" onSubmit={handleSubmit(onSubmit)} method="post">
                             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                <input
+                                    type="hidden"
+                                    {...register("id")}
+                                />
                                 <div>
-                                    <label>Division</label>
+                                    <label>Name</label>
                                     <input
-                                        id="division"
+                                        {...register("name",{ required: "Category Name Is required" })}
                                         type="text"
-                                        placeholder="Enter division"
                                         className="form-input"
-                                        value={values.division}
-                                        onChange={handleChange}
+                                        placeholder="Enter Category Name"
                                     />
-                                    {errors.division && (
-                                        <div className="text-red-600 text-[14px]">
-                                            {errors.division}
-                                        </div>
-                                    )}
+                                    {errors.name && <p className="text-red-600 pt-2">{errors.name.message}</p>}
                                 </div>
                                 <div>
-                                    <label>District</label>
+                                    <label>Slug</label>
                                     <input
-                                        id="district"
+                                        {...register("slug")}
                                         type="text"
-                                        placeholder="Enter district"
                                         className="form-input"
-                                        value={values.district}
-                                        onChange={handleChange}
+                                        placeholder="Enter Category Slug"
                                     />
-                                    {errors.district && (
-                                        <div className="text-red-600 text-[14px]">
-                                            {errors.district}
-                                        </div>
-                                    )}
                                 </div>
                             </div>
-                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                                <div>
-                                    <label>Thana</label>
-                                    <input
-                                        id="thana"
-                                        type="text"
-                                        placeholder="Enter Thana"
-                                        className="form-input"
-                                        value={values.thana}
-                                        onChange={handleChange}
+                            <div className="grid grid-cols-1 md:grid-cols-4 gap-5">
+                                <div className="md:col-span-2">
+                                    <label>Parent Category</label>
+                                    <Controller
+                                        control={control}
+                                        name="parent_id"
+                                        render={({ field }) => (
+                                            <Select
+                                                placeholder="Select an option"
+                                                options={options}
+                                                value={options.find((option) => option.value === field.value)}
+                                                onChange={handleSelectChange}
+                                            />
+                                        )}
                                     />
-                                    {errors.thana && (
-                                        <div className="text-red-600 text-[14px]">
-                                            {errors.thana}
-                                        </div>
-                                    )}
                                 </div>
                                 <div>
-                                    <label>Post Office</label>
+                                    <label>Thumbnail</label>
                                     <input
-                                        id="post_office"
-                                        type="text"
-                                        placeholder="Enter Post Office"
+                                        type="file"
                                         className="form-input"
-                                        value={values.post_office}
-                                        onChange={handleChange}
+                                        {...register("thumbnail")}
+                                        onChange={handleImageChange}
                                     />
-                                    {errors.post_office && (
-                                        <div className="text-red-600 text-[14px]">
-                                            {errors.post_office}
+                                </div>
+                                <>
+                                    {selectedImage && (
+                                        <div style={{ position: 'relative' }}>
+                                            <img className="rounded-lg max-w-[100px]" src={selectedImage} alt="Selected Avatar" />
+                                            {result?.thumbnail && isSvgShow && (
+                                                <span
+                                                    onClick={handleDeleteImage}
+                                                    className="absolute top-[-15px] left-[23%] bg-white text-red-700 rounded-full p-1 shadow-[0_10px_20px_-10px_rgba(67,97,238,0.44)]"
+                                                >
+                                                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-6 h-6">
+                                                        <circle opacity="0.5" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="1.5"></circle>
+                                                        <path d="M14.5 9.50002L9.5 14.5M9.49998 9.5L14.5 14.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"></path>
+                                                    </svg>
+                                                </span>
+                                            )}
                                         </div>
                                     )}
-                                </div>
-                            </div>
-                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                                <div>
-                                    <label>Post Code</label>
-                                    <input
-                                        id="post_code"
-                                        type="text"
-                                        placeholder="Enter Title"
-                                        className="form-input"
-                                        value={values.post_code}
-                                        onChange={handleChange}
-                                    />
-                                    {errors.post_code && (
-                                        <div className="text-red-600 text-[14px]">
-                                            {errors.post_code}
-                                        </div>
-                                    )}
-                                </div>
-                            </div>
 
+                                </>
+                            </div>
                             <button
                                 type="submit"
                                 className="btn btn-primary !mt-6"
@@ -179,8 +172,8 @@ function Edit({ result }) {
     );
 }
 
-Edit.layout = (page) => (
-    <MainLayout children={page} title="HR || Edit Group Of Company" />
+Add.layout = (page) => (
+    <MainLayout children={page} title="HR || Add Group Of Company" />
 );
 
-export default Edit;
+export default Add;
