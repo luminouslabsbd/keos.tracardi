@@ -50,7 +50,43 @@ class RolePermissionTableSeeder extends Seeder
                     'user.create',
                     'user.delete',
                 ],
-            ]
+            ],
+            [
+                'group_name'=>'Catagory',
+                'permission'=>[
+                    'catagory.view',
+                    'catagory.edit',
+                    'catagory.create',
+                    'catagory.delete',
+                ],
+            ],
+            [
+                'group_name'=>'Brand',
+                'permission'=>[
+                    'brand.view',
+                    'brand.edit',
+                    'brand.create',
+                    'brand.delete',
+                ],
+            ],
+            [
+                'group_name'=>'SubCatagory',
+                'permission'=>[
+                    'subcatagory.view',
+                    'subcatagory.edit',
+                    'subcatagory.create',
+                    'subcatagory.delete',
+                ],
+            ],
+            [
+                'group_name'=>'SbuBrand',
+                'permission'=>[
+                    'subbrand.view',
+                    'subbrand.edit',
+                    'subbrand.create',
+                    'subbrand.delete',
+                ],
+            ],
         ];
 
         //create and assign permission

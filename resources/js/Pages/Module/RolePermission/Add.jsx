@@ -191,43 +191,50 @@ function Add() {
                                 </div>
                             </div>
                             <hr/>
-                            {Object.entries(permissions).map(([objectName, items]) => (
-                                <div key={objectName} className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                                    <div className="mb-5">
-                                        <h5 className="font-semibold text-lg dark:text-white-light">Group Name</h5>
-                                        <div className="space-y-2 pt-3">
-                                            <div>
-                                                <label className="inline-flex">
-                                                    <input
-                                                        type="checkbox"
-                                                        className="form-checkbox text-dark rounded-full"
-                                                        checked={checkedItems[objectName] || false}
-                                                        onChange={() => handleObjectCheckboxChange(objectName)}
-                                                    />
-                                                    <span>{objectName}</span>
-                                                </label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    {items.map((item, itemIndex) => (
-                                        <div key={itemIndex} className="mb-5">
+                            <div className="flex flex-wrap justify-start gap-[50px]">
+                                {Object.entries(permissions).map(([objectName, items]) => (
+                                    <div key={objectName} className="flex gap-[15px] p-[16px] rounded-lg max-w-[22%] w-[100%] permission-card shadow-md">
+                                        <div className="mb-5">
+                                            {/* <h5 className="font-semibold text-lg dark:text-white-light">Group Name</h5> */}
                                             <div className="space-y-2 pt-3">
                                                 <div>
                                                     <label className="inline-flex">
                                                         <input
                                                             type="checkbox"
                                                             className="form-checkbox text-dark rounded-full"
-                                                            checked={checkedItems[item.name] || false}
-                                                            onChange={() => handleItemCheckboxChange(item.name)}
+                                                            checked={checkedItems[objectName] || false}
+                                                            onChange={() => handleObjectCheckboxChange(objectName)}
                                                         />
-                                                        <span>{item.name}</span>
+                                                        {/* <span>{objectName}</span> */} <strong className="text-[17px] uppercase font-semibold">{objectName}</strong>
                                                     </label>
                                                 </div>
                                             </div>
                                         </div>
-                                    ))}
-                                </div>
-                            ))}
+                                        <div>
+                                            {items.map((item, itemIndex) => (
+                                                    <div>
+                                                        <div key={itemIndex} className="mb-5">
+                                                        <div className="space-y-2 pt-3">
+                                                            <div>
+                                                                <label className="inline-flex">
+                                                                    <input
+                                                                        type="checkbox"
+                                                                        className="form-checkbox text-dark rounded-full"
+                                                                        checked={checkedItems[item.name] || false}
+                                                                        onChange={() => handleItemCheckboxChange(item.name)}
+                                                                    />
+                                                                    <span>{item.name}</span>
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    </div>
+                                                ))}
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+                            <hr/>
                             <button
                                 type="submit"
                                 className="btn btn-primary !mt-6 bg-[#ff6243] border-[#ff6243] text-base"
