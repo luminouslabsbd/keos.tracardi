@@ -28,7 +28,7 @@ function Login() {
     return (
         <>
          <FlashMessage flash={flash} />
-        <Head title="HR || Login" />
+        <Head title="E-Shop || Login" />
             <div className="absolute inset-0">
                 <img
                     src="/assets/images/auth/bg-gradient.png"
@@ -67,8 +67,8 @@ function Login() {
                     <div className="relative flex flex-col justify-center rounded-md bg-white/60 backdrop-blur-lg dark:bg-black/50 px-6 lg:min-h-[80vh] py-20">
                         <div className="mx-auto w-full max-w-[440px]">
                             <div className="mb-10">
-                                <h1 className="text-3xl font-extrabold uppercase !leading-snug text-primary md:text-4xl">
-                                    Sign in
+                                <h1 className="text-3xl font-extrabold uppercase !leading-snug text-primary md:text-2xl">
+                                    Luminous E-Shop
                                 </h1>
                                 <p className="text-base font-bold leading-normal text-white-dark">
                                     Enter your email and password to login

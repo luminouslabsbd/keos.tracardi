@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\ExtraController;
 use App\Http\Controllers\Admin\ModuleController;
 use App\Http\Controllers\Admin\PermissionsController;
+use App\Http\Controllers\Admin\RolePermissionController;
 use App\Http\Controllers\Admin\RolesController;
 use App\Http\Controllers\Admin\AdminProfileController;
 use App\Http\Controllers\Admin\SizeController;
@@ -137,6 +138,19 @@ Route::group(['middleware' => ['auth:admin'],'as' =>'admin.'],function() {
         Route::get('/restore-all', [UnitController::class, 'restoreAll'])->name('unit.restore.all');
     });
     //end size
+
+    //role-permission
+    Route::group(['prefix' => 'role-permission' ],function (){
+        Route::get('', [RolePermissionController::class, 'index'])->name('role.permission');
+        Route::get('data', [RolePermissionController::class, 'data'])->name('role.permission.data');
+        Route::get('/create', [RolePermissionController::class, 'create'])->name('role.permission.create');
+        Route::post('/store', [RolePermissionController::class, 'store'])->name('role.permission.store');
+        Route::get('/edit/{id}', [RolePermissionController::class, 'edit'])->name('role.permission.edit');
+        Route::post('/update', [RolePermissionController::class, 'update'])->name('role.permission.update');
+        Route::get('/delete/{id}', [RolePermissionController::class, 'delete'])->name('role.permission.delete');
+        Route::get('/status/{id}', [RolePermissionController::class, 'status'])->name('role.permission.status');
+    });
+    //end role-permission
 
 
     Route::get('custom-css', [ExtraController::class, 'customCss'])->name('custom.css');
