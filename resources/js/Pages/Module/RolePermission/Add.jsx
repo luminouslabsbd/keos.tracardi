@@ -211,8 +211,8 @@ function Add() {
                                         </div>
                                         <div>
                                             {items.map((item, itemIndex) => (
-                                                    <div>
-                                                        <div key={itemIndex} className="mb-5">
+                                                    <div key={itemIndex} >
+                                                        <div className="mb-5">
                                                         <div className="space-y-2 pt-3">
                                                             <div>
                                                                 <label className="inline-flex">

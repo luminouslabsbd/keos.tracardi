@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\ExtraController;
 use App\Http\Controllers\Admin\ModuleController;
 use App\Http\Controllers\Admin\PermissionsController;
+use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\RolePermissionController;
 use App\Http\Controllers\Admin\RolesController;
 use App\Http\Controllers\Admin\AdminProfileController;
@@ -138,6 +139,47 @@ Route::group(['middleware' => ['auth:admin'],'as' =>'admin.'],function() {
         Route::get('/restore-all', [UnitController::class, 'restoreAll'])->name('unit.restore.all');
     });
     //end size
+
+
+
+
+
+
+
+    //product
+    Route::group(['prefix' => 'product' ],function (){
+        Route::get('', [ProductController::class, 'index'])->name('product');
+        Route::get('type', [ProductController::class, 'type'])->name('product.type');
+        Route::get('data', [ProductController::class, 'data'])->name('product.data');
+        Route::get('/create/{type}', [ProductController::class, 'create'])->name('product.create');
+        Route::post('/store', [ProductController::class, 'store'])->name('product.store');
+        Route::get('/edit/{id}', [ProductController::class, 'edit'])->name('product.edit');
+        Route::post('/update', [ProductController::class, 'update'])->name('product.update');
+        Route::get('/delete/{id}', [ProductController::class, 'delete'])->name('product.delete');
+        Route::get('/status/{id}', [ProductController::class, 'status'])->name('product.status');
+
+        Route::get('trashed', [ProductController::class, 'trashed'])->name('product.trashed');
+        Route::get('trashed/data', [ProductController::class, 'trashedData'])->name('product.trashed.data');
+        Route::get('/permanent-delete/{id}', [ProductController::class, 'permanentDelete'])->name('product.permanent.delete');
+        Route::get('permanent-delete-all', [ProductController::class, 'permanentDeleteAll'])->name('product.permanent.delete.all');
+        Route::get('/undo-trashed/{id}', [ProductController::class, 'undoTrashed'])->name('product.undo.trashed');
+        Route::get('/restore-all', [ProductController::class, 'restoreAll'])->name('product.restore.all');
+    });
+    //end product
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     //role-permission
     Route::group(['prefix' => 'role-permission' ],function (){

@@ -1,6 +1,5 @@
-import React, { useState } from "react";
+import React from "react";
 import MainLayout from "../../Layout/Mainlayout";
-import Tippy from '@tippyjs/react';
 import { Link, router, usePage } from "@inertiajs/react";
 import FlashMessage from "../../Component/FlashMessage.jsx";
 import { useForm } from "react-hook-form";
@@ -8,7 +7,7 @@ function Add() {
     const { flash } = usePage().props;
     const { register, handleSubmit, setValue, reset,formState: { errors } } = useForm();
     function onSubmit(data) {
-        router.post("/admin/unit/store", data);
+        router.post("/admin/color/store", data);
     }
     return (
         <>
@@ -40,7 +39,7 @@ function Add() {
                 <ul className="flex space-x-2 rtl:space-x-reverse">
                     <li>
                         <Link href="#" className="text-primary hover:underline">
-                            Unit
+                            Color
                         </Link>
                     </li>
                     <li className="before:content-['/'] ltr:before:mr-2 rtl:before:ml-2">
@@ -52,7 +51,7 @@ function Add() {
                 <div className="panel" id="forms_grid">
                     <div className="flex items-center justify-between mb-5">
                         <h5 className="font-semibold text-lg dark:text-white-light">
-                            Unit Add Form
+                            Color Add Form
                         </h5>
                     </div>
                     <div className="mb-5">
@@ -61,10 +60,10 @@ function Add() {
                                 <div>
                                     <label> Name <span className="text-danger">*</span> </label>
                                     <input
-                                        {...register("name", {required: "Unit Name Is required"})}
+                                        {...register("name", {required: "Color Name Is required"})}
                                         type="text"
                                         className="form-input"
-                                        placeholder="Enter Unit Name"
+                                        placeholder="Enter Color Name"
                                     />
                                     {errors.name && <p className="text-red-600 pt-2">{errors.name.message}</p>}
                                 </div>

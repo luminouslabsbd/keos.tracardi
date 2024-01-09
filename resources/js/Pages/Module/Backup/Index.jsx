@@ -127,6 +127,6 @@ function Index() {
     );
 }
 Index.layout = (page) => (
-    <MainLayout children={page} title="HR || Group Of Company" />
+    <MainLayout children={page} title="E-SHOP || Group Of Company" />
 );
 export default Index;

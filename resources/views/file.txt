@@ -303,7 +303,7 @@ function AllTypeEmployeeReport() {
 }
 
 AllTypeEmployeeReport.layout = (page) => (
-    <MainLayout children={page} title="HR || Add Shift" />
+    <MainLayout children={page} title="E-SHOP || Add Shift" />
 );
 
 export default AllTypeEmployeeReport;
