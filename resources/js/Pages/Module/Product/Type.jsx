@@ -13,33 +13,34 @@ function Type() {
         <>
             <FlashMessage flash={flash} />
             <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-6">
-                <div className="panel h-full p-[40px] btn btn-gradient !mt-6 w-full border-0 uppercase shadow-[0_10px_20px_-10px_rgba(67,97,238,0.44)] bg-indigo-500 text-white">
+                <div className="panel flex justify-center items-center h-full p-[40px] border">
                     <div className="font-semibold text-center">
                         <div className=" bottom-0 flex items-center justify-between p-5 -mx-5">
                             <Link href={`${base_url}/admin/product/create/physical`} type="button"
-                                    className="btn text-[17px] font-bold">
+                                  className="btn text-[17px] font-bold btn btn-gradient px-[50px] py-[30px] !w-full border-0 uppercase shadow-[0_10px_20px_-10px_rgba(67,97,238,0.44)] bg-indigo-500 text-white">
                                 Physical Product
                             </Link>
                         </div>
                     </div>
                 </div>
 
-                <div className="panel h-full p-[40px]  btn btn-gradient !mt-6 w-full border-0 uppercase shadow-[0_10px_20px_-10px_rgba(67,97,238,0.44)] bg-indigo-500 text-white">
+
+                <div className="panel flex justify-center items-center h-full p-[40px] border">
                     <div className="font-semibold text-center">
-                        <div className="bottom-0 flex items-center justify-between p-5 -mx-5">
+                        <div className=" bottom-0 flex items-center justify-between p-5 -mx-5">
                             <Link href={`${base_url}/admin/product/create/digital`} type="button"
-                                  className="btn text-[17px] font-bold">
+                                  className="btn text-[17px] font-bold btn btn-gradient px-[50px] py-[30px] !w-full border-0 uppercase shadow-[0_10px_20px_-10px_rgba(67,97,238,0.44)] bg-indigo-500 text-white">
                                 Digital Product
                             </Link>
                         </div>
                     </div>
                 </div>
 
-                <div className="panel h-full p-[40px] btn btn-gradient !mt-6 w-full border-0 uppercase shadow-[0_10px_20px_-10px_rgba(67,97,238,0.44)] bg-indigo-500 text-white">
+                <div className="panel flex justify-center items-center h-full p-[40px] border">
                     <div className="font-semibold text-center">
-                        <div className="bottom-0 flex items-center justify-between p-5 -mx-5">
+                        <div className=" bottom-0 flex items-center justify-between p-5 -mx-5">
                             <Link href={`${base_url}/admin/product/create/license`} type="button"
-                                  className="btn text-[17px] font-bold">
+                                  className="btn text-[17px] font-bold btn btn-gradient px-[50px] py-[30px] !w-full border-0 uppercase shadow-[0_10px_20px_-10px_rgba(67,97,238,0.44)] bg-indigo-500 text-white">
                                 License Product
                             </Link>
                         </div>

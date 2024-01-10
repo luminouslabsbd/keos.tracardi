@@ -4,7 +4,12 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\ProductRequest;
+use App\Models\Admin\Brand;
+use App\Models\Admin\Category;
+use App\Models\Admin\Color;
 use App\Models\Admin\Product;
+use App\Models\Admin\Size;
+use App\Models\Admin\Unit;
 use App\Repositories\Admin\ProductRepository;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
@@ -61,7 +66,21 @@ class ProductController extends Controller
     public function create($type){
         if($type == "physical" || $type == "digital" || $type == "license"){
             if($type == "physical"){
-                return Inertia::render('Module/Product/Physical');
+                $categories = Category::where('parent_id', null)->select('id','name')->get();
+                $sub_categories = Category::where('parent_id', !null)->select('id','name')->get();
+                $brands = Brand::select('id','name')->get();
+                $colors = Color::select('id','name')->get();
+                $sizes = Size::select('id','name')->get();
+                $units = Unit::select('id','name')->get();
+                return Inertia::render('Module/Product/Physical',[
+                    'categories'=>$categories,
+                    'sub_categories'=>$sub_categories,
+                    'brands'=>$brands,
+                    'colors'=>$colors,
+                    'sizes'=>$sizes,
+                    'units'=>$units,
+                    'type'=>$type,
+                ]);
             }elseif($type == "digital"){
                 return Inertia::render('Module/Product/Digital');
             }else{
