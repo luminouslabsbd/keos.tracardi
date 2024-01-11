@@ -1,17 +1,20 @@
-import React, {useState,useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import MainLayout from "../../Layout/Mainlayout";
 import { Link, router, usePage } from "@inertiajs/react";
 import FlashMessage from "../../Component/FlashMessage.jsx";
-import {Controller, useForm} from "react-hook-form";
+import { Controller, useForm } from "react-hook-form";
 import Select from "react-select";
+import ReactQuill from "react-quill";
+import "react-quill/dist/quill.snow.css";
 function Physical() {
-    const { flash,categories,sub_categories,brands,type,colors ,sizes,units } = usePage().props;
+    const { flash, categories, sub_categories, brands, type, colors, sizes, units } = usePage().props;
 
     const [selectedColorOptions, setSelectedColorOptions] = useState([]);
     const [selectedSizeOptions, setSelectedSizeOptions] = useState([]);
-    const [attributesLength , setAttributesLength] = useState([]);
-    const [hiddenAttributesLength , setHiddenAttributesLength] = useState([]);
-    const [IsproductVariationValue ,setProductVariationValue] = useState(false);
+    const [attributesLength, setAttributesLength] = useState([]);
+    const [hiddenAttributesLength, setHiddenAttributesLength] = useState([]);
+    const [IsproductVariationValue, setProductVariationValue] = useState(false);
+
 
 
     useEffect(() => {
@@ -21,8 +24,8 @@ function Physical() {
 
             selectedSizeOptions.forEach((sizeOption) => {
                 selectedColorOptions.forEach((colorOption) => {
-                    const inputValue = `${ sizeOption.label}/${colorOption.label }`;
-                    const hiddenValue = `${ sizeOption.value}/${ colorOption.value}`;
+                    const inputValue = `${sizeOption.label}/${colorOption.label}`;
+                    const hiddenValue = `${sizeOption.value}/${colorOption.value}`;
                     inputValues.push(inputValue);
                     hiddenValues.push(hiddenValue);
                 });
@@ -37,11 +40,21 @@ function Physical() {
     // console.log(attributesLength);
 
 
-    const { control,register, handleSubmit, setValue, reset,formState: { errors } } = useForm({
-        defaultValues:{
-            type:type
+    const { control, register, handleSubmit, setValue, reset, formState: { errors },watch } = useForm({
+        defaultValues: {
+            type: type
         }
     });
+    const product_description = watch('product_description', '');
+    const handleQuillChange = (value) => {
+        setValue('product_description', value);
+    };
+
+    const product_buy_return_policy = watch('product_buy_return_policy', '');
+    const productBuyReturnPolicy = (value) => {
+        setValue('product_buy_return_policy', value);
+    };
+
     const categoruOptions = categories.map((item) => ({
         value: item?.id,
         label: item?.name ? `${item.name}` : '',
@@ -99,7 +112,7 @@ function Physical() {
     }
     return (
         <>
-            <FlashMessage flash={flash}/>
+            <FlashMessage flash={flash} />
             <div className="panel flex items-center overflow-x-auto whitespace-nowrap p-3 ">
                 <div className="rounded-full bg-primary p-1.5 text-white ring-2 ring-primary/30 ltr:mr-3 rtl:ml-3">
                     <svg
@@ -395,60 +408,100 @@ function Physical() {
                                     )}
 
                                 <div className="panel">
-                        <div className="flex items-center justify-between mb-5">
-                            <h5 className="font-semibold text-lg dark:text-white-light">Attribute
-                                Variation</h5>
-                        </div>
-                        <div className="mb-5 space-y-5 relative">
-                            {attributesLength.map((item, index) => (
-                                <div key={index} className="grid grid-cols-1 sm:grid-cols-4 gap-4">
-                                    <div>
-                                        <label> Product attribute <span className="text-danger">*</span>
-                                        </label>
-                                        <input
-                                            type="text"
-                                            className="form-input"
-                                            value={item} // Set the value here
-                                        />
+                                    <div className="flex items-center justify-between mb-5">
+                                        <h5 className="font-semibold text-lg dark:text-white-light">Attribute
+                                            Variation</h5>
+                                    </div>
+                                    <div className="mb-5 space-y-5 relative">
+                                        {attributesLength.map((item, index) => (
+                                            <div key={index} className="grid grid-cols-1 sm:grid-cols-4 gap-4">
+                                                <div>
+                                                    <label> Product attribute <span className="text-danger">*</span>
+                                                    </label>
+                                                    <input
+                                                        type="text"
+                                                        className="form-input"
+                                                        value={item} // Set the value here
+                                                    />
 
-                                    </div>
-                                    <div>
-                                        <label> Product Price <span className="text-danger">*</span>
-                                        </label>
-                                        <input
-                                            {...register(`product_price_${index}`, {required: "Product Price Is required"})}
-                                            type="number"
-                                            className="form-input"
-                                            placeholder="10$"
-                                        />
-                                    </div>
-                                    <div>
-                                        <label> Product quantity <span className="text-danger">*</span>
-                                        </label>
-                                        <input
-                                            {...register(`product_quantity_${index}`, {required: "Product quantity Is required"})}
-                                            type="number"
-                                            className="form-input"
-                                            placeholder="5"
-                                        />
-                                    </div>
-                                    <div>
-                                        <label> Product discount <span className="text-danger">*</span>
-                                        </label>
-                                        <input
-                                            {...register(`product_discount_${index}`, {required: "Product discount Is required"})}
+                                                </div>
+                                                <div>
+                                                    <label> Product Price <span className="text-danger">*</span>
+                                                    </label>
+                                                    <input
+                                                        {...register(`product_price_${index}`, {required: "Product Price Is required"})}
+                                                        type="number"
+                                                        className="form-input"
+                                                        placeholder="10$"
+                                                    />
+                                                </div>
+                                                <div>
+                                                    <label> Product quantity <span className="text-danger">*</span>
+                                                    </label>
+                                                    <input
+                                                        {...register(`product_quantity_${index}`, {required: "Product quantity Is required"})}
+                                                        type="number"
+                                                        className="form-input"
+                                                        placeholder="5"
+                                                    />
+                                                </div>
+                                                <div>
+                                                    <label> Product discount <span className="text-danger">*</span>
+                                                    </label>
+                                                    <input
+                                                        {...register(`product_discount_${index}`, {required: "Product discount Is required"})}
 
-                                            type="number"
-                                            className="form-input"
-                                            placeholder="8%"
-                                        />
+                                                        type="number"
+                                                        className="form-input"
+                                                        placeholder="8%"
+                                                    />
+                                                </div>
+                                            </div>
+                                        ))}
                                     </div>
                                 </div>
-                            ))}
+                            </>
+                        )}
+                </div>
+                <div className="pt-5 grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-2 gap-6">
+                    <div className="panel">
+                        <div className="flex items-center justify-between mb-5">
+                            <h5 className="font-semibold text-lg dark:text-white-light">Product Description</h5>
+                        </div>
+                        <div className="mb-5 space-y-5 relative">
+
+                            <div className="grid grid-cols-1 sm:grid-cols-1 gap-4">
+                                <div>
+                                    <ReactQuill
+                                        value={product_description}
+                                        onChange={(value) => handleQuillChange(value)}
+                                        theme="snow"
+                                    />
+                                </div>
+                            </div>
+
+
                         </div>
                     </div>
-                            </>
-                    )}
+                    <div className="panel">
+                        <div className="flex items-center justify-between mb-5">
+                            <h5 className="font-semibold text-lg dark:text-white-light">Product Buy Return Policy</h5>
+                        </div>
+                        <div className="mb-5 space-y-5 relative">
+
+                            <div className="grid grid-cols-1 sm:grid-cols-1 gap-4">
+                                <div>
+                                    <ReactQuill
+                                        value={product_buy_return_policy}
+                                        onChange={(value) => productBuyReturnPolicy(value)}
+                                        theme="snow"
+                                    />
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
                 </div>
                 <button
                     type="submit"
