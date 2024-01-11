@@ -80,7 +80,6 @@ function Physical() {
         value: item?.id,
         label: item?.name ? `${item.name}` : '',
     }));
-
     const handleSelectCategory = (selectedOption) => {
         setValue('category_id', selectedOption?.value);
     };
@@ -106,8 +105,53 @@ function Physical() {
     }
 
 
+    const [isProductConditionAllowed, setProductConditionAllowed] = useState(false);
+
+    const allowProductCondition = (e) => {
+        // Update the state when the checkbox is clicked
+        setProductConditionAllowed(e.target.checked);
+    };
+
+    const [isProductPreorderAllowed, setProductPreorderAllowed] = useState(false);
+
+    const allowProductPreOrder = (e) => {
+        // Update the state when the checkbox is clicked
+        setProductPreorderAllowed(e.target.checked);
+    };
+
+    const [isProductWholeSaleAllow, setProductWholeSaleAllow] = useState(false);
+
+    const allowWholeSaleProduct = (e) => {
+        // Update the state when the checkbox is clicked
+        setProductWholeSaleAllow(e.target.checked);
+    };
+    const [items, setItems] = useState([]);
+
+    const addItem = () => {
+        let maxId = 0;
+        maxId = items?.length ? items.reduce((max, character) => (character.id > max ? character.id : max), items[0].id) : 0;
+
+        setItems([...items, { id: maxId + 1, quantity: '1', discount: 0 }]);
+    };
+
+    const removeItem = (item = null) => {
+        setItems(items.filter((d) => d.id !== item.id));
+    };
+
+    const changeQuantityDiscount = (type, value, id) => {
+        const list = items;
+        const item = list.find((d) => d.id === id);
+        if (type === 'quantity') {
+            item.quantity = Number(value);
+        }
+        if (type === 'discount') {
+            item.discount = Number(value);
+        }
+        setItems([...list]);
+    };
+
     function onSubmit(data) {
-        console.log(data);
+        console.log(data,items);
         // router.post("/admin/color/store", data);
     }
     return (
@@ -213,7 +257,7 @@ function Physical() {
                                     <label>Unit</label>
                                     <Controller
                                         control={control}
-                                        name="unnit_id"
+                                        name="unit_id"
                                         render={({field}) => (
                                             <Select
                                                 placeholder="Select an option"
@@ -225,7 +269,7 @@ function Physical() {
                                     />
                                 </div>
                                 <div>
-                                    <label>Select Product Variation <span className="text-[12px] text-red-700">*</span></label>
+                                    <label>Select Product Variation</label>
 
                                     <select
                                         className="form-select text-white-dark"
@@ -239,7 +283,7 @@ function Physical() {
                                 </div>
 
                                 <div>
-                                    <label> Product SKU <span className="text-danger">*</span> </label>
+                                    <label> Product SKU </label>
                                     <input
                                         {...register("product_sku", {required: "Product SKU Is required"})}
                                         type="text"
@@ -252,7 +296,7 @@ function Physical() {
                             </div>
                             <div className="grid grid-cols-1 sm:grid-cols-1 gap-4">
                                 <div>
-                                    <label>Product Name <span className="text-danger">*</span> </label>
+                                    <label>Product Name </label>
                                     <input
                                         {...register("product_name", {required: "Product Name Is required"})}
                                         type="text"
@@ -341,10 +385,10 @@ function Physical() {
                                     <div className="mb-5 space-y-5 relative">
                                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                                             <div className="md:col-span-2">
-                                                <label>Price<span className="text-red-600 ">*</span></label>
+                                                <label>Price</label>
                                                 <div className="flex items-center gap-2">
                                                     <input
-                                                        {...register("product_price", {required: "Product Name Is required"})}
+                                                        {...register("single_product_price", {required: "Product Name Is required"})}
                                                         type="number"
                                                         className="form-input"
                                                         placeholder="99$"
@@ -352,13 +396,24 @@ function Physical() {
                                                 </div>
                                             </div>
                                             <div className="md:col-span-2">
-                                                <label>Discount<span className="text-red-600 ">*</span></label>
+                                                <label>Discount</label>
                                                 <div className="flex items-center gap-2">
                                                     <input
-                                                        {...register("product_discount", {required: "Product Name Is required"})}
+                                                        {...register("single_product_discount", {required: "Product Name Is required"})}
                                                         type="number"
                                                         className="form-input"
                                                         placeholder="10%"
+                                                    />
+                                                </div>
+                                            </div>
+                                            <div className="md:col-span-2">
+                                                <label>Quantity</label>
+                                                <div className="flex items-center gap-2">
+                                                    <input
+                                                        {...register("single_product_quantity", {required: "Product Quantoty Is required"})}
+                                                        type="number"
+                                                        className="form-input"
+                                                        placeholder="50"
                                                     />
                                                 </div>
                                             </div>
@@ -368,30 +423,9 @@ function Physical() {
                                 </>
                             )
                         }
-
                     </div>
-
                 </div>
-                <div className="pt-5 grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-2 gap-6">
-                    <div className="panel">
-                        <div className="flex items-center justify-between mb-5">
-                            <h5 className="font-semibold text-lg dark:text-white-light">Upload Image</h5>
-                        </div>
-                        <div className="mb-5 space-y-5 relative">
-
-                            <div className="grid grid-cols-1 sm:grid-cols-1 gap-4">
-                                <div>
-                                    <label> Upload Image <span className="text-danger">*</span>
-                                    </label>
-                                    <input
-                                        type="file"
-                                        className="form-input"
-                                    />
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
+                <div className="pt-5 grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-1 gap-6">
                     {
                         IsproductVariationValue === true && (
                             <>
@@ -406,8 +440,9 @@ function Physical() {
                                             />
                                         ))
                                     )}
-
-                                <div className="panel">
+                                {
+                                attributesLength.length > 0 && (
+                                    <div className="panel">
                                     <div className="flex items-center justify-between mb-5">
                                         <h5 className="font-semibold text-lg dark:text-white-light">Attribute
                                             Variation</h5>
@@ -460,6 +495,7 @@ function Physical() {
                                         ))}
                                     </div>
                                 </div>
+                                    )}
                             </>
                         )}
                 </div>
@@ -502,6 +538,219 @@ function Physical() {
 
                         </div>
                     </div>
+                </div>
+                <div className="pt-5 grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-2 gap-6">
+                    <div className="panel">
+                        <div className="flex items-center justify-between mb-5">
+                            <h5 className="font-semibold text-lg dark:text-white-light">Product Description</h5>
+                        </div>
+                        <div className="mb-5 space-y-5 relative">
+
+                            <div className="grid grid-cols-1 sm:grid-cols-1 gap-4">
+                                <div>
+                                    <label className="inline-flex">
+                                        <input
+                                            type="checkbox"
+                                            className="form-checkbox text-dark rounded-full"
+                                            onChange={allowProductCondition}
+                                        />
+                                        <span> Allow Product Condition</span>
+                                    </label>
+                                </div>
+                                {
+                                    isProductConditionAllowed &&
+                                    (
+                                        <div>
+                                            <select
+                                                className="form-select text-white-dark"
+                                                {...register("product_condition")}
+                                            >
+                                                <option value="1">New</option>
+                                                <option value="2">Used</option>
+                                            </select>
+                                        </div>
+                                    )
+                                }
+                                <div>
+                                    <label className="inline-flex">
+                                        <input
+                                            type="checkbox"
+                                            className="form-checkbox text-dark rounded-full"
+                                            onChange={allowProductPreOrder}
+                                        />
+                                        <span> Allow Product Preorder</span>
+                                    </label>
+                                </div>
+                                {
+                                    isProductPreorderAllowed &&
+                                    (
+                                        <div>
+                                            <select
+                                                className="form-select text-white-dark"
+                                                {...register("product_preorder")}
+                                            >
+                                                <option value="1">Sale</option>
+                                                <option value="2">Preorder</option>
+                                            </select>
+                                        </div>
+                                    )
+                                }
+
+                                <div>
+                                    <label className="inline-flex">
+                                        <input
+                                            type="checkbox"
+                                            className="form-checkbox text-dark rounded-full"
+                                            onChange={allowWholeSaleProduct}
+                                        />
+                                        <span> Allow Whole Sale</span>
+                                    </label>
+                                </div>
+                                {
+                                    isProductWholeSaleAllow &&
+                                    (
+                                        <div className="grid grid-cols-1 sm:grid-cols-1 gap-4">
+                                            <div className="mt-8">
+                                                <div className="table-responsive">
+                                                    <table>
+                                                        <thead>
+                                                        <tr>
+                                                            <th>Quantity</th>
+                                                            <th>Discount</th>
+                                                            <th className="w-1"></th>
+                                                        </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                        {items.length <= 0 && (
+                                                            <tr>
+                                                                <td colSpan={5} className="!text-center font-semibold">
+                                                                    No Item Available
+                                                                </td>
+                                                            </tr>
+                                                        )}
+                                                        {items.map((item) => {
+                                                            return (
+                                                                <tr className="align-top" key={item.id}>
+
+                                                                    <td>
+                                                                        <input
+                                                                            type="number"
+                                                                            className="form-input w-32"
+                                                                            placeholder="Quantity"
+                                                                            min={1}
+                                                                            defaultValue={item.quantity}
+                                                                            onChange={(e) => changeQuantityDiscount('quantity', e.target.value, item.id)}
+                                                                        />
+                                                                    </td>
+
+                                                                    <td>
+                                                                        <input
+                                                                            type="number"
+                                                                            className="form-input w-32"
+                                                                            placeholder="Discount"
+                                                                            min={0}
+                                                                            value={item.discount}
+                                                                            onChange={(e) => changeQuantityDiscount('discount', e.target.value, item.id)}
+                                                                        />
+                                                                    </td>
+
+                                                                    <td className="mt-2">
+                                                                        <button type="button"
+                                                                                onClick={() => removeItem(item)}>
+                                                                            <svg
+                                                                                xmlns="http://www.w3.org/2000/svg"
+                                                                                width="20"
+                                                                                height="20"
+                                                                                viewBox="0 0 24 24"
+                                                                                fill="none"
+                                                                                stroke="currentColor"
+                                                                                strokeWidth="1.5"
+                                                                                strokeLinecap="round"
+                                                                                strokeLinejoin="round"
+                                                                            >
+                                                                                <line x1="18" y1="6" x2="6"
+                                                                                      y2="18"></line>
+                                                                                <line x1="6" y1="6" x2="18"
+                                                                                      y2="18"></line>
+                                                                            </svg>
+                                                                        </button>
+                                                                    </td>
+                                                                </tr>
+                                                            );
+                                                        })}
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                                <div className="flex justify-between sm:flex-row flex-col mt-6 px-4">
+                                                    <div className="sm:mb-0 mb-6">
+                                                        <button type="button" className="btn btn-primary"
+                                                                onClick={() => addItem()}>
+                                                            Add Item
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    )
+                                }
+
+                            </div>
+                        </div>
+                    </div>
+                    <div className="panel">
+                        <div className="flex items-center justify-between mb-5">
+                            <h5 className="font-semibold text-lg dark:text-white-light">Seo for this product</h5>
+                        </div>
+                        <div className="mb-5 space-y-5 relative">
+
+                            <div className="grid grid-cols-1 sm:grid-cols-1 gap-4">
+                                <label>Meta Tags</label>
+                                <div className="flex items-center gap-2">
+                                    <input
+                                        {...register("meta_tags")}
+                                        type="text"
+                                        className="form-input"
+                                        placeholder="pant,shirt,watch,glass"
+                                    />
+                                </div>
+                            </div>
+
+                            <div className="grid grid-cols-1 sm:grid-cols-1 gap-4">
+                                <label>Meta Description</label>
+                                <div className="flex items-center gap-2">
+
+                                    <textarea
+                                        {...register("meta_description")}
+                                        className="form-input"
+                                        placeholder="Multivendor Ecommerce system"
+                                    >
+                                    </textarea>
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+                <div className="pt-5 grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-2 gap-6">
+                    <div className="panel">
+                        <div className="flex items-center justify-between mb-5">
+                            <h5 className="font-semibold text-lg dark:text-white-light">Thumbnail</h5>
+                        </div>
+                        <div className="mb-5 space-y-5 relative">
+
+                            <div className="grid grid-cols-1 sm:grid-cols-1 gap-4">
+                                <div>
+                                    <input
+                                        type="file"
+                                        className="form-input"
+                                    />
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
                 </div>
                 <button
                     type="submit"

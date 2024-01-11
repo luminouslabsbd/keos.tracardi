@@ -82,9 +82,35 @@ class ProductController extends Controller
                     'type'=>$type,
                 ]);
             }elseif($type == "digital"){
-                return Inertia::render('Module/Product/Digital');
+                $categories = Category::where('parent_id', null)->select('id','name')->get();
+                $sub_categories = Category::where('parent_id', !null)->select('id','name')->get();
+                $brands = Brand::select('id','name')->get();
+                $colors = Color::select('id','name')->get();
+                $sizes = Size::select('id','name')->get();
+                $units = Unit::select('id','name')->get();
+                return Inertia::render('Module/Product/Digital',[
+                    'categories'=>$categories,
+                    'sub_categories'=>$sub_categories,
+                    'brands'=>$brands,
+                    'colors'=>$colors,
+                    'sizes'=>$sizes,
+                    'units'=>$units,
+                    'type'=>$type,
+                ]);
             }else{
-                return Inertia::render('Module/Product/License');
+                $categories = Category::where('parent_id', null)->select('id','name')->get();
+                $sub_categories = Category::where('parent_id', !null)->select('id','name')->get();
+                $brands = Brand::select('id','name')->get();
+                $colors = Color::select('id','name')->get();
+                $sizes = Size::select('id','name')->get();
+                $units = Unit::select('id','name')->get();
+                return Inertia::render('Module/Product/License',[
+                    'categories'=>$categories,
+                    'sub_categories'=>$sub_categories,
+                    'brands'=>$brands,
+                    'units'=>$units,
+                    'type'=>$type,
+                ]);
             }
         }else{
             return back()->with("error","Invalid type");

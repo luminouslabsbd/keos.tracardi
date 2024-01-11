@@ -21,6 +21,7 @@ return new class extends Migration
             $table->integer('type')->default(PHYSICAL);
             $table->double('product_current_price')->nullable();
             $table->double('product_discount_price')->nullable();
+            $table->double('product_quantity')->default(0);
             $table->tinyInteger('product_variation')->default(0);
             $table->tinyInteger('allow_seo')->default(0);
             $table->string('meta_keywords')->nullable();
