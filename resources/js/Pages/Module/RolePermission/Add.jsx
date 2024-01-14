@@ -147,6 +147,9 @@ function Add() {
                     <li className="before:content-['/'] ltr:before:mr-2 rtl:before:ml-2 text-base">
                         <span>Role & Permission</span>
                     </li>
+                    <li className="before:content-['/'] ltr:before:mr-2 rtl:before:ml-2 text-base">
+                        <span>Permission List</span>
+                    </li>
                 </ul>
             </div>
             <div className="pt-5 grid lg:grid-cols-1 grid-cols-1 gap-6">
@@ -190,9 +193,9 @@ function Add() {
                                 </div>
                             </div>
                             <hr/>
-                            <div className="flex flex-wrap justify-start gap-[50px]">
+                            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4  gap-[50px]">
                                 {Object.entries(permissions).map(([objectName, items]) => (
-                                    <div key={objectName} className="flex gap-[15px] p-[16px] rounded-lg max-w-[22%] w-[100%] permission-card shadow-md">
+                                    <div key={objectName} className="flex gap-[15px] p-[16px] flex-col xl:flex-col rounded-lg permission-card shadow-md">
                                         <div className="mb-5">
                                             {/* <h5 className="font-semibold text-lg dark:text-white-light">Group Name</h5> */}
                                             <div className="space-y-2 pt-3">
