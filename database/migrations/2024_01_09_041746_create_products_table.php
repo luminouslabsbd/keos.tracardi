@@ -25,7 +25,7 @@ return new class extends Migration
             $table->double('single_product_price')->nullable();
             $table->double('single_product_discount')->nullable();
             $table->double('single_product_quantity')->default(0);
-            $table->tinyInteger('product_variation')->default(0);
+            $table->tinyInteger('product_variation')->default(1);
 //            $table->tinyInteger('allow_seo')->default(0);
             $table->string('meta_keywords')->nullable();
             $table->string('meta_description')->nullable();

@@ -19,11 +19,11 @@ return new class extends Migration
             $table->unsignedBigInteger('unit_id')->nullable();
             $table->foreign('unit_id')->references('id')->on('units')->onDelete('cascade');
 
-            $table->double('product_stock');
+//            $table->double('product_stock');
             $table->tinyInteger('allow_product_conditions');
             $table->tinyInteger('allow_product_preorder');
             $table->tinyInteger('allow_minimum_order_qty');
-            $table->tinyInteger('allow_estimated_shipping_time');
+//            $table->tinyInteger('allow_estimated_shipping_time');
             $table->tinyInteger('allow_whole_sale')->default(0);
 
 

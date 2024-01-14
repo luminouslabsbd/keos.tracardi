@@ -2,5 +2,3 @@
 const PHYSICAL = 1;
 const DIGITAL = 2;
 const LICENSE = 3;
-const DIGITAL = 2;
-const LICENSE = 3;

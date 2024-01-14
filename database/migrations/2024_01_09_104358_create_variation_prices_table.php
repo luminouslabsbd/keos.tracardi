@@ -14,11 +14,15 @@ return new class extends Migration
         Schema::create('variation_prices', function (Blueprint $table) {
             $table->id();
 
+            $table->unsignedBigInteger('product_id')->nullable();
+            $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
+
             $table->unsignedBigInteger('size_id')->nullable();
             $table->foreign('size_id')->references('id')->on('sizes')->onDelete('cascade');
 
             $table->unsignedBigInteger('color_id')->nullable();
             $table->foreign('color_id')->references('id')->on('colors')->onDelete('cascade');
+
             $table->double('price')->nullable();
             $table->integer('qty')->nullable();
             $table->integer('discount')->nullable();

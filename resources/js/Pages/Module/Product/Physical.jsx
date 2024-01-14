@@ -149,8 +149,8 @@ function Physical() {
     };
 
     function onSubmit(data) {
-        console.log(data,items);
-        // router.post("/admin/color/store", data);
+        // console.log(data,items);
+        router.post("/admin/product/store", data);
     }
     return (
         <>
@@ -548,6 +548,7 @@ function Physical() {
                                 <div>
                                     <label className="inline-flex">
                                         <input
+                                            {...register("allow_product_condition")}
                                             type="checkbox"
                                             className="form-checkbox text-dark rounded-full"
                                             onChange={allowProductCondition}
@@ -572,6 +573,7 @@ function Physical() {
                                 <div>
                                     <label className="inline-flex">
                                         <input
+                                            {...register("allow_product_preorder")}
                                             type="checkbox"
                                             className="form-checkbox text-dark rounded-full"
                                             onChange={allowProductPreOrder}
@@ -597,6 +599,7 @@ function Physical() {
                                 <div>
                                     <label className="inline-flex">
                                         <input
+                                            {...register("allow_whole_sale")}
                                             type="checkbox"
                                             className="form-checkbox text-dark rounded-full"
                                             onChange={allowWholeSaleProduct}
