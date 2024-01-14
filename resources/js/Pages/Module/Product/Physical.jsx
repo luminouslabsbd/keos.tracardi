@@ -705,7 +705,7 @@ function Physical() {
                                 <label>Meta Tags</label>
                                 <div className="flex items-center gap-2">
                                     <input
-                                        {...register("meta_tags")}
+                                        {...register("meta_keywords")}
                                         type="text"
                                         className="form-input"
                                         placeholder="pant,shirt,watch,glass"
