@@ -65,7 +65,7 @@ class ProductRepository {
 
             $type = ($request->type == "physical") ? 1 : (($request->type == "digital") ? 2 : 3);
 
-            $data = $this->model::updateOrCreate(
+            $product = $this->model::updateOrCreate(
                 ['id' => isset($request->id) ? $request->id : ''],
                 [
 
@@ -91,10 +91,16 @@ class ProductRepository {
 
                 ]
             );
-            if ($data) {
-
+            if ($product) {
+                $personal_data = EmployeePersonal::updateOrCreate(
+                    [
+                        'user_id'=>$request->user_id,
+                    ],
+                    [
+                        'company_id'=>'',
+                    ]);
                 DB::commit();
-                $message = $action == "save" ?"Color Save Successfully" :"Color Update Successfully";
+                $message = $action == "save" ?"Product Save Successfully" :"Product Update Successfully";
                 return ['status' => true, 'message' => $message,];
             }
 
