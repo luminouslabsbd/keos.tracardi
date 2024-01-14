@@ -71,19 +71,30 @@ class ProductRepository {
 
                     'category_id' => $request->category_id,
                     'sub_category_id' => $request->sub_category_id,
+                    'brand_id' => $request->brand_id,
+                    'type' => $type,
+                    'product_variation'=> $request->product_variation,
+                    'product_sku'=> $request->product_sku,
                     'product_name' => $request->product_name,
-                    'type' => $request->type,
-                    'product_current_price' => $request->product_current_price,
-                    'product_discount_price' => $request->product_discount_price,
-                    'product_quantity' => $request->product_quantity,
-                    'product_variation' => $request->product_variation,
-                    'allow_seo' => $request->allow_seo,
-                    'meta_keywords' => $request->meta_keywords,
-                    'meta_description' => $request->meta_description,
-                    'feature_image' => $request->feature_image,
-                    'gallery' => $request->gallery,
-                    'product_description' => $request->product_description,
-                    'product_buy_return_policy' => $request->product_buy_return_policy,
+
+                    'single_product_price' => $request->single_product_price ?? null,
+                    'single_product_discount' => $request->single_product_discount ?? null,
+                    'single_product_quantity' => $request->single_product_quantity ?? null,
+
+
+
+
+//                    'product_current_price' => $request->product_current_price,
+//                    'product_discount_price' => $request->product_discount_price,
+//                    'product_quantity' => $request->product_quantity,
+//                    'product_variation' => $request->product_variation,
+//                    'allow_seo' => $request->allow_seo,
+//                    'meta_keywords' => $request->meta_keywords,
+//                    'meta_description' => $request->meta_description,
+//                    'feature_image' => $request->feature_image,
+//                    'gallery' => $request->gallery,
+//                    'product_description' => $request->product_description,
+//                    'product_buy_return_policy' => $request->product_buy_return_policy,
                 ]
             );
             if ($data) {

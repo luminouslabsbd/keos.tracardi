@@ -19,6 +19,7 @@ return new class extends Migration
             $table->foreign('sub_category_id')->references('id')->on('categories')->onDelete('cascade');
             $table->unsignedBigInteger('brand_id')->nullable();
             $table->foreign('brand_id')->references('id')->on('brands')->onDelete('cascade');
+            $table->string('product_sku');
             $table->string('product_name');
             $table->integer('type')->default(PHYSICAL);
             $table->double('single_product_price')->nullable();
