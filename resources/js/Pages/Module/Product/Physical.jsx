@@ -93,7 +93,6 @@ function Physical() {
         setValue('unit_id', selectedOption?.value);
     };
     const productVariationValue = (event) => {
-        console.log(event.target.value);
         const value = event.target.value;
         if (value === "1") {
             setProductVariationValue(false);
@@ -101,7 +100,6 @@ function Physical() {
         if (value === "2") {
             setProductVariationValue(true);
         }
-
     }
 
 
@@ -744,6 +742,7 @@ function Physical() {
                                     <input
                                         type="file"
                                         className="form-input"
+                                        {...register("thumbnail")}
                                     />
                                 </div>
                             </div>

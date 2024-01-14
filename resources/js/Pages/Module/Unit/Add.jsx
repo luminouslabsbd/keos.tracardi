@@ -48,7 +48,7 @@ function Add() {
                     </li>
                 </ul>
             </div>
-            <div className="pt-5 grid lg:grid-cols-1 grid-cols-1 gap-6">
+            <div className="pt-5 grid lg:grid-cols-2 grid-cols-1 gap-6">
                 <div className="panel" id="forms_grid">
                     <div className="flex items-center justify-between mb-5">
                         <h5 className="font-semibold text-lg dark:text-white-light">
@@ -57,7 +57,7 @@ function Add() {
                     </div>
                     <div className="mb-5">
                         <form className="space-y-5" onSubmit={handleSubmit(onSubmit)} method="post">
-                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div className="grid grid-cols-1 sm:grid-cols-1 gap-4">
                                 <div>
                                     <label> Name <span className="text-danger">*</span> </label>
                                     <input

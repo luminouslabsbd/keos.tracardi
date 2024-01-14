@@ -383,8 +383,6 @@ function Digital() {
                                     />
                                 </div>
                             </div>
-
-
                         </div>
                     </div>
                 </div>

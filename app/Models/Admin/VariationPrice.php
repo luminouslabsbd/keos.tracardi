@@ -8,4 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class VariationPrice extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        'size_id',
+        'color_id',
+        'price',
+        'qty',
+        'discount',
+        'thumbnail',
+    ];
 }
