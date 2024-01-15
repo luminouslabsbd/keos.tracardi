@@ -137,6 +137,8 @@ function Add() {
                                     {errors.title && <p className="text-red-600 pt-2">{errors.title.message}</p>}
                                 </div>
 
+                                {/* Upload Image Field */}
+
                             </div>
 
                             <button
