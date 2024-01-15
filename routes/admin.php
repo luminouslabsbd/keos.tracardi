@@ -172,6 +172,13 @@ Route::group(['middleware' => ['auth:admin'],'as' =>'admin.'],function() {
 
 
 
+    //coupons
+    Route::group(['prefix' => 'coupon' ],function (){
+        Route::get('', [\App\Http\Controllers\Admin\CouponController::class, 'index'])->name('coupon.product');
+        Route::get('create', [\App\Http\Controllers\Admin\CouponController::class, 'create'])->name('coupon.product.create');
+    });
+    //end coupons
+
 
 
 
