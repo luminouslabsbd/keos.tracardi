@@ -3,6 +3,7 @@
 
 use App\Http\Controllers\Admin\AuthController;
 use App\Http\Controllers\Admin\BangladeshController;
+use App\Http\Controllers\Admin\BlogCategoryController;
 use App\Http\Controllers\Admin\BrandController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ColorController;
@@ -210,28 +211,32 @@ Route::group(['middleware' => ['auth:admin'],'as' =>'admin.'],function() {
     });
     //end product
 
-
-
-
-
-
     //coupons
     Route::group(['prefix' => 'coupon' ],function (){
         Route::get('', [\App\Http\Controllers\Admin\CouponController::class, 'index'])->name('coupon.product');
         Route::get('create', [\App\Http\Controllers\Admin\CouponController::class, 'create'])->name('coupon.product.create');
     });
     //end coupons
-
-
-
-
      //Blog Category
-     Route::group(['prefix' => 'blogCategory' ],function (){
-        Route::get('', [\App\Http\Controllers\Admin\BlogCategoryController::class, 'index'])->name('blogCategory.product');
-        Route::get('create', [\App\Http\Controllers\Admin\BlogCategoryController::class, 'create'])->name('blogCategory.product.create');
+     Route::group(['prefix' => 'blog-category' ],function (){
+         Route::get('', [BlogCategoryController::class, 'index'])->name('blog-category');
+         Route::get('data', [BlogCategoryController::class, 'data'])->name('blog-category.data');
+         Route::get('/create', [BlogCategoryController::class, 'create'])->name('blog-category.create');
+         Route::post('/store', [BlogCategoryController::class, 'store'])->name('blog-category.store');
+         Route::get('/edit/{id}', [BlogCategoryController::class, 'edit'])->name('blog-category.edit');
+         Route::post('/update', [BlogCategoryController::class, 'update'])->name('blog-category.update');
+         Route::get('/delete/{id}', [BlogCategoryController::class, 'delete'])->name('blog-category.delete');
+         Route::get('/status/{id}', [BlogCategoryController::class, 'status'])->name('blog-category.status');
+
+         Route::get('trashed', [BlogCategoryController::class, 'trashed'])->name('blog-category.trashed');
+         Route::get('trashed/data', [BlogCategoryController::class, 'trashedData'])->name('blog-category.trashed.data');
+         Route::get('/permanent-delete/{id}', [BlogCategoryController::class, 'permanentDelete'])->name('blog-category.permanent.delete');
+         Route::get('permanent-delete-all', [BlogCategoryController::class, 'permanentDeleteAll'])->name('blog-category.permanent.delete.all');
+         Route::get('/undo-trashed/{id}', [BlogCategoryController::class, 'undoTrashed'])->name('blog-category.undo.trashed');
+         Route::get('/restore-all', [BlogCategoryController::class, 'restoreAll'])->name('blog-category.restore.all');
     });
     //end Blog Category
-   
+
 
         //Blog Post
         Route::group(['prefix' => 'blogPost' ],function (){

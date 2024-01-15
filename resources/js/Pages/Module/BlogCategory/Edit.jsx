@@ -2,13 +2,19 @@ import React, { useState } from "react";
 import MainLayout from "../../Layout/Mainlayout";
 import { Link, router, usePage } from "@inertiajs/react";
 import Select from 'react-select';
-import { Controller, useForm } from "react-hook-form";
-
+import { useForm, Controller } from "react-hook-form";
 function Add() {
-    const {  register, handleSubmit, formState: { errors } } = useForm();
+    const { result } = usePage().props;
+    const { register, handleSubmit, formState: { errors } } = useForm({
+        defaultValues: {
+            id: result.id,
+            name: result.name,
+        }
+    });
+
     function onSubmit(data) {
-        // console.log(data)
-        router.post("/admin/blog-category/store", data);
+        // console.log(data);
+        router.post("/admin/blog-category/update", data);
     }
     return (
         <>
@@ -39,38 +45,39 @@ function Add() {
                 <ul className="flex space-x-2 rtl:space-x-reverse">
                     <li>
                         <Link href="#" className="text-primary hover:underline">
-                            Blog
+                            Category
                         </Link>
                     </li>
                     <li className="before:content-['/'] ltr:before:mr-2 rtl:before:ml-2">
-                        <span>Category</span>
+                        <span>Add</span>
                     </li>
                 </ul>
             </div>
-            <div className="pt-5 grid lg:grid-cols-2 grid-cols-1 gap-6">
+            <div className="pt-5 grid lg:grid-cols-1 grid-cols-1 gap-6">
                 <div className="panel" id="forms_grid">
                     <div className="flex items-center justify-between mb-5">
                         <h5 className="font-semibold text-lg dark:text-white-light">
-                            Add New Cetagory
+                            Category Add Form
                         </h5>
                     </div>
                     <div className="mb-5">
                         <form className="space-y-5" onSubmit={handleSubmit(onSubmit)} method="post">
-                            <div className="grid grid-cols-1 sm:grid-cols-1 gap-4 items-center">
-                                {/* For name input */}
+                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                <input
+                                    type="hidden"
+                                    {...register("id")}
+                                />
                                 <div>
-                                    <label> Name <span className="text-danger">*</span> </label>
+                                    <label>Name</label>
                                     <input
-                                        {...register("name", { required: "Color Name Is required" })}
+                                        {...register("name", { required: "Category Name Is required" })}
                                         type="text"
                                         className="form-input"
-                                        placeholder="Name"
+                                        placeholder="Enter Category Name"
                                     />
                                     {errors.name && <p className="text-red-600 pt-2">{errors.name.message}</p>}
                                 </div>
                             </div>
-
-
                             <button
                                 type="submit"
                                 className="btn btn-primary !mt-6"

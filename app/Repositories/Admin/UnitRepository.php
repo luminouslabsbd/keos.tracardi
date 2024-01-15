@@ -1,11 +1,12 @@
 <?php
 namespace App\Repositories\Admin;
-use App\Models\Admin\Unit;
+use App\Models\Admin\BlogCategory;
+
 
 class UnitRepository {
     protected $model;
 
-    public function __construct(Unit $model)
+    public function __construct(BlogCategory $model)
     {
         $this->model=$model;
     }
@@ -63,7 +64,7 @@ class UnitRepository {
                 ]
             );
             if ($data) {
-                $message = $action == "save" ?"Size Save Successfully" :"Size Update Successfully";
+                $message = $action == "save" ?"Blog Category Save Successfully" :"Blog Category Update Successfully";
                 return ['status' => true, 'message' => $message,];
             }
 
