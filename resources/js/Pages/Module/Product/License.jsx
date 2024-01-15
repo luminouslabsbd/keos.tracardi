@@ -84,24 +84,24 @@ function License() {
     const handleSelectUnit = (selectedOption) => {
         setValue('unit_id', selectedOption?.value);
     };
-    const [IsUploadType, setUploadType] = useState(false);
+    const [IsUploadType, setUploadType] = useState(true);
 
     const uploadType = (event) => {
         console.log(event.target.value);
         const value = event.target.value;
         if (value === "1") {
-            setUploadType(false);
+            setUploadType(true);
         }
         if (value === "2") {
-            setUploadType(true);
+            setUploadType(false);
         }
 
     }
 
 
     function onSubmit(data) {
-        console.log(data);
-        // router.post("/admin/color/store", data);
+        // console.log(data);
+        router.post("/admin/product/license/store", data);
     }
     return (
         <>
@@ -316,7 +316,7 @@ function License() {
                                         <div>
                                             <label>Select File </label>
                                             <input
-                                                {...register("upload_link", { required: "Product Name Is required" })}
+                                                {...register("upload_link", {required: "Product Name Is required"})}
                                                 type="text"
                                                 className="form-input"
                                                 placeholder="Enter Product Name"
@@ -328,8 +328,8 @@ function License() {
                                         <div>
                                             <label>Link</label>
                                             <input
-                                                {...register("upload_file", { required: "Product Name Is required" })}
-                                                type="text"
+                                                {...register("upload_file", {required: "Product Name Is required"})}
+                                                type="file"
                                                 className="form-input"
                                                 placeholder="Enter Product Name"
                                             />
@@ -397,6 +397,7 @@ function License() {
                                 <div>
                                     <input
                                         type="file"
+                                        {...register("thumbnail", {required: "Product Name Is required"})}
                                         className="form-input"
                                     />
                                 </div>

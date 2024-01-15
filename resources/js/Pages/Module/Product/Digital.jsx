@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from "react";
 import MainLayout from "../../Layout/Mainlayout";
 import { Link, router, usePage } from "@inertiajs/react";
+import FlashMessage from "../../Component/FlashMessage.jsx";
 import { Controller, useForm } from "react-hook-form";
 import Select from "react-select";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 function Digital() {
-    const { categories, sub_categories, brands, type, units } = usePage().props;
+    const { flash, categories, sub_categories, brands, type, units } = usePage().props;
 
     const [selectedColorOptions, setSelectedColorOptions] = useState([]);
     const [selectedSizeOptions, setSelectedSizeOptions] = useState([]);
@@ -39,7 +40,7 @@ function Digital() {
     // console.log(attributesLength);
 
 
-    const { control, register, handleSubmit, setValue, reset, formState: { errors }, watch } = useForm({
+    const { control, register, handleSubmit, setValue, reset, formState: { errors },watch } = useForm({
         defaultValues: {
             type: type
         }
@@ -105,6 +106,7 @@ function Digital() {
     }
     return (
         <>
+            <FlashMessage flash={flash} />
             <div className="panel flex items-center overflow-x-auto whitespace-nowrap p-3 ">
                 <div className="rounded-full bg-primary p-1.5 text-white ring-2 ring-primary/30 ltr:mr-3 rtl:ml-3">
                     <svg
@@ -153,7 +155,7 @@ function Digital() {
                                     <Controller
                                         control={control}
                                         name="category_id"
-                                        render={({ field }) => (
+                                        render={({field}) => (
                                             <Select
                                                 placeholder="Select an option"
                                                 options={categoruOptions}
@@ -169,7 +171,7 @@ function Digital() {
                                     <Controller
                                         control={control}
                                         name="sub_category_id"
-                                        render={({ field }) => (
+                                        render={({field}) => (
                                             <Select
                                                 placeholder="Select an option"
                                                 options={subCategoruOptions}
@@ -190,7 +192,7 @@ function Digital() {
                                     <Controller
                                         control={control}
                                         name="brand_id"
-                                        render={({ field }) => (
+                                        render={({field}) => (
                                             <Select
                                                 placeholder="Select an option"
                                                 options={brandOptions}
@@ -206,7 +208,7 @@ function Digital() {
                                     <Controller
                                         control={control}
                                         name="unit_id"
-                                        render={({ field }) => (
+                                        render={({field}) => (
                                             <Select
                                                 placeholder="Select an option"
                                                 options={unitOptions}
@@ -220,7 +222,7 @@ function Digital() {
                                 <div>
                                     <label> Product SKU </label>
                                     <input
-                                        {...register("product_sku", { required: "Product SKU Is required" })}
+                                        {...register("product_sku", {required: "Product SKU Is required"})}
                                         type="text"
                                         className="form-input"
                                         placeholder="Enter Product Name"
@@ -233,7 +235,7 @@ function Digital() {
                                 <div>
                                     <label>Product Name</label>
                                     <input
-                                        {...register("product_name", { required: "Product Name Is required" })}
+                                        {...register("product_name", {required: "Product Name Is required"})}
                                         type="text"
                                         className="form-input"
                                         placeholder="Enter Product Name"
@@ -259,7 +261,7 @@ function Digital() {
                                     <label>Price</label>
                                     <div className="flex items-center gap-2">
                                         <input
-                                            {...register("single_product_price", { required: "Product Name Is required" })}
+                                            {...register("single_product_price", {required: "Product Name Is required"})}
                                             type="number"
                                             className="form-input"
                                             placeholder="99$"
@@ -270,7 +272,7 @@ function Digital() {
                                     <label>Discount</label>
                                     <div className="flex items-center gap-2">
                                         <input
-                                            {...register("single_product_discount", { required: "Product Name Is required" })}
+                                            {...register("single_product_discount", {required: "Product Name Is required"})}
                                             type="number"
                                             className="form-input"
                                             placeholder="10%"
@@ -281,7 +283,7 @@ function Digital() {
                                     <label>Quantity</label>
                                     <div className="flex items-center gap-2">
                                         <input
-                                            {...register("single_product_quantity", { required: "Product Quantoty Is required" })}
+                                            {...register("single_product_quantity", {required: "Product Quantoty Is required"})}
                                             type="number"
                                             className="form-input"
                                             placeholder="50"
@@ -316,13 +318,8 @@ function Digital() {
                                         <div>
                                             <label>Select File </label>
                                             <input
-<<<<<<< HEAD
-                                                {...register("upload_link", { required: "Product Name Is required" })}
-                                                type="file"
-=======
                                                 {...register("upload_link", {required: "Product Name Is required"})}
                                                 type="text"
->>>>>>> 02fb099 (license store)
                                                 className="form-input"
                                                 placeholder="Enter Product Name"
                                             />
@@ -333,13 +330,8 @@ function Digital() {
                                         <div>
                                             <label>Link</label>
                                             <input
-<<<<<<< HEAD
-                                                {...register("upload_file", { required: "Product Name Is required" })}
-                                                type="text"
-=======
                                                 {...register("upload_file", {required: "Product Name Is required"})}
                                                 type="file"
->>>>>>> 02fb099 (license store)
                                                 className="form-input"
                                                 placeholder="Enter Product Name"
                                             />
@@ -456,44 +448,6 @@ function Digital() {
                 {/*        <div className="mb-5 space-y-5 relative">*/}
                 {/*            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">*/}
 
-<<<<<<< HEAD
-                                <div>
-                                    <label> Select Upload Type <span className="text-danger">*</span></label>
-                                    <select
-                                        className="form-select text-white-dark"
-                                        {...register("upload_type")}
-                                        onChange={uploadType}
-                                    >
-                                        <option value="1">Upload By Link</option>
-                                        <option value="2">Upload By File</option>
-                                    </select>
-                                </div>
-                                {
-                                    IsUploadType ? (
-                                        <div>
-                                            <label>Select File <span className="text-danger">*</span> </label>
-                                            <input
-                                                {...register("upload_link", { required: "Product Name Is required" })}
-                                                type="file"
-                                                className="form-input"
-                                                placeholder="Enter Product Name"
-                                            />
-                                            {errors.product_name &&
-                                                <p className="text-red-600 pt-2">{errors.product_name.message}</p>}
-                                        </div>
-                                    ) : (
-                                        <div>
-                                            <label>Link<span className="text-danger">*</span> </label>
-                                            <input
-                                                {...register("upload_file", { required: "Product Name Is required" })}
-                                                type="text"
-                                                className="form-input"
-                                                placeholder="Enter Product Name"
-                                            />
-                                            {errors.product_name &&
-                                                <p className="text-red-600 pt-2">{errors.product_name.message}</p>}
-                                        </div>
-=======
                 {/*                <div>*/}
                 {/*                    <label> Select Upload Type <span className="text-danger">*</span></label>*/}
                 {/*                    <select*/}
@@ -530,7 +484,6 @@ function Digital() {
                 {/*                            {errors.product_name &&*/}
                 {/*                                <p className="text-red-600 pt-2">{errors.product_name.message}</p>}*/}
                 {/*                        </div>*/}
->>>>>>> 02fb099 (license store)
 
                 {/*                    )*/}
                 {/*                }*/}
@@ -555,7 +508,7 @@ function Digital() {
 }
 
 Digital.layout = (page) => (
-    <MainLayout children={page} title="E-SHOP || Add Group Of Company" />
+    <MainLayout children={page} title="E-SHOP || Add Group Of Company"/>
 );
 
 export default Digital;

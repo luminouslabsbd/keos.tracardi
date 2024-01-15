@@ -4,6 +4,7 @@ namespace App\Repositories\Admin;
 
 use App\Models\Admin\Color;
 use App\Models\Admin\Digital;
+use App\Models\Admin\License;
 use App\Models\Admin\Physical;
 use App\Models\Admin\Product;
 use App\Models\Admin\VariationPrice;
@@ -97,9 +98,10 @@ class ProductRepository {
 
     public function licenseStore($request){
 
-        try
-        {
-            DB::beginTransaction();
+//        try
+//        {
+//            DB::beginTransaction();
+//        dd($request->thumbnail);
             if(!empty($request->thumbnail)){
                 $thumbnail =  fileUpload($request->thumbnail[0] , "product");
             }else if(isset($user->thumbnail)){
@@ -142,7 +144,7 @@ class ProductRepository {
                 }else{
                     $upload_file ="";
                 }
-                $digital = Digital::updateOrCreate(
+                $digital = License::updateOrCreate(
                     [
                         'product_id'=>isset($request->product_id) ? $request->product_id : '',
                     ],
@@ -155,15 +157,15 @@ class ProductRepository {
                         'upload_file'=> (int) $request->upload_type === UPLOAD_FILE  ? $upload_file : null,
                     ]);
                 if($digital){
-                    DB::commit();
+//                    DB::commit();
                     $message = "Product Save Successfully";
                     return ['status' => true, 'message' => $message,];
                 }
             }
-        } catch (\Exception $e) {
-            DB::rollback();
-            return ['status' => false, 'errors' =>  $e->getMessage()];
-        }
+//        } catch (\Exception $e) {
+//            DB::rollback();
+//            return ['status' => false, 'errors' =>  $e->getMessage()];
+//        }
     }
     public function edit(int $id){
         return $this->model::find($id);
