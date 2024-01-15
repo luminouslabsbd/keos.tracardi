@@ -182,13 +182,20 @@ Route::group(['middleware' => ['auth:admin'],'as' =>'admin.'],function() {
 
 
 
-     //Blog
-     Route::group(['prefix' => 'blog' ],function (){
-        Route::get('', [\App\Http\Controllers\Admin\BlogController::class, 'index'])->name('blog.product');
-        Route::get('create', [\App\Http\Controllers\Admin\BlogController::class, 'create'])->name('blog.product.create');
+     //Blog Category
+     Route::group(['prefix' => 'blogCategory' ],function (){
+        Route::get('', [\App\Http\Controllers\Admin\BlogCategoryController::class, 'index'])->name('blogCategory.product');
+        Route::get('create', [\App\Http\Controllers\Admin\BlogCategoryController::class, 'create'])->name('blogCategory.product.create');
     });
-    //end Blog
+    //end Blog Category
+   
 
+        //Blog Post
+        Route::group(['prefix' => 'blogPost' ],function (){
+            Route::get('', [\App\Http\Controllers\Admin\BlogPostController::class, 'index'])->name('blogPost.product');
+            Route::get('create', [\App\Http\Controllers\Admin\BlogPostController::class, 'create'])->name('blogPost.product.create');
+        });
+        //end Blog Post
 
 
 

@@ -1,12 +1,41 @@
 import React, { useState } from "react";
 import MainLayout from "../../Layout/Mainlayout";
 import { Link, router, usePage } from "@inertiajs/react";
-import { useForm } from "react-hook-form";
+import Select from 'react-select';
+import { Controller, useForm } from "react-hook-form";
+
 function Add() {
-    const { register, handleSubmit, setValue, reset, formState: { errors } } = useForm();
+    const { control, register, handleSubmit, setValue, reset, formState: { errors } } = useForm();
+
+
+
+    //For Language Select Field
+    const LanguageOptions = [
+        { value: 'English', label: 'English' },
+        { value: 'Bangla', label: 'Bangla' },
+    ];
+
+    //For Category Select Field
+    const CategoryOptions = [
+        { value: 'Digital Service', label: 'Digital Service' },
+        { value: 'Physical Service', label: 'Physical Service' },
+    ];
+
+    const handleSelectLanguage = (selectedOption) => {
+        setValue('language', selectedOption?.value);
+    };
+
+    const handleSelectCategory = (selectedOption) => {
+        setValue('category', selectedOption?.value);
+    };
+
     function onSubmit(data) {
-        router.post("/admin/color/store", data);
+        console.log(data)
+        // router.post("/admin/color/store", data);
     }
+
+
+
     return (
         <>
             <div className="panel flex items-center overflow-x-auto whitespace-nowrap p-3 ">
@@ -40,7 +69,7 @@ function Add() {
                         </Link>
                     </li>
                     <li className="before:content-['/'] ltr:before:mr-2 rtl:before:ml-2">
-                        <span>Add</span>
+                        <span>Post</span>
                     </li>
                 </ul>
             </div>
@@ -48,47 +77,67 @@ function Add() {
                 <div className="panel" id="forms_grid">
                     <div className="flex items-center justify-between mb-5">
                         <h5 className="font-semibold text-lg dark:text-white-light">
-                            Add New Cetagory
+                            Add New Post
                         </h5>
                     </div>
                     <div className="mb-5">
                         <form className="space-y-5" onSubmit={handleSubmit(onSubmit)} method="post">
-                            <div className="grid grid-cols-1 sm:grid-cols-4 gap-4">
+                            <div className="grid grid-cols-1 sm:grid-cols-4 gap-4 items-center">
+
+                                {/* React Select Field for Language */}
+                                <div>
+                                    <label>Select Language <span className="text-danger">*</span></label>
+                                    <Controller
+
+                                        control={control}
+                                        name="language"
+                                        render={({ field }) => (
+
+                                            <Select
+                                                options={LanguageOptions}
+                                                value={LanguageOptions.find((option) => option.value === field.value)}
+                                                onChange={handleSelectLanguage}
+                                            />
+
+                                        )}
+
+                                    />
+                                </div>
+
+                                {/* React Slect Field for Category */}
+                                <div>
+                                    <label>Category <span className="text-danger">*</span></label>
+                                    <Controller
+
+                                        control={control}
+                                        name="category"
+                                        render={({ field }) => (
+
+                                            <Select
+                                                options={CategoryOptions}
+                                                value={CategoryOptions.find((option) => option.value === field.value)}
+                                                onChange={handleSelectCategory}
+                                                placeholder="Select Category"
+                                            />
+
+                                        )}
+
+                                    />
+                                </div>
+
                                 {/* For name input */}
                                 <div>
-                                    <label> Name <span className="text-danger">*</span> </label>
+                                    <label> Title <span className="text-danger">*</span> </label>
                                     <input
-                                        {...register("name", { required: "Color Name Is required" })}
+                                        {...register("title", { required: "Title Is required" })}
                                         type="text"
                                         className="form-input"
-                                        placeholder="Name"
+                                        placeholder="Title"
                                     />
-                                    {errors.name && <p className="text-red-600 pt-2">{errors.name.message}</p>}
-                                </div>
-                                {/* For Slug Input */}
-                                <div>
-                                    <label> Slug <span className="text-danger">*</span> </label>
-                                    <input
-                                        {...register("slug", { required: "Name Is required" })}
-                                        type="text"
-                                        className="form-input"
-                                        placeholder="Slug"
-                                    />
-                                    {errors.slug && <p className="text-red-600 pt-2">{errors.slug.message}</p>}
-                                </div>
-
-                                <div>
-                                <label for="selectField">Select Language</label>
-
-                               <select id="selectField" name="selectField">
-                                <option value="option1">English</option>
-                                <option value="option2">Bangla</option>
-                               </select>
-
+                                    {errors.title && <p className="text-red-600 pt-2">{errors.title.message}</p>}
                                 </div>
 
                             </div>
-
 
                             <button
                                 type="submit"

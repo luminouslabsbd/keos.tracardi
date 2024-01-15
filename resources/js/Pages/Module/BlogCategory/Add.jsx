@@ -1,18 +1,31 @@
 import React, { useState } from "react";
 import MainLayout from "../../Layout/Mainlayout";
 import { Link, router, usePage } from "@inertiajs/react";
-import { useForm, Controller } from "react-hook-form";
+import Select from 'react-select';
+import { Controller, useForm } from "react-hook-form";
+
 function Add() {
-    const { result } = usePage().props;
-    const { register, handleSubmit, formState: { errors } } = useForm({
-        defaultValues: {
-            id: result.id,
-            name: result.name,
-        }
-    });
+    const { control, register, handleSubmit, setValue, reset, formState: { errors } } = useForm();
+
+
+
+    //For Select Field
+    const options = [
+        { value: 'English', label: 'English' },
+        { value: 'Bangla', label: 'Bangla' },
+    ];
+
+    const handleSelectLanguage = (selectedOption) => {
+        setValue('language', selectedOption?.value);
+    };
+
     function onSubmit(data) {
-        router.post("/admin/color/update", data);
+        console.log(data)
+        // router.post("/admin/color/store", data);
     }
+
+
+
     return (
         <>
             <div className="panel flex items-center overflow-x-auto whitespace-nowrap p-3 ">
@@ -42,11 +55,11 @@ function Add() {
                 <ul className="flex space-x-2 rtl:space-x-reverse">
                     <li>
                         <Link href="#" className="text-primary hover:underline">
-                            Color
+                            Blog
                         </Link>
                     </li>
                     <li className="before:content-['/'] ltr:before:mr-2 rtl:before:ml-2">
-                        <span>Add</span>
+                        <span>Category</span>
                     </li>
                 </ul>
             </div>
@@ -54,27 +67,56 @@ function Add() {
                 <div className="panel" id="forms_grid">
                     <div className="flex items-center justify-between mb-5">
                         <h5 className="font-semibold text-lg dark:text-white-light">
-                            Color Edit Form
+                            Add New Cetagory
                         </h5>
                     </div>
                     <div className="mb-5">
                         <form className="space-y-5" onSubmit={handleSubmit(onSubmit)} method="post">
-                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                                <input
-                                    type="hidden"
-                                    {...register("id")}
-                                />
+                            <div className="grid grid-cols-1 sm:grid-cols-4 gap-4 items-center">
+                                {/* For name input */}
                                 <div>
-                                    <label>Name</label>
+                                    <label> Name <span className="text-danger">*</span> </label>
                                     <input
-                                        {...register("name", { required: "Category Name Is required" })}
+                                        {...register("name", { required: "Color Name Is required" })}
                                         type="text"
                                         className="form-input"
-                                        placeholder="Enter Category Name"
+                                        placeholder="Name"
                                     />
                                     {errors.name && <p className="text-red-600 pt-2">{errors.name.message}</p>}
                                 </div>
+                                {/* For Slug Input */}
+                                <div>
+                                    <label> Slug <span className="text-danger">*</span> </label>
+                                    <input
+                                        {...register("slug", { required: "Name Is required" })}
+                                        type="text"
+                                        className="form-input"
+                                        placeholder="Slug"
+                                    />
+                                    {errors.slug && <p className="text-red-600 pt-2">{errors.slug.message}</p>}
+                                </div>
+
+                                {/* React Select Field */}
+                                <div>
+                                    <label>Select Language <span className="text-danger">*</span></label>
+                                    <Controller
+
+                                        control={control}
+                                        name="language"
+                                        render={({ field }) => (
+
+                                            <Select
+                                                options={options}
+                                                value={options.find((option) => option.value === field.value)}
+                                                onChange={handleSelectLanguage}
+                                            />
+
+                                        )}
+
+                                    />
+                                </div>
                             </div>
+
 
                             <button
                                 type="submit"
