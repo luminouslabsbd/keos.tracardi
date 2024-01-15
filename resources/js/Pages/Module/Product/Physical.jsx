@@ -7,7 +7,7 @@ import Select from "react-select";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 function Physical() {
-    const { flash, categories, sub_categories, brands, type, colors, sizes, units } = usePage().props;
+    const { categories, sub_categories, brands, type, colors, sizes, units } = usePage().props;
 
     const [selectedColorOptions, setSelectedColorOptions] = useState([]);
     const [selectedSizeOptions, setSelectedSizeOptions] = useState([]);
@@ -149,12 +149,16 @@ function Physical() {
     };
 
     function onSubmit(data) {
-        // console.log(data,items);
-        router.post("/admin/product/store", data);
+        const total_items = items;
+        const newData = {
+            ...data,
+            items: total_items
+        }
+        router.post("/admin/product/store", newData);
     }
     return (
         <>
-            <FlashMessage flash={flash} />
+            {/*<FlashMessage flash={flash} />*/}
             <div className="panel flex items-center overflow-x-auto whitespace-nowrap p-3 ">
                 <div className="rounded-full bg-primary p-1.5 text-white ring-2 ring-primary/30 ltr:mr-3 rtl:ml-3">
                     <svg

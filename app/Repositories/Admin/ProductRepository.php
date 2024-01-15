@@ -6,6 +6,7 @@ use App\Models\Admin\Color;
 use App\Models\Admin\Physical;
 use App\Models\Admin\Product;
 use App\Models\Admin\VariationPrice;
+use App\Models\Admin\WholeSale;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 
@@ -121,8 +122,8 @@ class ProductRepository {
                     ]);
 
 //                dd($product,$physical);
-
-                if($product->product_variation == 2){
+                if($physical){
+                    if($product->product_variation == 2){
                     $product->productcolor()->sync($request->color_id);
                     $product->productsize()->sync($request->size_id);
 
@@ -167,11 +168,19 @@ class ProductRepository {
                     }
 
                 }
+                }
 //                dd('ok');
 
-//                if ($physical->allow_whole_sale == 1) {
-//
-//                }
+                if ($physical->allow_whole_sale == 1) {
+                    foreach ($request->items as $item) {
+                        WholeSale::updateOrCreate([
+                            'product_id'=> $productId,
+                            'quantity'=> $item['quantity'],
+                            'discount'=> $item['discount'],
+                        ]);
+                    }
+                }
+                dd('ok');
 //                DB::commit();
                 $message = $action == "save" ?"Product Save Successfully" :"Product Update Successfully";
                 return ['status' => true, 'message' => $message,];

@@ -5,9 +5,10 @@ import 'react-perfect-scrollbar/dist/css/styles.css';
 import Footer from '../Component/Footer';
 import Header from '../Component/Header';
 import Sidebar from '../Component/Sidebar';
-import { Head } from '@inertiajs/react'
+import {Head, usePage} from '@inertiajs/react'
+import FlashMessage from "../Component/FlashMessage.jsx";
 function MainLayout({children , title}) {
-
+    const { flash } = usePage().props;
     const [isToggleSidebar, setToggleSidebar] = useState(false);
 
     const [toggle, setToggle] = useState(false);
@@ -47,6 +48,7 @@ function MainLayout({children , title}) {
 
   return (
     <>
+        <FlashMessage flash={flash} />
     <Head title = {title} />
 
     <div className={`${isToggleSidebar ? "toggle-sidebar" : ""} ${themeConfig.menu} ${themeConfig.layout} ${themeConfig.rtlClass} main-section antialiased relative font-nunito text-sm font-normal`}>
