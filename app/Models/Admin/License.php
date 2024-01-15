@@ -9,6 +9,7 @@ class License extends Model
 {
     use HasFactory;
     protected $fillable = [
+        'product_id',
         'upload_type',
         'upload_link',
         'upload_file',

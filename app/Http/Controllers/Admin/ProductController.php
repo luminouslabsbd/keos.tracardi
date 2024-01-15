@@ -121,11 +121,30 @@ class ProductController extends Controller
     public function store(ProductRequest $request){
         $result = $this->product->store($request);
         if($result['status']== true){
-            return to_route('admin.color')->with('success', $result['message']);
+            return to_route('admin.product')->with('success', $result['message']);
         }else{
             return back()->with('error', 'Data Does not Insert');
         }
     }
+
+    public function digitalStore(ProductRequest $request){
+        $result = $this->product->digitalStore($request);
+        if($result['status']== true){
+            return to_route('admin.product')->with('success', $result['message']);
+        }else{
+            return back()->with('error', 'Data Does not Insert');
+        }
+    }
+    public function licenseStore(ProductRequest $request){
+        $result = $this->product->licenseStore($request);
+        if($result['status']== true){
+            return to_route('admin.product')->with('success', $result['message']);
+        }else{
+            return back()->with('error', 'Data Does not Insert');
+        }
+    }
+
+
     public function edit($id){
         $result = $this->product->edit($id);
         return Inertia::render('Module/Product/Edit',[

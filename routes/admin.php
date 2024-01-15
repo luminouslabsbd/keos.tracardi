@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\BangladeshController;
 use App\Http\Controllers\Admin\BrandController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ColorController;
+use App\Http\Controllers\Admin\CurrencyController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\ExtraController;
 use App\Http\Controllers\Admin\ModuleController;
@@ -15,6 +16,7 @@ use App\Http\Controllers\Admin\RolePermissionController;
 use App\Http\Controllers\Admin\RolesController;
 use App\Http\Controllers\Admin\AdminProfileController;
 use App\Http\Controllers\Admin\SizeController;
+use App\Http\Controllers\Admin\SliderController;
 use App\Http\Controllers\Admin\UnitController;
 use App\Http\Controllers\Admin\UsersController;
 use Illuminate\Support\Facades\Route;
@@ -141,8 +143,47 @@ Route::group(['middleware' => ['auth:admin'],'as' =>'admin.'],function() {
     //end size
 
 
+    //size
+    Route::group(['prefix' => 'slider' ],function (){
+        Route::get('', [SliderController::class, 'index'])->name('slider');
+        Route::get('data', [SliderController::class, 'data'])->name('slider.data');
+        Route::get('/create', [SliderController::class, 'create'])->name('slider.create');
+        Route::post('/store', [SliderController::class, 'store'])->name('slider.store');
+        Route::get('/edit/{id}', [SliderController::class, 'edit'])->name('slider.edit');
+        Route::post('/update', [SliderController::class, 'update'])->name('slider.update');
+        Route::get('/delete/{id}', [SliderController::class, 'delete'])->name('slider.delete');
+        Route::get('/status/{id}', [SliderController::class, 'status'])->name('slider.status');
+
+        Route::get('trashed', [SliderController::class, 'trashed'])->name('slider.trashed');
+        Route::get('trashed/data', [SliderController::class, 'trashedData'])->name('slider.trashed.data');
+        Route::get('/permanent-delete/{id}', [SliderController::class, 'permanentDelete'])->name('slider.permanent.delete');
+        Route::get('permanent-delete-all', [SliderController::class, 'permanentDeleteAll'])->name('slider.permanent.delete.all');
+        Route::get('/undo-trashed/{id}', [SliderController::class, 'undoTrashed'])->name('slider.undo.trashed');
+        Route::get('/restore-all', [SliderController::class, 'restoreAll'])->name('slider.restore.all');
+    });
+    //end size
 
 
+
+//size
+    Route::group(['prefix' => 'currency' ],function (){
+        Route::get('', [CurrencyController::class, 'index'])->name('currency');
+        Route::get('data', [CurrencyController::class, 'data'])->name('currency.data');
+        Route::get('/create', [CurrencyController::class, 'create'])->name('currency.create');
+        Route::post('/store', [CurrencyController::class, 'store'])->name('currency.store');
+        Route::get('/edit/{id}', [CurrencyController::class, 'edit'])->name('currency.edit');
+        Route::post('/update', [CurrencyController::class, 'update'])->name('currency.update');
+        Route::get('/delete/{id}', [CurrencyController::class, 'delete'])->name('currency.delete');
+        Route::get('/status/{id}', [CurrencyController::class, 'status'])->name('currency.status');
+
+        Route::get('trashed', [CurrencyController::class, 'trashed'])->name('currency.trashed');
+        Route::get('trashed/data', [CurrencyController::class, 'trashedData'])->name('currency.trashed.data');
+        Route::get('/permanent-delete/{id}', [CurrencyController::class, 'permanentDelete'])->name('currency.permanent.delete');
+        Route::get('permanent-delete-all', [CurrencyController::class, 'permanentDeleteAll'])->name('currency.permanent.delete.all');
+        Route::get('/undo-trashed/{id}', [CurrencyController::class, 'undoTrashed'])->name('currency.undo.trashed');
+        Route::get('/restore-all', [CurrencyController::class, 'restoreAll'])->name('currency.restore.all');
+    });
+    //end size
 
 
 
@@ -152,7 +193,9 @@ Route::group(['middleware' => ['auth:admin'],'as' =>'admin.'],function() {
         Route::get('type', [ProductController::class, 'type'])->name('product.type');
         Route::get('data', [ProductController::class, 'data'])->name('product.data');
         Route::get('/create/{type}', [ProductController::class, 'create'])->name('product.create');
-        Route::post('/store', [ProductController::class, 'store'])->name('product.store');
+        Route::post('physical/store', [ProductController::class, 'store'])->name('product.store');
+        Route::post('digital/store', [ProductController::class, 'digitalStore'])->name('digital.product.store');
+        Route::post('license/store', [ProductController::class, 'licenseStore'])->name('license.product.store');
         Route::get('/edit/{id}', [ProductController::class, 'edit'])->name('product.edit');
         Route::post('/update', [ProductController::class, 'update'])->name('product.update');
         Route::get('/delete/{id}', [ProductController::class, 'delete'])->name('product.delete');
@@ -196,6 +239,7 @@ Route::group(['middleware' => ['auth:admin'],'as' =>'admin.'],function() {
             Route::get('create', [\App\Http\Controllers\Admin\BlogPostController::class, 'create'])->name('blogPost.product.create');
         });
         //end Blog Post
+
 
 
 
