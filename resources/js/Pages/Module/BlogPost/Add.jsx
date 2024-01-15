@@ -2,10 +2,12 @@ import React, { useState } from "react";
 import MainLayout from "../../Layout/Mainlayout";
 import { Link, router, usePage } from "@inertiajs/react";
 import Select from 'react-select';
+import ReactQuill from "react-quill";
+import "react-quill/dist/quill.snow.css";
 import { Controller, useForm } from "react-hook-form";
 
 function Add() {
-    const { control, register, handleSubmit, setValue, reset, formState: { errors } } = useForm();
+    const { control, register, handleSubmit, setValue, reset, formState: { errors }, watch } = useForm();
 
 
 
@@ -21,13 +23,36 @@ function Add() {
         { value: 'Physical Service', label: 'Physical Service' },
     ];
 
+    // For Language Select Field
     const handleSelectLanguage = (selectedOption) => {
         setValue('language', selectedOption?.value);
     };
 
+    // For Category Select Field
     const handleSelectCategory = (selectedOption) => {
         setValue('category', selectedOption?.value);
     };
+
+
+    // For Product Description
+    const product_description = watch('product_description', '');
+    const handleQuillChange = (value) => {
+        setValue('product_description', value);
+    };
+
+
+
+    // For Dynamic Text Field (SEO Description)
+
+    const [isChecked, setIsChecked] = useState(false);
+
+    const toggleTextField = () => {
+        setIsChecked(!isChecked);
+    };
+
+
+
+    // For Post From Data
 
     function onSubmit(data) {
         console.log(data)
@@ -82,7 +107,7 @@ function Add() {
                     </div>
                     <div className="mb-5">
                         <form className="space-y-5" onSubmit={handleSubmit(onSubmit)} method="post">
-                            <div className="grid grid-cols-1 sm:grid-cols-4 gap-4 items-center">
+                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 ">
 
                                 {/* React Select Field for Language */}
                                 <div>
@@ -137,15 +162,136 @@ function Add() {
                                     {errors.title && <p className="text-red-600 pt-2">{errors.title.message}</p>}
                                 </div>
 
-                                {/* Upload Image Field */}
+                                {/* For Tag field  */}
+                                <div>
+                                    <label> Tags <span className="text-danger">*</span> </label>
+                                    <input
+                                        {...register("tag", { required: "Tag Is required" })}
+                                        type="text"
+                                        className="form-input"
+                                    />
+                                    {errors.tag && <p className="text-red-600 pt-2">{errors.tag.message}</p>}
+                                </div>
 
+
+
+                                {/* Description Field */}
+                                <div className="panel">
+                                    <div className="flex items-center justify-between mb-5">
+                                        <h5 className="font-semibold text-lg dark:text-white-light">Product Description</h5>
+                                    </div>
+                                    <div className="mb-5 space-y-5 relative">
+
+                                        <div className="grid grid-cols-1 sm:grid-cols-1 gap-4">
+                                            <div>
+                                                <ReactQuill
+                                                    value={product_description}
+                                                    onChange={(value) => handleQuillChange(value)}
+                                                    theme="snow"
+                                                />
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+                                </div>
+                                {/* Description End */}
+
+
+                                {/* Upload Image Field */}
+                                <div className="panel">
+                                    <div className="flex items-center justify-between mb-5">
+                                        <h5 className="font-semibold text-lg  dark:text-white-light">Current Featured Image</h5>
+                                    </div>
+                                    <div className="mb-5 relative">
+
+                                        <div className="grid grid-cols-1 sm:grid-cols-1 gap-4">
+                                            <div>
+                                                <input
+                                                    type="file"
+                                                    className="form-input"
+                                                    {...register("thumbnail")}
+                                                />
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                {/* Upload Image Field End */}
+
+
+                                {/* Source Field */}
+
+                                <div>
+                                    <label> Source <span className="text-danger">*</span> </label>
+                                    <input
+                                        {...register("source", { required: "Url Is required" })}
+                                        type="url"
+                                        className="form-input"
+                                    />
+                                    {errors.source && <p className="text-red-600 pt-2">{errors.source.message}</p>}
+                                </div>
+                                {/* Source Field End */}
+
+                                {/* Allow Blog SEO Dynamiclly */}
+                                <div>
+                                    <div>
+                                        <label className="inline-flex">
+                                            <input
+                                                {...register("allow_Blog_SEO")}
+                                                type="checkbox"
+                                                checked={isChecked}
+                                                className="form-checkbox text-dark rounded-full"
+                                                onChange={toggleTextField}
+                                            />
+                                            <span>   Allow Blog SEO</span>
+                                        </label>
+                                    </div>
+
+                                    {/* Dynamically created text field */}
+                                    {isChecked && (
+
+                                        <div className="flex flex-col gap-4">
+                                            <div className="grid grid-cols-1 sm:grid-cols-1 gap-4">
+                                                <label>Meta Tags<span>*</span></label>
+                                                <div className="flex items-center gap-2">
+                                                    <input
+                                                        {...register("meta_keywords")}
+                                                        type="text"
+                                                        className="form-input"
+                                                        placeholder="pant,shirt,watch,glass"
+                                                    />
+                                                </div>
+                                            </div>
+
+
+                                            <div className="grid grid-cols-1 sm:grid-cols-1 gap-4">
+                                                <label>Meta Description<span>*</span></label>
+                                                <div className="flex items-center gap-2">
+
+                                                    <textarea
+                                                        {...register("meta_description")}
+                                                        className="form-input"
+                                                        placeholder="Write SEO description"
+                                                    >
+                                                    </textarea>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+
+
+                                    )}
+                                </div>
+                                {/* Allow Blog SEO Dynamiclly End*/}
                             </div>
 
                             <button
                                 type="submit"
                                 className="btn btn-primary !mt-6"
                             >
-                                Submit
+                                Create Post
                             </button>
                         </form>
                     </div>
