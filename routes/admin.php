@@ -182,6 +182,12 @@ Route::group(['middleware' => ['auth:admin'],'as' =>'admin.'],function() {
 
 
 
+     //Blog
+     Route::group(['prefix' => 'blog' ],function (){
+        Route::get('', [\App\Http\Controllers\Admin\BlogController::class, 'index'])->name('blog.product');
+        Route::get('create', [\App\Http\Controllers\Admin\BlogController::class, 'create'])->name('blog.product.create');
+    });
+    //end Blog
 
 
 
