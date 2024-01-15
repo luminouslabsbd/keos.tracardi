@@ -2,12 +2,10 @@ import React, { useState } from "react";
 import MainLayout from "../../Layout/Mainlayout";
 import Tippy from '@tippyjs/react';
 import { Link, router, usePage } from "@inertiajs/react";
-import FlashMessage from "../../Component/FlashMessage.jsx";
 import Select from 'react-select';
-import { useForm,Controller } from "react-hook-form";
+import { useForm, Controller } from "react-hook-form";
 function Add() {
-    const { flash } = usePage().props;
-    const { control,register, handleSubmit, setValue, reset,formState: { errors } } = useForm();
+    const { control, register, handleSubmit, setValue, reset, formState: { errors } } = useForm();
     const [selectedImage, setSelectedImage] = useState(null);
     const handleImageChange = (e) => {
         const file = e.target.files[0];
@@ -25,7 +23,6 @@ function Add() {
     }
     return (
         <>
-            <FlashMessage flash={flash} />
             <div className="panel flex items-center overflow-x-auto whitespace-nowrap p-3 ">
                 <div className="rounded-full bg-primary p-1.5 text-white ring-2 ring-primary/30 ltr:mr-3 rtl:ml-3">
                     <svg
@@ -74,7 +71,7 @@ function Add() {
                                 <div>
                                     <label> Name <span className="text-danger">*</span> </label>
                                     <input
-                                        {...register("name", {required: "Brand Name Is required"})}
+                                        {...register("name", { required: "Brand Name Is required" })}
                                         type="text"
                                         className="form-input"
                                         placeholder="Enter Brand Name"
@@ -89,18 +86,18 @@ function Add() {
                                                 content="Leave the name field blank, and the slug will auto-generate."
                                                 className="bg-black text-white p-5 rounded-lg dark:bg-[#2e3249] dark:text-white">
 
-                                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
-                                                         xmlns="http://www.w3.org/2000/svg">
-                                                        <circle opacity="0.5" cx="12" cy="12" r="10"
-                                                                stroke="currentColor" strokeWidth="1.5"/>
-                                                        <path
-                                                            d="M10.125 8.875C10.125 7.83947 10.9645 7 12 7C13.0355 7 13.875 7.83947 13.875 8.875C13.875 9.56245 13.505 10.1635 12.9534 10.4899C12.478 10.7711 12 11.1977 12 11.75V13"
-                                                            stroke="currentColor"
-                                                            strokeWidth="1.5"
-                                                            strokeLinecap="round"
-                                                        />
-                                                        <circle cx="12" cy="16" r="1" fill="currentColor"/>
-                                                    </svg>
+                                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
+                                                    xmlns="http://www.w3.org/2000/svg">
+                                                    <circle opacity="0.5" cx="12" cy="12" r="10"
+                                                        stroke="currentColor" strokeWidth="1.5" />
+                                                    <path
+                                                        d="M10.125 8.875C10.125 7.83947 10.9645 7 12 7C13.0355 7 13.875 7.83947 13.875 8.875C13.875 9.56245 13.505 10.1635 12.9534 10.4899C12.478 10.7711 12 11.1977 12 11.75V13"
+                                                        stroke="currentColor"
+                                                        strokeWidth="1.5"
+                                                        strokeLinecap="round"
+                                                    />
+                                                    <circle cx="12" cy="16" r="1" fill="currentColor" />
+                                                </svg>
 
                                             </Tippy>
                                         </span>
@@ -127,9 +124,9 @@ function Add() {
                                 </div>
                                 <>
                                     {selectedImage && (
-                                        <div style={{position: 'relative'}}>
+                                        <div style={{ position: 'relative' }}>
                                             <img className="rounded-lg max-w-[100px]" src={selectedImage}
-                                                 alt="Selected Avatar"/>
+                                                alt="Selected Avatar" />
                                             <span
                                                 onClick={handleDeleteImage}
                                                 className="absolute top-[-15px] left-[23%] bg-white text-red-700 rounded-full p-1 shadow-[0_10px_20px_-10px_rgba(67,97,238,0.44)]"
@@ -177,7 +174,7 @@ function Add() {
 }
 
 Add.layout = (page) => (
-    <MainLayout children={page} title="E-SHOP || Add Group Of Company"/>
+    <MainLayout children={page} title="E-SHOP || Add Group Of Company" />
 );
 
 export default Add;

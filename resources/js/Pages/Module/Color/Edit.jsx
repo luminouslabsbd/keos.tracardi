@@ -1,14 +1,13 @@
 import React, { useState } from "react";
 import MainLayout from "../../Layout/Mainlayout";
 import { Link, router, usePage } from "@inertiajs/react";
-import FlashMessage from "../../Component/FlashMessage.jsx";
-import { useForm,Controller } from "react-hook-form";
+import { useForm, Controller } from "react-hook-form";
 function Add() {
-    const { flash,result } = usePage().props;
-    const { register, handleSubmit,formState: { errors } } = useForm({
-        defaultValues : {
-            id:result.id,
-            name:result.name,
+    const { result } = usePage().props;
+    const { register, handleSubmit, formState: { errors } } = useForm({
+        defaultValues: {
+            id: result.id,
+            name: result.name,
         }
     });
     function onSubmit(data) {
@@ -16,7 +15,6 @@ function Add() {
     }
     return (
         <>
-            <FlashMessage flash={flash} />
             <div className="panel flex items-center overflow-x-auto whitespace-nowrap p-3 ">
                 <div className="rounded-full bg-primary p-1.5 text-white ring-2 ring-primary/30 ltr:mr-3 rtl:ml-3">
                     <svg
@@ -62,20 +60,20 @@ function Add() {
                     <div className="mb-5">
                         <form className="space-y-5" onSubmit={handleSubmit(onSubmit)} method="post">
                             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                <input
+                                    type="hidden"
+                                    {...register("id")}
+                                />
+                                <div>
+                                    <label>Name</label>
                                     <input
-                                        type="hidden"
-                                        {...register("id")}
+                                        {...register("name", { required: "Category Name Is required" })}
+                                        type="text"
+                                        className="form-input"
+                                        placeholder="Enter Category Name"
                                     />
-                                    <div>
-                                        <label>Name</label>
-                                        <input
-                                            {...register("name", {required: "Category Name Is required"})}
-                                            type="text"
-                                            className="form-input"
-                                            placeholder="Enter Category Name"
-                                        />
-                                        {errors.name && <p className="text-red-600 pt-2">{errors.name.message}</p>}
-                                    </div>
+                                    {errors.name && <p className="text-red-600 pt-2">{errors.name.message}</p>}
+                                </div>
                             </div>
 
                             <button
@@ -93,7 +91,7 @@ function Add() {
 }
 
 Add.layout = (page) => (
-    <MainLayout children={page} title="E-SHOP || Add Group Of Company"/>
+    <MainLayout children={page} title="E-SHOP || Add Group Of Company" />
 );
 
 export default Add;

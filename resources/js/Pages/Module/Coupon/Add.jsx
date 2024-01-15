@@ -2,17 +2,14 @@ import React, { useState } from "react";
 import MainLayout from "../../Layout/Mainlayout";
 import Tippy from '@tippyjs/react';
 import { Link, router, usePage } from "@inertiajs/react";
-import FlashMessage from "../../Component/FlashMessage.jsx";
 import { useForm } from "react-hook-form";
 function Add() {
-    const { flash } = usePage().props;
-    const { register, handleSubmit, setValue, reset,formState: { errors } } = useForm();
+    const { register, handleSubmit, setValue, reset, formState: { errors } } = useForm();
     function onSubmit(data) {
         router.post("/admin/color/store", data);
     }
     return (
         <>
-            <FlashMessage flash={flash} />
             <div className="panel flex items-center overflow-x-auto whitespace-nowrap p-3 ">
                 <div className="rounded-full bg-primary p-1.5 text-white ring-2 ring-primary/30 ltr:mr-3 rtl:ml-3">
                     <svg
@@ -61,7 +58,7 @@ function Add() {
                                 <div>
                                     <label> Name <span className="text-danger">*</span> </label>
                                     <input
-                                        {...register("name", {required: "Color Name Is required"})}
+                                        {...register("name", { required: "Color Name Is required" })}
                                         type="text"
                                         className="form-input"
                                         placeholder="Enter Color Name"
@@ -71,7 +68,7 @@ function Add() {
                                 <div>
                                     <label> Name <span className="text-danger">*</span> </label>
                                     <input
-                                        {...register("name", {required: "Color Name Is required"})}
+                                        {...register("name", { required: "Color Name Is required" })}
                                         type="text"
                                         className="form-input"
                                         placeholder="Enter Color Name"
@@ -81,7 +78,7 @@ function Add() {
                                 <div>
                                     <label> Name <span className="text-danger">*</span> </label>
                                     <input
-                                        {...register("name", {required: "Color Name Is required"})}
+                                        {...register("name", { required: "Color Name Is required" })}
                                         type="text"
                                         className="form-input"
                                         placeholder="Enter Color Name"
@@ -91,7 +88,7 @@ function Add() {
                                 <div>
                                     <label> Name <span className="text-danger">*</span> </label>
                                     <input
-                                        {...register("name", {required: "Color Name Is required"})}
+                                        {...register("name", { required: "Color Name Is required" })}
                                         type="text"
                                         className="form-input"
                                         placeholder="Enter Color Name"
@@ -101,7 +98,7 @@ function Add() {
                                 <div>
                                     <label> Name <span className="text-danger">*</span> </label>
                                     <input
-                                        {...register("name", {required: "Color Name Is required"})}
+                                        {...register("name", { required: "Color Name Is required" })}
                                         type="text"
                                         className="form-input"
                                         placeholder="Enter Color Name"
@@ -125,7 +122,7 @@ function Add() {
 }
 
 Add.layout = (page) => (
-    <MainLayout children={page} title="E-SHOP || Add Group Of Company"/>
+    <MainLayout children={page} title="E-SHOP || Add Group Of Company" />
 );
 
 export default Add;

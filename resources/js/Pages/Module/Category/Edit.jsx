@@ -1,18 +1,17 @@
 import React, { useState } from "react";
 import MainLayout from "../../Layout/Mainlayout";
 import { Link, router, usePage } from "@inertiajs/react";
-import FlashMessage from "../../Component/FlashMessage.jsx";
 import Select from 'react-select';
-import { useForm,Controller } from "react-hook-form";
+import { useForm, Controller } from "react-hook-form";
 function Add() {
-    const { flash, categories,result } = usePage().props;
-    const [isSvgShow , setSvgShow] = useState(false);
-    const { control,register, handleSubmit, setValue, reset,formState: { errors } } = useForm({
-        defaultValues : {
-            id:result.id,
-            name:result.name,
-            slug:result.slug,
-            parent_id:result?.parent_id ? result.parent_id : null,
+    const { categories, result } = usePage().props;
+    const [isSvgShow, setSvgShow] = useState(false);
+    const { control, register, handleSubmit, setValue, reset, formState: { errors } } = useForm({
+        defaultValues: {
+            id: result.id,
+            name: result.name,
+            slug: result.slug,
+            parent_id: result?.parent_id ? result.parent_id : null,
         }
     });
 
@@ -43,7 +42,6 @@ function Add() {
     }
     return (
         <>
-            <FlashMessage flash={flash} />
             <div className="panel flex items-center overflow-x-auto whitespace-nowrap p-3 ">
                 <div className="rounded-full bg-primary p-1.5 text-white ring-2 ring-primary/30 ltr:mr-3 rtl:ml-3">
                     <svg
@@ -96,7 +94,7 @@ function Add() {
                                 <div>
                                     <label>Name</label>
                                     <input
-                                        {...register("name",{ required: "Category Name Is required" })}
+                                        {...register("name", { required: "Category Name Is required" })}
                                         type="text"
                                         className="form-input"
                                         placeholder="Enter Category Name"

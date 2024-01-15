@@ -1,17 +1,16 @@
 import React, { useState } from "react";
 import MainLayout from "../../Layout/Mainlayout";
 import { Link, router, usePage } from "@inertiajs/react";
-import FlashMessage from "../../Component/FlashMessage.jsx";
 import Select from 'react-select';
-import { useForm,Controller } from "react-hook-form";
+import { useForm, Controller } from "react-hook-form";
 function Add() {
-    const { flash, categories,result } = usePage().props;
-    const [isSvgShow , setSvgShow] = useState(false);
-    const { control,register, handleSubmit, setValue, reset,formState: { errors } } = useForm({
-        defaultValues : {
-            id:result.id,
-            slug:result.slug,
-            name:result.name,
+    const { categories, result } = usePage().props;
+    const [isSvgShow, setSvgShow] = useState(false);
+    const { control, register, handleSubmit, setValue, reset, formState: { errors } } = useForm({
+        defaultValues: {
+            id: result.id,
+            slug: result.slug,
+            name: result.name,
         }
     });
     const [selectedImage, setSelectedImage] = useState(result?.thumbnail ? `/storage/brand/${result?.thumbnail}` : '/assets/images/user-profile.jpeg');
@@ -32,7 +31,6 @@ function Add() {
     }
     return (
         <>
-            <FlashMessage flash={flash} />
             <div className="panel flex items-center overflow-x-auto whitespace-nowrap p-3 ">
                 <div className="rounded-full bg-primary p-1.5 text-white ring-2 ring-primary/30 ltr:mr-3 rtl:ml-3">
                     <svg
@@ -87,7 +85,7 @@ function Add() {
                                     <div>
                                         <label>Name</label>
                                         <input
-                                            {...register("name", {required: "Category Name Is required"})}
+                                            {...register("name", { required: "Category Name Is required" })}
                                             type="text"
                                             className="form-input"
                                             placeholder="Enter Category Name"
@@ -116,21 +114,21 @@ function Add() {
                                 </div>
                                 <>
                                     {selectedImage && (
-                                        <div style={{position: 'relative'}}>
+                                        <div style={{ position: 'relative' }}>
                                             <img className="rounded-lg max-w-[100px]" src={selectedImage}
-                                                 alt="Selected Avatar"/>
+                                                alt="Selected Avatar" />
                                             {result?.thumbnail && isSvgShow && (
                                                 <span
                                                     onClick={handleDeleteImage}
                                                     className="absolute top-[-15px] left-[23%] bg-white text-red-700 rounded-full p-1 shadow-[0_10px_20px_-10px_rgba(67,97,238,0.44)]"
                                                 >
                                                     <svg width="40" height="40" viewBox="0 0 24 24" fill="none"
-                                                         xmlns="http://www.w3.org/2000/svg" className="w-6 h-6">
+                                                        xmlns="http://www.w3.org/2000/svg" className="w-6 h-6">
                                                         <circle opacity="0.5" cx="12" cy="12" r="10"
-                                                                stroke="currentColor" strokeWidth="1.5"></circle>
+                                                            stroke="currentColor" strokeWidth="1.5"></circle>
                                                         <path d="M14.5 9.50002L9.5 14.5M9.49998 9.5L14.5 14.5"
-                                                              stroke="currentColor" strokeWidth="1.5"
-                                                              strokeLinecap="round"></path>
+                                                            stroke="currentColor" strokeWidth="1.5"
+                                                            strokeLinecap="round"></path>
                                                     </svg>
                                                 </span>
                                             )}
@@ -155,7 +153,7 @@ function Add() {
 }
 
 Add.layout = (page) => (
-    <MainLayout children={page} title="E-SHOP || Add Group Of Company"/>
+    <MainLayout children={page} title="E-SHOP || Add Group Of Company" />
 );
 
 export default Add;

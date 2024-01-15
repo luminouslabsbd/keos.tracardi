@@ -1,13 +1,12 @@
 import React, {useEffect, useState} from "react";
 import MainLayout from "../../Layout/Mainlayout";
 import { Link, router, usePage } from "@inertiajs/react";
-import FlashMessage from "../../Component/FlashMessage.jsx";
 import Select from 'react-select';
 import { useForm,Controller,useFieldArray } from "react-hook-form";
 
 
 function Edit() {
-    const { base_url, flash, errors, permissionsData , result: initialPermissions ,role} = usePage().props;
+    const { base_url, errors, permissionsData , result: initialPermissions ,role} = usePage().props;
     const { register, handleSubmit } = useForm();
 
     const [selectAllChecked, setSelectAllChecked] = useState(false);
@@ -152,7 +151,6 @@ function Edit() {
     };
     return (
         <>
-            <FlashMessage flash={flash} />
             <div className="panel flex items-center overflow-x-auto whitespace-nowrap p-3 ">
                 <div className="rounded-full bg-[#ff6243] p-1.5 text-white ring-2 ring-[#ff6243] ltr:mr-3 rtl:ml-3">
                     <svg

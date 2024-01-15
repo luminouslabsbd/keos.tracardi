@@ -1,7 +1,6 @@
 import React, { useEffect, useState, useMemo } from "react";
 import MainLayout from "../../Layout/Mainlayout";
 import {Link, router, usePage} from "@inertiajs/react";
-import FlashMessage from "../../Component/FlashMessage";
 import { MantineReactTable, useMantineReactTable } from 'mantine-react-table';
 import DeleteModal from "../../Component/DeleteModal.jsx";
 
@@ -169,7 +168,6 @@ function Index() {
 
     return (
         <>
-            <FlashMessage flash={flash} />
             <div className="panel flex items-center overflow-x-auto whitespace-nowrap p-3 ">
 
                 <div className="rounded-full bg-[#ff6243] p-1.5 text-white ring-2 ring-primary/30 ltr:mr-3 rtl:ml-3 h-[35px] w-[35px] flex items-center justify-center">

@@ -1,10 +1,9 @@
 import React, { useState } from "react";
 import MainLayout from "../../Layout/Mainlayout";
 import { Link, router, usePage } from "@inertiajs/react";
-import FlashMessage from "../../Component/FlashMessage.jsx";
 import { useForm,Controller } from "react-hook-form";
 function Add() {
-    const { flash,result } = usePage().props;
+    const { result } = usePage().props;
     const { register, handleSubmit,formState: { errors } } = useForm({
         defaultValues : {
             id:result.id,
@@ -16,7 +15,6 @@ function Add() {
     }
     return (
         <>
-            <FlashMessage flash={flash} />
             <div className="panel flex items-center overflow-x-auto whitespace-nowrap p-3 ">
                 <div className="rounded-full bg-primary p-1.5 text-white ring-2 ring-primary/30 ltr:mr-3 rtl:ml-3">
                     <svg

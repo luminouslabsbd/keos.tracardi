@@ -2,20 +2,16 @@ import React, { useState } from "react";
 import MainLayout from "../../Layout/Mainlayout";
 
 import { themeConfig } from "../../Store/ThemeConfig";
-import FlashMessage from "../../Component/FlashMessage";
-import {Link, router, usePage} from "@inertiajs/react";
-import {useForm} from "react-hook-form";
+import { Link, router, usePage } from "@inertiajs/react";
+import { useForm } from "react-hook-form";
 import Select from 'react-select';
 
 function Index() {
-    const { flash} = usePage().props;
-    const { register, handleSubmit,setValue,formState: { errors } } = useForm();
+    const { register, handleSubmit, setValue, formState: { errors } } = useForm();
     const isRtl = themeConfig.rtlClass === "rtl" ? true : false;
 
     return (
         <>
-            <FlashMessage flash={flash} />
-
             <div className="panel flex items-center overflow-x-auto whitespace-nowrap p-3 ">
                 <div className="rounded-full  bg-[#ff6243] p-1.5 text-white ring-2 ring-primary/30 ltr:mr-3 rtl:ml-3 h-[35px] w-[35px] flex items-center justify-center">
                     <svg

@@ -1,11 +1,10 @@
 import React, { useState } from "react";
 import MainLayout from "../../Layout/Mainlayout";
-import FlashMessage from "../../Component/FlashMessage";
-import {Link, usePage} from "@inertiajs/react";
+import { Link, usePage } from "@inertiajs/react";
 import DeleteModal from "../../Component/DeleteModal";
 
 function Index() {
-    const { flash , backups ,base_url } = usePage().props;
+    const { backups, base_url } = usePage().props;
     const [isDeleteNoteModal, setIsDeleteNoteModal] = useState(false);
     const [fileToDelete, setFileToDelete] = useState(null);
     function handleDeleteClick(fileName) {
@@ -14,7 +13,6 @@ function Index() {
     }
     return (
         <>
-            <FlashMessage flash={flash} />
             <div className="panel flex items-center overflow-x-auto whitespace-nowrap p-3 ">
                 <div className="rounded-full bg-[#ff6243] p-1.5 text-white ring-2 ring-primary/30 ltr:mr-3 rtl:ml-3 h-[35px] w-[35px] flex items-center justify-center">
                     <svg
@@ -68,16 +66,16 @@ function Index() {
                         <div className="table-responsive custom-scroll">
                             <table>
                                 <thead>
-                                <tr>
-                                    <th className="ltr:rounded-l-md rtl:rounded-r-md">File</th>
-                                    <th className="ltr:rounded-l-md rtl:rounded-r-md">Size</th>
-                                    <th className="ltr:rounded-l-md rtl:rounded-r-md">Date</th>
-                                    <th className="ltr:rounded-l-md rtl:rounded-r-md">Age</th>
-                                    <th className="ltr:rounded-l-md rtl:rounded-r-md">Action</th>
-                                </tr>
+                                    <tr>
+                                        <th className="ltr:rounded-l-md rtl:rounded-r-md">File</th>
+                                        <th className="ltr:rounded-l-md rtl:rounded-r-md">Size</th>
+                                        <th className="ltr:rounded-l-md rtl:rounded-r-md">Date</th>
+                                        <th className="ltr:rounded-l-md rtl:rounded-r-md">Age</th>
+                                        <th className="ltr:rounded-l-md rtl:rounded-r-md">Action</th>
+                                    </tr>
                                 </thead>
                                 <tbody>
-                                    {backups?.map((backup,index) => (
+                                    {backups?.map((backup, index) => (
                                         <tr key={index} className="text-white-dark hover:text-black dark:hover:text-white-light/90 group">
                                             <td className="min-w-[150px] text-black dark:text-white">
                                                 <div className="flex items-center">
@@ -102,10 +100,10 @@ function Index() {
                                             <td className="min-w-[150px] text-black dark:text-white">
                                                 <div className="flex items-center gap-2">
                                                     <a
-                                                        href={`${base_url}/admin/backup/download/`+ backup['file_name']}
+                                                        href={`${base_url}/admin/backup/download/` + backup['file_name']}
                                                         method="get"
                                                         className="btn btn-sm btn-outline-primary"
-                                                        >
+                                                    >
                                                         Download
                                                     </a>
                                                     <button onClick={() => handleDeleteClick(backup['file_name'])} className="btn btn-sm btn-outline-danger">
@@ -122,7 +120,7 @@ function Index() {
                 </div>
             </div>
 
-            <DeleteModal isDeleteNoteModal = {isDeleteNoteModal} setIsDeleteNoteModal={setIsDeleteNoteModal} fileToDelete={fileToDelete} name={"Backup"} route="backup"></DeleteModal>
+            <DeleteModal isDeleteNoteModal={isDeleteNoteModal} setIsDeleteNoteModal={setIsDeleteNoteModal} fileToDelete={fileToDelete} name={"Backup"} route="backup"></DeleteModal>
         </>
     );
 }

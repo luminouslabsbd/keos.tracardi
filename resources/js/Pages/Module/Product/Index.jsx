@@ -1,13 +1,12 @@
 import React, { useEffect, useState, useMemo } from "react";
 import MainLayout from "../../Layout/Mainlayout";
-import {Link, router, usePage} from "@inertiajs/react";
-import FlashMessage from "../../Component/FlashMessage";
+import { Link, router, usePage } from "@inertiajs/react";
 import { MantineReactTable, useMantineReactTable } from 'mantine-react-table';
 import DeleteModal from "../../Component/DeleteModal.jsx";
 
 function Index() {
 
-    const { data: initialData, meta: initialMeta, flash, base_url } = usePage().props;
+    const { data: initialData, meta: initialMeta, base_url } = usePage().props;
     const [isError, setIsError] = useState(false);
     const [isLoading, setIsLoading] = useState(!initialData || initialData.length === 0);
     const [isRefetching, setIsRefetching] = useState(false);
@@ -79,14 +78,14 @@ function Index() {
     ]);
 
     function handleEditClick(data) {
-        router.get("/admin/color/edit/"+data);
+        router.get("/admin/color/edit/" + data);
     }
     function handleDeleteClick(data) {
         setFileToDelete(data);
         setIsDeleteNoteModal(true);
     }
     function handleStatusClick(data) {
-        router.get("/admin/color/status/"+data);
+        router.get("/admin/color/status/" + data);
     }
     const columns = useMemo(
         () => [
@@ -101,11 +100,11 @@ function Index() {
 
                     <div className="flex items-center gap-2">
                         <label className="w-12 h-6 relative"
-                               onClick={() =>
-                                   handleStatusClick(row.id)
-                               }
+                            onClick={() =>
+                                handleStatusClick(row.id)
+                            }
                         >
-                            <input defaultChecked={row.original.status === 1} type="checkbox" className="custom_switch absolute w-full h-full opacity-0 z-10 cursor-pointer peer" id="custom_switch_checkbox1"  />
+                            <input defaultChecked={row.original.status === 1} type="checkbox" className="custom_switch absolute w-full h-full opacity-0 z-10 cursor-pointer peer" id="custom_switch_checkbox1" />
                             <span className="bg-[#ebedf2] dark:bg-dark block h-full rounded-full before:absolute before:left-1 before:bg-white dark:before:bg-white-dark dark:peer-checked:before:bg-white before:bottom-1 before:w-4 before:h-4 before:rounded-full peer-checked:before:left-7 peer-checked:bg-primary before:transition-all before:duration-300"></span>
                         </label>
                     </div>
@@ -139,8 +138,8 @@ function Index() {
             showGlobalFilter: true,
             density: 'compact'
         },
-        positionGlobalFilter:"left",
-        mantineSearchTextInputProps :{
+        positionGlobalFilter: "left",
+        mantineSearchTextInputProps: {
             placeholder: `Search ${data.length} rows`,
             sx: { minWidth: '300px' },
             variant: 'filled',
@@ -169,7 +168,6 @@ function Index() {
 
     return (
         <>
-            <FlashMessage flash={flash} />
             <div className="panel flex items-center overflow-x-auto whitespace-nowrap p-3 ">
 
                 <div className="rounded-full bg-[#ff6243] p-1.5 text-white ring-2 ring-primary/30 ltr:mr-3 rtl:ml-3 h-[35px] w-[35px] flex items-center justify-center">
@@ -253,7 +251,7 @@ function Index() {
             </div>
             <br />
             <MantineReactTable table={table} />
-            <DeleteModal isDeleteNoteModal = {isDeleteNoteModal} setIsDeleteNoteModal={setIsDeleteNoteModal} fileToDelete={fileToDelete} name="Color" route="color"></DeleteModal>
+            <DeleteModal isDeleteNoteModal={isDeleteNoteModal} setIsDeleteNoteModal={setIsDeleteNoteModal} fileToDelete={fileToDelete} name="Color" route="color"></DeleteModal>
         </>
     );
 }

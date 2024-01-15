@@ -1,12 +1,11 @@
 import React, { useState } from "react";
 import { themeConfig } from "../../Store/ThemeConfig.js";
-import {router,usePage} from "@inertiajs/react";
+import { router, usePage } from "@inertiajs/react";
 import { Head } from '@inertiajs/react'
 import Swal from "sweetalert2";
-import FlashMessage from "../../Component/FlashMessage.jsx";
 function Login() {
 
-    const { errors,flash } = usePage().props;
+    const { errors } = usePage().props;
     const [values, setValues] = useState({
         email: "",
         password: "",
@@ -27,8 +26,7 @@ function Login() {
     }
     return (
         <>
-         <FlashMessage flash={flash} />
-        <Head title="E-Shop || Login" />
+            <Head title="E-Shop || Login" />
             <div className="absolute inset-0">
                 <img
                     src="/assets/images/auth/bg-gradient.png"
@@ -39,7 +37,7 @@ function Login() {
 
             <div className={`relative flex min-h-screen items-center justify-center bg-cover bg-center bg-no-repeat px-6 py-10 dark:bg-[#060818] sm:px-16`}>
                 <img
-                     src="/assets/images/auth/map.png"
+                    src="/assets/images/auth/map.png"
                     alt="image"
                     className="absolute left-0 top-1/2 h-full max-h-[893px] -translate-y-1/2"
                 />
@@ -82,8 +80,8 @@ function Login() {
                                     <label>Email</label>
                                     <div className="relative text-white-dark">
                                         <input
-                                        value={values.email}
-                                        onChange={handleChange}
+                                            value={values.email}
+                                            onChange={handleChange}
                                             id="email"
                                             type="email"
                                             placeholder="Enter Email"
@@ -115,8 +113,8 @@ function Login() {
                                     <label>Password</label>
                                     <div className="relative text-white-dark">
                                         <input
-                                         value={values.password}
-                                         onChange={handleChange}
+                                            value={values.password}
+                                            onChange={handleChange}
                                             id="password"
                                             type="password"
                                             placeholder="Enter Password"

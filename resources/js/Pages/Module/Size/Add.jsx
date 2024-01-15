@@ -2,17 +2,14 @@ import React, { useState } from "react";
 import MainLayout from "../../Layout/Mainlayout";
 import Tippy from '@tippyjs/react';
 import { Link, router, usePage } from "@inertiajs/react";
-import FlashMessage from "../../Component/FlashMessage.jsx";
 import { useForm } from "react-hook-form";
 function Add() {
-    const { flash } = usePage().props;
     const { register, handleSubmit, setValue, reset,formState: { errors } } = useForm();
     function onSubmit(data) {
         router.post("/admin/size/store", data);
     }
     return (
         <>
-            <FlashMessage flash={flash} />
             <div className="panel flex items-center overflow-x-auto whitespace-nowrap p-3 ">
                 <div className="rounded-full bg-primary p-1.5 text-white ring-2 ring-primary/30 ltr:mr-3 rtl:ml-3">
                     <svg

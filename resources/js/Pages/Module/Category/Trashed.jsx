@@ -1,14 +1,13 @@
 import React, { useEffect, useState, useMemo } from "react";
 import MainLayout from "../../Layout/Mainlayout";
-import {Link, router, usePage} from "@inertiajs/react";
-import FlashMessage from "../../Component/FlashMessage";
+import { Link, router, usePage } from "@inertiajs/react";
 import { MantineReactTable, useMantineReactTable } from 'mantine-react-table';
 import DeleteModal from "../../Component/DeleteModal.jsx";
 import ParmanentDeleteModal from "../../Component/ParmanentDeleteModal.jsx";
 
 function Index() {
 
-    const { data: initialData, meta: initialMeta, flash, base_url } = usePage().props;
+    const { data: initialData, meta: initialMeta, base_url } = usePage().props;
     const [isError, setIsError] = useState(false);
     const [isLoading, setIsLoading] = useState(!initialData || initialData.length === 0);
     const [isRefetching, setIsRefetching] = useState(false);
@@ -79,7 +78,7 @@ function Index() {
     ]);
 
     function handleUndoClick(data) {
-        router.get("/admin/category/undo-trashed/"+data);
+        router.get("/admin/category/undo-trashed/" + data);
     }
     function handleDeleteClick(data) {
         setFileToDelete(data);
@@ -138,12 +137,12 @@ function Index() {
             showGlobalFilter: true,
             density: 'compact'
         },
-        positionGlobalFilter:"left",
-        mantineSearchTextInputProps :{
+        positionGlobalFilter: "left",
+        mantineSearchTextInputProps: {
             placeholder: `Search ${data.length} rows`,
             sx: { minWidth: '300px' },
             variant: 'filled',
-          },
+        },
         manualFiltering: true,
         manualPagination: true,
         manualSorting: true,
@@ -168,7 +167,6 @@ function Index() {
 
     return (
         <>
-            <FlashMessage flash={flash} />
             <div className="panel flex items-center overflow-x-auto whitespace-nowrap p-3 ">
 
                 <div className="rounded-full bg-[#ff6243] p-1.5 text-white ring-2 ring-primary/30 ltr:mr-3 rtl:ml-3 h-[35px] w-[35px] flex items-center justify-center">
@@ -224,7 +222,7 @@ function Index() {
             </div>
             <br />
             <MantineReactTable table={table} />
-            <ParmanentDeleteModal isDeleteNoteModal = {isDeleteNoteModal} setIsDeleteNoteModal={setIsDeleteNoteModal} fileToDelete={fileToDelete} name="Category" route="category/permanent-delete"></ParmanentDeleteModal>
+            <ParmanentDeleteModal isDeleteNoteModal={isDeleteNoteModal} setIsDeleteNoteModal={setIsDeleteNoteModal} fileToDelete={fileToDelete} name="Category" route="category/permanent-delete"></ParmanentDeleteModal>
         </>
     );
 }

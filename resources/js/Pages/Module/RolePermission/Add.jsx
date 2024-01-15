@@ -1,12 +1,11 @@
 import React, { useState } from "react";
 import MainLayout from "../../Layout/Mainlayout";
 import { Link, router, usePage } from "@inertiajs/react";
-import FlashMessage from "../../Component/FlashMessage.jsx";
 import { useForm } from "react-hook-form";
 
 
 function Add() {
-    const { base_url,flash,errors,permissions } = usePage().props;
+    const { base_url, errors, permissions } = usePage().props;
     const { register, handleSubmit } = useForm();
 
 
@@ -113,7 +112,6 @@ function Add() {
     };
     return (
         <>
-            <FlashMessage flash={flash} />
             <div className="panel flex items-center overflow-x-auto whitespace-nowrap p-3 ">
                 <div className="rounded-full bg-[#ff6243] p-1.5 text-white ring-2 ring-[#ff6243] ltr:mr-3 rtl:ml-3">
                     <svg
@@ -173,7 +171,7 @@ function Add() {
                                     {errors.first_name && <p className="text-red-600 pt-2">{errors.first_name}</p>}
                                 </div>
                             </div>
-                            <hr/>
+                            <hr />
                             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                                 <div className="">
                                     <div className="space-y-2 pt-3">
@@ -192,7 +190,7 @@ function Add() {
                                     </div>
                                 </div>
                             </div>
-                            <hr/>
+                            <hr />
                             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4  gap-[50px]">
                                 {Object.entries(permissions).map(([objectName, items]) => (
                                     <div key={objectName} className="flex gap-[15px] p-[16px] flex-col xl:flex-col rounded-lg permission-card shadow-md">
@@ -214,8 +212,8 @@ function Add() {
                                         </div>
                                         <div>
                                             {items.map((item, itemIndex) => (
-                                                    <div key={itemIndex} >
-                                                        <div className="mb-5">
+                                                <div key={itemIndex} >
+                                                    <div className="mb-5">
                                                         <div className="space-y-2 pt-3">
                                                             <div>
                                                                 <label className="inline-flex">
@@ -230,13 +228,13 @@ function Add() {
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    </div>
-                                                ))}
+                                                </div>
+                                            ))}
                                         </div>
                                     </div>
                                 ))}
                             </div>
-                            <hr/>
+                            <hr />
                             <button
                                 type="submit"
                                 className="btn btn-primary !mt-6 bg-[#ff6243] border-[#ff6243] text-base"
@@ -252,7 +250,7 @@ function Add() {
 }
 
 Add.layout = (page) => (
-    <MainLayout children={page} title="My Tutor || Add Tutor"/>
+    <MainLayout children={page} title="My Tutor || Add Tutor" />
 );
 
 export default Add;

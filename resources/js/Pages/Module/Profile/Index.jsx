@@ -2,10 +2,9 @@ import React, { useEffect, useState } from "react";
 import MainLayout from "../../Layout/Mainlayout";
 import { DataTable } from "mantine-datatable";
 import { Link, router, usePage } from "@inertiajs/react";
-import FlashMessage from "../../Component/FlashMessage";
 
 function Index() {
-    const { base_url, flash,user,errors } = usePage().props;
+    const { base_url,user,errors } = usePage().props;
     const [tabs, setTabs] = useState('user-profile');
     const [image, setImage] = useState(user?.avatar ? `/storage/profile/${user.avatar}` : '/assets/images/user-profile.jpeg');
 
@@ -64,7 +63,6 @@ function Index() {
     }
     return (
         <>
-            <FlashMessage flash={flash} />
             <div className="panel flex items-center overflow-x-auto whitespace-nowrap p-3 ">
                 <div className="rounded-full bg-[#ff6243] p-1.5 text-white ring-2 ring-primary/30 ltr:mr-3 rtl:ml-3 h-[35px] w-[35px] flex items-center justify-center">
                     <svg

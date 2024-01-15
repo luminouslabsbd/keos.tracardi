@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import MainLayout from "../../Layout/Mainlayout";
 import { Link, router, usePage } from "@inertiajs/react";
-import FlashMessage from "../../Component/FlashMessage.jsx";
 import { Controller, useForm } from "react-hook-form";
 import Select from "react-select";
 import ReactQuill from "react-quill";
@@ -158,7 +157,6 @@ function Physical() {
     }
     return (
         <>
-            {/*<FlashMessage flash={flash} />*/}
             <div className="panel flex items-center overflow-x-auto whitespace-nowrap p-3 ">
                 <div className="rounded-full bg-primary p-1.5 text-white ring-2 ring-primary/30 ltr:mr-3 rtl:ml-3">
                     <svg

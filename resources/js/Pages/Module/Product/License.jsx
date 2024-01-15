@@ -1,13 +1,12 @@
 import React, { useState, useEffect } from "react";
 import MainLayout from "../../Layout/Mainlayout";
 import { Link, router, usePage } from "@inertiajs/react";
-import FlashMessage from "../../Component/FlashMessage.jsx";
 import { Controller, useForm } from "react-hook-form";
 import Select from "react-select";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 function License() {
-    const { flash, categories, sub_categories, brands, type, units } = usePage().props;
+    const { categories, sub_categories, brands, type, units } = usePage().props;
 
     const [selectedColorOptions, setSelectedColorOptions] = useState([]);
     const [selectedSizeOptions, setSelectedSizeOptions] = useState([]);
@@ -40,7 +39,7 @@ function License() {
     // console.log(attributesLength);
 
 
-    const { control, register, handleSubmit, setValue, reset, formState: { errors },watch } = useForm({
+    const { control, register, handleSubmit, setValue, reset, formState: { errors }, watch } = useForm({
         defaultValues: {
             type: type
         }
@@ -106,7 +105,6 @@ function License() {
     }
     return (
         <>
-            <FlashMessage flash={flash} />
             <div className="panel flex items-center overflow-x-auto whitespace-nowrap p-3 ">
                 <div className="rounded-full bg-primary p-1.5 text-white ring-2 ring-primary/30 ltr:mr-3 rtl:ml-3">
                     <svg
@@ -155,7 +153,7 @@ function License() {
                                     <Controller
                                         control={control}
                                         name="category_id"
-                                        render={({field}) => (
+                                        render={({ field }) => (
                                             <Select
                                                 placeholder="Select an option"
                                                 options={categoruOptions}
@@ -171,7 +169,7 @@ function License() {
                                     <Controller
                                         control={control}
                                         name="sub_category_id"
-                                        render={({field}) => (
+                                        render={({ field }) => (
                                             <Select
                                                 placeholder="Select an option"
                                                 options={subCategoruOptions}
@@ -192,7 +190,7 @@ function License() {
                                     <Controller
                                         control={control}
                                         name="brand_id"
-                                        render={({field}) => (
+                                        render={({ field }) => (
                                             <Select
                                                 placeholder="Select an option"
                                                 options={brandOptions}
@@ -208,7 +206,7 @@ function License() {
                                     <Controller
                                         control={control}
                                         name="unit_id"
-                                        render={({field}) => (
+                                        render={({ field }) => (
                                             <Select
                                                 placeholder="Select an option"
                                                 options={unitOptions}
@@ -222,7 +220,7 @@ function License() {
                                 <div>
                                     <label> Product SKU </label>
                                     <input
-                                        {...register("product_sku", {required: "Product SKU Is required"})}
+                                        {...register("product_sku", { required: "Product SKU Is required" })}
                                         type="text"
                                         className="form-input"
                                         placeholder="Enter Product Name"
@@ -235,7 +233,7 @@ function License() {
                                 <div>
                                     <label>Product Name</label>
                                     <input
-                                        {...register("product_name", {required: "Product Name Is required"})}
+                                        {...register("product_name", { required: "Product Name Is required" })}
                                         type="text"
                                         className="form-input"
                                         placeholder="Enter Product Name"
@@ -261,7 +259,7 @@ function License() {
                                     <label>Price</label>
                                     <div className="flex items-center gap-2">
                                         <input
-                                            {...register("single_product_price", {required: "Product Name Is required"})}
+                                            {...register("single_product_price", { required: "Product Name Is required" })}
                                             type="number"
                                             className="form-input"
                                             placeholder="99$"
@@ -272,7 +270,7 @@ function License() {
                                     <label>Discount</label>
                                     <div className="flex items-center gap-2">
                                         <input
-                                            {...register("single_product_discount", {required: "Product Name Is required"})}
+                                            {...register("single_product_discount", { required: "Product Name Is required" })}
                                             type="number"
                                             className="form-input"
                                             placeholder="10%"
@@ -283,7 +281,7 @@ function License() {
                                     <label>Quantity</label>
                                     <div className="flex items-center gap-2">
                                         <input
-                                            {...register("single_product_quantity", {required: "Product Quantoty Is required"})}
+                                            {...register("single_product_quantity", { required: "Product Quantoty Is required" })}
                                             type="number"
                                             className="form-input"
                                             placeholder="50"
@@ -318,7 +316,7 @@ function License() {
                                         <div>
                                             <label>Select File </label>
                                             <input
-                                                {...register("upload_link", {required: "Product Name Is required"})}
+                                                {...register("upload_link", { required: "Product Name Is required" })}
                                                 type="text"
                                                 className="form-input"
                                                 placeholder="Enter Product Name"
@@ -330,7 +328,7 @@ function License() {
                                         <div>
                                             <label>Link</label>
                                             <input
-                                                {...register("upload_file", {required: "Product Name Is required"})}
+                                                {...register("upload_file", { required: "Product Name Is required" })}
                                                 type="text"
                                                 className="form-input"
                                                 placeholder="Enter Product Name"
@@ -449,7 +447,7 @@ function License() {
                                 <div>
                                     <label> License Platform</label>
                                     <input
-                                        {...register("license_platform", {required: "Product Name Is required"})}
+                                        {...register("license_platform", { required: "Product Name Is required" })}
                                         type="text"
                                         className="form-input"
                                         placeholder="Enter License Platform"
@@ -458,7 +456,7 @@ function License() {
                                 <div>
                                     <label> License Type</label>
                                     <input
-                                        {...register("license_type", {required: "Product Name Is required"})}
+                                        {...register("license_type", { required: "Product Name Is required" })}
                                         type="text"
                                         className="form-input"
                                         placeholder="Enter License Type"
@@ -484,7 +482,7 @@ function License() {
 }
 
 License.layout = (page) => (
-    <MainLayout children={page} title="E-SHOP || Add Group Of Company"/>
+    <MainLayout children={page} title="E-SHOP || Add Group Of Company" />
 );
 
 export default License;
