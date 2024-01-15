@@ -3,6 +3,7 @@ namespace App\Repositories\Admin;
 
 
 use App\Models\Admin\Color;
+use App\Models\Admin\Digital;
 use App\Models\Admin\Physical;
 use App\Models\Admin\Product;
 use App\Models\Admin\VariationPrice;
@@ -23,6 +24,146 @@ class ProductRepository {
     }
     public function store($request){
         return $this->storeOrUpdate($request , $action="save");
+    }
+
+    public function digitalStore($request){
+
+        try
+        {
+            DB::beginTransaction();
+            if(!empty($request->thumbnail)){
+                $thumbnail =  fileUpload($request->thumbnail[0] , "product");
+            }else if(isset($user->thumbnail)){
+                $thumbnail = $user->thumbnail;
+            }else{
+                $thumbnail ="";
+            }
+
+            $type = ($request->type == "physical") ? PHYSICAL : (($request->type == "digital") ? DIGITAL : LICENSE);
+            $product = $this->model::updateOrCreate(
+                ['id' => isset($request->product_id) ? $request->product_id : ''],
+                [
+                    'category_id' => $request->category_id,
+                    'sub_category_id' => $request->sub_category_id,
+                    'brand_id' => $request->brand_id,
+                    'type' => $type,
+                    'product_variation'=> 1,
+                    'product_sku'=> $request->product_sku,
+                    'product_name' => $request->product_name,
+
+                    'single_product_price' => $request->single_product_price ?? 0,
+                    'single_product_discount' => $request->single_product_discount ?? 0,
+                    'single_product_quantity' => $request->single_product_quantity ?? 0,
+
+                    'product_description' => $request->product_description,
+                    'product_buy_return_policy' => $request->product_buy_return_policy,
+
+                    'meta_keywords' => $request->meta_keywords,
+                    'meta_description' => $request->meta_description,
+
+                    'thumbnail' => $thumbnail,
+
+                ]
+            );
+            if ($product){
+                if(!empty($request->upload_file)){
+                    $upload_file =  fileUpload($request->upload_file[0] , "upload_file");
+                }else if(isset($user->upload_file)){
+                    $upload_file = $user->upload_file;
+                }else{
+                    $upload_file ="";
+                }
+                $digital = Digital::updateOrCreate(
+                    [
+                        'product_id'=>isset($request->product_id) ? $request->product_id : '',
+                    ],
+                    [
+                        'product_id'=>$product->id,
+                        'upload_type'=>$request->upload_type,
+                        'upload_link'=> (int) $request->upload_type === UPLOAD_LINK  ? $request->upload_link : null,
+                        'upload_file'=> (int) $request->upload_type === UPLOAD_FILE  ? $upload_file : null,
+                    ]);
+                if($digital){
+                    DB::commit();
+                    $message = "Product Save Successfully";
+                    return ['status' => true, 'message' => $message,];
+                }
+            }
+        } catch (\Exception $e) {
+            DB::rollback();
+            return ['status' => false, 'errors' =>  $e->getMessage()];
+        }
+    }
+
+    public function licenseStore($request){
+
+        try
+        {
+            DB::beginTransaction();
+            if(!empty($request->thumbnail)){
+                $thumbnail =  fileUpload($request->thumbnail[0] , "product");
+            }else if(isset($user->thumbnail)){
+                $thumbnail = $user->thumbnail;
+            }else{
+                $thumbnail ="";
+            }
+
+            $type = ($request->type == "physical") ? PHYSICAL : (($request->type == "digital") ? DIGITAL : LICENSE);
+            $product = $this->model::updateOrCreate(
+                ['id' => isset($request->product_id) ? $request->product_id : ''],
+                [
+                    'category_id' => $request->category_id,
+                    'sub_category_id' => $request->sub_category_id,
+                    'brand_id' => $request->brand_id,
+                    'type' => $type,
+                    'product_variation'=> 1,
+                    'product_sku'=> $request->product_sku,
+                    'product_name' => $request->product_name,
+
+                    'single_product_price' => $request->single_product_price ?? 0,
+                    'single_product_discount' => $request->single_product_discount ?? 0,
+                    'single_product_quantity' => $request->single_product_quantity ?? 0,
+
+                    'product_description' => $request->product_description,
+                    'product_buy_return_policy' => $request->product_buy_return_policy,
+
+                    'meta_keywords' => $request->meta_keywords,
+                    'meta_description' => $request->meta_description,
+
+                    'thumbnail' => $thumbnail,
+
+                ]
+            );
+            if ($product){
+                if(!empty($request->upload_file)){
+                    $upload_file =  fileUpload($request->upload_file[0] , "upload_file");
+                }else if(isset($user->upload_file)){
+                    $upload_file = $user->upload_file;
+                }else{
+                    $upload_file ="";
+                }
+                $digital = Digital::updateOrCreate(
+                    [
+                        'product_id'=>isset($request->product_id) ? $request->product_id : '',
+                    ],
+                    [
+                        'product_id'=>$product->id,
+                        'upload_type'=>$request->upload_type,
+                        'license_platform'=>$request->license_platform ?? null,
+                        'license_type'=>$request->license_type ?? null,
+                        'upload_link'=> (int) $request->upload_type === UPLOAD_LINK  ? $request->upload_link : null,
+                        'upload_file'=> (int) $request->upload_type === UPLOAD_FILE  ? $upload_file : null,
+                    ]);
+                if($digital){
+                    DB::commit();
+                    $message = "Product Save Successfully";
+                    return ['status' => true, 'message' => $message,];
+                }
+            }
+        } catch (\Exception $e) {
+            DB::rollback();
+            return ['status' => false, 'errors' =>  $e->getMessage()];
+        }
     }
     public function edit(int $id){
         return $this->model::find($id);
@@ -62,25 +203,21 @@ class ProductRepository {
     }
     protected function storeOrUpdate($request, $action)
     {
-
-//        try
-//        {
-//            DB::beginTransaction();
-
-        if(!empty($request->thumbnail)){
-            $thumbnail =  fileUpload($request->thumbnail[0] , "product");
-        }else if(isset($user->thumbnail)){
-            $thumbnail = $user->thumbnail;
-        }else{
-            $thumbnail ="";
-        }
+        try
+        {
+            DB::beginTransaction();
+            if(!empty($request->thumbnail)){
+                $thumbnail =  fileUpload($request->thumbnail[0] , "product");
+            }else if(isset($user->thumbnail)){
+                $thumbnail = $user->thumbnail;
+            }else{
+                $thumbnail ="";
+            }
 
             $type = ($request->type == "physical") ? 1 : (($request->type == "digital") ? 2 : 3);
-
             $product = $this->model::updateOrCreate(
-                ['id' => isset($request->id) ? $request->id : ''],
+                ['id' => isset($request->product_id) ? $request->product_id : ''],
                 [
-//
                     'category_id' => $request->category_id,
                     'sub_category_id' => $request->sub_category_id,
                     'brand_id' => $request->brand_id,
@@ -103,10 +240,7 @@ class ProductRepository {
 
                 ]
             );
-
-//            dd($product);
             if ($product) {
-
                 $physical = Physical::updateOrCreate(
                     [
                         'product_id'=>$request->product_id,
@@ -120,8 +254,6 @@ class ProductRepository {
 //                        'allow_estimated_shipping_time'=> '',
                         'allow_whole_sale'=> $request->allow_whole_sale ? 1 : 0,
                     ]);
-
-//                dd($product,$physical);
                 if($physical){
                     if($product->product_variation == 2){
                     $product->productcolor()->sync($request->color_id);
@@ -169,8 +301,6 @@ class ProductRepository {
 
                 }
                 }
-//                dd('ok');
-
                 if ($physical->allow_whole_sale == 1) {
                     foreach ($request->items as $item) {
                         WholeSale::updateOrCreate([
@@ -180,31 +310,23 @@ class ProductRepository {
                         ]);
                     }
                 }
-                dd('ok');
-//                DB::commit();
+                DB::commit();
                 $message = $action == "save" ?"Product Save Successfully" :"Product Update Successfully";
                 return ['status' => true, 'message' => $message,];
             }
-
-//        } catch (\Exception $e) {
-//            DB::rollback();
-//            return ['status' => false, 'errors' =>  $e->getMessage()];
-//        }
+        } catch (\Exception $e) {
+            DB::rollback();
+            return ['status' => false, 'errors' =>  $e->getMessage()];
+        }
     }
-
-
-
     private function getDynamicData($request, $prefix)
     {
         $data = [];
-
-        // Loop through request data and find items with the specified prefix
         foreach ($request->all() as $key => $value) {
             if (strpos($key, $prefix) === 0) {
                 $data[$key] = $value;
             }
         }
-
         return $data;
     }
 }

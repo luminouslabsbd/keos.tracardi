@@ -84,24 +84,24 @@ function Digital() {
     const handleSelectUnit = (selectedOption) => {
         setValue('unit_id', selectedOption?.value);
     };
-    const [IsUploadType, setUploadType] = useState(false);
+    const [IsUploadType, setUploadType] = useState(true);
 
     const uploadType = (event) => {
         console.log(event.target.value);
         const value = event.target.value;
         if (value === "1") {
-            setUploadType(false);
+            setUploadType(true);
         }
         if (value === "2") {
-            setUploadType(true);
+            setUploadType(false);
         }
 
     }
 
 
     function onSubmit(data) {
-        console.log(data);
-        // router.post("/admin/color/store", data);
+        // console.log(data);
+        router.post("/admin/product/digital/store", data);
     }
     return (
         <>
@@ -316,8 +316,13 @@ function Digital() {
                                         <div>
                                             <label>Select File </label>
                                             <input
+<<<<<<< HEAD
                                                 {...register("upload_link", { required: "Product Name Is required" })}
                                                 type="file"
+=======
+                                                {...register("upload_link", {required: "Product Name Is required"})}
+                                                type="text"
+>>>>>>> 02fb099 (license store)
                                                 className="form-input"
                                                 placeholder="Enter Product Name"
                                             />
@@ -328,8 +333,13 @@ function Digital() {
                                         <div>
                                             <label>Link</label>
                                             <input
+<<<<<<< HEAD
                                                 {...register("upload_file", { required: "Product Name Is required" })}
                                                 type="text"
+=======
+                                                {...register("upload_file", {required: "Product Name Is required"})}
+                                                type="file"
+>>>>>>> 02fb099 (license store)
                                                 className="form-input"
                                                 placeholder="Enter Product Name"
                                             />
@@ -395,6 +405,7 @@ function Digital() {
                                 <div>
                                     <input
                                         type="file"
+                                        {...register("thumbnail", {required: "Product Name Is required"})}
                                         className="form-input"
                                     />
                                 </div>
@@ -437,14 +448,15 @@ function Digital() {
                         </div>
                     </div>
                 </div>
-                <div className="pt-5 grid grid-cols-1 lg:grid-cols-1 gap-6">
-                    <div className="panel">
-                        <div className="flex items-center justify-between mb-5">
-                            <h5 className="font-semibold text-lg dark:text-white-light">Basic</h5>
-                        </div>
-                        <div className="mb-5 space-y-5 relative">
-                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                {/*<div className="pt-5 grid grid-cols-1 lg:grid-cols-1 gap-6">*/}
+                {/*    <div className="panel">*/}
+                {/*        <div className="flex items-center justify-between mb-5">*/}
+                {/*            <h5 className="font-semibold text-lg dark:text-white-light">Basic</h5>*/}
+                {/*        </div>*/}
+                {/*        <div className="mb-5 space-y-5 relative">*/}
+                {/*            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">*/}
 
+<<<<<<< HEAD
                                 <div>
                                     <label> Select Upload Type <span className="text-danger">*</span></label>
                                     <select
@@ -481,16 +493,54 @@ function Digital() {
                                             {errors.product_name &&
                                                 <p className="text-red-600 pt-2">{errors.product_name.message}</p>}
                                         </div>
+=======
+                {/*                <div>*/}
+                {/*                    <label> Select Upload Type <span className="text-danger">*</span></label>*/}
+                {/*                    <select*/}
+                {/*                        className="form-select text-white-dark"*/}
+                {/*                        {...register("upload_type")}*/}
+                {/*                        onChange={uploadType}*/}
+                {/*                    >*/}
+                {/*                        <option value="1">Upload By Link</option>*/}
+                {/*                        <option value="2">Upload By File</option>*/}
+                {/*                    </select>*/}
+                {/*                </div>*/}
+                {/*                {*/}
+                {/*                    IsUploadType ? (*/}
+                {/*                        <div>*/}
+                {/*                            <label>Select File <span className="text-danger">*</span> </label>*/}
+                {/*                            <input*/}
+                {/*                                {...register("upload_link", {required: "Product Name Is required"})}*/}
+                {/*                                type="file"*/}
+                {/*                                className="form-input"*/}
+                {/*                                placeholder="Enter Product Name"*/}
+                {/*                            />*/}
+                {/*                            {errors.product_name &&*/}
+                {/*                                <p className="text-red-600 pt-2">{errors.product_name.message}</p>}*/}
+                {/*                        </div>*/}
+                {/*                    ) : (*/}
+                {/*                        <div>*/}
+                {/*                            <label>Link<span className="text-danger">*</span> </label>*/}
+                {/*                            <input*/}
+                {/*                                {...register("upload_file", {required: "Product Name Is required"})}*/}
+                {/*                                type="text"*/}
+                {/*                                className="form-input"*/}
+                {/*                                placeholder="Enter Product Name"*/}
+                {/*                            />*/}
+                {/*                            {errors.product_name &&*/}
+                {/*                                <p className="text-red-600 pt-2">{errors.product_name.message}</p>}*/}
+                {/*                        </div>*/}
+>>>>>>> 02fb099 (license store)
 
-                                    )
-                                }
+                {/*                    )*/}
+                {/*                }*/}
 
-                            </div>
+                {/*            </div>*/}
 
-                        </div>
+                {/*        </div>*/}
 
-                    </div>
-                </div>
+                {/*    </div>*/}
+                {/*</div>*/}
 
                 <button
                     type="submit"

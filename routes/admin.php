@@ -152,7 +152,9 @@ Route::group(['middleware' => ['auth:admin'],'as' =>'admin.'],function() {
         Route::get('type', [ProductController::class, 'type'])->name('product.type');
         Route::get('data', [ProductController::class, 'data'])->name('product.data');
         Route::get('/create/{type}', [ProductController::class, 'create'])->name('product.create');
-        Route::post('/store', [ProductController::class, 'store'])->name('product.store');
+        Route::post('physical/store', [ProductController::class, 'store'])->name('product.store');
+        Route::post('digital/store', [ProductController::class, 'digitalStore'])->name('digital.product.store');
+        Route::post('license/store', [ProductController::class, 'licenseStore'])->name('license.product.store');
         Route::get('/edit/{id}', [ProductController::class, 'edit'])->name('product.edit');
         Route::post('/update', [ProductController::class, 'update'])->name('product.update');
         Route::get('/delete/{id}', [ProductController::class, 'delete'])->name('product.delete');
@@ -188,6 +190,7 @@ Route::group(['middleware' => ['auth:admin'],'as' =>'admin.'],function() {
         Route::get('create', [\App\Http\Controllers\Admin\BlogController::class, 'create'])->name('blog.product.create');
     });
     //end Blog
+
 
 
 

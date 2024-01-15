@@ -153,7 +153,7 @@ function Physical() {
             ...data,
             items: total_items
         }
-        router.post("/admin/product/store", newData);
+        router.post("/admin/product/physical/store", newData);
     }
     return (
         <>
