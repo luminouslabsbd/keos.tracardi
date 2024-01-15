@@ -4,6 +4,7 @@
 use App\Http\Controllers\Admin\AuthController;
 use App\Http\Controllers\Admin\BangladeshController;
 use App\Http\Controllers\Admin\BlogCategoryController;
+use App\Http\Controllers\Admin\BlogPostController;
 use App\Http\Controllers\Admin\BrandController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ColorController;
@@ -237,13 +238,25 @@ Route::group(['middleware' => ['auth:admin'],'as' =>'admin.'],function() {
     });
     //end Blog Category
 
+    //Blog Category
+    Route::group(['prefix' => 'blog-post' ],function (){
+        Route::get('', [BlogPostController::class, 'index'])->name('blog-post');
+        Route::get('data', [BlogPostController::class, 'data'])->name('blog-post.data');
+        Route::get('/create', [BlogPostController::class, 'create'])->name('blog-post.create');
+        Route::post('/store', [BlogPostController::class, 'store'])->name('blog-post.store');
+        Route::get('/edit/{id}', [BlogPostController::class, 'edit'])->name('blog-post.edit');
+        Route::post('/update', [BlogPostController::class, 'update'])->name('blog-post.update');
+        Route::get('/delete/{id}', [BlogPostController::class, 'delete'])->name('blog-post.delete');
+        Route::get('/status/{id}', [BlogPostController::class, 'status'])->name('blog-post.status');
 
-        //Blog Post
-        Route::group(['prefix' => 'blogPost' ],function (){
-            Route::get('', [\App\Http\Controllers\Admin\BlogPostController::class, 'index'])->name('blogPost.product');
-            Route::get('create', [\App\Http\Controllers\Admin\BlogPostController::class, 'create'])->name('blogPost.product.create');
-        });
-        //end Blog Post
+        Route::get('trashed', [BlogPostController::class, 'trashed'])->name('blog-post.trashed');
+        Route::get('trashed/data', [BlogPostController::class, 'trashedData'])->name('blog-post.trashed.data');
+        Route::get('/permanent-delete/{id}', [BlogPostController::class, 'permanentDelete'])->name('blog-post.permanent.delete');
+        Route::get('permanent-delete-all', [BlogPostController::class, 'permanentDeleteAll'])->name('blog-post.permanent.delete.all');
+        Route::get('/undo-trashed/{id}', [BlogPostController::class, 'undoTrashed'])->name('blog-post.undo.trashed');
+        Route::get('/restore-all', [BlogPostController::class, 'restoreAll'])->name('blog-post.restore.all');
+    });
+    //end Blog Category
 
 
 

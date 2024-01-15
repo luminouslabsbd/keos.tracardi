@@ -1,11 +1,12 @@
 <?php
 namespace App\Repositories\Admin;
-use App\Models\Admin\Unit;
+use App\Models\Admin\BlogCategory;
 
-class UnitRepository {
+
+class BlogCategoryRepository {
     protected $model;
 
-    public function __construct(Unit $model)
+    public function __construct(BlogCategory $model)
     {
         $this->model=$model;
     }

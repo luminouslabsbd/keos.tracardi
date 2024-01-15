@@ -1,11 +1,13 @@
 <?php
 namespace App\Repositories\Admin;
-use App\Models\Admin\Unit;
 
-class UnitRepository {
+use App\Models\Admin\BlogPost;
+
+
+class BlogPostRepository {
     protected $model;
 
-    public function __construct(Unit $model)
+    public function __construct(BlogPost $model)
     {
         $this->model=$model;
     }
@@ -54,21 +56,43 @@ class UnitRepository {
     protected function storeOrUpdate($request, $action)
     {
 
-        try
-        {
+//        try
+//        {
+
+            $path = "";
+            if($action == 'save'){
+                if($request->thumbnail){
+                    $path =  fileUpload($request->thumbnail[0] , "blog_post");
+                }
+            }
+            if($action == 'update'){
+                if(!empty($request->thumbnail)){
+                    $path =  fileUpload($request->thumbnail[0] , "blog_post");
+                }else if(isset($category->thumbnail)){
+                    $path = $category->thumbnail;
+                }
+            }
+
             $data = $this->model::updateOrCreate(
                 ['id' => isset($request->id) ? $request->id : ''],
                 [
+                    'blog_category_id' => $request->blog_category_id,
                     'name' => $request->name,
+                    'tags' => $request->tag,
+                    'thumbnail' => $path,
+                    'blog_details' => $request->blog_details,
+                    'allow_seo' => $request->allow_seo == true ? 1 : 0,
+                    'meta_keywords' => $request->allow_seo == true ?? $request->meta_keywords,
+                    'meta_description' => $request->allow_seo == true ?? $request->meta_description,
                 ]
             );
             if ($data) {
-                $message = $action == "save" ?"Size Save Successfully" :"Size Update Successfully";
+                $message = $action == "save" ?"Blog Category Save Successfully" :"Blog Category Update Successfully";
                 return ['status' => true, 'message' => $message,];
             }
 
-        } catch (\Exception $e) {
-            return ['status' => false, 'errors' =>  $e->getMessage()];
-        }
+//        } catch (\Exception $e) {
+//            return ['status' => false, 'errors' =>  $e->getMessage()];
+//        }
     }
 }

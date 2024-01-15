@@ -5,8 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UnitRequest;
 use App\Models\Admin\BlogCategory;
-use App\Models\Admin\Unit;
-use App\Repositories\Admin\UnitRepository;
+use App\Repositories\Admin\BlogCategoryRepository;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
@@ -14,7 +13,7 @@ class BlogCategoryController extends Controller
 {
 
     protected $blog_category;
-    public function __construct(UnitRepository $blog_category)
+    public function __construct(BlogCategoryRepository $blog_category)
     {
         $this->blog_category = $blog_category;
     }

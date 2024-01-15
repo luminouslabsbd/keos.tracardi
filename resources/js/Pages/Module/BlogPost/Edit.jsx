@@ -6,15 +6,17 @@ import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import { Controller, useForm } from "react-hook-form";
 
-function Add() {
-    const { blog_categories } = usePage().props;
+function Edit() {
     const { control, register, handleSubmit, setValue, reset, formState: { errors }, watch } = useForm();
-    const CategoryOptions = blog_categories.map((item) => ({
-        value: item?.id,
-        label: item?.name ? `${item.name}` : '',
-    }));
+
+    const CategoryOptions = [
+        { value: 'Digital Service', label: 'Digital Service' },
+        { value: 'Physical Service', label: 'Physical Service' },
+    ];
+
+    // For Category Select Field
     const handleSelectCategory = (selectedOption) => {
-        setValue('blog_category_id', selectedOption?.value);
+        setValue('category', selectedOption?.value);
     };
 
 
@@ -30,10 +32,17 @@ function Add() {
         setIsChecked(!isChecked);
     };
 
+
+
+    // For Post From Data
+
     function onSubmit(data) {
-        console.log(data)
+        // console.log(data)
         router.post("/admin/blog-post/store", data);
     }
+
+
+
     return (
         <>
             <div className="panel flex items-center overflow-x-auto whitespace-nowrap p-3 ">
@@ -87,7 +96,7 @@ function Add() {
                                     <Controller
 
                                         control={control}
-                                        name="blog_category_id"
+                                        name="category"
                                         render={({field}) => (
 
                                             <Select
@@ -104,7 +113,7 @@ function Add() {
                                 <div>
                                     <label> Title <span className="text-danger">*</span> </label>
                                     <input
-                                        {...register("name", {required: "Title Is required"})}
+                                        {...register("title", {required: "Title Is required"})}
                                         type="text"
                                         className="form-input"
                                         placeholder="Title"
@@ -137,7 +146,7 @@ function Add() {
                             <div className="grid grid-cols-1 sm:grid-cols-1 gap-4 ">
                                 <div>
                                     <ReactQuill
-                                        value={blog_details}
+                                        value={product_description}
                                         onChange={(value) => handleQuillChange(value)}
                                         theme="snow"
                                     />
@@ -148,13 +157,13 @@ function Add() {
                                 <div>
                                     <label className="inline-flex">
                                         <input
-                                            {...register("allow_seo")}
+                                            {...register("allow_Blog_SEO")}
                                             type="checkbox"
                                             checked={isChecked}
                                             className="form-checkbox text-dark rounded-full"
                                             onChange={toggleTextField}
                                         />
-                                        <span>  Allow Blog SEO</span>
+                                        <span>   Allow Blog SEO</span>
                                     </label>
                                 </div>
                             </div>
@@ -197,8 +206,8 @@ function Add() {
     );
 }
 
-Add.layout = (page) => (
+Edit.layout = (page) => (
     <MainLayout children={page} title="E-SHOP || Add Group Of Company"/>
 );
 
-export default Add;
+export default Edit;
