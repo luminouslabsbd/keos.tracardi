@@ -205,9 +205,9 @@ class ProductRepository {
     }
     protected function storeOrUpdate($request, $action)
     {
-        try
-        {
-            DB::beginTransaction();
+        // try
+        // {
+        //     DB::beginTransaction();
             if(!empty($request->thumbnail)){
                 $thumbnail =  fileUpload($request->thumbnail[0] , "product");
             }else if(isset($user->thumbnail)){
@@ -312,14 +312,14 @@ class ProductRepository {
                         ]);
                     }
                 }
-                DB::commit();
+                // DB::commit();
                 $message = $action == "save" ?"Product Save Successfully" :"Product Update Successfully";
                 return ['status' => true, 'message' => $message,];
             }
-        } catch (\Exception $e) {
-            DB::rollback();
-            return ['status' => false, 'errors' =>  $e->getMessage()];
-        }
+        // } catch (\Exception $e) {
+        //     DB::rollback();
+        //     return ['status' => false, 'errors' =>  $e->getMessage()];
+        // }
     }
     private function getDynamicData($request, $prefix)
     {

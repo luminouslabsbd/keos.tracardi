@@ -88,7 +88,7 @@ function Add() {
 
                                         control={control}
                                         name="blog_category_id"
-                                        render={({field}) => (
+                                        render={({ field }) => (
 
                                             <Select
                                                 options={CategoryOptions}
@@ -104,7 +104,7 @@ function Add() {
                                 <div>
                                     <label> Title <span className="text-danger">*</span> </label>
                                     <input
-                                        {...register("name", {required: "Title Is required"})}
+                                        {...register("name", { required: "Title Is required" })}
                                         type="text"
                                         className="form-input"
                                         placeholder="Title"
@@ -116,7 +116,7 @@ function Add() {
                                 <div>
                                     <label> Tags <span className="text-danger">*</span> </label>
                                     <input
-                                        {...register("tag", {required: "Tag Is required"})}
+                                        {...register("tag", { required: "Tag Is required" })}
                                         type="text"
                                         className="form-input"
                                     />
@@ -224,13 +224,13 @@ function Add() {
                                         {errors.tag && <p className="text-red-600 pt-2">{errors.tag.message}</p>}
                                     </div>
                                     <div>
-                                        <label> Image <span className="text-danger">*</span> </label>
+                                        <label> Meta Description <span className="text-danger">*</span> </label>
                                         <textarea
                                             {...register("meta_description")}
                                             className="form-input"
                                             placeholder="Write SEO description"
                                         >
-                                                    </textarea>
+                                        </textarea>
                                         {errors.tag && <p className="text-red-600 pt-2">{errors.tag.message}</p>}
                                     </div>
                                 </div>
@@ -251,7 +251,7 @@ function Add() {
 }
 
 Add.layout = (page) => (
-    <MainLayout children={page} title="E-SHOP || Add Group Of Company"/>
+    <MainLayout children={page} title="E-SHOP || Add Group Of Company" />
 );
 
 export default Add;

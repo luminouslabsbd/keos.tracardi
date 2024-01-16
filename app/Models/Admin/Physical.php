@@ -11,7 +11,7 @@ class Physical extends Model
     protected $fillable = [
         'product_id',
         'unit_id',
-        'product_stock',
+        // 'product_stock',
         'allow_product_conditions',
         'allow_product_preorder',
         'allow_minimum_order_qty',
