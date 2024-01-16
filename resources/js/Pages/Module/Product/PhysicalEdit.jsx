@@ -6,15 +6,18 @@ import Select from "react-select";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 function PhysicalEdit() {
-    const { categories, sub_categories, brands, type, colors, sizes, units ,product} = usePage().props;
+    const { categories, sub_categories, brands, type, colors, sizes, units, product } = usePage().props;
+
     console.log(product);
+
     const [selectedColorOptions, setSelectedColorOptions] = useState([]);
     const [selectedSizeOptions, setSelectedSizeOptions] = useState([]);
     const [attributesLength, setAttributesLength] = useState([]);
     const [hiddenAttributesLength, setHiddenAttributesLength] = useState([]);
     const [IsproductVariationValue, setProductVariationValue] = useState(false);
-
-
+    const [show, setShow] = useState( product.product_variation)
+    console.log("🚀 ~ PhysicalEdit ~  product.product_variation:",  product.product_variation)
+    console.log("🚀 ~ PhysicalEdit ~ show:", show)
 
     useEffect(() => {
         const generateInputValues = () => {
@@ -39,11 +42,31 @@ function PhysicalEdit() {
     // console.log(attributesLength);
 
 
-    const { control, register, handleSubmit, setValue, reset, formState: { errors },watch } = useForm({
+    const { control, register, handleSubmit, setValue, reset, formState: { errors }, watch } = useForm({
         defaultValues: {
-            type: type
+            category_id: product?.category_id,
+            sub_category_id: product?.sub_category_id,
+            brand_id: product?.brand_id,
+            unit_id: product?.unit_id,
+            product_sku: product?.product_sku,
+            product_name: product?.product_name,
+            product_variation: product.product_variation,
+            color_id: product.productcolor.name,
+            single_product_price: product?.single_product_price,
+            single_product_discount: product?.single_product_discount,
+            single_product_quantity: product?.single_product_quantity,
+            upload_type: product?.upload_type,
+            upload_link: product?.upload_link,
+            upload_file: product?.upload_file,
+            product_description: product?.product_description,
+            product_buy_return_policy: product?.product_buy_return_policy,
+            thumbnail: product?.thumbnail,
+            meta_tags: product?.meta_tags,
+            meta_description: product?.product_description,
         }
     });
+
+
     const product_description = watch('product_description', '');
     const handleQuillChange = (value) => {
         setValue('product_description', value);
@@ -94,10 +117,15 @@ function PhysicalEdit() {
     const productVariationValue = (event) => {
         const value = event.target.value;
         if (value === "1") {
+            console.log("🚀 ~ productVariationValue ~ value:", value)
             setProductVariationValue(false);
+            setShow(1)
+            
         }
         if (value === "2") {
+            console.log("🚀 ~ productVariationValue ~ value:", value)
             setProductVariationValue(true);
+            setShow(2)
         }
     }
 
@@ -205,7 +233,7 @@ function PhysicalEdit() {
                                     <Controller
                                         control={control}
                                         name="category_id"
-                                        render={({field}) => (
+                                        render={({ field }) => (
                                             <Select
                                                 placeholder="Select an option"
                                                 options={categoruOptions}
@@ -221,7 +249,7 @@ function PhysicalEdit() {
                                     <Controller
                                         control={control}
                                         name="sub_category_id"
-                                        render={({field}) => (
+                                        render={({ field }) => (
                                             <Select
                                                 placeholder="Select an option"
                                                 options={subCategoruOptions}
@@ -242,7 +270,7 @@ function PhysicalEdit() {
                                     <Controller
                                         control={control}
                                         name="brand_id"
-                                        render={({field}) => (
+                                        render={({ field }) => (
                                             <Select
                                                 placeholder="Select an option"
                                                 options={brandOptions}
@@ -258,7 +286,7 @@ function PhysicalEdit() {
                                     <Controller
                                         control={control}
                                         name="unit_id"
-                                        render={({field}) => (
+                                        render={({ field }) => (
                                             <Select
                                                 placeholder="Select an option"
                                                 options={unitOptions}
@@ -272,10 +300,12 @@ function PhysicalEdit() {
                                     <label>Select Product Variation</label>
 
                                     <select
+                                         defaultValue="ss"
                                         className="form-select text-white-dark"
                                         {...register("product_variation")}
                                         onChange={productVariationValue}
                                     >
+                                       
                                         <option value="1">Single Product</option>
                                         <option value="2">Variation Product</option>
                                     </select>
@@ -285,7 +315,7 @@ function PhysicalEdit() {
                                 <div>
                                     <label> Product SKU </label>
                                     <input
-                                        {...register("product_sku", {required: "Product SKU Is required"})}
+                                        {...register("product_sku", { required: "Product SKU Is required" })}
                                         type="text"
                                         className="form-input"
                                         placeholder="Enter Product Name"
@@ -298,7 +328,7 @@ function PhysicalEdit() {
                                 <div>
                                     <label>Product Name </label>
                                     <input
-                                        {...register("product_name", {required: "Product Name Is required"})}
+                                        {...register("product_name", { required: "Product Name Is required" })}
                                         type="text"
                                         className="form-input"
                                         placeholder="Enter Product Name"
@@ -314,7 +344,7 @@ function PhysicalEdit() {
 
                     <div className="panel">
                         {
-                            IsproductVariationValue === true ? (
+                            show === 2 &&
                                 <>
                                     <div className="flex items-center justify-between mb-5">
                                         <h5 className="font-semibold text-lg dark:text-white-light">Atrribute</h5>
@@ -327,7 +357,7 @@ function PhysicalEdit() {
                                                     <Controller
                                                         control={control}
                                                         {...register("color_id")}
-                                                        render={({field}) => (
+                                                        render={({ field }) => (
                                                             <Select
                                                                 className="w-full"
                                                                 placeholder="Select an option"
@@ -352,7 +382,7 @@ function PhysicalEdit() {
                                                     <Controller
                                                         control={control}
                                                         {...register("size_id")}
-                                                        render={({field}) => (
+                                                        render={({ field }) => (
                                                             <Select
                                                                 className="w-full"
                                                                 placeholder="Select an option"
@@ -375,53 +405,54 @@ function PhysicalEdit() {
                                         </div>
                                     </div>
                                 </>
-                            ) : (
-                                <>
-                                    <div className="flex items-center justify-between mb-5">
-                                        <h5 className="font-semibold text-lg dark:text-white-light">Product Price and
-                                            Description</h5>
-                                    </div>
+                        }
+                        {
+                            show === 1 && 
+                            <>
+                            <div className="flex items-center justify-between mb-5">
+                                <h5 className="font-semibold text-lg dark:text-white-light">Product Price and
+                                    Description</h5>
+                            </div>
 
-                                    <div className="mb-5 space-y-5 relative">
-                                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                                            <div className="md:col-span-2">
-                                                <label>Price</label>
-                                                <div className="flex items-center gap-2">
-                                                    <input
-                                                        {...register("single_product_price", {required: "Product Name Is required"})}
-                                                        type="number"
-                                                        className="form-input"
-                                                        placeholder="99$"
-                                                    />
-                                                </div>
-                                            </div>
-                                            <div className="md:col-span-2">
-                                                <label>Discount</label>
-                                                <div className="flex items-center gap-2">
-                                                    <input
-                                                        {...register("single_product_discount", {required: "Product Name Is required"})}
-                                                        type="number"
-                                                        className="form-input"
-                                                        placeholder="10%"
-                                                    />
-                                                </div>
-                                            </div>
-                                            <div className="md:col-span-2">
-                                                <label>Quantity</label>
-                                                <div className="flex items-center gap-2">
-                                                    <input
-                                                        {...register("single_product_quantity", {required: "Product Quantoty Is required"})}
-                                                        type="number"
-                                                        className="form-input"
-                                                        placeholder="50"
-                                                    />
-                                                </div>
-                                            </div>
+                            <div className="mb-5 space-y-5 relative">
+                                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                    <div className="md:col-span-2">
+                                        <label>Price</label>
+                                        <div className="flex items-center gap-2">
+                                            <input
+                                                {...register("single_product_price", { required: "Product Name Is required" })}
+                                                type="number"
+                                                className="form-input"
+                                                placeholder="99$"
+                                            />
                                         </div>
                                     </div>
+                                    <div className="md:col-span-2">
+                                        <label>Discount</label>
+                                        <div className="flex items-center gap-2">
+                                            <input
+                                                {...register("single_product_discount", { required: "Product Name Is required" })}
+                                                type="number"
+                                                className="form-input"
+                                                placeholder="10%"
+                                            />
+                                        </div>
+                                    </div>
+                                    <div className="md:col-span-2">
+                                        <label>Quantity</label>
+                                        <div className="flex items-center gap-2">
+                                            <input
+                                                {...register("single_product_quantity", { required: "Product Quantoty Is required" })}
+                                                type="number"
+                                                className="form-input"
+                                                placeholder="50"
+                                            />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
 
-                                </>
-                            )
+                        </>
                         }
                     </div>
                 </div>
@@ -434,67 +465,67 @@ function PhysicalEdit() {
                                         hiddenAttributesLength.map((item, index) => (
                                             <input
                                                 key={index} // Provide a unique key for each input
-                                                {...register(`product_attribute_${index}`, {required: "Product SKU Is required"})}
+                                                {...register(`product_attribute_${index}`, { required: "Product SKU Is required" })}
                                                 type="hidden"
                                                 value={item} // Display the value from the hiddenAttributesLength array
                                             />
                                         ))
                                     )}
                                 {
-                                attributesLength.length > 0 && (
-                                    <div className="panel">
-                                    <div className="flex items-center justify-between mb-5">
-                                        <h5 className="font-semibold text-lg dark:text-white-light">Attribute
-                                            Variation</h5>
-                                    </div>
-                                    <div className="mb-5 space-y-5 relative">
-                                        {attributesLength.map((item, index) => (
-                                            <div key={index} className="grid grid-cols-1 sm:grid-cols-4 gap-4">
-                                                <div>
-                                                    <label> Product attribute <span className="text-danger">*</span>
-                                                    </label>
-                                                    <input
-                                                        type="text"
-                                                        className="form-input"
-                                                        value={item} // Set the value here
-                                                    />
-
-                                                </div>
-                                                <div>
-                                                    <label> Product Price <span className="text-danger">*</span>
-                                                    </label>
-                                                    <input
-                                                        {...register(`product_price_${index}`, {required: "Product Price Is required"})}
-                                                        type="number"
-                                                        className="form-input"
-                                                        placeholder="10$"
-                                                    />
-                                                </div>
-                                                <div>
-                                                    <label> Product quantity <span className="text-danger">*</span>
-                                                    </label>
-                                                    <input
-                                                        {...register(`product_quantity_${index}`, {required: "Product quantity Is required"})}
-                                                        type="number"
-                                                        className="form-input"
-                                                        placeholder="5"
-                                                    />
-                                                </div>
-                                                <div>
-                                                    <label> Product discount <span className="text-danger">*</span>
-                                                    </label>
-                                                    <input
-                                                        {...register(`product_discount_${index}`, {required: "Product discount Is required"})}
-
-                                                        type="number"
-                                                        className="form-input"
-                                                        placeholder="8%"
-                                                    />
-                                                </div>
+                                    attributesLength.length > 0 && (
+                                        <div className="panel">
+                                            <div className="flex items-center justify-between mb-5">
+                                                <h5 className="font-semibold text-lg dark:text-white-light">Attribute
+                                                    Variation</h5>
                                             </div>
-                                        ))}
-                                    </div>
-                                </div>
+                                            <div className="mb-5 space-y-5 relative">
+                                                {attributesLength.map((item, index) => (
+                                                    <div key={index} className="grid grid-cols-1 sm:grid-cols-4 gap-4">
+                                                        <div>
+                                                            <label> Product attribute <span className="text-danger">*</span>
+                                                            </label>
+                                                            <input
+                                                                type="text"
+                                                                className="form-input"
+                                                                value={item} // Set the value here
+                                                            />
+
+                                                        </div>
+                                                        <div>
+                                                            <label> Product Price <span className="text-danger">*</span>
+                                                            </label>
+                                                            <input
+                                                                {...register(`product_price_${index}`, { required: "Product Price Is required" })}
+                                                                type="number"
+                                                                className="form-input"
+                                                                placeholder="10$"
+                                                            />
+                                                        </div>
+                                                        <div>
+                                                            <label> Product quantity <span className="text-danger">*</span>
+                                                            </label>
+                                                            <input
+                                                                {...register(`product_quantity_${index}`, { required: "Product quantity Is required" })}
+                                                                type="number"
+                                                                className="form-input"
+                                                                placeholder="5"
+                                                            />
+                                                        </div>
+                                                        <div>
+                                                            <label> Product discount <span className="text-danger">*</span>
+                                                            </label>
+                                                            <input
+                                                                {...register(`product_discount_${index}`, { required: "Product discount Is required" })}
+
+                                                                type="number"
+                                                                className="form-input"
+                                                                placeholder="8%"
+                                                            />
+                                                        </div>
+                                                    </div>
+                                                ))}
+                                            </div>
+                                        </div>
                                     )}
                             </>
                         )}
@@ -617,77 +648,77 @@ function PhysicalEdit() {
                                                 <div className="table-responsive">
                                                     <table>
                                                         <thead>
-                                                        <tr>
-                                                            <th>Quantity</th>
-                                                            <th>Discount</th>
-                                                            <th className="w-1"></th>
-                                                        </tr>
+                                                            <tr>
+                                                                <th>Quantity</th>
+                                                                <th>Discount</th>
+                                                                <th className="w-1"></th>
+                                                            </tr>
                                                         </thead>
                                                         <tbody>
-                                                        {items.length <= 0 && (
-                                                            <tr>
-                                                                <td colSpan={5} className="!text-center font-semibold">
-                                                                    No Item Available
-                                                                </td>
-                                                            </tr>
-                                                        )}
-                                                        {items.map((item) => {
-                                                            return (
-                                                                <tr className="align-top" key={item.id}>
-
-                                                                    <td>
-                                                                        <input
-                                                                            type="number"
-                                                                            className="form-input w-32"
-                                                                            placeholder="Quantity"
-                                                                            min={1}
-                                                                            defaultValue={item.quantity}
-                                                                            onChange={(e) => changeQuantityDiscount('quantity', e.target.value, item.id)}
-                                                                        />
-                                                                    </td>
-
-                                                                    <td>
-                                                                        <input
-                                                                            type="number"
-                                                                            className="form-input w-32"
-                                                                            placeholder="Discount"
-                                                                            min={0}
-                                                                            value={item.discount}
-                                                                            onChange={(e) => changeQuantityDiscount('discount', e.target.value, item.id)}
-                                                                        />
-                                                                    </td>
-
-                                                                    <td className="mt-2">
-                                                                        <button type="button"
-                                                                                onClick={() => removeItem(item)}>
-                                                                            <svg
-                                                                                xmlns="http://www.w3.org/2000/svg"
-                                                                                width="20"
-                                                                                height="20"
-                                                                                viewBox="0 0 24 24"
-                                                                                fill="none"
-                                                                                stroke="currentColor"
-                                                                                strokeWidth="1.5"
-                                                                                strokeLinecap="round"
-                                                                                strokeLinejoin="round"
-                                                                            >
-                                                                                <line x1="18" y1="6" x2="6"
-                                                                                      y2="18"></line>
-                                                                                <line x1="6" y1="6" x2="18"
-                                                                                      y2="18"></line>
-                                                                            </svg>
-                                                                        </button>
+                                                            {items.length <= 0 && (
+                                                                <tr>
+                                                                    <td colSpan={5} className="!text-center font-semibold">
+                                                                        No Item Available
                                                                     </td>
                                                                 </tr>
-                                                            );
-                                                        })}
+                                                            )}
+                                                            {items.map((item) => {
+                                                                return (
+                                                                    <tr className="align-top" key={item.id}>
+
+                                                                        <td>
+                                                                            <input
+                                                                                type="number"
+                                                                                className="form-input w-32"
+                                                                                placeholder="Quantity"
+                                                                                min={1}
+                                                                                defaultValue={item.quantity}
+                                                                                onChange={(e) => changeQuantityDiscount('quantity', e.target.value, item.id)}
+                                                                            />
+                                                                        </td>
+
+                                                                        <td>
+                                                                            <input
+                                                                                type="number"
+                                                                                className="form-input w-32"
+                                                                                placeholder="Discount"
+                                                                                min={0}
+                                                                                value={item.discount}
+                                                                                onChange={(e) => changeQuantityDiscount('discount', e.target.value, item.id)}
+                                                                            />
+                                                                        </td>
+
+                                                                        <td className="mt-2">
+                                                                            <button type="button"
+                                                                                onClick={() => removeItem(item)}>
+                                                                                <svg
+                                                                                    xmlns="http://www.w3.org/2000/svg"
+                                                                                    width="20"
+                                                                                    height="20"
+                                                                                    viewBox="0 0 24 24"
+                                                                                    fill="none"
+                                                                                    stroke="currentColor"
+                                                                                    strokeWidth="1.5"
+                                                                                    strokeLinecap="round"
+                                                                                    strokeLinejoin="round"
+                                                                                >
+                                                                                    <line x1="18" y1="6" x2="6"
+                                                                                        y2="18"></line>
+                                                                                    <line x1="6" y1="6" x2="18"
+                                                                                        y2="18"></line>
+                                                                                </svg>
+                                                                            </button>
+                                                                        </td>
+                                                                    </tr>
+                                                                );
+                                                            })}
                                                         </tbody>
                                                     </table>
                                                 </div>
                                                 <div className="flex justify-between sm:flex-row flex-col mt-6 px-4">
                                                     <div className="sm:mb-0 mb-6">
                                                         <button type="button" className="btn btn-primary"
-                                                                onClick={() => addItem()}>
+                                                            onClick={() => addItem()}>
                                                             Add Item
                                                         </button>
                                                     </div>
@@ -769,7 +800,7 @@ function PhysicalEdit() {
 }
 
 PhysicalEdit.layout = (page) => (
-    <MainLayout children={page} title="E-SHOP || Add Group Of Company"/>
+    <MainLayout children={page} title="E-SHOP || Add Group Of Company" />
 );
 
 export default PhysicalEdit;

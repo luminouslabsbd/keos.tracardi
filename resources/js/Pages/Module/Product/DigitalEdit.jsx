@@ -1,13 +1,12 @@
 import React, { useState, useEffect } from "react";
 import MainLayout from "../../Layout/Mainlayout";
 import { Link, router, usePage } from "@inertiajs/react";
-import FlashMessage from "../../Component/FlashMessage.jsx";
 import { Controller, useForm } from "react-hook-form";
 import Select from "react-select";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 function DigitalEdit() {
-    const { flash, categories, sub_categories, brands, type, units,product } = usePage().props;
+    const { categories, sub_categories, brands, type, units, product } = usePage().props;
     console.log(product);
 
     const [selectedColorOptions, setSelectedColorOptions] = useState([]);
@@ -40,12 +39,30 @@ function DigitalEdit() {
     }, [selectedColorOptions, selectedSizeOptions]);
     // console.log(attributesLength);
 
-
-    const { control, register, handleSubmit, setValue, reset, formState: { errors },watch } = useForm({
+    const { control, register, handleSubmit, setValue, reset, formState: { errors }, watch } = useForm({
         defaultValues: {
-            type: type
+            category_id: product?.category_id,
+            sub_category_id: product?.sub_category_id,
+            brand_id: product?.brand_id,
+            unit_id: product?.unit_id,
+            product_sku: product?.product_sku,
+            product_name: product?.product_name,
+            single_product_price: product?.single_product_price,
+            single_product_discount: product?.single_product_discount,
+            single_product_quantity: product?.single_product_quantity,
+            upload_type: product?.upload_type,
+            upload_link: product?.upload_link,
+            upload_file: product?.upload_file,
+            product_description: product?.product_description,
+            product_buy_return_policy: product?.product_buy_return_policy,
+            thumbnail: product?.thumbnail,
+            meta_tags: product?.meta_tags,
+            meta_description: product?.product_description,
         }
     });
+
+
+
     const product_description = watch('product_description', '');
     const handleQuillChange = (value) => {
         setValue('product_description', value);
@@ -107,7 +124,7 @@ function DigitalEdit() {
     }
     return (
         <>
-            <FlashMessage flash={flash} />
+
             <div className="panel flex items-center overflow-x-auto whitespace-nowrap p-3 ">
                 <div className="rounded-full bg-primary p-1.5 text-white ring-2 ring-primary/30 ltr:mr-3 rtl:ml-3">
                     <svg
@@ -156,7 +173,7 @@ function DigitalEdit() {
                                     <Controller
                                         control={control}
                                         name="category_id"
-                                        render={({field}) => (
+                                        render={({ field }) => (
                                             <Select
                                                 placeholder="Select an option"
                                                 options={categoruOptions}
@@ -172,7 +189,7 @@ function DigitalEdit() {
                                     <Controller
                                         control={control}
                                         name="sub_category_id"
-                                        render={({field}) => (
+                                        render={({ field }) => (
                                             <Select
                                                 placeholder="Select an option"
                                                 options={subCategoruOptions}
@@ -193,7 +210,7 @@ function DigitalEdit() {
                                     <Controller
                                         control={control}
                                         name="brand_id"
-                                        render={({field}) => (
+                                        render={({ field }) => (
                                             <Select
                                                 placeholder="Select an option"
                                                 options={brandOptions}
@@ -209,7 +226,7 @@ function DigitalEdit() {
                                     <Controller
                                         control={control}
                                         name="unit_id"
-                                        render={({field}) => (
+                                        render={({ field }) => (
                                             <Select
                                                 placeholder="Select an option"
                                                 options={unitOptions}
@@ -223,7 +240,7 @@ function DigitalEdit() {
                                 <div>
                                     <label> Product SKU </label>
                                     <input
-                                        {...register("product_sku", {required: "Product SKU Is required"})}
+                                        {...register("product_sku", { required: "Product SKU Is required" })}
                                         type="text"
                                         className="form-input"
                                         placeholder="Enter Product Name"
@@ -236,10 +253,11 @@ function DigitalEdit() {
                                 <div>
                                     <label>Product Name</label>
                                     <input
-                                        {...register("product_name", {required: "Product Name Is required"})}
+                                        {...register("product_name", { required: "Product Name Is required" })}
                                         type="text"
                                         className="form-input"
                                         placeholder="Enter Product Name"
+                                        id="product_name"
                                     />
                                     {errors.product_name &&
                                         <p className="text-red-600 pt-2">{errors.product_name.message}</p>}
@@ -262,7 +280,7 @@ function DigitalEdit() {
                                     <label>Price</label>
                                     <div className="flex items-center gap-2">
                                         <input
-                                            {...register("single_product_price", {required: "Product Name Is required"})}
+                                            {...register("single_product_price", { required: "Product Name Is required" })}
                                             type="number"
                                             className="form-input"
                                             placeholder="99$"
@@ -273,7 +291,7 @@ function DigitalEdit() {
                                     <label>Discount</label>
                                     <div className="flex items-center gap-2">
                                         <input
-                                            {...register("single_product_discount", {required: "Product Name Is required"})}
+                                            {...register("single_product_discount", { required: "Product Name Is required" })}
                                             type="number"
                                             className="form-input"
                                             placeholder="10%"
@@ -284,7 +302,7 @@ function DigitalEdit() {
                                     <label>Quantity</label>
                                     <div className="flex items-center gap-2">
                                         <input
-                                            {...register("single_product_quantity", {required: "Product Quantoty Is required"})}
+                                            {...register("single_product_quantity", { required: "Product Quantoty Is required" })}
                                             type="number"
                                             className="form-input"
                                             placeholder="50"
@@ -315,11 +333,11 @@ function DigitalEdit() {
                                     </select>
                                 </div>
                                 {
-                                    IsUploadType ? (
+                                    product.uploadType === 1 ? (
                                         <div>
                                             <label>Select File </label>
                                             <input
-                                                {...register("upload_link", {required: "Product Name Is required"})}
+                                                {...register("upload_link", { required: "Product Name Is required" })}
                                                 type="text"
                                                 className="form-input"
                                                 placeholder="Enter Product Name"
@@ -331,7 +349,7 @@ function DigitalEdit() {
                                         <div>
                                             <label>Link</label>
                                             <input
-                                                {...register("upload_file", {required: "Product Name Is required"})}
+                                                {...register("upload_file", { required: "Product Name Is required" })}
                                                 type="file"
                                                 className="form-input"
                                                 placeholder="Enter Product Name"
@@ -398,7 +416,7 @@ function DigitalEdit() {
                                 <div>
                                     <input
                                         type="file"
-                                        {...register("thumbnail", {required: "Product Name Is required"})}
+                                        {...register("thumbnail", { required: "Product Name Is required" })}
                                         className="form-input"
                                     />
                                 </div>
@@ -509,7 +527,7 @@ function DigitalEdit() {
 }
 
 DigitalEdit.layout = (page) => (
-    <MainLayout children={page} title="E-SHOP || Add Group Of Company"/>
+    <MainLayout children={page} title="E-SHOP || Add Group Of Company" />
 );
 
 export default DigitalEdit;
