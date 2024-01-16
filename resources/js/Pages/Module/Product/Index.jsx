@@ -33,7 +33,7 @@ function Index() {
                 setIsRefetching(true);
             }
 
-            const url = new URL('/admin/color/data', base_url);
+            const url = new URL('/admin/product/data', base_url);
             url.searchParams.set(
                 'start',
                 `${pagination.pageIndex * pagination.pageSize}`
@@ -78,19 +78,19 @@ function Index() {
     ]);
 
     function handleEditClick(data) {
-        router.get("/admin/color/edit/" + data);
+        router.get("/admin/product/edit/" + data);
     }
     function handleDeleteClick(data) {
         setFileToDelete(data);
         setIsDeleteNoteModal(true);
     }
     function handleStatusClick(data) {
-        router.get("/admin/color/status/" + data);
+        router.get("/admin/product/status/" + data);
     }
     const columns = useMemo(
         () => [
             {
-                accessorKey: 'name',
+                accessorKey: 'product_name',
                 header: ' Color Name',
             },
             {
@@ -206,7 +206,7 @@ function Index() {
 
                 <div className="ml-auto flex justify-center items-center gap-3">
                     <Link
-                        href={`${base_url}/admin/color/trashed`}
+                        href={`${base_url}/admin/product/trashed`}
                         method="get"
                         className="flex items-center px-7 py-2 bg-[#4d4d4d] text-white rounded-md text-[15px] shadow-lg transition-transform transform-gpu hover:scale-105"
                     >
@@ -236,7 +236,7 @@ function Index() {
                         Trash
                     </Link>
                     <Link
-                        href={`${base_url}/admin/color/create`}
+                        href={`${base_url}/admin/product/create`}
                         method="get"
                         className="flex items-center px-7 py-2 bg-[#ff6243] text-white rounded-md text-[15px] shadow-lg transition-transform transform-gpu hover:scale-105"
                     >

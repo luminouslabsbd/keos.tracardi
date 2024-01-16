@@ -230,7 +230,7 @@ useEffect(() => {
                                                height={currentMenu === 'product_management' ? 'auto' : 0}>
                                     <ul className="sub-menu text-gray-500">
                                         <li>
-                                            <Link href={`${base_url}/admin/prouuct`}>{t('All Product')}</Link>
+                                            <Link href={`${base_url}/admin/product`}>{t('All Product')}</Link>
                                         </li>
                                         <li>
                                             <Link href={`${base_url}/admin/product/type`}>{t('Add Product')}</Link>

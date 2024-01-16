@@ -44,4 +44,33 @@ class Product extends Model
         return $this->belongsToMany(Size::class, 'product_sizes','product_id','size_id');
     }
 
+    public function physical()
+    {
+        return $this->hasOne(Physical::class,'product_id');
+    }
+    public function license()
+    {
+        return $this->hasOne(License::class,'product_id');
+    }
+    public function digital()
+    {
+        return $this->hasOne(Digital::class,'product_id');
+    }
+    public function variationprice()
+    {
+        return $this->hasMany(VariationPrice::class,'product_id');
+    }
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class,'category_id');
+    }
+
+    public function brand()
+    {
+        return $this->belongsTo(Brand::class,'brand_id');
+    }
+
+
+
 }

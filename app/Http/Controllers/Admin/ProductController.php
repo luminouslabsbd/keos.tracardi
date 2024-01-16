@@ -101,8 +101,6 @@ class ProductController extends Controller
                 $categories = Category::where('parent_id', null)->select('id','name')->get();
                 $sub_categories = Category::where('parent_id', !null)->select('id','name')->get();
                 $brands = Brand::select('id','name')->get();
-                $colors = Color::select('id','name')->get();
-                $sizes = Size::select('id','name')->get();
                 $units = Unit::select('id','name')->get();
                 return Inertia::render('Module/Product/License',[
                     'categories'=>$categories,
@@ -116,7 +114,7 @@ class ProductController extends Controller
             return back()->with("error","Invalid type");
         }
 
-        return Inertia::render('Module/Product/Add');
+//        return Inertia::render('Module/Product/Add');
     }
     public function store(ProductRequest $request){
         $result = $this->product->store($request);
@@ -147,9 +145,52 @@ class ProductController extends Controller
 
     public function edit($id){
         $result = $this->product->edit($id);
-        return Inertia::render('Module/Product/Edit',[
-            'result'=>$result
-        ]);
+        if($result->type == PHYSICAL){
+            $categories = Category::where('parent_id', null)->select('id','name')->get();
+            $sub_categories = Category::where('parent_id', !null)->select('id','name')->get();
+            $brands = Brand::select('id','name')->get();
+            $colors = Color::select('id','name')->get();
+            $sizes = Size::select('id','name')->get();
+            $units = Unit::select('id','name')->get();
+
+            $product = Product::with('category','brand','productcolor','productsize','physical','physical.unit','variationprice')->where('id', $id)->first();
+            return Inertia::render('Module/Product/PhysicalEdit',[
+                'product'=>$product,
+                'categories'=>$categories,
+                'sub_categories'=>$sub_categories,
+                'brands'=>$brands,
+                'colors'=>$colors,
+                'sizes'=>$sizes,
+                'units'=>$units,
+            ]);
+        }elseif($result->type == DIGITAL){
+            $categories = Category::where('parent_id', null)->select('id','name')->get();
+            $sub_categories = Category::where('parent_id', !null)->select('id','name')->get();
+            $brands = Brand::select('id','name')->get();
+            $units = Unit::select('id','name')->get();
+            $product = Product::with('digital','category','brand')->where('id', $id)->first();
+            return Inertia::render('Module/Product/DigitalEdit',[
+                'product'=>$product,
+                'categories'=>$categories,
+                'sub_categories'=>$sub_categories,
+                'brands'=>$brands,
+                'units'=>$units,
+            ]);
+        }else{
+            $categories = Category::where('parent_id', null)->select('id','name')->get();
+            $sub_categories = Category::where('parent_id', !null)->select('id','name')->get();
+            $brands = Brand::select('id','name')->get();
+            $units = Unit::select('id','name')->get();
+            $product = Product::with('license','category','brand')->where('id', $id)->first();
+            return Inertia::render('Module/Product/LicenseEdit',[
+                'product'=>$product,
+                'categories'=>$categories,
+                'sub_categories'=>$sub_categories,
+                'brands'=>$brands,
+                'units'=>$units,
+            ]);
+        }
+
     }
     public function update(Request $request){
         $result=$this->product->update($request);

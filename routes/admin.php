@@ -11,6 +11,7 @@ use App\Http\Controllers\Admin\ColorController;
 use App\Http\Controllers\Admin\CurrencyController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\ExtraController;
+use App\Http\Controllers\Admin\LanguageController;
 use App\Http\Controllers\Admin\ModuleController;
 use App\Http\Controllers\Admin\PermissionsController;
 use App\Http\Controllers\Admin\ProductController;
@@ -259,6 +260,27 @@ Route::group(['middleware' => ['auth:admin'],'as' =>'admin.'],function() {
     //end Blog Category
 
 
+    //Language
+    Route::group(['prefix' => 'language' ],function (){
+        Route::get('', [LanguageController::class, 'index'])->name('language');
+        Route::get('data', [LanguageController::class, 'data'])->name('language.data');
+        Route::get('/create', [LanguageController::class, 'create'])->name('language.create');
+        Route::post('/store', [LanguageController::class, 'store'])->name('language.store');
+        Route::get('/edit/{id}', [LanguageController::class, 'edit'])->name('language.edit');
+        Route::post('/update', [LanguageController::class, 'update'])->name('language.update');
+        Route::get('/delete/{id}', [LanguageController::class, 'delete'])->name('language.delete');
+        Route::get('/status/{id}', [LanguageController::class, 'status'])->name('language.status');
+
+        Route::get('trashed', [LanguageController::class, 'trashed'])->name('language.trashed');
+        Route::get('trashed/data', [LanguageController::class, 'trashedData'])->name('language.trashed.data');
+        Route::get('/permanent-delete/{id}', [LanguageController::class, 'permanentDelete'])->name('language.permanent.delete');
+        Route::get('permanent-delete-all', [LanguageController::class, 'permanentDeleteAll'])->name('language.permanent.delete.all');
+        Route::get('/undo-trashed/{id}', [LanguageController::class, 'undoTrashed'])->name('language.undo.trashed');
+        Route::get('/restore-all', [LanguageController::class, 'restoreAll'])->name('language.restore.all');
+    });
+    //end Language
+
+
 
 
 
@@ -277,20 +299,17 @@ Route::group(['middleware' => ['auth:admin'],'as' =>'admin.'],function() {
     //end role-permission
 
     //language settings
-//    Route::get('/language', 'LanguageController@langManage')->name('language.manage');
-//    Route::post('/language', 'LanguageController@langStore')->name('language.manage.store');
-//    Route::post('/language/delete/{id}', 'LanguageController@langDel')->name('language.manage.del');
-//    Route::post('/language/update/{id}', 'LanguageController@langUpdate')->name('language.manage.update');
-//    Route::get('/language/edit/{id}', 'LanguageController@langEdit')->name('language.key');
-//    Route::post('/language/import', 'LanguageController@langImport')->name('language.importLang');
-//
-//
-//
-//    Route::post('language/store/key/{id}', 'LanguageController@storeLanguageJson')->name('language.store.key');
-//    Route::post('language/delete/key/{id}', 'LanguageController@deleteLanguageJson')->name('language.delete.key');
-//    Route::post('language/update/key/{id}', 'LanguageController@updateLanguageJson')->name('language.update.key');
-    //end language settings
+        Route::get('/language', 'LanguageController@langManage')->name('language.manage');
+        Route::post('/language', 'LanguageController@langStore')->name('language.manage.store');
+        Route::post('/language/delete/{id}', 'LanguageController@langDel')->name('language.manage.del');
+        Route::post('/language/update/{id}', 'LanguageController@langUpdate')->name('language.manage.update');
+        Route::get('/language/edit/{id}', 'LanguageController@langEdit')->name('language.key');
+        Route::post('/language/import', 'LanguageController@langImport')->name('language.importLang');
 
+        Route::post('language/store/key/{id}', 'LanguageController@storeLanguageJson')->name('language.store.key');
+        Route::post('language/delete/key/{id}', 'LanguageController@deleteLanguageJson')->name('language.delete.key');
+        Route::post('language/update/key/{id}', 'LanguageController@updateLanguageJson')->name('language.update.key');
+    //end language settings
 
     Route::get('custom-css', [ExtraController::class, 'customCss'])->name('custom.css');
     Route::post('custom-css/save', [ExtraController::class, 'customCssSave'])->name('custom.css.save');

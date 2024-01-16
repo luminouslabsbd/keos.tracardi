@@ -18,4 +18,8 @@ class Physical extends Model
         'allow_estimated_shipping_time',
         'allow_whole_sale',
     ];
+    public function unit()
+    {
+        return $this->belongsTo(Unit::class,'unit_id');
+    }
 }
