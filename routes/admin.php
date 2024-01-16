@@ -276,6 +276,21 @@ Route::group(['middleware' => ['auth:admin'],'as' =>'admin.'],function() {
     });
     //end role-permission
 
+    //language settings
+//    Route::get('/language', 'LanguageController@langManage')->name('language.manage');
+//    Route::post('/language', 'LanguageController@langStore')->name('language.manage.store');
+//    Route::post('/language/delete/{id}', 'LanguageController@langDel')->name('language.manage.del');
+//    Route::post('/language/update/{id}', 'LanguageController@langUpdate')->name('language.manage.update');
+//    Route::get('/language/edit/{id}', 'LanguageController@langEdit')->name('language.key');
+//    Route::post('/language/import', 'LanguageController@langImport')->name('language.importLang');
+//
+//
+//
+//    Route::post('language/store/key/{id}', 'LanguageController@storeLanguageJson')->name('language.store.key');
+//    Route::post('language/delete/key/{id}', 'LanguageController@deleteLanguageJson')->name('language.delete.key');
+//    Route::post('language/update/key/{id}', 'LanguageController@updateLanguageJson')->name('language.update.key');
+    //end language settings
+
 
     Route::get('custom-css', [ExtraController::class, 'customCss'])->name('custom.css');
     Route::post('custom-css/save', [ExtraController::class, 'customCssSave'])->name('custom.css.save');
