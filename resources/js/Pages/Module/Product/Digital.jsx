@@ -40,7 +40,7 @@ function Digital() {
     // console.log(attributesLength);
 
 
-    const { control, register, handleSubmit, setValue, reset, formState: { errors },watch } = useForm({
+    const { control, register, handleSubmit, setValue, reset, formState: { errors }, watch } = useForm({
         defaultValues: {
             type: type
         }
@@ -101,8 +101,8 @@ function Digital() {
 
 
     function onSubmit(data) {
-        // console.log(data);
-        router.post("/admin/product/digital/store", data);
+        console.log(data);
+        // router.post("/admin/product/digital/store", data);
     }
     return (
         <>
@@ -155,7 +155,7 @@ function Digital() {
                                     <Controller
                                         control={control}
                                         name="category_id"
-                                        render={({field}) => (
+                                        render={({ field }) => (
                                             <Select
                                                 placeholder="Select an option"
                                                 options={categoruOptions}
@@ -171,7 +171,7 @@ function Digital() {
                                     <Controller
                                         control={control}
                                         name="sub_category_id"
-                                        render={({field}) => (
+                                        render={({ field }) => (
                                             <Select
                                                 placeholder="Select an option"
                                                 options={subCategoruOptions}
@@ -192,7 +192,7 @@ function Digital() {
                                     <Controller
                                         control={control}
                                         name="brand_id"
-                                        render={({field}) => (
+                                        render={({ field }) => (
                                             <Select
                                                 placeholder="Select an option"
                                                 options={brandOptions}
@@ -208,7 +208,7 @@ function Digital() {
                                     <Controller
                                         control={control}
                                         name="unit_id"
-                                        render={({field}) => (
+                                        render={({ field }) => (
                                             <Select
                                                 placeholder="Select an option"
                                                 options={unitOptions}
@@ -222,7 +222,7 @@ function Digital() {
                                 <div>
                                     <label> Product SKU </label>
                                     <input
-                                        {...register("product_sku", {required: "Product SKU Is required"})}
+                                        {...register("product_sku", { required: "Product SKU Is required" })}
                                         type="text"
                                         className="form-input"
                                         placeholder="Enter Product Name"
@@ -235,7 +235,7 @@ function Digital() {
                                 <div>
                                     <label>Product Name</label>
                                     <input
-                                        {...register("product_name", {required: "Product Name Is required"})}
+                                        {...register("product_name", { required: "Product Name Is required" })}
                                         type="text"
                                         className="form-input"
                                         placeholder="Enter Product Name"
@@ -261,7 +261,7 @@ function Digital() {
                                     <label>Price</label>
                                     <div className="flex items-center gap-2">
                                         <input
-                                            {...register("single_product_price", {required: "Product Name Is required"})}
+                                            {...register("single_product_price", { required: "Product Name Is required" })}
                                             type="number"
                                             className="form-input"
                                             placeholder="99$"
@@ -272,7 +272,7 @@ function Digital() {
                                     <label>Discount</label>
                                     <div className="flex items-center gap-2">
                                         <input
-                                            {...register("single_product_discount", {required: "Product Name Is required"})}
+                                            {...register("single_product_discount", { required: "Product Name Is required" })}
                                             type="number"
                                             className="form-input"
                                             placeholder="10%"
@@ -283,7 +283,7 @@ function Digital() {
                                     <label>Quantity</label>
                                     <div className="flex items-center gap-2">
                                         <input
-                                            {...register("single_product_quantity", {required: "Product Quantoty Is required"})}
+                                            {...register("single_product_quantity", { required: "Product Quantoty Is required" })}
                                             type="number"
                                             className="form-input"
                                             placeholder="50"
@@ -318,7 +318,7 @@ function Digital() {
                                         <div>
                                             <label>Select File </label>
                                             <input
-                                                {...register("upload_link", {required: "Product Name Is required"})}
+                                                {...register("upload_link", { required: "Product Name Is required" })}
                                                 type="text"
                                                 className="form-input"
                                                 placeholder="Enter Product Name"
@@ -330,7 +330,7 @@ function Digital() {
                                         <div>
                                             <label>Link</label>
                                             <input
-                                                {...register("upload_file", {required: "Product Name Is required"})}
+                                                {...register("upload_file", { required: "Product Name Is required" })}
                                                 type="file"
                                                 className="form-input"
                                                 placeholder="Enter Product Name"
@@ -396,9 +396,9 @@ function Digital() {
                             <div className="grid grid-cols-1 sm:grid-cols-1 gap-4">
                                 <div>
                                     <input
-                                        type="file"
-                                        {...register("thumbnail", {required: "Product Name Is required"})}
+                                        {...register("thumbnail", { required: "Thumbnail Is required" })}
                                         className="form-input"
+                                        type="file"
                                     />
                                 </div>
                             </div>
@@ -508,7 +508,7 @@ function Digital() {
 }
 
 Digital.layout = (page) => (
-    <MainLayout children={page} title="E-SHOP || Add Group Of Company"/>
+    <MainLayout children={page} title="E-SHOP || Add Group Of Company" />
 );
 
 export default Digital;

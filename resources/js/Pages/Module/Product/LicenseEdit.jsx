@@ -6,7 +6,7 @@ import Select from "react-select";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 function LicenseEdit() {
-    const { categories, sub_categories, brands, type, units,product } = usePage().props;
+    const { categories, sub_categories, brands, type, units, product } = usePage().props;
     console.log(product);
     const [selectedColorOptions, setSelectedColorOptions] = useState([]);
     const [selectedSizeOptions, setSelectedSizeOptions] = useState([]);
@@ -41,9 +41,28 @@ function LicenseEdit() {
 
     const { control, register, handleSubmit, setValue, reset, formState: { errors }, watch } = useForm({
         defaultValues: {
-            type: type
+            category_id: product?.category_id,
+            sub_category_id: product?.sub_category_id,
+            brand_id: product?.brand_id,
+            unit_id: product?.unit_id,
+            product_sku: product?.product_sku,
+            product_name: product?.product_name,
+            single_product_price: product?.single_product_price,
+            single_product_discount: product?.single_product_discount,
+            single_product_quantity: product?.single_product_quantity,
+            upload_type: product?.license.upload_type,
+            upload_link: product.upload_link,
+            upload_file: product?.upload_file,
+            product_description: product?.product_description,
+            product_buy_return_policy: product?.product_buy_return_policy,
+            thumbnail: product?.thumbnail,
+            meta_keywords: product?.meta_keywords,
+            meta_description: product?.product_description,
+            license_platform: product?.license.license_platform,
+            license_type: product?.license.license_type,
         }
     });
+
     const product_description = watch('product_description', '');
     const handleQuillChange = (value) => {
         setValue('product_description', value);
@@ -100,8 +119,8 @@ function LicenseEdit() {
 
 
     function onSubmit(data) {
-        // console.log(data);
-        router.post("/admin/product/license/store", data);
+        console.log(data);
+        // router.post("/admin/product/license/store", data);
     }
     return (
         <>
@@ -305,18 +324,18 @@ function LicenseEdit() {
                                     <select
                                         className="form-select text-white-dark"
                                         {...register("upload_type")}
-                                        onChange={uploadType}
+
                                     >
                                         <option value="1">Upload By Link</option>
                                         <option value="2">Upload By File</option>
                                     </select>
                                 </div>
                                 {
-                                    IsUploadType ? (
+                                    product.license.upload_type === 1 ? (
                                         <div>
                                             <label>Select File </label>
                                             <input
-                                                {...register("upload_link", {required: "Product Name Is required"})}
+                                                {...register("upload_link", { required: "Product Name Is required" })}
                                                 type="text"
                                                 className="form-input"
                                                 placeholder="Enter Product Name"
@@ -328,7 +347,7 @@ function LicenseEdit() {
                                         <div>
                                             <label>Link</label>
                                             <input
-                                                {...register("upload_file", {required: "Product Name Is required"})}
+                                                {...register("upload_file", { required: "Product Name Is required" })}
                                                 type="file"
                                                 className="form-input"
                                                 placeholder="Enter Product Name"
@@ -397,7 +416,7 @@ function LicenseEdit() {
                                 <div>
                                     <input
                                         type="file"
-                                        {...register("thumbnail", {required: "Product Name Is required"})}
+                                        {...register("thumbnail", { required: "Product Name Is required" })}
                                         className="form-input"
                                     />
                                 </div>
@@ -415,7 +434,7 @@ function LicenseEdit() {
                                 <label>Meta Tags </label>
                                 <div className="flex items-center gap-2">
                                     <input
-                                        {...register("meta_tags")}
+                                        {...register("meta_keywords")}
                                         type="text"
                                         className="form-input"
                                         placeholder="pant,shirt,watch,glass"

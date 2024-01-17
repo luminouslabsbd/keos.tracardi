@@ -6,15 +6,15 @@ import Select from "react-select";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 function Physical() {
-    const { categories, sub_categories, brands, type, colors, sizes, units } = usePage().props;
+    const { categories, sub_categories, brands, type, colors, sizes, units } =
+        usePage().props;
 
     const [selectedColorOptions, setSelectedColorOptions] = useState([]);
     const [selectedSizeOptions, setSelectedSizeOptions] = useState([]);
     const [attributesLength, setAttributesLength] = useState([]);
     const [hiddenAttributesLength, setHiddenAttributesLength] = useState([]);
     const [IsproductVariationValue, setProductVariationValue] = useState(false);
-
-
+    
 
     useEffect(() => {
         const generateInputValues = () => {
@@ -31,65 +31,71 @@ function Physical() {
             });
             setAttributesLength(inputValues);
             setHiddenAttributesLength(hiddenValues);
-
         };
 
         generateInputValues();
     }, [selectedColorOptions, selectedSizeOptions]);
     // console.log(attributesLength);
 
-
-    const { control, register, handleSubmit, setValue, reset, formState: { errors },watch } = useForm({
+    const {
+        control,
+        register,
+        handleSubmit,
+        setValue,
+        reset,
+        formState: { errors },
+        watch,
+    } = useForm({
         defaultValues: {
-            type: type
-        }
+            type: type,
+        },
     });
-    const product_description = watch('product_description', '');
+    const product_description = watch("product_description", "");
     const handleQuillChange = (value) => {
-        setValue('product_description', value);
+        setValue("product_description", value);
     };
 
-    const product_buy_return_policy = watch('product_buy_return_policy', '');
+    const product_buy_return_policy = watch("product_buy_return_policy", "");
     const productBuyReturnPolicy = (value) => {
-        setValue('product_buy_return_policy', value);
+        setValue("product_buy_return_policy", value);
     };
 
     const categoruOptions = categories.map((item) => ({
         value: item?.id,
-        label: item?.name ? `${item.name}` : '',
+        label: item?.name ? `${item.name}` : "",
     }));
     const unitOptions = units.map((item) => ({
         value: item?.id,
-        label: item?.name ? `${item.name}` : '',
+        label: item?.name ? `${item.name}` : "",
     }));
     const subCategoruOptions = sub_categories.map((item) => ({
         value: item?.id,
-        label: item?.name ? `${item.name}` : '',
+        label: item?.name ? `${item.name}` : "",
     }));
     const brandOptions = brands.map((item) => ({
         value: item?.id,
-        label: item?.name ? `${item.name}` : '',
+        label: item?.name ? `${item.name}` : "",
     }));
 
     const colorsOption = colors.map((item) => ({
         value: item?.id,
-        label: item?.name ? `${item.name}` : '',
+        label: item?.name ? `${item.name}` : "",
     }));
     const sizeOptions = sizes.map((item) => ({
         value: item?.id,
-        label: item?.name ? `${item.name}` : '',
+        label: item?.name ? `${item.name}` : "",
     }));
     const handleSelectCategory = (selectedOption) => {
-        setValue('category_id', selectedOption?.value);
+        setValue("category_id", selectedOption?.value);
     };
     const handleSelectSubCategory = (selectedOption) => {
-        setValue('sub_category_id', selectedOption?.value);
+        setValue("sub_category_id", selectedOption?.value);
     };
     const handleSelectBrand = (selectedOption) => {
-        setValue('brand_id', selectedOption?.value);
+        setValue("brand_id", selectedOption?.value);
     };
     const handleSelectUnit = (selectedOption) => {
-        setValue('unit_id', selectedOption?.value);
+        setValue("unit_id", selectedOption?.value);
     };
     const productVariationValue = (event) => {
         const value = event.target.value;
@@ -99,17 +105,18 @@ function Physical() {
         if (value === "2") {
             setProductVariationValue(true);
         }
-    }
+    };
 
-
-    const [isProductConditionAllowed, setProductConditionAllowed] = useState(false);
+    const [isProductConditionAllowed, setProductConditionAllowed] =
+        useState(false);
 
     const allowProductCondition = (e) => {
         // Update the state when the checkbox is clicked
         setProductConditionAllowed(e.target.checked);
     };
 
-    const [isProductPreorderAllowed, setProductPreorderAllowed] = useState(false);
+    const [isProductPreorderAllowed, setProductPreorderAllowed] =
+        useState(false);
 
     const allowProductPreOrder = (e) => {
         // Update the state when the checkbox is clicked
@@ -126,9 +133,14 @@ function Physical() {
 
     const addItem = () => {
         let maxId = 0;
-        maxId = items?.length ? items.reduce((max, character) => (character.id > max ? character.id : max), items[0].id) : 0;
+        maxId = items?.length
+            ? items.reduce(
+                (max, character) => (character.id > max ? character.id : max),
+                items[0].id
+            )
+            : 0;
 
-        setItems([...items, { id: maxId + 1, quantity: '1', discount: 0 }]);
+        setItems([...items, { id: maxId + 1, quantity: "1", discount: 0 }]);
     };
 
     const removeItem = (item = null) => {
@@ -138,10 +150,10 @@ function Physical() {
     const changeQuantityDiscount = (type, value, id) => {
         const list = items;
         const item = list.find((d) => d.id === id);
-        if (type === 'quantity') {
+        if (type === "quantity") {
             item.quantity = Number(value);
         }
-        if (type === 'discount') {
+        if (type === "discount") {
             item.discount = Number(value);
         }
         setItems([...list]);
@@ -151,9 +163,10 @@ function Physical() {
         const total_items = items;
         const newData = {
             ...data,
-            items: total_items
-        }
-        router.post("/admin/product/physical/store", newData);
+            items: total_items,
+        };
+        // router.post("/admin/product/physical/store", newData);
+        console.log(newData);
     }
     return (
         <>
@@ -196,7 +209,9 @@ function Physical() {
                 <div className="pt-5 grid grid-cols-1 lg:grid-cols-2 gap-6">
                     <div className="panel">
                         <div className="flex items-center justify-between mb-5">
-                            <h5 className="font-semibold text-lg dark:text-white-light">Basic</h5>
+                            <h5 className="font-semibold text-lg dark:text-white-light">
+                                Basic
+                            </h5>
                         </div>
                         <div className="mb-5 space-y-5 relative">
                             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -205,11 +220,15 @@ function Physical() {
                                     <Controller
                                         control={control}
                                         name="category_id"
-                                        render={({field}) => (
+                                        render={({ field }) => (
                                             <Select
                                                 placeholder="Select an option"
                                                 options={categoruOptions}
-                                                value={categoruOptions.find((option) => option.value === field.value)}
+                                                value={categoruOptions.find(
+                                                    (option) =>
+                                                        option.value ===
+                                                        field.value
+                                                )}
                                                 onChange={handleSelectCategory}
                                             />
                                         )}
@@ -221,28 +240,31 @@ function Physical() {
                                     <Controller
                                         control={control}
                                         name="sub_category_id"
-                                        render={({field}) => (
+                                        render={({ field }) => (
                                             <Select
                                                 placeholder="Select an option"
                                                 options={subCategoruOptions}
-                                                value={subCategoruOptions.find((option) => option.value === field.value)}
-                                                onChange={handleSelectSubCategory}
+                                                value={subCategoruOptions.find(
+                                                    (option) =>
+                                                        option.value ===
+                                                        field.value
+                                                )}
+                                                onChange={
+                                                    handleSelectSubCategory
+                                                }
                                             />
                                         )}
                                     />
                                 </div>
                             </div>
                             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                                <input
-                                    {...register("type")}
-                                    type="hidden"
-                                />
+                                <input {...register("type")} type="hidden" />
                                 <div>
                                     <label>Brand</label>
                                     <Controller
                                         control={control}
                                         name="brand_id"
-                                        render={({field}) => (
+                                        render={({ field }) => (
                                             <Select
                                                 placeholder="Select an option"
                                                 options={brandOptions}
@@ -258,11 +280,15 @@ function Physical() {
                                     <Controller
                                         control={control}
                                         name="unit_id"
-                                        render={({field}) => (
+                                        render={({ field }) => (
                                             <Select
                                                 placeholder="Select an option"
                                                 options={unitOptions}
-                                                value={unitOptions.find((option) => option.value === field.value)}
+                                                value={unitOptions.find(
+                                                    (option) =>
+                                                        option.value ===
+                                                        field.value
+                                                )}
                                                 onChange={handleSelectUnit}
                                             />
                                         )}
@@ -279,213 +305,277 @@ function Physical() {
                                         <option value="1">Single Product</option>
                                         <option value="2">Variation Product</option>
                                     </select>
-                                    {errors?.level && <p className="text-red-600 pt-2">{errors?.level}</p>}
+                                    {errors?.product_variation && (
+                                        <p className="text-red-600 pt-2">
+                                            {errors?.product_variation}
+                                        </p>
+                                    )}
                                 </div>
 
                                 <div>
                                     <label> Product SKU </label>
                                     <input
-                                        {...register("product_sku", {required: "Product SKU Is required"})}
+                                        {...register("product_sku", {
+                                            required: "Product SKU Is required",
+                                        })}
                                         type="text"
                                         className="form-input"
                                         placeholder="Enter Product Name"
                                     />
-                                    {errors.product_name &&
-                                        <p className="text-red-600 pt-2">{errors.product_name.message}</p>}
+                                    {errors.product_sku && (
+                                        <p className="text-red-600 pt-2">
+                                            {errors.product_sku.message}
+                                        </p>
+                                    )}
                                 </div>
                             </div>
                             <div className="grid grid-cols-1 sm:grid-cols-1 gap-4">
                                 <div>
                                     <label>Product Name </label>
                                     <input
-                                        {...register("product_name", {required: "Product Name Is required"})}
+                                        {...register("product_name", {required:"Product Name Is required",})}
                                         type="text"
                                         className="form-input"
                                         placeholder="Enter Product Name"
                                     />
-                                    {errors.product_name &&
-                                        <p className="text-red-600 pt-2">{errors.product_name.message}</p>}
+                                    {errors.product_name && (
+                                        <p className="text-red-600 pt-2">
+                                            {errors.product_name.message}
+                                        </p>
+                                    )}
                                 </div>
-
                             </div>
                         </div>
-
                     </div>
 
                     <div className="panel">
-                        {
-                            IsproductVariationValue === true ? (
-                                <>
-                                    <div className="flex items-center justify-between mb-5">
-                                        <h5 className="font-semibold text-lg dark:text-white-light">Atrribute</h5>
-                                    </div>
-                                    <div className="mb-5 space-y-5 relative">
-                                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                                            <div className="md:col-span-2">
-                                                <label>Color<span className="text-red-600 ">*</span></label>
-                                                <div className="flex items-center gap-2">
-                                                    <Controller
-                                                        control={control}
-                                                        {...register("color_id")}
-                                                        render={({field}) => (
-                                                            <Select
-                                                                className="w-full"
-                                                                placeholder="Select an option"
-                                                                options={colorsOption}
-                                                                isMulti
-                                                                isSearchable={true}
-                                                                value={Array.isArray(field.value) ? colorsOption.filter((option) => field.value.includes(option.value)) : []}
-                                                                onChange={(selectedOptions) => {
-                                                                    field.onChange(selectedOptions.map((option) => option.value));
-                                                                    setSelectedColorOptions(selectedOptions); // Assuming setSelectedColorOptions is declared elsewhere
-                                                                }}
-
-                                                            />
-                                                        )
-                                                        }
-                                                    />
-                                                </div>
+                        {IsproductVariationValue === true ? (
+                            <>
+                                <div className="flex items-center justify-between mb-5">
+                                    <h5 className="font-semibold text-lg dark:text-white-light">
+                                        Atrribute
+                                    </h5>
+                                </div>
+                                <div className="mb-5 space-y-5 relative">
+                                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                        <div className="md:col-span-2">
+                                            <label>Color<span className="text-red-600 ">*</span></label>
+                                            <div className="flex items-center gap-2">
+                                                <Controller
+                                                    control={control}
+                                                    {...register("color_id")}
+                                                    render={({ field }) => (
+                                                        <Select
+                                                            className="w-full"
+                                                            placeholder="Select an option"
+                                                            options={colorsOption}
+                                                            isMulti
+                                                            isSearchable={true}
+                                                            value={Array.isArray(field.value) ? colorsOption.filter((option) => field.value.includes(option.value)): []}
+                                                            onChange={(selectedOptions) => { field.onChange(selectedOptions.map((option) => option.value));
+                                                            setSelectedColorOptions(selectedOptions); // Assuming setSelectedColorOptions is declared elsewhere
+                                                            }}
+                                                        />
+                                                    )}
+                                                />
                                             </div>
-                                            <div className="md:col-span-2">
-                                                <label>Size<span className="text-red-600 ">*</span></label>
-                                                <div className="flex items-center gap-2">
-                                                    <Controller
-                                                        control={control}
-                                                        {...register("size_id")}
-                                                        render={({field}) => (
-                                                            <Select
-                                                                className="w-full"
-                                                                placeholder="Select an option"
-                                                                options={sizeOptions}
-                                                                isMulti
-                                                                isSearchable={true}
-
-                                                                value={Array.isArray(field.value) ? sizeOptions.filter((option) => field.value.includes(option.value)) : []}
-                                                                onChange={(selectedOptions) => {
-                                                                    console.log(selectedOptions)
-                                                                    field.onChange(selectedOptions.map((option) => option.value));
-                                                                    setSelectedSizeOptions(selectedOptions); // Assuming setSelectedColorOptions is declared elsewhere
-                                                                }}
-                                                            />
-                                                        )
-                                                        }
-                                                    />
-                                                </div>
+                                        </div>
+                                        <div className="md:col-span-2">
+                                            <label>Size<span className="text-red-600 ">*</span></label>
+                                            <div className="flex items-center gap-2">
+                                                <Controller
+                                                    control={control}
+                                                    {...register("size_id")}
+                                                    render={({ field }) => (
+                                                        <Select
+                                                            className="w-full"
+                                                            placeholder="Select an option"
+                                                            options={sizeOptions}
+                                                            isMulti
+                                                            isSearchable={true}
+                                                            value={Array.isArray(field.value) ? sizeOptions.filter((option) => field.value.includes(option.value)): []}
+                                                            onChange={(selectedOptions) => { console.log(selectedOptions );
+                                                                field.onChange(selectedOptions.map((option) => option.value));
+                                                                setSelectedSizeOptions(selectedOptions); // Assuming setSelectedColorOptions is declared elsewhere
+                                                            }}
+                                                        />
+                                                    )}
+                                                />
                                             </div>
                                         </div>
                                     </div>
-                                </>
-                            ) : (
-                                <>
-                                    <div className="flex items-center justify-between mb-5">
-                                        <h5 className="font-semibold text-lg dark:text-white-light">Product Price and
-                                            Description</h5>
-                                    </div>
+                                </div>
+                            </>
+                        ) : (
+                            <>
+                                <div className="flex items-center justify-between mb-5">
+                                    <h5 className="font-semibold text-lg dark:text-white-light">
+                                        Product Price and Description
+                                    </h5>
+                                </div>
 
-                                    <div className="mb-5 space-y-5 relative">
-                                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                                            <div className="md:col-span-2">
-                                                <label>Price</label>
-                                                <div className="flex items-center gap-2">
-                                                    <input
-                                                        {...register("single_product_price", {required: "Product Name Is required"})}
-                                                        type="number"
-                                                        className="form-input"
-                                                        placeholder="99$"
-                                                    />
-                                                </div>
+                                <div className="mb-5 space-y-5 relative">
+                                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                        <div className="md:col-span-2">
+                                            <label>Price</label>
+                                            <div className="flex items-center gap-2">
+                                                <input
+                                                    {...register(
+                                                        "single_product_price",
+                                                        {
+                                                            required:
+                                                                "Product Name Is required",
+                                                        }
+                                                    )}
+                                                    type="number"
+                                                    className="form-input"
+                                                    placeholder="99$"
+                                                />
                                             </div>
-                                            <div className="md:col-span-2">
-                                                <label>Discount</label>
-                                                <div className="flex items-center gap-2">
-                                                    <input
-                                                        {...register("single_product_discount", {required: "Product Name Is required"})}
-                                                        type="number"
-                                                        className="form-input"
-                                                        placeholder="10%"
-                                                    />
-                                                </div>
+                                        </div>
+                                        <div className="md:col-span-2">
+                                            <label>Discount</label>
+                                            <div className="flex items-center gap-2">
+                                                <input
+                                                    {...register(
+                                                        "single_product_discount",
+                                                        {
+                                                            required:
+                                                                "Product Name Is required",
+                                                        }
+                                                    )}
+                                                    type="number"
+                                                    className="form-input"
+                                                    placeholder="10%"
+                                                />
                                             </div>
-                                            <div className="md:col-span-2">
-                                                <label>Quantity</label>
-                                                <div className="flex items-center gap-2">
-                                                    <input
-                                                        {...register("single_product_quantity", {required: "Product Quantoty Is required"})}
-                                                        type="number"
-                                                        className="form-input"
-                                                        placeholder="50"
-                                                    />
-                                                </div>
+                                        </div>
+                                        <div className="md:col-span-2">
+                                            <label>Quantity</label>
+                                            <div className="flex items-center gap-2">
+                                                <input
+                                                    {...register(
+                                                        "single_product_quantity",
+                                                        {
+                                                            required:
+                                                                "Product Quantoty Is required",
+                                                        }
+                                                    )}
+                                                    type="number"
+                                                    className="form-input"
+                                                    placeholder="50"
+                                                />
                                             </div>
                                         </div>
                                     </div>
-
-                                </>
-                            )
-                        }
+                                </div>
+                            </>
+                        )}
                     </div>
                 </div>
                 <div className="pt-5 grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-1 gap-6">
-                    {
-                        IsproductVariationValue === true && (
-                            <>
-                                {
-                                    hiddenAttributesLength.length > 0 && (
-                                        hiddenAttributesLength.map((item, index) => (
-                                            <input
-                                                key={index} // Provide a unique key for each input
-                                                {...register(`product_attribute_${index}`, {required: "Product SKU Is required"})}
-                                                type="hidden"
-                                                value={item} // Display the value from the hiddenAttributesLength array
-                                            />
-                                        ))
-                                    )}
-                                {
-                                attributesLength.length > 0 && (
-                                    <div className="panel">
+                    {IsproductVariationValue === true && (
+                        <>
+                            {hiddenAttributesLength.length > 0 &&
+                                hiddenAttributesLength.map((item, index) => (
+                                    <input
+                                        key={index} // Provide a unique key for each input
+                                        {...register(
+                                            `product_attribute_${index}`,
+                                            {
+                                                required:
+                                                    "Product SKU Is required",
+                                            }
+                                        )}
+                                        type="hidden"
+                                        value={item} // Display the value from the hiddenAttributesLength array
+                                    />
+                                ))}
+                            {attributesLength.length > 0 && (
+                                <div className="panel">
                                     <div className="flex items-center justify-between mb-5">
-                                        <h5 className="font-semibold text-lg dark:text-white-light">Attribute
-                                            Variation</h5>
+                                        <h5 className="font-semibold text-lg dark:text-white-light">
+                                            Attribute Variation
+                                        </h5>
                                     </div>
                                     <div className="mb-5 space-y-5 relative">
                                         {attributesLength.map((item, index) => (
-                                            <div key={index} className="grid grid-cols-1 sm:grid-cols-4 gap-4">
+                                            <div
+                                                key={index}
+                                                className="grid grid-cols-1 sm:grid-cols-4 gap-4"
+                                            >
                                                 <div>
-                                                    <label> Product attribute <span className="text-danger">*</span>
+                                                    <label>
+                                                        {" "}
+                                                        Product attribute{" "}
+                                                        <span className="text-danger">
+                                                            *
+                                                        </span>
                                                     </label>
                                                     <input
                                                         type="text"
                                                         className="form-input"
                                                         value={item} // Set the value here
                                                     />
-
                                                 </div>
                                                 <div>
-                                                    <label> Product Price <span className="text-danger">*</span>
+                                                    <label>
+                                                        {" "}
+                                                        Product Price{" "}
+                                                        <span className="text-danger">
+                                                            *
+                                                        </span>
                                                     </label>
                                                     <input
-                                                        {...register(`product_price_${index}`, {required: "Product Price Is required"})}
+                                                        {...register(
+                                                            `product_price_${index}`,
+                                                            {
+                                                                required:
+                                                                    "Product Price Is required",
+                                                            }
+                                                        )}
                                                         type="number"
                                                         className="form-input"
                                                         placeholder="10$"
                                                     />
                                                 </div>
                                                 <div>
-                                                    <label> Product quantity <span className="text-danger">*</span>
+                                                    <label>
+                                                        {" "}
+                                                        Product quantity{" "}
+                                                        <span className="text-danger">
+                                                            *
+                                                        </span>
                                                     </label>
                                                     <input
-                                                        {...register(`product_quantity_${index}`, {required: "Product quantity Is required"})}
+                                                        {...register(
+                                                            `product_quantity_${index}`,
+                                                            {
+                                                                required:
+                                                                    "Product quantity Is required",
+                                                            }
+                                                        )}
                                                         type="number"
                                                         className="form-input"
                                                         placeholder="5"
                                                     />
                                                 </div>
                                                 <div>
-                                                    <label> Product discount <span className="text-danger">*</span>
+                                                    <label>
+                                                        {" "}
+                                                        Product discount{" "}
+                                                        <span className="text-danger">
+                                                            *
+                                                        </span>
                                                     </label>
                                                     <input
-                                                        {...register(`product_discount_${index}`, {required: "Product discount Is required"})}
-
+                                                        {...register(
+                                                            `product_discount_${index}`,
+                                                            {
+                                                                required:
+                                                                    "Product discount Is required",
+                                                            }
+                                                        )}
                                                         type="number"
                                                         className="form-input"
                                                         placeholder="8%"
@@ -495,62 +585,67 @@ function Physical() {
                                         ))}
                                     </div>
                                 </div>
-                                    )}
-                            </>
-                        )}
+                            )}
+                        </>
+                    )}
                 </div>
                 <div className="pt-5 grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-2 gap-6">
                     <div className="panel">
                         <div className="flex items-center justify-between mb-5">
-                            <h5 className="font-semibold text-lg dark:text-white-light">Product Description</h5>
+                            <h5 className="font-semibold text-lg dark:text-white-light">
+                                Product Description
+                            </h5>
                         </div>
                         <div className="mb-5 space-y-5 relative">
-
                             <div className="grid grid-cols-1 sm:grid-cols-1 gap-4">
                                 <div>
                                     <ReactQuill
                                         value={product_description}
-                                        onChange={(value) => handleQuillChange(value)}
+                                        onChange={(value) =>
+                                            handleQuillChange(value)
+                                        }
                                         theme="snow"
                                     />
                                 </div>
                             </div>
-
-
                         </div>
                     </div>
                     <div className="panel">
                         <div className="flex items-center justify-between mb-5">
-                            <h5 className="font-semibold text-lg dark:text-white-light">Product Buy Return Policy</h5>
+                            <h5 className="font-semibold text-lg dark:text-white-light">
+                                Product Buy Return Policy
+                            </h5>
                         </div>
                         <div className="mb-5 space-y-5 relative">
-
                             <div className="grid grid-cols-1 sm:grid-cols-1 gap-4">
                                 <div>
                                     <ReactQuill
                                         value={product_buy_return_policy}
-                                        onChange={(value) => productBuyReturnPolicy(value)}
+                                        onChange={(value) =>
+                                            productBuyReturnPolicy(value)
+                                        }
                                         theme="snow"
                                     />
                                 </div>
                             </div>
-
-
                         </div>
                     </div>
                 </div>
                 <div className="pt-5 grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-2 gap-6">
                     <div className="panel">
                         <div className="flex items-center justify-between mb-5">
-                            <h5 className="font-semibold text-lg dark:text-white-light">Product Description</h5>
+                            <h5 className="font-semibold text-lg dark:text-white-light">
+                                Product Description
+                            </h5>
                         </div>
                         <div className="mb-5 space-y-5 relative">
-
                             <div className="grid grid-cols-1 sm:grid-cols-1 gap-4">
                                 <div>
                                     <label className="inline-flex">
                                         <input
-                                            {...register("allow_product_condition")}
+                                            {...register(
+                                                "allow_product_condition"
+                                            )}
                                             type="checkbox"
                                             className="form-checkbox text-dark rounded-full"
                                             onChange={allowProductCondition}
@@ -558,24 +653,23 @@ function Physical() {
                                         <span> Allow Product Condition</span>
                                     </label>
                                 </div>
-                                {
-                                    isProductConditionAllowed &&
-                                    (
-                                        <div>
-                                            <select
-                                                className="form-select text-white-dark"
-                                                {...register("product_condition")}
-                                            >
-                                                <option value="1">New</option>
-                                                <option value="2">Used</option>
-                                            </select>
-                                        </div>
-                                    )
-                                }
+                                {isProductConditionAllowed && (
+                                    <div>
+                                        <select
+                                            className="form-select text-white-dark"
+                                            {...register("product_condition")}
+                                        >
+                                            <option value="1">New</option>
+                                            <option value="2">Used</option>
+                                        </select>
+                                    </div>
+                                )}
                                 <div>
                                     <label className="inline-flex">
                                         <input
-                                            {...register("allow_product_preorder")}
+                                            {...register(
+                                                "allow_product_preorder"
+                                            )}
                                             type="checkbox"
                                             className="form-checkbox text-dark rounded-full"
                                             onChange={allowProductPreOrder}
@@ -583,20 +677,17 @@ function Physical() {
                                         <span> Allow Product Preorder</span>
                                     </label>
                                 </div>
-                                {
-                                    isProductPreorderAllowed &&
-                                    (
-                                        <div>
-                                            <select
-                                                className="form-select text-white-dark"
-                                                {...register("product_preorder")}
-                                            >
-                                                <option value="1">Sale</option>
-                                                <option value="2">Preorder</option>
-                                            </select>
-                                        </div>
-                                    )
-                                }
+                                {isProductPreorderAllowed && (
+                                    <div>
+                                        <select
+                                            className="form-select text-white-dark"
+                                            {...register("product_preorder")}
+                                        >
+                                            <option value="1">Sale</option>
+                                            <option value="2">Preorder</option>
+                                        </select>
+                                    </div>
+                                )}
 
                                 <div>
                                     <label className="inline-flex">
@@ -609,40 +700,60 @@ function Physical() {
                                         <span> Allow Whole Sale</span>
                                     </label>
                                 </div>
-                                {
-                                    isProductWholeSaleAllow &&
-                                    (
-                                        <div className="grid grid-cols-1 sm:grid-cols-1 gap-4">
-                                            <div className="mt-8">
-                                                <div className="table-responsive">
-                                                    <table>
-                                                        <thead>
+                                {isProductWholeSaleAllow && (
+                                    <div className="grid grid-cols-1 sm:grid-cols-1 gap-4">
+                                        <div className="mt-8">
+                                            <div className="table-responsive">
+                                                <table>
+                                                    <thead>
                                                         <tr>
                                                             <th>Quantity</th>
                                                             <th>Discount</th>
                                                             <th className="w-1"></th>
                                                         </tr>
-                                                        </thead>
-                                                        <tbody>
+                                                    </thead>
+                                                    <tbody>
                                                         {items.length <= 0 && (
                                                             <tr>
-                                                                <td colSpan={5} className="!text-center font-semibold">
-                                                                    No Item Available
+                                                                <td
+                                                                    colSpan={5}
+                                                                    className="!text-center font-semibold"
+                                                                >
+                                                                    No Item
+                                                                    Available
                                                                 </td>
                                                             </tr>
                                                         )}
                                                         {items.map((item) => {
                                                             return (
-                                                                <tr className="align-top" key={item.id}>
-
+                                                                <tr
+                                                                    className="align-top"
+                                                                    key={
+                                                                        item.id
+                                                                    }
+                                                                >
                                                                     <td>
                                                                         <input
                                                                             type="number"
                                                                             className="form-input w-32"
                                                                             placeholder="Quantity"
-                                                                            min={1}
-                                                                            defaultValue={item.quantity}
-                                                                            onChange={(e) => changeQuantityDiscount('quantity', e.target.value, item.id)}
+                                                                            min={
+                                                                                1
+                                                                            }
+                                                                            defaultValue={
+                                                                                item.quantity
+                                                                            }
+                                                                            onChange={(
+                                                                                e
+                                                                            ) =>
+                                                                                changeQuantityDiscount(
+                                                                                    "quantity",
+                                                                                    e
+                                                                                        .target
+                                                                                        .value,
+                                                                                    item.id
+                                                                                )
+                                                                            }
                                                                         />
                                                                     </td>
 
@@ -651,15 +762,35 @@ function Physical() {
                                                                             type="number"
                                                                             className="form-input w-32"
                                                                             placeholder="Discount"
-                                                                            min={0}
-                                                                            value={item.discount}
-                                                                            onChange={(e) => changeQuantityDiscount('discount', e.target.value, item.id)}
+                                                                            min={
+                                                                                0
+                                                                            }
+                                                                            value={
+                                                                                item.discount
+                                                                            }
+                                                                            onChange={(
+                                                                                e
+                                                                            ) =>
+                                                                                changeQuantityDiscount(
+                                                                                    "discount",
+                                                                                    e
+                                                                                        .target
+                                                                                        .value,
+                                                                                    item.id
+                                                                                )
+                                                                            }
                                                                         />
                                                                     </td>
 
                                                                     <td className="mt-2">
-                                                                        <button type="button"
-                                                                                onClick={() => removeItem(item)}>
+                                                                        <button
+                                                                            type="button"
+                                                                            onClick={() =>
+                                                                                removeItem(
+                                                                                    item
+                                                                                )
+                                                                            }
+                                                                        >
                                                                             <svg
                                                                                 xmlns="http://www.w3.org/2000/svg"
                                                                                 width="20"
@@ -671,41 +802,53 @@ function Physical() {
                                                                                 strokeLinecap="round"
                                                                                 strokeLinejoin="round"
                                                                             >
-                                                                                <line x1="18" y1="6" x2="6"
-                                                                                      y2="18"></line>
-                                                                                <line x1="6" y1="6" x2="18"
-                                                                                      y2="18"></line>
+                                                                                <line
+                                                                                    x1="18"
+                                                                                    y1="6"
+                                                                                    x2="6"
+                                                                                    y2="18"
+                                                                                ></line>
+                                                                                <line
+                                                                                    x1="6"
+                                                                                    y1="6"
+                                                                                    x2="18"
+                                                                                    y2="18"
+                                                                                ></line>
                                                                             </svg>
                                                                         </button>
                                                                     </td>
                                                                 </tr>
                                                             );
                                                         })}
-                                                        </tbody>
-                                                    </table>
-                                                </div>
-                                                <div className="flex justify-between sm:flex-row flex-col mt-6 px-4">
-                                                    <div className="sm:mb-0 mb-6">
-                                                        <button type="button" className="btn btn-primary"
-                                                                onClick={() => addItem()}>
-                                                            Add Item
-                                                        </button>
-                                                    </div>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                            <div className="flex justify-between sm:flex-row flex-col mt-6 px-4">
+                                                <div className="sm:mb-0 mb-6">
+                                                    <button
+                                                        type="button"
+                                                        className="btn btn-primary"
+                                                        onClick={() =>
+                                                            addItem()
+                                                        }
+                                                    >
+                                                        Add Item
+                                                    </button>
                                                 </div>
                                             </div>
                                         </div>
-                                    )
-                                }
-
+                                    </div>
+                                )}
                             </div>
                         </div>
                     </div>
                     <div className="panel">
                         <div className="flex items-center justify-between mb-5">
-                            <h5 className="font-semibold text-lg dark:text-white-light">Seo for this product</h5>
+                            <h5 className="font-semibold text-lg dark:text-white-light">
+                                Seo for this product
+                            </h5>
                         </div>
                         <div className="mb-5 space-y-5 relative">
-
                             <div className="grid grid-cols-1 sm:grid-cols-1 gap-4">
                                 <label>Meta Tags</label>
                                 <div className="flex items-center gap-2">
@@ -721,27 +864,24 @@ function Physical() {
                             <div className="grid grid-cols-1 sm:grid-cols-1 gap-4">
                                 <label>Meta Description</label>
                                 <div className="flex items-center gap-2">
-
                                     <textarea
                                         {...register("meta_description")}
                                         className="form-input"
                                         placeholder="Multivendor Ecommerce system"
-                                    >
-                                    </textarea>
+                                    ></textarea>
                                 </div>
                             </div>
-
-
                         </div>
                     </div>
                 </div>
                 <div className="pt-5 grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-2 gap-6">
                     <div className="panel">
                         <div className="flex items-center justify-between mb-5">
-                            <h5 className="font-semibold text-lg dark:text-white-light">Thumbnail</h5>
+                            <h5 className="font-semibold text-lg dark:text-white-light">
+                                Thumbnail
+                            </h5>
                         </div>
                         <div className="mb-5 space-y-5 relative">
-
                             <div className="grid grid-cols-1 sm:grid-cols-1 gap-4">
                                 <div>
                                     <input
@@ -751,25 +891,19 @@ function Physical() {
                                     />
                                 </div>
                             </div>
-
                         </div>
                     </div>
-
                 </div>
-                <button
-                    type="submit"
-                    className="btn btn-primary !mt-6"
-                >
+                <button type="submit" className="btn btn-primary !mt-6">
                     Submit
                 </button>
             </form>
-
         </>
     );
 }
 
 Physical.layout = (page) => (
-    <MainLayout children={page} title="E-SHOP || Add Group Of Company"/>
+    <MainLayout children={page} title="E-SHOP || Add Group Of Company" />
 );
 
 export default Physical;

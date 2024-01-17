@@ -8,15 +8,22 @@ import "react-quill/dist/quill.snow.css";
 function PhysicalEdit() {
     const { categories, sub_categories, brands, type, colors, sizes, units, product } = usePage().props;
 
+    // console.log(sizes);
+    console.log(colors);
     console.log(product);
+    // console.log(units);
+
+
 
     const [selectedColorOptions, setSelectedColorOptions] = useState([]);
     const [selectedSizeOptions, setSelectedSizeOptions] = useState([]);
     const [attributesLength, setAttributesLength] = useState([]);
     const [hiddenAttributesLength, setHiddenAttributesLength] = useState([]);
+    console.log(hiddenAttributesLength);
     const [IsproductVariationValue, setProductVariationValue] = useState(false);
-    const [show, setShow] = useState( product.product_variation)
-    console.log("🚀 ~ PhysicalEdit ~  product.product_variation:",  product.product_variation)
+    console.log("🚀 ~ PhysicalEdit ~ IsproductVariationValue:", IsproductVariationValue)
+    const [show, setShow] = useState(product.product_variation)
+    console.log("🚀 ~ PhysicalEdit ~  product.product_variation:", product.product_variation)
     console.log("🚀 ~ PhysicalEdit ~ show:", show)
 
     useEffect(() => {
@@ -51,7 +58,6 @@ function PhysicalEdit() {
             product_sku: product?.product_sku,
             product_name: product?.product_name,
             product_variation: product.product_variation,
-            color_id: product.productcolor.name,
             single_product_price: product?.single_product_price,
             single_product_discount: product?.single_product_discount,
             single_product_quantity: product?.single_product_quantity,
@@ -60,9 +66,10 @@ function PhysicalEdit() {
             upload_file: product?.upload_file,
             product_description: product?.product_description,
             product_buy_return_policy: product?.product_buy_return_policy,
-            thumbnail: product?.thumbnail,
-            meta_tags: product?.meta_tags,
+            thumbnail: product?.thumbnail.name,
+            meta_keywords: product?.meta_keywords,
             meta_description: product?.product_description,
+
         }
     });
 
@@ -77,6 +84,8 @@ function PhysicalEdit() {
         setValue('product_buy_return_policy', value);
     };
 
+
+    // This is for option
     const categoruOptions = categories.map((item) => ({
         value: item?.id,
         label: item?.name ? `${item.name}` : '',
@@ -93,7 +102,7 @@ function PhysicalEdit() {
         value: item?.id,
         label: item?.name ? `${item.name}` : '',
     }));
-
+    
     const colorsOption = colors.map((item) => ({
         value: item?.id,
         label: item?.name ? `${item.name}` : '',
@@ -102,6 +111,7 @@ function PhysicalEdit() {
         value: item?.id,
         label: item?.name ? `${item.name}` : '',
     }));
+
     const handleSelectCategory = (selectedOption) => {
         setValue('category_id', selectedOption?.value);
     };
@@ -113,6 +123,7 @@ function PhysicalEdit() {
     };
     const handleSelectUnit = (selectedOption) => {
         setValue('unit_id', selectedOption?.value);
+        console.log(selectedOption.label)
     };
     const productVariationValue = (event) => {
         const value = event.target.value;
@@ -120,7 +131,7 @@ function PhysicalEdit() {
             console.log("🚀 ~ productVariationValue ~ value:", value)
             setProductVariationValue(false);
             setShow(1)
-            
+
         }
         if (value === "2") {
             console.log("🚀 ~ productVariationValue ~ value:", value)
@@ -181,7 +192,8 @@ function PhysicalEdit() {
             ...data,
             items: total_items
         }
-        router.post("/admin/product/physical/store", newData);
+        // router.post("/admin/product/physical/store", newData);
+        console.log(newData);
     }
     return (
         <>
@@ -300,16 +312,15 @@ function PhysicalEdit() {
                                     <label>Select Product Variation</label>
 
                                     <select
-                                         defaultValue="ss"
                                         className="form-select text-white-dark"
                                         {...register("product_variation")}
-                                        onChange={productVariationValue}
+                                    // onChange={productVariationValue}
                                     >
-                                       
+
                                         <option value="1">Single Product</option>
                                         <option value="2">Variation Product</option>
                                     </select>
-                                    {errors?.level && <p className="text-red-600 pt-2">{errors?.level}</p>}
+                                    {errors?.product_variation && <p className="text-red-600 pt-2">{errors?.product_variation}</p>}
                                 </div>
 
                                 <div>
@@ -344,116 +355,117 @@ function PhysicalEdit() {
 
                     <div className="panel">
                         {
-                            show === 2 &&
-                                <>
+                            product.product_variation === 2 ?
+
+                                (
+                                    <>
+                                        <div className="flex items-center justify-between mb-5">
+                                            <h5 className="font-semibold text-lg dark:text-white-light">Atrribute</h5>
+                                        </div>
+                                        <div className="mb-5 space-y-5 relative">
+                                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                                <div className="md:col-span-2">
+                                                    <label>Color<span className="text-red-600 ">*</span></label>
+                                                    <div className="flex items-center gap-2">
+                                                        <Controller
+                                                            control={control}
+                                                            {...register("color_id")}
+                                                            render={({ field }) => (
+                                                                <Select
+                                                                    className="w-full"
+                                                                    placeholder="Select a color"
+                                                                    options={colorsOption}
+                                                                    isMulti
+                                                                    isSearchable={true}
+                                                                    value={Array.isArray(field.value) ? colorsOption.filter((option) => field.value.includes(option.value)) : []}
+                                                                    onChange={(selectedOptions) => {
+                                                                        field.onChange(selectedOptions.map((option) => option.value));
+                                                                        setSelectedColorOptions(selectedOptions);// Assuming setSelectedColorOptions is declared elsewhere
+                                                                    }}
+
+                                                                />
+                                                            )}
+                                                        />
+                                                    </div>
+                                                </div>
+                                                <div className="md:col-span-2">
+                                                    <label>Size<span className="text-red-600 ">*</span></label>
+                                                    <div className="flex items-center gap-2">
+                                                        <Controller
+                                                            control={control}
+                                                            {...register("size_id")}
+                                                            render={({ field }) => (
+                                                                <Select
+                                                                    className="w-full"
+                                                                    placeholder="Select size"
+                                                                    options={sizeOptions}
+                                                                    isMulti
+                                                                    isSearchable={true}
+
+                                                                    value={Array.isArray(field.value) ? sizeOptions.filter((option) => field.value.includes(option.value)) : []}
+                                                                    onChange={(selectedOptions) => {
+                                                                        console.log(selectedOptions)
+                                                                        field.onChange(selectedOptions.map((option) => option.value));
+                                                                        setSelectedSizeOptions(selectedOptions); // Assuming setSelectedColorOptions is declared elsewhere
+                                                                    }}
+                                                                />
+                                                            )
+                                                            }
+                                                        />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </>
+                                )
+                                :
+                                (<>
                                     <div className="flex items-center justify-between mb-5">
-                                        <h5 className="font-semibold text-lg dark:text-white-light">Atrribute</h5>
+                                        <h5 className="font-semibold text-lg dark:text-white-light">Product Price and
+                                            Description</h5>
                                     </div>
+
                                     <div className="mb-5 space-y-5 relative">
                                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                                             <div className="md:col-span-2">
-                                                <label>Color<span className="text-red-600 ">*</span></label>
+                                                <label>Price</label>
                                                 <div className="flex items-center gap-2">
-                                                    <Controller
-                                                        control={control}
-                                                        {...register("color_id")}
-                                                        render={({ field }) => (
-                                                            <Select
-                                                                className="w-full"
-                                                                placeholder="Select an option"
-                                                                options={colorsOption}
-                                                                isMulti
-                                                                isSearchable={true}
-                                                                value={Array.isArray(field.value) ? colorsOption.filter((option) => field.value.includes(option.value)) : []}
-                                                                onChange={(selectedOptions) => {
-                                                                    field.onChange(selectedOptions.map((option) => option.value));
-                                                                    setSelectedColorOptions(selectedOptions); // Assuming setSelectedColorOptions is declared elsewhere
-                                                                }}
-
-                                                            />
-                                                        )
-                                                        }
+                                                    <input
+                                                        {...register("single_product_price", { required: "Product Name Is required" })}
+                                                        type="number"
+                                                        className="form-input"
+                                                        placeholder="99$"
                                                     />
                                                 </div>
                                             </div>
                                             <div className="md:col-span-2">
-                                                <label>Size<span className="text-red-600 ">*</span></label>
+                                                <label>Discount</label>
                                                 <div className="flex items-center gap-2">
-                                                    <Controller
-                                                        control={control}
-                                                        {...register("size_id")}
-                                                        render={({ field }) => (
-                                                            <Select
-                                                                className="w-full"
-                                                                placeholder="Select an option"
-                                                                options={sizeOptions}
-                                                                isMulti
-                                                                isSearchable={true}
-
-                                                                value={Array.isArray(field.value) ? sizeOptions.filter((option) => field.value.includes(option.value)) : []}
-                                                                onChange={(selectedOptions) => {
-                                                                    console.log(selectedOptions)
-                                                                    field.onChange(selectedOptions.map((option) => option.value));
-                                                                    setSelectedSizeOptions(selectedOptions); // Assuming setSelectedColorOptions is declared elsewhere
-                                                                }}
-                                                            />
-                                                        )
-                                                        }
+                                                    <input
+                                                        {...register("single_product_discount", { required: "Product Name Is required" })}
+                                                        type="number"
+                                                        className="form-input"
+                                                        placeholder="10%"
+                                                    />
+                                                </div>
+                                            </div>
+                                            <div className="md:col-span-2">
+                                                <label>Quantity</label>
+                                                <div className="flex items-center gap-2">
+                                                    <input
+                                                        {...register("single_product_quantity", { required: "Product Quantoty Is required" })}
+                                                        type="number"
+                                                        className="form-input"
+                                                        placeholder="50"
                                                     />
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                </>
-                        }
-                        {
-                            show === 1 && 
-                            <>
-                            <div className="flex items-center justify-between mb-5">
-                                <h5 className="font-semibold text-lg dark:text-white-light">Product Price and
-                                    Description</h5>
-                            </div>
 
-                            <div className="mb-5 space-y-5 relative">
-                                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                                    <div className="md:col-span-2">
-                                        <label>Price</label>
-                                        <div className="flex items-center gap-2">
-                                            <input
-                                                {...register("single_product_price", { required: "Product Name Is required" })}
-                                                type="number"
-                                                className="form-input"
-                                                placeholder="99$"
-                                            />
-                                        </div>
-                                    </div>
-                                    <div className="md:col-span-2">
-                                        <label>Discount</label>
-                                        <div className="flex items-center gap-2">
-                                            <input
-                                                {...register("single_product_discount", { required: "Product Name Is required" })}
-                                                type="number"
-                                                className="form-input"
-                                                placeholder="10%"
-                                            />
-                                        </div>
-                                    </div>
-                                    <div className="md:col-span-2">
-                                        <label>Quantity</label>
-                                        <div className="flex items-center gap-2">
-                                            <input
-                                                {...register("single_product_quantity", { required: "Product Quantoty Is required" })}
-                                                type="number"
-                                                className="form-input"
-                                                placeholder="50"
-                                            />
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </>
+                                </>)
                         }
+
                     </div>
                 </div>
                 <div className="pt-5 grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-1 gap-6">

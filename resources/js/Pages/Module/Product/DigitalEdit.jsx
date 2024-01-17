@@ -15,6 +15,9 @@ function DigitalEdit() {
     const [hiddenAttributesLength, setHiddenAttributesLength] = useState([]);
     const [IsproductVariationValue, setProductVariationValue] = useState(false);
 
+    const [show, setShow] = useState(product.digital.upload_type);
+    console.log(show);
+
 
 
     useEffect(() => {
@@ -39,6 +42,10 @@ function DigitalEdit() {
     }, [selectedColorOptions, selectedSizeOptions]);
     // console.log(attributesLength);
 
+
+    const uploadFileLink = product.digital
+    console.log(uploadFileLink.upload_link)
+
     const { control, register, handleSubmit, setValue, reset, formState: { errors }, watch } = useForm({
         defaultValues: {
             category_id: product?.category_id,
@@ -51,17 +58,18 @@ function DigitalEdit() {
             single_product_discount: product?.single_product_discount,
             single_product_quantity: product?.single_product_quantity,
             upload_type: product?.upload_type,
-            upload_link: product?.upload_link,
+            upload_link: uploadFileLink.upload_link,
             upload_file: product?.upload_file,
             product_description: product?.product_description,
             product_buy_return_policy: product?.product_buy_return_policy,
             thumbnail: product?.thumbnail,
-            meta_tags: product?.meta_tags,
+            meta_keywords: product?.meta_keywords,
             meta_description: product?.product_description,
         }
     });
 
 
+    console.log(product.thumbnail)
 
     const product_description = watch('product_description', '');
     const handleQuillChange = (value) => {
@@ -110,9 +118,11 @@ function DigitalEdit() {
         const value = event.target.value;
         if (value === "1") {
             setUploadType(true);
+            setShow(1)
         }
         if (value === "2") {
             setUploadType(false);
+            setShow(2)
         }
 
     }
@@ -333,7 +343,7 @@ function DigitalEdit() {
                                     </select>
                                 </div>
                                 {
-                                    product.uploadType === 1 ? (
+                                    show === 1 ? (
                                         <div>
                                             <label>Select File </label>
                                             <input
@@ -419,6 +429,7 @@ function DigitalEdit() {
                                         {...register("thumbnail", { required: "Product Name Is required" })}
                                         className="form-input"
                                     />
+                                    
                                 </div>
                             </div>
 
