@@ -7,24 +7,34 @@ import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 function PhysicalEdit() {
     const { categories, sub_categories, brands, type, colors, sizes, units, product } = usePage().props;
+    console.log("🚀 ~ PhysicalEdit ~ colors:", colors)
 
     // console.log(sizes);
     console.log(colors);
     console.log(product);
     // console.log(units);
-
-
+     
+    // console.log(product.productcolor);
+    
 
     const [selectedColorOptions, setSelectedColorOptions] = useState([]);
+    console.log("🚀 ~ PhysicalEdit ~ selectedColorOptions:", selectedColorOptions)
     const [selectedSizeOptions, setSelectedSizeOptions] = useState([]);
     const [attributesLength, setAttributesLength] = useState([]);
     const [hiddenAttributesLength, setHiddenAttributesLength] = useState([]);
-    console.log(hiddenAttributesLength);
+    // console.log(hiddenAttributesLength);
     const [IsproductVariationValue, setProductVariationValue] = useState(false);
-    console.log("🚀 ~ PhysicalEdit ~ IsproductVariationValue:", IsproductVariationValue)
+    // console.log("🚀 ~ PhysicalEdit ~ IsproductVariationValue:", IsproductVariationValue)
     const [show, setShow] = useState(product.product_variation)
-    console.log("🚀 ~ PhysicalEdit ~  product.product_variation:", product.product_variation)
-    console.log("🚀 ~ PhysicalEdit ~ show:", show)
+    // console.log("🚀 ~ PhysicalEdit ~  product.product_variation:", product.product_variation)
+    // console.log("🚀 ~ PhysicalEdit ~ show:", show)
+
+
+    // const getHidden = hiddenAttributesLength.map((item,index)=>{
+    //     console.log(item)
+    // })
+
+
 
     useEffect(() => {
         const generateInputValues = () => {
@@ -32,7 +42,9 @@ function PhysicalEdit() {
             const hiddenValues = [];
 
             selectedSizeOptions.forEach((sizeOption) => {
+                console.log(sizeOption)
                 selectedColorOptions.forEach((colorOption) => {
+                    console.log(colorOption)
                     const inputValue = `${sizeOption.label}/${colorOption.label}`;
                     const hiddenValue = `${sizeOption.value}/${colorOption.value}`;
                     inputValues.push(inputValue);
@@ -46,7 +58,8 @@ function PhysicalEdit() {
 
         generateInputValues();
     }, [selectedColorOptions, selectedSizeOptions]);
-    // console.log(attributesLength);
+    console.log(attributesLength);
+    console.log(hiddenAttributesLength);
 
 
     const { control, register, handleSubmit, setValue, reset, formState: { errors }, watch } = useForm({
@@ -73,6 +86,28 @@ function PhysicalEdit() {
         }
     });
 
+  
+    // This iS for Thumbnail Image Preview
+    const [isSvgShow, setSvgShow] = useState(false);
+    const [selectedImage, setSelectedImage] = useState(product?.thumbnail ? `/storage/Product/${product?.thumbnail}` : '/assets/images/user-profile.jpeg');
+    const handleImageChange = (e) => {
+        const file = e.target.files[0];
+        if (file) {
+            setSvgShow(true);
+            setSelectedImage(URL.createObjectURL(file));
+        }
+    };
+    function handleDeleteImage() {
+        setSelectedImage(null);
+        reset({ thumbnail: '' });
+    }
+
+
+    // This iS for Thumbnail Image Preview End
+
+
+
+
 
     const product_description = watch('product_description', '');
     const handleQuillChange = (value) => {
@@ -84,9 +119,8 @@ function PhysicalEdit() {
         setValue('product_buy_return_policy', value);
     };
 
-
-    // This is for option
-    const categoruOptions = categories.map((item) => ({
+     // This is for option
+   const categoruOptions = categories.map((item) => ({
         value: item?.id,
         label: item?.name ? `${item.name}` : '',
     }));
@@ -102,11 +136,14 @@ function PhysicalEdit() {
         value: item?.id,
         label: item?.name ? `${item.name}` : '',
     }));
-    
+
     const colorsOption = colors.map((item) => ({
         value: item?.id,
         label: item?.name ? `${item.name}` : '',
     }));
+
+    console.log(colorsOption)
+
     const sizeOptions = sizes.map((item) => ({
         value: item?.id,
         label: item?.name ? `${item.name}` : '',
@@ -128,13 +165,11 @@ function PhysicalEdit() {
     const productVariationValue = (event) => {
         const value = event.target.value;
         if (value === "1") {
-            console.log("🚀 ~ productVariationValue ~ value:", value)
             setProductVariationValue(false);
             setShow(1)
 
         }
         if (value === "2") {
-            console.log("🚀 ~ productVariationValue ~ value:", value)
             setProductVariationValue(true);
             setShow(2)
         }
@@ -384,8 +419,10 @@ function PhysicalEdit() {
                                                                     }}
 
                                                                 />
+                                                                
                                                             )}
                                                         />
+                                                        
                                                     </div>
                                                 </div>
                                                 <div className="md:col-span-2">
@@ -431,7 +468,7 @@ function PhysicalEdit() {
                                                 <label>Price</label>
                                                 <div className="flex items-center gap-2">
                                                     <input
-                                                        {...register("single_product_price", { required: "Product Name Is required" })}
+                                                        {...register("single_product_price", { required: "Product Price Is required" })}
                                                         type="number"
                                                         className="form-input"
                                                         placeholder="99$"
@@ -442,7 +479,7 @@ function PhysicalEdit() {
                                                 <label>Discount</label>
                                                 <div className="flex items-center gap-2">
                                                     <input
-                                                        {...register("single_product_discount", { required: "Product Name Is required" })}
+                                                        {...register("single_product_discount", { required: "Discount Is required" })}
                                                         type="number"
                                                         className="form-input"
                                                         placeholder="10%"
@@ -492,6 +529,7 @@ function PhysicalEdit() {
                                             </div>
                                             <div className="mb-5 space-y-5 relative">
                                                 {attributesLength.map((item, index) => (
+
                                                     <div key={index} className="grid grid-cols-1 sm:grid-cols-4 gap-4">
                                                         <div>
                                                             <label> Product attribute <span className="text-danger">*</span>
@@ -779,24 +817,34 @@ function PhysicalEdit() {
                     </div>
                 </div>
                 <div className="pt-5 grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-2 gap-6">
-                    <div className="panel">
-                        <div className="flex items-center justify-between mb-5">
-                            <h5 className="font-semibold text-lg dark:text-white-light">Thumbnail</h5>
-                        </div>
-                        <div className="mb-5 space-y-5 relative">
-
-                            <div className="grid grid-cols-1 sm:grid-cols-1 gap-4">
-                                <div>
-                                    <input
-                                        type="file"
-                                        className="form-input"
-                                        {...register("thumbnail")}
-                                    />
-                                </div>
-                            </div>
-
-                        </div>
+                    <div>
+                        <label>Thumbnail</label>
+                        <input
+                            type="file"
+                            className="form-input"
+                            {...register("thumbnail")}
+                            onChange={handleImageChange}
+                        />
                     </div>
+                    <>
+                        {selectedImage && (
+                            <div style={{ position: 'relative' }}>
+                                <img className="rounded-lg max-w-[100px]" src={selectedImage} alt="Selected Avatar" />
+                                {product?.thumbnail && isSvgShow && (
+                                    <span
+                                        onClick={handleDeleteImage}
+                                        className="absolute top-[-15px] left-[23%] bg-white text-red-700 rounded-full p-1 shadow-[0_10px_20px_-10px_rgba(67,97,238,0.44)]"
+                                    >
+                                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-6 h-6">
+                                            <circle opacity="0.5" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="1.5"></circle>
+                                            <path d="M14.5 9.50002L9.5 14.5M9.49998 9.5L14.5 14.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"></path>
+                                        </svg>
+                                    </span>
+                                )}
+                            </div>
+                        )}
+
+                    </>
 
                 </div>
                 <button
