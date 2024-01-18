@@ -83,4 +83,7 @@ if (! function_exists('humanFilesize')) {
 }
 
 
-
+function removeFile($path)
+{
+    return file_exists($path) && is_file($path) ? @unlink($path) : false;
+}

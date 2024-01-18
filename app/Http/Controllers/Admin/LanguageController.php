@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\LanguageRequest;
+use App\Models\Admin\Language;
 use App\Repositories\Admin\LanguageRepository;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
@@ -16,7 +18,7 @@ class LanguageController extends Controller
     }
 
     public function index(){
-        return Inertia::render('Module/Color/Index');
+        return Inertia::render('Module/Language/Index');
     }
     public function data(Request $request){
         $start = $request->query('start', 0);
@@ -24,7 +26,7 @@ class LanguageController extends Controller
         $filters = json_decode($request->query('filters', '[]'), true);
         $globalFilter = $request->query('globalFilter', '');
         $sorting = json_decode($request->query('sorting', '[]'), true);
-        $query = Color::query();
+        $query = Language::query();
         if (!empty($filters)) {
             foreach ($filters as $filter) {
                 $field = $filter['id']; // Change 'field' to 'id'
@@ -46,6 +48,7 @@ class LanguageController extends Controller
         }
         $totalRowCount = $query->count();
         $data = $query
+            ->orderBy('is_default',"DESC")
             ->skip($start)
             ->take($size)
             ->get();
@@ -57,20 +60,19 @@ class LanguageController extends Controller
         ]);
     }
     public function create(){
-
-        return Inertia::render('Module/Color/Add');
+        return Inertia::render('Module/Language/Add');
     }
-    public function store(ColorRequest $request){
+    public function store(LanguageRequest $request){
         $result = $this->language->store($request);
         if($result['status']== true){
-            return to_route('admin.color')->with('success', $result['message']);
+            return to_route('admin.language')->with('success', $result['message']);
         }else{
             return back()->with('error', 'Data Does not Insert');
         }
     }
     public function edit($id){
         $result = $this->language->edit($id);
-        return Inertia::render('Module/Color/Edit',[
+        return Inertia::render('Module/Language/Edit',[
             'result'=>$result
         ]);
     }
@@ -92,7 +94,7 @@ class LanguageController extends Controller
     }
 
     public function trashed(){
-        return Inertia::render('Module/Color/Trashed');
+        return Inertia::render('Module/Language/Trashed');
     }
     public function trashedData(Request $request){
         $start = $request->query('start', 0);
@@ -100,7 +102,7 @@ class LanguageController extends Controller
         $filters = json_decode($request->query('filters', '[]'), true);
         $globalFilter = $request->query('globalFilter', '');
         $sorting = json_decode($request->query('sorting', '[]'), true);
-        $query = Color::query();
+        $query = Language::query();
         if (!empty($filters)) {
             foreach ($filters as $filter) {
                 $field = $filter['id']; // Change 'field' to 'id'
@@ -134,21 +136,36 @@ class LanguageController extends Controller
         ]);
     }
     public function permanentDelete($id){
-        $record = Color::onlyTrashed()->where('id',$id)->first();
+        $record = Language::onlyTrashed()->where('id',$id)->first();
         $record->forceDelete();
-        return to_route('admin.color')->with('success', 'Delete the color');
+        return to_route('admin.language')->with('success', 'Delete the language');
     }
     public function permanentDeleteAll(){
-        Color::onlyTrashed()->forceDelete();
-        return to_route('admin.color')->with('success', 'Delete all color');
+        Language::onlyTrashed()->forceDelete();
+        return to_route('admin.language')->with('success', 'Delete all language');
     }
     public function undoTrashed($id){
-        $record = Color::onlyTrashed()->where('id',$id)->first();
+        $record = Language::onlyTrashed()->where('id',$id)->first();
         $record->restore();
-        return to_route('admin.color')->with('success', 'Restored the color');
+        return to_route('admin.language')->with('success', 'Restored the language');
     }
     public function restoreAll(){
-        Color::onlyTrashed()->restore();
-        return to_route('admin.color')->with('success', 'Restored all color');
+        Language::onlyTrashed()->restore();
+        return to_route('admin.language')->with('success', 'Restored all language');
+    }
+
+    public function translate($id)
+    {
+        $result = $this->language->translate($id);
+        dd(array($result['data']));
+
+
+
+        return Inertia::render('Module/Language/Translate',[
+            'data' => $result['data']
+        ]);
+//        return to_route('admin.language.',[
+//            'data' => $result['data']
+//        ])->with('success', $result['message']);
     }
 }
