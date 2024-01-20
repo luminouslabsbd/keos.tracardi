@@ -17,9 +17,9 @@ function PhysicalEdit() {
         product,
     } = usePage().props;
 
-    console.log(product.productcolor)
-    console.log(colors);
-    console.log(sizes);
+    console.log(product)
+    // console.log(colors);
+    // console.log(sizes);
     // data.find(item => item.id === desiredId)?.name;
 
 
@@ -679,7 +679,7 @@ function PhysicalEdit() {
                                                     <input
                                                         type="text"
                                                         className="form-input"
-                                                        value={colors.find(color => color.id === item.color_id)?.name + '/' +  sizes.find(size => size.id === item.size_id)?.name} // Set the value here
+                                                        value={colors.find(color => color.id === item.color_id)?.name + '/' + sizes.find(size => size.id === item.size_id)?.name} // Set the value here
                                                     />
                                                 </div>
                                                 <div>
@@ -700,6 +700,7 @@ function PhysicalEdit() {
                                                         )}
                                                         type="number"
                                                         className="form-input"
+                                                        value={item.price}
                                                         placeholder="10$"
                                                     />
                                                 </div>
@@ -721,6 +722,7 @@ function PhysicalEdit() {
                                                         )}
                                                         type="number"
                                                         className="form-input"
+                                                        value={item.qty}
                                                         placeholder="5"
                                                     />
                                                 </div>
@@ -742,6 +744,7 @@ function PhysicalEdit() {
                                                         )}
                                                         type="number"
                                                         className="form-input"
+                                                        value={item.discount}
                                                         placeholder="8%"
                                                     />
                                                 </div>
