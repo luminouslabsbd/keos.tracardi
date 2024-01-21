@@ -140,12 +140,19 @@ function Index() {
                         <button onClick={() => handleTranslationClick(row.id)} className="btn btn-sm btn-outline-success">
                             Translation
                         </button>
-                        <button onClick={() => handleEditClick(row.id)} className="btn btn-sm btn-outline-primary">
-                            Edit
-                        </button>
-                        <button onClick={() => handleDeleteClick(row.id)} className="btn btn-sm btn-outline-danger">
-                            Delete
-                        </button>
+                        {
+                            row?.original?.is_default !== 1 && (
+                                <>
+                                    <button onClick={() => handleEditClick(row.id)}
+                                            className="btn btn-sm btn-outline-primary">
+                                        Edit
+                                    </button>
+                                    <button onClick={() => handleDeleteClick(row.id)}
+                                            className="btn btn-sm btn-outline-danger">
+                                        Delete
+                                    </button>
+                                </>
+                            )}
                     </div>
                 ),
             },

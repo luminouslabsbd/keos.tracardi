@@ -22,7 +22,7 @@ function Add() {
     }
     return (
         <>
-            <div className="panel flex items-center overflow-x-auto whitespace-nowrap p-3 ">
+            <div className="panel flex items-center overflow-x-auto whitespace-nowrap p-3">
                 <div className="rounded-full bg-primary p-1.5 text-white ring-2 ring-primary/30 ltr:mr-3 rtl:ml-3">
                     <svg
                         width="24"
