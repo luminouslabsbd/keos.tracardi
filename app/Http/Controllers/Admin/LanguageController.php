@@ -7,6 +7,7 @@ use App\Http\Requests\LanguageRequest;
 use App\Models\Admin\Language;
 use App\Repositories\Admin\LanguageRepository;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Lang;
 use Inertia\Inertia;
 
 class LanguageController extends Controller
@@ -156,16 +157,77 @@ class LanguageController extends Controller
 
     public function translate($id)
     {
+
         $result = $this->language->translate($id);
-        dd(array($result['data']));
+        foreach ($result['data'] as $key => $value) {
+            $itemObject = (object) [
+                'key' => $key,
+                'value' => $value,
+            ];
 
-
-
+            $resultArray[] = $itemObject;
+        }
         return Inertia::render('Module/Language/Translate',[
-            'data' => $result['data']
+            'langId'=>$id,
+            'resultArray' => $resultArray
         ]);
-//        return to_route('admin.language.',[
-//            'data' => $result['data']
-//        ])->with('success', $result['message']);
+    }
+    public function storeKey($langId , Request $request)
+    {
+        $lang = Language::where('id', $langId)->first();
+        $json = file_get_contents(base_path().'/lang/' . $lang->code . '.json');
+
+
+        if (array_key_exists($request['key'], json_decode($json, true))) {
+            return back()->with('error', '"' . $request['key'] . '" Already exists');
+        }else{
+
+            $newArr[$request['key']] = $request['value'];
+            $itemsss = json_decode($json, true);
+            $result = array_merge($itemsss, $newArr);
+            file_put_contents(base_path().'/lang/' . $lang->code . '.json', json_encode($result));
+            return back()->with('success', '"' . $request['key'] . '" has been added');
+        }
+    }
+    public function editKey($langId,$key)
+    {
+        $lang = Language::where('id', $langId)->first();
+        if ($lang) {
+            $data = file_get_contents(base_path() . '/lang/' . $lang->code . '.json');
+            $json_arr = json_decode($data, true);
+            if (isset($json_arr[$key])) {
+                $response = [
+                    'key' => $key,
+                    'value' => $json_arr[$key],
+                ];
+                return response()->json($response);
+            } else {
+                return response()->json(['error' => 'Key not found'], 404);
+            }
+        } else {
+            return response()->json(['error' => 'Language not found'], 404);
+        }
+    }
+    public function deleteKey($langId , Request $request)
+    {
+        $lang = Language::where('id',$langId)->first();
+        $data = file_get_contents(base_path().'/lang/' . $lang->code . '.json');
+        $json_arr = json_decode($data, true);
+        unset($json_arr[$request->key]);
+        file_put_contents(base_path().'/lang/' . $lang->code . '.json', json_encode($json_arr));
+        return back()->with('success',  ' has been removed');
+    }
+
+    public function updateKey($langId, Request $request)
+    {
+        $reqkey = trim($request->key);
+        $reqValue = $request->value;
+        $lang = Language::find($langId);
+        $data = file_get_contents(base_path().'/lang/' . $lang->code . '.json');
+        $json_arr = json_decode($data, true);
+        $json_arr[$reqkey] = $reqValue;
+        file_put_contents(base_path().'/lang/' . $lang->code . '.json', json_encode($json_arr));
+        return back()->with('success',  ' Updated successfully');
     }
 }
+

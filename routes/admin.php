@@ -25,7 +25,7 @@ use App\Http\Controllers\Admin\UsersController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/sajjad', function () {
-    return 'Sajjad';
+    dd("bfidng");
 });
 
 Route::get('/login',[AuthController::class,'login'])->name('login');
@@ -274,8 +274,9 @@ Route::group(['middleware' => ['auth:admin'],'as' =>'admin.'],function() {
         Route::get('translate/{id}', [LanguageController::class, 'translate'])->name('language.translate');
 
 
-        Route::post('store/key/{id}', [LanguageController::class, 'storeKey'])->name('language.store.key');
-        Route::post('delete/key/{id}', [LanguageController::class, 'deleteKey'])->name('language.delete.key');
+        Route::post('/store/key/{id}', [LanguageController::class, 'storeKey'])->name('language.store.key');
+        Route::get('/delete/key/{id}', [LanguageController::class, 'deleteKey'])->name('language.delete.key');
+        Route::get('edit/key/{id}/{data}', [LanguageController::class, 'editKey'])->name('language.edit.key');
         Route::post('update/key/{id}', [LanguageController::class, 'updateKey'])->name('language.update.key');
 
     });
