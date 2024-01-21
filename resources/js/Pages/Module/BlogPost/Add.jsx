@@ -133,6 +133,59 @@ function Add() {
                                     {errors.tag && <p className="text-red-600 pt-2">{errors.tag.message}</p>}
                                 </div>
 
+<<<<<<< HEAD
+=======
+                                {/* Allow Blog SEO Dynamiclly */}
+                                <div>
+                                    <div>
+                                        <label className="inline-flex">
+                                            <input
+                                                {...register("allow_Blog_SEO")}
+                                                type="checkbox"
+                                                checked={isChecked}
+                                                className="form-checkbox text-dark rounded-full"
+                                                onChange={toggleTextField}
+                                            />
+                                            <span>   Allow Blog SEO</span>
+                                        </label>
+                                    </div>
+
+                                    {/* Dynamically created text field */}
+                                    {isChecked && (
+
+                                        <div className="flex flex-col gap-4">
+                                            <div className="grid grid-cols-1 sm:grid-cols-1 gap-4">
+                                                <label>Meta Tags<span>*</span></label>
+                                                <div className="flex items-center gap-2">
+                                                    <input
+                                                        {...register("meta_keywords")}
+                                                        type="text"
+                                                        className="form-input"
+                                                        placeholder="pant,shirt,watch,glass"
+                                                    />
+                                                </div>
+                                            </div>
+
+
+                                            <div className="grid grid-cols-1 sm:grid-cols-1 gap-4">
+                                                <label>Meta Description<span>*</span></label>
+                                                <div className="flex items-center gap-2">
+
+                                                    <textarea
+                                                        {...register("meta_description")}
+                                                        className="form-input"
+                                                        placeholder="Write SEO description"
+                                                    >
+                                                    </textarea>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                    )}
+                                </div>
+                                {/* Allow Blog SEO Dynamiclly End*/}
+>>>>>>> 267e1eb (add this to pull from main)
                             </div>
                             <div className="grid grid-cols-1 sm:grid-cols-1 gap-4 ">
                                 <div>
