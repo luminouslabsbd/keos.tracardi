@@ -71,6 +71,11 @@ class Product extends Model
         return $this->belongsTo(Brand::class,'brand_id');
     }
 
+    public function wholesale()
+    {
+        return $this->hasMany(WholeSale::class,'product_id');
+    }
+
 
 
 }

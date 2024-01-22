@@ -21,7 +21,7 @@ function Index() {
         }
     });
     function onSubmit(data) {
-        router.post("/admin/color/store", data);
+        router.post("/admin/general-settings/general-settings", data);
     }
 
 
@@ -136,78 +136,78 @@ function Index() {
                                             {errors.copy_right_text &&
                                                 <p className="text-red-600 pt-2">{errors.copy_right_text.message}</p>}
                                         </div>
-                                        {/*<div>*/}
-                                        {/*    <label> Contact Number <span className="text-danger">*</span> </label>*/}
-                                        {/*    <input*/}
-                                        {/*        {...register("call_us", {required: "Contact Number Is required"})}*/}
-                                        {/*        type="text"*/}
-                                        {/*        defaultValue={getSlugValue('call_us')|| ''}*/}
-                                        {/*        className="form-input"*/}
-                                        {/*        placeholder="Enter Color Name"*/}
-                                        {/*    />*/}
-                                        {/*    {errors.call_us &&*/}
-                                        {/*        <p className="text-red-600 pt-2">{errors.call_us.message}</p>}*/}
-                                        {/*</div>*/}
-                                        {/*<div>*/}
-                                        {/*    <label> Email <span className="text-danger">*</span> </label>*/}
-                                        {/*    <input*/}
-                                        {/*        {...register("email", {required: "Email is required"})}*/}
-                                        {/*        type="text"*/}
-                                        {/*        defaultValue={getSlugValue('email')|| ''}*/}
-                                        {/*        className="form-input"*/}
-                                        {/*        placeholder="Enter Color Name"*/}
-                                        {/*    />*/}
-                                        {/*    {errors.email &&*/}
-                                        {/*        <p className="text-red-600 pt-2">{errors.email.message}</p>}*/}
-                                        {/*</div>*/}
-                                        {/*<div>*/}
-                                        {/*    <label> Address <span className="text-danger">*</span> </label>*/}
-                                        {/*    <input*/}
-                                        {/*        {...register("address", {required: "Address Is required"})}*/}
-                                        {/*        type="text"*/}
-                                        {/*        defaultValue={getSlugValue('address')|| ''}*/}
-                                        {/*        className="form-input"*/}
-                                        {/*        placeholder="Enter Color Name"*/}
-                                        {/*    />*/}
-                                        {/*    {errors.address &&*/}
-                                        {/*        <p className="text-red-600 pt-2">{errors.address.message}</p>}*/}
-                                        {/*</div>*/}
-                                        {/*<div>*/}
-                                        {/*    <label> State <span className="text-danger">*</span> </label>*/}
-                                        {/*    <input*/}
-                                        {/*        {...register("state", {required: "State Is required"})}*/}
-                                        {/*        type="text"*/}
-                                        {/*        defaultValue={getSlugValue('state')|| ''}*/}
-                                        {/*        className="form-input"*/}
-                                        {/*        placeholder="Enter Color Name"*/}
-                                        {/*    />*/}
-                                        {/*    {errors.state &&*/}
-                                        {/*        <p className="text-red-600 pt-2">{errors.state.message}</p>}*/}
-                                        {/*</div>*/}
-                                        {/*<div>*/}
-                                        {/*    <label> Country <span className="text-danger">*</span> </label>*/}
-                                        {/*    <input*/}
-                                        {/*        {...register("country", {required: "Country Is required"})}*/}
-                                        {/*        type="text"*/}
-                                        {/*        defaultValue={getSlugValue('country')|| ''}*/}
-                                        {/*        className="form-input"*/}
-                                        {/*        placeholder="Enter Color Name"*/}
-                                        {/*    />*/}
-                                        {/*    {errors.country &&*/}
-                                        {/*        <p className="text-red-600 pt-2">{errors.country.message}</p>}*/}
-                                        {/*</div>*/}
-                                        {/*<div>*/}
-                                        {/*    <label> News Letter <span className="text-danger">*</span> </label>*/}
-                                        {/*    <input*/}
-                                        {/*        {...register("news_latter", {required: "News Letter Is required"})}*/}
-                                        {/*        type="text"*/}
-                                        {/*        defaultValue={getSlugValue('news_latter')|| ''}*/}
-                                        {/*        className="form-input"*/}
-                                        {/*        placeholder="Enter Color Name"*/}
-                                        {/*    />*/}
-                                        {/*    {errors.news_latter &&*/}
-                                        {/*        <p className="text-red-600 pt-2">{errors.news_latter.message}</p>}*/}
-                                        {/*</div>*/}
+                                        <div>
+                                            <label> Contact Number <span className="text-danger">*</span> </label>
+                                            <input
+                                                {...register("call_us", {required: "Contact Number Is required"})}
+                                                type="text"
+                                                defaultValue={getSlugValue('call_us')|| ''}
+                                                className="form-input"
+                                                placeholder="Enter Color Name"
+                                            />
+                                            {errors.call_us &&
+                                                <p className="text-red-600 pt-2">{errors.call_us.message}</p>}
+                                        </div>
+                                        <div>
+                                            <label> Email <span className="text-danger">*</span> </label>
+                                            <input
+                                                {...register("email", {required: "Email is required"})}
+                                                type="text"
+                                                defaultValue={getSlugValue('email')|| ''}
+                                                className="form-input"
+                                                placeholder="Enter Color Name"
+                                            />
+                                            {errors.email &&
+                                                <p className="text-red-600 pt-2">{errors.email.message}</p>}
+                                        </div>
+                                        <div>
+                                            <label> Address <span className="text-danger">*</span> </label>
+                                            <input
+                                                {...register("address", {required: "Address Is required"})}
+                                                type="text"
+                                                defaultValue={getSlugValue('address')|| ''}
+                                                className="form-input"
+                                                placeholder="Enter Color Name"
+                                            />
+                                            {errors.address &&
+                                                <p className="text-red-600 pt-2">{errors.address.message}</p>}
+                                        </div>
+                                        <div>
+                                            <label> State <span className="text-danger">*</span> </label>
+                                            <input
+                                                {...register("state", {required: "State Is required"})}
+                                                type="text"
+                                                defaultValue={getSlugValue('state')|| ''}
+                                                className="form-input"
+                                                placeholder="Enter Color Name"
+                                            />
+                                            {errors.state &&
+                                                <p className="text-red-600 pt-2">{errors.state.message}</p>}
+                                        </div>
+                                        <div>
+                                            <label> Country <span className="text-danger">*</span> </label>
+                                            <input
+                                                {...register("country", {required: "Country Is required"})}
+                                                type="text"
+                                                defaultValue={getSlugValue('country')|| ''}
+                                                className="form-input"
+                                                placeholder="Enter Color Name"
+                                            />
+                                            {errors.country &&
+                                                <p className="text-red-600 pt-2">{errors.country.message}</p>}
+                                        </div>
+                                        <div>
+                                            <label> News Letter <span className="text-danger">*</span> </label>
+                                            <input
+                                                {...register("news_latter", {required: "News Letter Is required"})}
+                                                type="text"
+                                                defaultValue={getSlugValue('news_latter')|| ''}
+                                                className="form-input"
+                                                placeholder="Enter Color Name"
+                                            />
+                                            {errors.news_latter &&
+                                                <p className="text-red-600 pt-2">{errors.news_latter.message}</p>}
+                                        </div>
                                     </div>
                                     <button
                                         type="submit"

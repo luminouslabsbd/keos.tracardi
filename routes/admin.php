@@ -52,7 +52,7 @@ Route::group(['middleware' => ['auth:admin'],'as' =>'admin.'],function() {
     // General Settings
     Route::group(['prefix' => 'general-settings'],function (){
         Route::get('', [GeneralSettingsController::class, 'GeneralSettings'])->name('general.settings');
-        Route::post('/update-settings', [GeneralSettingsController::class, 'updateSettings'])->name('general.settings.update_settings');
+        Route::post('/general-settings', [GeneralSettingsController::class, 'updateSettings'])->name('general.settings.update_settings');
         Route::post('/update-email', [GeneralSettingsController::class, 'updateEmail'])->name('general.settings.update_email');
     });
 
