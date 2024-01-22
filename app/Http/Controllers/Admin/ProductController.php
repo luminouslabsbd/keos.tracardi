@@ -153,7 +153,7 @@ class ProductController extends Controller
             $sizes = Size::select('id','name')->get();
             $units = Unit::select('id','name')->get();
 
-            return $product = Product::with('category','brand','productcolor','productsize','physical','physical.unit','variationprice','wholesale')->where('id', $id)->first();
+            $product = Product::with('category','brand','productcolor','productsize','physical','physical.unit','variationprice','wholesale')->where('id', $id)->first();
             return Inertia::render('Module/Product/PhysicalEdit',[
                 'product'=>$product,
                 'categories'=>$categories,
