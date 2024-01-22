@@ -14,7 +14,8 @@ function Physical() {
     const [attributesLength, setAttributesLength] = useState([]);
     const [hiddenAttributesLength, setHiddenAttributesLength] = useState([]);
     const [IsproductVariationValue, setProductVariationValue] = useState(false);
-    
+    console.log("🚀 ~ Physical ~ IsproductVariationValue:", IsproductVariationValue)
+    console.log(hiddenAttributesLength)
 
     useEffect(() => {
         const generateInputValues = () => {
@@ -22,6 +23,7 @@ function Physical() {
             const hiddenValues = [];
 
             selectedSizeOptions.forEach((sizeOption) => {
+
                 selectedColorOptions.forEach((colorOption) => {
                     const inputValue = `${sizeOption.label}/${colorOption.label}`;
                     const hiddenValue = `${sizeOption.value}/${colorOption.value}`;
@@ -29,13 +31,14 @@ function Physical() {
                     hiddenValues.push(hiddenValue);
                 });
             });
+            
             setAttributesLength(inputValues);
             setHiddenAttributesLength(hiddenValues);
         };
 
         generateInputValues();
     }, [selectedColorOptions, selectedSizeOptions]);
-    // console.log(attributesLength);
+    
 
     const {
         control,
