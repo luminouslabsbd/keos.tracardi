@@ -11,6 +11,7 @@ use App\Http\Controllers\Admin\ColorController;
 use App\Http\Controllers\Admin\CurrencyController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\ExtraController;
+use App\Http\Controllers\Admin\GeneralSettingsController;
 use App\Http\Controllers\Admin\LanguageController;
 use App\Http\Controllers\Admin\ModuleController;
 use App\Http\Controllers\Admin\PermissionsController;
@@ -23,15 +24,18 @@ use App\Http\Controllers\Admin\SliderController;
 use App\Http\Controllers\Admin\UnitController;
 use App\Http\Controllers\Admin\UsersController;
 use Illuminate\Support\Facades\Route;
+use Inertia\Inertia;
 
 Route::get('/sajjad', function () {
-    dd("bfidng");
+    return "sajjad";
+
 });
 
 Route::get('/login',[AuthController::class,'login'])->name('login');
 Route::post('/login',[AuthController::class,'loginPost'])->name('login.post');
 
 Route::group(['middleware' => ['auth:admin'],'as' =>'admin.'],function() {
+
 
     Route::get('/error',[DashboardController::class,'error'])->name('error');
     Route::get('dashboard', [DashboardController::class, 'adminDashboard'])->name('dashboard');
@@ -43,6 +47,13 @@ Route::group(['middleware' => ['auth:admin'],'as' =>'admin.'],function() {
         Route::post('/profile/update', [AdminProfileController::class, 'userProfileUpdate'])->name('user.profile.update');
         Route::post('/profile/change-password', [AdminProfileController::class, 'userProfileChangePassword'])->name('user.profile.update');
 
+    });
+
+    // General Settings
+    Route::group(['prefix' => 'general-settings'],function (){
+        Route::get('', [GeneralSettingsController::class, 'GeneralSettings'])->name('general.settings');
+        Route::post('/update-settings', [GeneralSettingsController::class, 'updateSettings'])->name('general.settings.update_settings');
+        Route::post('/update-email', [GeneralSettingsController::class, 'updateEmail'])->name('general.settings.update_email');
     });
 
 
