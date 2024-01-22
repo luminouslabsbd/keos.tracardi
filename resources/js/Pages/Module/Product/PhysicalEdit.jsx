@@ -16,104 +16,76 @@ function PhysicalEdit() {
         units,
         product,
     } = usePage().props;
-      
-    
-    
-    
+
     const [atributeData, setAtributeData] = useState(product.variationprice);
-    const [selectedColorOptions , setSelectedColorOptions] = useState(product.productcolor)
-    const [selectedSizeOptions, setSelectedSizeOptions] = useState( product.productsize);
+    const [selectedColorOptions, setSelectedColorOptions] = useState(
+        product.productcolor
+    );
+    const [selectedSizeOptions, setSelectedSizeOptions] = useState(
+        product.productsize
+    );
     const [attributesLength, setAttributesLength] = useState([]);
     const [hiddenAttributesLength, setHiddenAttributesLength] = useState([]);
 
     const [IsproductVariationValue, setProductVariationValue] = useState(false);
 
     const [show, setShow] = useState(product.product_variation);
-    
 
     const generateInputValues = () => {
         const inputValues = [];
         const hiddenValues = [];
 
         selectedSizeOptions.forEach((sizeOption) => {
-          
             selectedColorOptions.forEach((colorOption) => {
                 let localColor = {
-                    label : '',
-                    value : '',
-                },
-                localSize = {
-                    label : '',
-                    value : '',
-                };
-                
-                if(  undefined !== sizeOption.label ){
-                    localSize.label = sizeOption.label
-                }else{
-                    localSize.label = sizeOption.name
+                        label: "",
+                        value: "",
+                    },
+                    localSize = {
+                        label: "",
+                        value: "",
+                    };
+
+                if (undefined !== sizeOption.label) {
+                    localSize.label = sizeOption.label;
+                } else {
+                    localSize.label = sizeOption.name;
                 }
 
-                if(  undefined !== sizeOption.value ){
-                    localSize.value = sizeOption.value
-                }else{
-                    localSize.value = sizeOption.id
+                if (undefined !== sizeOption.value) {
+                    localSize.value = sizeOption.value;
+                } else {
+                    localSize.value = sizeOption.id;
                 }
 
-                if(  undefined !== colorOption.value ){
-                    localColor.value = colorOption.value
-                }else{
-                    localColor.value = colorOption.id
+                if (undefined !== colorOption.value) {
+                    localColor.value = colorOption.value;
+                } else {
+                    localColor.value = colorOption.id;
                 }
 
-                if(  undefined !== colorOption.label ){
-                    localColor.label = colorOption.label
-                }else{
-                    localColor.label = colorOption.name
+                if (undefined !== colorOption.label) {
+                    localColor.label = colorOption.label;
+                } else {
+                    localColor.label = colorOption.name;
                 }
 
-                const inputValue =  `${localSize.label}/${localColor.label}`;
+                const inputValue = `${localSize.label}/${localColor.label}`;
                 const hiddenValue = `${localSize.value}/${localColor.value}`;
                 inputValues.push(inputValue);
                 hiddenValues.push(hiddenValue);
             });
         });
-       
+
         setAtributeData(inputValues);
         setHiddenAttributesLength(hiddenValues);
-       
     };
 
-
     useEffect(() => {
-        
-
         generateInputValues();
     }, [selectedColorOptions, selectedSizeOptions]);
-     
-    useEffect(() => {
-        generateInputValues();
-        // If you want to perform cleanup when the component unmounts, you can return a cleanup function
-        return () => {
-          // Cleanup code (optional)
-        };
-      }, []);
 
-
-    //   Sakib Miah
-    // useEffect(() => {
-    //     // // console.log("Full Atribute Data", atributeData)
-    //     // // console.log("🚀 ~ PhysicalEdit ~ selectedColorOptions:", selectedColorOptions)
-    //     // const filteredAttributeData = atributeData.filter(item => {
-    //     //     return selectedColorOptions.some(colorOption => colorOption.value === item.color_id);
-    //     // });
-    //     // if (filteredAttributeData.length) {
-    //     //     setAtributeData(filteredAttributeData)
-
-    //     // }
-    // }, [selectedColorOptions])
-
-//   Sakib Miah
-
+    
     const {
         control,
         register,
@@ -144,12 +116,6 @@ function PhysicalEdit() {
             meta_description: product?.product_description,
         },
     });
-
-
-   const changeColorHandle = function (){
-
-   }
-
 
 
     // This iS for Thumbnail Image Preview
@@ -265,9 +231,9 @@ function PhysicalEdit() {
         let maxId = 0;
         maxId = items?.length
             ? items.reduce(
-                (max, character) => (character.id > max ? character.id : max),
-                items[0].id
-            )
+                  (max, character) => (character.id > max ? character.id : max),
+                  items[0].id
+              )
             : 0;
 
         setItems([...items, { id: maxId + 1, quantity: "1", discount: 0 }]);
@@ -298,16 +264,15 @@ function PhysicalEdit() {
         // router.post("/admin/product/physical/store", newData);
         console.log(newData);
     }
-    const defultColor = product?.productcolor?.map(data => ({
+    const defultColor = product?.productcolor?.map((data) => ({
         value: data?.id,
         label: data?.name ? `${data.name}` : "",
-    }))
+    }));
     const defultsizeOptions = product?.productsize?.map((item) => ({
         value: item?.id,
         label: item?.name ? `${item?.name}` : "",
     }));
 
-    
     return (
         <>
             <div className="panel flex items-center overflow-x-auto whitespace-nowrap p-3 ">
@@ -444,7 +409,7 @@ function PhysicalEdit() {
                                     <select
                                         className="form-select text-white-dark"
                                         {...register("product_variation")}
-                                    // onChange={productVariationValue}
+                                        // onChange={productVariationValue}
                                     >
                                         <option value="1">
                                             Single Product
@@ -527,7 +492,9 @@ function PhysicalEdit() {
                                                             options={
                                                                 colorsOption
                                                             }
-                                                            defaultValue={[...defultColor]}
+                                                            defaultValue={[
+                                                                ...defultColor,
+                                                            ]}
                                                             isMulti
                                                             isSearchable={true}
                                                             // value={
@@ -544,10 +511,21 @@ function PhysicalEdit() {
                                                             //         )
                                                             //         : []
                                                             // }
-                                                            onChange={(     selectedOptions) => { field.onChange(selectedOptions.map((option) => option.value));
-                                                                setSelectedColorOptions(selectedOptions); // Assuming setSelectedColorOptions is declared elsewhere
-                                                                }}
-
+                                                            onChange={(
+                                                                selectedOptions
+                                                            ) => {
+                                                                field.onChange(
+                                                                    selectedOptions.map(
+                                                                        (
+                                                                            option
+                                                                        ) =>
+                                                                            option.value
+                                                                    )
+                                                                );
+                                                                setSelectedColorOptions(
+                                                                    selectedOptions
+                                                                ); // Assuming setSelectedColorOptions is declared elsewhere
+                                                            }}
                                                         />
                                                     )}
                                                 />
@@ -563,14 +541,14 @@ function PhysicalEdit() {
                                             <div className="flex items-center gap-2">
                                                 <Controller
                                                     control={control}
-
                                                     {...register("size_id")}
                                                     render={({ field }) => (
                                                         <Select
                                                             className="w-full"
                                                             placeholder="Select size"
-                                                            defaultValue={[...defultsizeOptions]}
-
+                                                            defaultValue={[
+                                                                ...defultsizeOptions,
+                                                            ]}
                                                             options={
                                                                 sizeOptions
                                                             }
@@ -681,24 +659,29 @@ function PhysicalEdit() {
                     </div>
                 </div>
                 <div className="pt-5 grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-1 gap-6">
-                    {IsproductVariationValue === true || product.variationprice.length > 0 ? (
+                    {IsproductVariationValue === true ||
+                    product.variationprice.length > 0 ? (
                         <>
-                            {hiddenAttributesLength.length > 0 || product.variationprice.length > 0 ?
-                                (hiddenAttributesLength) || (product.variationprice).map((item, index) => (
-                                    <input
-                                        key={index} // Provide a unique key for each input
-                                        {...register(
-                                            `product_attribute_${index}`,
-                                            {
-                                                required:
-                                                    "Product SKU Is required",
-                                            }
-                                        )}
-                                        type="hidden"
-                                        value={item} // Display the value from the hiddenAttributesLength array
-                                    />
-                                )) : null}
-                            {attributesLength.length > 0 || product.variationprice.length > 0 ? (
+                            {hiddenAttributesLength.length > 0 ||
+                            product.variationprice.length > 0
+                                ? hiddenAttributesLength ||
+                                  product.variationprice.map((item, index) => (
+                                      <input
+                                          key={index} // Provide a unique key for each input
+                                          {...register(
+                                              `product_attribute_${index}`,
+                                              {
+                                                  required:
+                                                      "Product SKU Is required",
+                                              }
+                                          )}
+                                          type="hidden"
+                                          value={item} // Display the value from the hiddenAttributesLength array
+                                      />
+                                  ))
+                                : null}
+                            {attributesLength.length > 0 ||
+                            product.variationprice.length > 0 ? (
                                 <div className="panel">
                                     <div className="flex items-center justify-between mb-5">
                                         <h5 className="font-semibold text-lg dark:text-white-light">
@@ -711,8 +694,6 @@ function PhysicalEdit() {
                                                 key={index}
                                                 className="grid grid-cols-1 sm:grid-cols-4 gap-4"
                                             >
-
-
                                                 <div>
                                                     <label>
                                                         {" "}
@@ -746,7 +727,9 @@ function PhysicalEdit() {
                                                         type="number"
                                                         className="form-input"
                                                         // value={item.price}
-                                                        defaultValue={item.price}
+                                                        defaultValue={
+                                                            item.price
+                                                        }
                                                         placeholder="10$"
                                                     />
                                                 </div>
@@ -792,11 +775,12 @@ function PhysicalEdit() {
                                                         type="number"
                                                         className="form-input"
                                                         // value={item.discount}
-                                                        defaultValue={item.discount}
+                                                        defaultValue={
+                                                            item.discount
+                                                        }
                                                         placeholder="8%"
                                                     />
                                                 </div>
-
                                             </div>
                                         ))}
                                     </div>
