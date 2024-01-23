@@ -250,7 +250,9 @@ function PhysicalEdit() {
     };
 
     const removeItem = (item = null) => {
+        console.log('Before:', items);
         setItems(items.filter((d) => d.id !== item.id));
+        console.log('After:', items);
     };
 
     const changeQuantityDiscount = (type, value, id) => {
