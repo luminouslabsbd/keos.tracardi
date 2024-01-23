@@ -31,11 +31,12 @@ class ProductRepository {
 
         try
         {
+            $data = Product::find($request->product_id);
             DB::beginTransaction();
             if(!empty($request->thumbnail)){
                 $thumbnail =  fileUpload($request->thumbnail[0] , "product");
-            }else if(isset($user->thumbnail)){
-                $thumbnail = $user->thumbnail;
+            }else if(isset($data->thumbnail)){
+                $thumbnail = $data->thumbnail;
             }else{
                 $thumbnail ="";
             }
@@ -69,8 +70,8 @@ class ProductRepository {
             if ($product){
                 if(!empty($request->upload_file)){
                     $upload_file =  fileUpload($request->upload_file[0] , "upload_file");
-                }else if(isset($user->upload_file)){
-                    $upload_file = $user->upload_file;
+                }else if(isset($data->upload_file)){
+                    $upload_file = $data->upload_file;
                 }else{
                     $upload_file ="";
                 }
@@ -97,6 +98,7 @@ class ProductRepository {
     }
 
     public function licenseStore($request){
+        $data = Product::find($request->product_id);
 
 //        try
 //        {
@@ -104,8 +106,8 @@ class ProductRepository {
 //        dd($request->thumbnail);
             if(!empty($request->thumbnail)){
                 $thumbnail =  fileUpload($request->thumbnail[0] , "product");
-            }else if(isset($user->thumbnail)){
-                $thumbnail = $user->thumbnail;
+            }else if(isset($data->thumbnail)){
+                $thumbnail = $data->thumbnail;
             }else{
                 $thumbnail ="";
             }
@@ -139,8 +141,8 @@ class ProductRepository {
             if ($product){
                 if(!empty($request->upload_file)){
                     $upload_file =  fileUpload($request->upload_file[0] , "upload_file");
-                }else if(isset($user->upload_file)){
-                    $upload_file = $user->upload_file;
+                }else if(isset($data->upload_file)){
+                    $upload_file = $data->upload_file;
                 }else{
                     $upload_file ="";
                 }
@@ -208,10 +210,11 @@ class ProductRepository {
         // try
         // {
         //     DB::beginTransaction();
+        $data = Product::find($request->product_id);
             if(!empty($request->thumbnail)){
                 $thumbnail =  fileUpload($request->thumbnail[0] , "product");
-            }else if(isset($user->thumbnail)){
-                $thumbnail = $user->thumbnail;
+            }else if(isset($data->thumbnail)){
+                $thumbnail = $data->thumbnail;
             }else{
                 $thumbnail ="";
             }
