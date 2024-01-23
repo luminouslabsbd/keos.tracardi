@@ -17,6 +17,14 @@ function PhysicalEdit() {
         product,
     } = usePage().props;
 
+    console.log("All Product",product);
+    // Set Product Description 
+    const allow_minimum_order_qty = product.physical.allow_minimum_order_qty;
+    const allow_product_conditions = product.physical.allow_product_conditions;
+    const allow_product_preorder = product.physical.allow_product_preorder;
+    // Set End
+
+
     const [atributeData, setAtributeData] = useState(product.variationprice);
     const [selectedColorOptions, setSelectedColorOptions] = useState(
         product.productcolor
@@ -114,6 +122,8 @@ function PhysicalEdit() {
             thumbnail: product?.thumbnail.name,
             meta_keywords: product?.meta_keywords,
             meta_description: product?.product_description,
+            product_condition:allow_product_conditions,
+            product_preorder: allow_product_preorder,
         },
     });
 

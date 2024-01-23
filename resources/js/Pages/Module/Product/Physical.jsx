@@ -168,8 +168,8 @@ function Physical() {
             ...data,
             items: total_items,
         };
-        router.post("/admin/product/physical/store", newData);
-        // console.log(newData);
+        // router.post("/admin/product/physical/store", newData);
+        console.log(newData);
     }
     return (
         <>
