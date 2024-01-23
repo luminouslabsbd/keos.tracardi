@@ -306,7 +306,7 @@ class ProductRepository {
                 if ($physical->allow_whole_sale == 1) {
                     foreach ($request->items as $item) {
                         WholeSale::updateOrCreate([
-                            'product_id'=> $productId,
+                            'product_id'=> $product->id,
                             'quantity'=> $item['quantity'],
                             'discount'=> $item['discount'],
                         ]);

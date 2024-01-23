@@ -231,7 +231,6 @@ function Add() {
                                     </div>
                                 </div>
                             )}
-
                             <button
                                 type="submit"
                                 className="btn btn-primary !mt-6"
