@@ -132,9 +132,6 @@ function Add() {
                                     />
                                     {errors.tag && <p className="text-red-600 pt-2">{errors.tag.message}</p>}
                                 </div>
-
-<<<<<<< HEAD
-=======
                                 {/* Allow Blog SEO Dynamiclly */}
                                 <div>
                                     <div>
@@ -185,7 +182,6 @@ function Add() {
                                     )}
                                 </div>
                                 {/* Allow Blog SEO Dynamiclly End*/}
->>>>>>> 267e1eb (add this to pull from main)
                             </div>
                             <div className="grid grid-cols-1 sm:grid-cols-1 gap-4 ">
                                 <div>
