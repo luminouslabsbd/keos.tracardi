@@ -141,8 +141,6 @@ class ProductController extends Controller
             return back()->with('error', 'Data Does not Insert');
         }
     }
-
-
     public function edit($id){
         $result = $this->product->edit($id);
         if($result->type == PHYSICAL){
