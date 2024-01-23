@@ -229,13 +229,13 @@ function PhysicalEdit() {
         setProductPreorderAllowed(e.target.checked);
     };
 
-    const [isProductWholeSaleAllow, setProductWholeSaleAllow] = useState(false);
+    const [isProductWholeSaleAllow, setProductWholeSaleAllow] = useState(product.physical.allow_whole_sale);
 
-    const allowWholeSaleProduct = (e) => {
-        // Update the state when the checkbox is clicked
-        setProductWholeSaleAllow(e.target.checked);
+    const allowWholeSaleProduct = () => {
+        // Toggle the state when the checkbox is clicked
+        setProductWholeSaleAllow((prevValue) => (prevValue === 1 ? 0 : 1));
     };
-    const [items, setItems] = useState([]);
+    const [items, setItems] = useState(product.wholesale);
 
     const addItem = () => {
         let maxId = 0;
@@ -906,11 +906,12 @@ function PhysicalEdit() {
                                             type="checkbox"
                                             className="form-checkbox text-dark rounded-full"
                                             onChange={allowWholeSaleProduct}
+                                            checked={isProductWholeSaleAllow === 1}
                                         />
                                         <span> Allow Whole Sale</span>
                                     </label>
                                 </div>
-                                {isProductWholeSaleAllow && (
+                                {isProductWholeSaleAllow === 1 && (
                                     <div className="grid grid-cols-1 sm:grid-cols-1 gap-4">
                                         <div className="mt-8">
                                             <div className="table-responsive">
