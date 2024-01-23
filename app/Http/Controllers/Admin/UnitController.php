@@ -16,7 +16,6 @@ class UnitController extends Controller
     {
         $this->unit = $unit;
     }
-
     public function index(){
         return Inertia::render('Module/Unit/Index');
     }
@@ -59,13 +58,12 @@ class UnitController extends Controller
         ]);
     }
     public function create(){
-
         return Inertia::render('Module/Unit/Add');
     }
     public function store(UnitRequest $request){
+
         $result = $this->unit->store($request);
         if($result['status']== true){
-//            dd($result['message']);
             return to_route('admin.unit')->with('success', $result['message']);
         }else{
             return back()->with('error', 'Data Does not Insert');
@@ -93,7 +91,6 @@ class UnitController extends Controller
         $result = $this->unit->status($id);
         return back()->with('success', $result['message']);
     }
-
     public function trashed(){
         return Inertia::render('Module/Unit/Trashed');
     }

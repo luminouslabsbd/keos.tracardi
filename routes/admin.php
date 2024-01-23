@@ -152,9 +152,10 @@ Route::group(['middleware' => ['auth:admin'],'as' =>'admin.'],function() {
         Route::get('/permanent-delete/{id}', [UnitController::class, 'permanentDelete'])->name('unit.permanent.delete');
         Route::get('permanent-delete-all', [UnitController::class, 'permanentDeleteAll'])->name('unit.permanent.delete.all');
         Route::get('/undo-trashed/{id}', [UnitController::class, 'undoTrashed'])->name('unit.undo.trashed');
-        Route::get('/restore-all', [UnitController::class, 'restoreAll'])->name('unit.restore.all');
+        Route::get('/reunitstore-all', [UnitController::class, 'restoreAll'])->name('unit.restore.all');
     });
     //end size
+
 
 
     //size
