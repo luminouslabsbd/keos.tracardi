@@ -17,7 +17,7 @@ function PhysicalEdit() {
         product,
     } = usePage().props;
 
-    console.log("All Product",product);
+    // console.log("All Product",product);
     // Set Product Description 
     const allow_minimum_order_qty = product.physical.allow_minimum_order_qty;
     const allow_product_conditions = product.physical.allow_product_conditions;
