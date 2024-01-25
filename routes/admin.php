@@ -23,6 +23,8 @@ use App\Http\Controllers\Admin\SizeController;
 use App\Http\Controllers\Admin\SliderController;
 use App\Http\Controllers\Admin\UnitController;
 use App\Http\Controllers\Admin\UsersController;
+use App\Http\Controllers\Admin\CouponController;
+
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -199,8 +201,7 @@ Route::group(['middleware' => ['auth:admin'],'as' =>'admin.'],function() {
         Route::get('/restore-all', [CurrencyController::class, 'restoreAll'])->name('currency.restore.all');
     });
     //end size
-
-
+    
 
     //product
     Route::group(['prefix' => 'product' ],function (){
@@ -227,8 +228,8 @@ Route::group(['middleware' => ['auth:admin'],'as' =>'admin.'],function() {
 
     //coupons
     Route::group(['prefix' => 'coupon' ],function (){
-        Route::get('', [\App\Http\Controllers\Admin\CouponController::class, 'index'])->name('coupon.product');
-        Route::get('create', [\App\Http\Controllers\Admin\CouponController::class, 'create'])->name('coupon.product.create');
+        Route::get('create', [CouponController::class, 'create'])->name('coupon.create');
+        Route::get('/edit/{id}', [CouponController::class, 'edit'])->name('coupon.edit');
     });
     //end coupons
      //Blog Category
@@ -293,11 +294,6 @@ Route::group(['middleware' => ['auth:admin'],'as' =>'admin.'],function() {
 
     });
     //end Language
-
-
-
-
-
 
     //role-permission
     Route::group(['prefix' => 'role-permission' ],function (){
