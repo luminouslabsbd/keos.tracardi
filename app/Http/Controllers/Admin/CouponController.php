@@ -12,4 +12,9 @@ class CouponController extends Controller
     {
         return Inertia::render('Module/Coupon/Add');
     }
+
+    public function edit()
+    {
+        return Inertia::render('Module/Coupon/Edit');
+    }
 }
