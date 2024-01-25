@@ -146,7 +146,7 @@ function Add() {
                         <span>Role & Permission</span>
                     </li>
                     <li className="before:content-['/'] ltr:before:mr-2 rtl:before:ml-2 text-base">
-                        <span>Permission List</span>
+                        <span>Add Permission</span>
                     </li>
                 </ul>
             </div>
@@ -250,7 +250,7 @@ function Add() {
 }
 
 Add.layout = (page) => (
-    <MainLayout children={page} title="My Tutor || Add Tutor" />
+    <MainLayout children={page} title="Luminous E-Shop || Add Permission" />
 );
 
 export default Add;

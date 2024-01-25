@@ -50,7 +50,7 @@ function Type() {
 }
 
 Type.layout = (page) => (
-    <MainLayout children={page} title="E-SHOP || Add Group Of Company" />
+    <MainLayout children={page} title="Luminous-Ecommerce || Add Product" />
 );
 
 export default Type;

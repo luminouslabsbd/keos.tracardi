@@ -195,11 +195,11 @@ function Index() {
                 <ul className="flex space-x-2 rtl:space-x-reverse">
                     <li>
                         <Link href="#" className="text-[#FF6243] hover:underline text-base">
-                            Category
+                            Blog Category
                         </Link>
                     </li>
                     <li className="before:content-['/'] ltr:before:mr-2 rtl:before:ml-2 text-base">
-                        <span>List</span>
+                        <span>Trashed</span>
                     </li>
                 </ul>
 
@@ -228,7 +228,7 @@ function Index() {
 }
 
 Index.layout = (page) => (
-    <MainLayout children={page} title="Category List || Luminous-Ecommerce" />
+    <MainLayout children={page} title="Luminous-Ecommerce || Trashed" />
 );
 
 export default Index;

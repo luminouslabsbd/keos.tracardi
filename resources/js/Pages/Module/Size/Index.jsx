@@ -257,7 +257,7 @@ function Index() {
 }
 
 Index.layout = (page) => (
-    <MainLayout children={page} title="Size List || Luminous-Ecommerce" />
+    <MainLayout children={page} title="Luminous-Ecommerce || Size" />
 );
 
 export default Index;

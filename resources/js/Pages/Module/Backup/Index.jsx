@@ -125,6 +125,6 @@ function Index() {
     );
 }
 Index.layout = (page) => (
-    <MainLayout children={page} title="E-SHOP || Group Of Company" />
+    <MainLayout children={page} title="Luminous-Ecommerce || BackUp" />
 );
 export default Index;
