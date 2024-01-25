@@ -18,7 +18,7 @@ function PhysicalEdit() {
     } = usePage().props;
 
     // console.log("All Product",product);
-    // Set Product Description 
+    // Set Product Description
     const allow_minimum_order_qty = product.physical.allow_minimum_order_qty;
     const allow_product_conditions = product.physical.allow_product_conditions;
     const allow_product_preorder = product.physical.allow_product_preorder;
@@ -93,7 +93,7 @@ function PhysicalEdit() {
         generateInputValues();
     }, [selectedColorOptions, selectedSizeOptions]);
 
-    
+
     const {
         control,
         register,
@@ -241,9 +241,9 @@ function PhysicalEdit() {
         let maxId = 0;
         maxId = items?.length
             ? items.reduce(
-                  (max, character) => (character.id > max ? character.id : max),
-                  items[0].id
-              )
+                (max, character) => (character.id > max ? character.id : max),
+                items[0].id
+            )
             : 0;
 
         setItems([...items, { id: maxId + 1, quantity: "1", discount: 0 }]);
@@ -677,20 +677,20 @@ function PhysicalEdit() {
                             {hiddenAttributesLength.length > 0 ||
                             product.variationprice.length > 0
                                 ? hiddenAttributesLength ||
-                                  product.variationprice.map((item, index) => (
-                                      <input
-                                          key={index} // Provide a unique key for each input
-                                          {...register(
-                                              `product_attribute_${index}`,
-                                              {
-                                                  required:
-                                                      "Product SKU Is required",
-                                              }
-                                          )}
-                                          type="hidden"
-                                          value={item} // Display the value from the hiddenAttributesLength array
-                                      />
-                                  ))
+                                product.variationprice.map((item, index) => (
+                                    <input
+                                        key={index}
+                                        {...register(
+                                            `product_attribute_${index}`,
+                                            {
+                                                required:
+                                                    "Product SKU Is required",
+                                            }
+                                        )}
+                                        type="hidden"
+                                        value={item}
+                                    />
+                                ))
                                 : null}
                             {attributesLength.length > 0 ||
                             product.variationprice.length > 0 ? (
@@ -919,120 +919,120 @@ function PhysicalEdit() {
                                             <div className="table-responsive">
                                                 <table>
                                                     <thead>
-                                                        <tr>
-                                                            <th>Quantity</th>
-                                                            <th>Discount</th>
-                                                            <th className="w-1"></th>
-                                                        </tr>
+                                                    <tr>
+                                                        <th>Quantity</th>
+                                                        <th>Discount</th>
+                                                        <th className="w-1"></th>
+                                                    </tr>
                                                     </thead>
                                                     <tbody>
-                                                        {items.length <= 0 && (
-                                                            <tr>
-                                                                <td
-                                                                    colSpan={5}
-                                                                    className="!text-center font-semibold"
-                                                                >
-                                                                    No Item
-                                                                    Available
+                                                    {items.length <= 0 && (
+                                                        <tr>
+                                                            <td
+                                                                colSpan={5}
+                                                                className="!text-center font-semibold"
+                                                            >
+                                                                No Item
+                                                                Available
+                                                            </td>
+                                                        </tr>
+                                                    )}
+                                                    {items.map((item) => {
+                                                        return (
+                                                            <tr
+                                                                className="align-top"
+                                                                key={
+                                                                    item.id
+                                                                }
+                                                            >
+                                                                <td>
+                                                                    <input
+                                                                        type="number"
+                                                                        className="form-input w-32"
+                                                                        placeholder="Quantity"
+                                                                        min={
+                                                                            1
+                                                                        }
+                                                                        defaultValue={
+                                                                            item.quantity
+                                                                        }
+                                                                        onChange={(
+                                                                            e
+                                                                        ) =>
+                                                                            changeQuantityDiscount(
+                                                                                "quantity",
+                                                                                e
+                                                                                    .target
+                                                                                    .value,
+                                                                                item.id
+                                                                            )
+                                                                        }
+                                                                    />
+                                                                </td>
+
+                                                                <td>
+                                                                    <input
+                                                                        type="number"
+                                                                        className="form-input w-32"
+                                                                        placeholder="Discount"
+                                                                        min={
+                                                                            0
+                                                                        }
+                                                                        value={
+                                                                            item.discount
+                                                                        }
+                                                                        onChange={(
+                                                                            e
+                                                                        ) =>
+                                                                            changeQuantityDiscount(
+                                                                                "discount",
+                                                                                e
+                                                                                    .target
+                                                                                    .value,
+                                                                                item.id
+                                                                            )
+                                                                        }
+                                                                    />
+                                                                </td>
+
+                                                                <td className="mt-2">
+                                                                    <button
+                                                                        type="button"
+                                                                        onClick={() =>
+                                                                            removeItem(
+                                                                                item
+                                                                            )
+                                                                        }
+                                                                    >
+                                                                        <svg
+                                                                            xmlns="http://www.w3.org/2000/svg"
+                                                                            width="20"
+                                                                            height="20"
+                                                                            viewBox="0 0 24 24"
+                                                                            fill="none"
+                                                                            stroke="currentColor"
+                                                                            strokeWidth="1.5"
+                                                                            strokeLinecap="round"
+                                                                            strokeLinejoin="round"
+                                                                        >
+                                                                            <line
+                                                                                x1="18"
+                                                                                y1="6"
+                                                                                x2="6"
+                                                                                y2="18"
+                                                                            ></line>
+                                                                            <line
+                                                                                x1="6"
+                                                                                y1="6"
+                                                                                x2="18"
+                                                                                y2="18"
+                                                                            ></line>
+                                                                        </svg>
+                                                                    </button>
                                                                 </td>
                                                             </tr>
-                                                        )}
-                                                        {items.map((item) => {
-                                                            return (
-                                                                <tr
-                                                                    className="align-top"
-                                                                    key={
-                                                                        item.id
-                                                                    }
-                                                                >
-                                                                    <td>
-                                                                        <input
-                                                                            type="number"
-                                                                            className="form-input w-32"
-                                                                            placeholder="Quantity"
-                                                                            min={
-                                                                                1
-                                                                            }
-                                                                            defaultValue={
-                                                                                item.quantity
-                                                                            }
-                                                                            onChange={(
-                                                                                e
-                                                                            ) =>
-                                                                                changeQuantityDiscount(
-                                                                                    "quantity",
-                                                                                    e
-                                                                                        .target
-                                                                                        .value,
-                                                                                    item.id
-                                                                                )
-                                                                            }
-                                                                        />
-                                                                    </td>
-
-                                                                    <td>
-                                                                        <input
-                                                                            type="number"
-                                                                            className="form-input w-32"
-                                                                            placeholder="Discount"
-                                                                            min={
-                                                                                0
-                                                                            }
-                                                                            value={
-                                                                                item.discount
-                                                                            }
-                                                                            onChange={(
-                                                                                e
-                                                                            ) =>
-                                                                                changeQuantityDiscount(
-                                                                                    "discount",
-                                                                                    e
-                                                                                        .target
-                                                                                        .value,
-                                                                                    item.id
-                                                                                )
-                                                                            }
-                                                                        />
-                                                                    </td>
-
-                                                                    <td className="mt-2">
-                                                                        <button
-                                                                            type="button"
-                                                                            onClick={() =>
-                                                                                removeItem(
-                                                                                    item
-                                                                                )
-                                                                            }
-                                                                        >
-                                                                            <svg
-                                                                                xmlns="http://www.w3.org/2000/svg"
-                                                                                width="20"
-                                                                                height="20"
-                                                                                viewBox="0 0 24 24"
-                                                                                fill="none"
-                                                                                stroke="currentColor"
-                                                                                strokeWidth="1.5"
-                                                                                strokeLinecap="round"
-                                                                                strokeLinejoin="round"
-                                                                            >
-                                                                                <line
-                                                                                    x1="18"
-                                                                                    y1="6"
-                                                                                    x2="6"
-                                                                                    y2="18"
-                                                                                ></line>
-                                                                                <line
-                                                                                    x1="6"
-                                                                                    y1="6"
-                                                                                    x2="18"
-                                                                                    y2="18"
-                                                                                ></line>
-                                                                            </svg>
-                                                                        </button>
-                                                                    </td>
-                                                                </tr>
-                                                            );
-                                                        })}
+                                                        );
+                                                    })}
                                                     </tbody>
                                                 </table>
                                             </div>
