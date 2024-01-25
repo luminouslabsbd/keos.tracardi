@@ -7,7 +7,6 @@ use Illuminate\Support\Facades\Session;
 
 class AuthRepository {
     protected $model;
-
     public function __construct(User $model)
     {
         $this->model=$model;
