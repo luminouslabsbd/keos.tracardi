@@ -1,22 +1,31 @@
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import MainLayout from "../../Layout/Mainlayout";
 import { Link, router, usePage } from "@inertiajs/react";
-import Select from 'react-select';
-import { useForm,Controller,useFieldArray } from "react-hook-form";
-
+import Select from "react-select";
+import { useForm, Controller, useFieldArray } from "react-hook-form";
 
 function Edit() {
-    const { base_url, errors, permissionsData , result: initialPermissions ,role} = usePage().props;
+    const {
+        base_url,
+        errors,
+        permissionsData,
+        result: initialPermissions,
+        role,
+    } = usePage().props;
     const { register, handleSubmit } = useForm();
 
     const [selectAllChecked, setSelectAllChecked] = useState(false);
     const [checkedItems, setCheckedItems] = useState({});
 
-    const totalPermissionsCount = Object.values(permissionsData)
-        .reduce((total, permissions) => total + permissions.length, 0);
+    const totalPermissionsCount = Object.values(permissionsData).reduce(
+        (total, permissions) => total + permissions.length,
+        0
+    );
 
-    const totalInitialPermissions = Object.values(initialPermissions)
-        .reduce((total, permissions) => total + permissions.length, 0);
+    const totalInitialPermissions = Object.values(initialPermissions).reduce(
+        (total, permissions) => total + permissions.length,
+        0
+    );
 
     //here
     useEffect(() => {
@@ -31,8 +40,9 @@ function Edit() {
                 let groupChecked = true;
 
                 groupItems.forEach((item) => {
-
-                    const matchingDataItem = dataItems.find((dataItem) => dataItem.name === item.name);
+                    const matchingDataItem = dataItems.find(
+                        (dataItem) => dataItem.name === item.name
+                    );
                     if (!matchingDataItem) {
                         groupChecked = false;
                     }
@@ -43,7 +53,7 @@ function Edit() {
 
             setCheckedItems(newCheckedItems);
 
-            if (totalPermissionsCount === totalInitialPermissions){
+            if (totalPermissionsCount === totalInitialPermissions) {
                 setSelectAllChecked(allItemsChecked);
             }
         }
@@ -51,11 +61,11 @@ function Edit() {
 
     //here useeffect
 
-
     const handleSelectAllCheckboxChange = () => {
         const newCheckedItems = {};
 
-        if (permissionsData) {  // Use permissionsData instead of permissions
+        if (permissionsData) {
+            // Use permissionsData instead of permissions
             Object.keys(permissionsData)?.forEach((objectName) => {
                 if (permissionsData[objectName]) {
                     permissionsData[objectName]?.forEach((item) => {
@@ -117,7 +127,6 @@ function Edit() {
         setSelectAllChecked(allItemsChecked);
     };
 
-
     const onSubmit = (data) => {
         // Access the role name
         const roleName = data.role;
@@ -138,14 +147,16 @@ function Edit() {
                 }
             });
         });
-        const permissionIds = selectedPermissions.map(permission => permission.id);
+        const permissionIds = selectedPermissions.map(
+            (permission) => permission.id
+        );
 
         const requestData = {
-            id:data.id,
+            id: data.id,
             role: data.role,
             permissionIds: permissionIds,
         };
-        console.log(requestData)
+        console.log(requestData);
 
         router.post("/admin/role-permission/update", requestData);
     };
@@ -177,12 +188,15 @@ function Edit() {
                 </div>
                 <ul className="flex items-center space-x-2 rtl:space-x-reverse">
                     <li>
-                        <Link href={`${base_url}/admin/role-permission`} className="text-[19px] text-[#ff6243] font-bold  hover:underline">
-                            Dashboard
+                        <Link
+                            href={`${base_url}/admin/role-permission`}
+                            className="text-[19px] text-[#ff6243] font-bold  hover:underline"
+                        >
+                            Role & Permission
                         </Link>
                     </li>
                     <li className="before:content-['/'] ltr:before:mr-2 rtl:before:ml-2 text-base">
-                        <span>Role & Permission</span>
+                        <span>Edit Permission</span>
                     </li>
                 </ul>
             </div>
@@ -194,7 +208,11 @@ function Edit() {
                         </h5>
                     </div>
                     <div className="mb-5">
-                        <form className="space-y-5" onSubmit={handleSubmit(onSubmit)} method="post">
+                        <form
+                            className="space-y-5"
+                            onSubmit={handleSubmit(onSubmit)}
+                            method="post"
+                        >
                             <div className="grid grid-cols-1 sm:grid-cols-1 gap-4">
                                 <input
                                     {...register("id")}
@@ -202,7 +220,12 @@ function Edit() {
                                     defaultValue={role?.id}
                                 />
                                 <div>
-                                    <label>Role Name <span className="text-[12px] text-red-700">*</span></label>
+                                    <label>
+                                        Role Name{" "}
+                                        <span className="text-[12px] text-red-700">
+                                            *
+                                        </span>
+                                    </label>
                                     <input
                                         {...register("role")}
                                         type="text"
@@ -210,10 +233,14 @@ function Edit() {
                                         className="form-input"
                                         placeholder="Enter Role Name"
                                     />
-                                    {errors.first_name && <p className="text-red-600 pt-2">{errors.first_name}</p>}
+                                    {errors.first_name && (
+                                        <p className="text-red-600 pt-2">
+                                            {errors.first_name}
+                                        </p>
+                                    )}
                                 </div>
                             </div>
-                            <hr/>
+                            <hr />
                             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                                 <div className="">
                                     <div className="space-y-2 pt-3">
@@ -224,52 +251,87 @@ function Edit() {
                                                     className="form-checkbox text-dark rounded-full"
                                                     id="selectAll"
                                                     checked={selectAllChecked}
-                                                    onChange={handleSelectAllCheckboxChange}
+                                                    onChange={
+                                                        handleSelectAllCheckboxChange
+                                                    }
                                                 />
-                                                <span>Select All Permission</span>
+                                                <span>
+                                                    Select All Permission
+                                                </span>
                                             </label>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <hr/>
-                            {Object.entries(permissionsData).map(([objectName, items]) => (
-                                <div key={objectName} className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                                    <div className="mb-5">
-                                        <h5 className="font-semibold text-lg dark:text-white-light">Group Name</h5>
-                                        <div className="space-y-2 pt-3">
-                                            <div>
-                                                <label className="inline-flex">
-                                                    <input
-                                                        type="checkbox"
-                                                        className="form-checkbox text-dark rounded-full"
-                                                        checked={checkedItems[objectName] || false}
-                                                        onChange={() => handleObjectCheckboxChange(objectName)}
-                                                    />
-                                                    <span>{objectName}</span>
-                                                </label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    {items.map((item, itemIndex) => (
-                                        <div key={itemIndex} className="mb-5">
+                            <hr />
+                            {Object.entries(permissionsData).map(
+                                ([objectName, items]) => (
+                                    <div
+                                        key={objectName}
+                                        className="grid grid-cols-1 sm:grid-cols-3 gap-4"
+                                    >
+                                        <div className="mb-5">
+                                            <h5 className="font-semibold text-lg dark:text-white-light">
+                                                Group Name
+                                            </h5>
                                             <div className="space-y-2 pt-3">
                                                 <div>
                                                     <label className="inline-flex">
                                                         <input
                                                             type="checkbox"
                                                             className="form-checkbox text-dark rounded-full"
-                                                            checked={checkedItems[item.name] || false}
-                                                            onChange={() => handleItemCheckboxChange(item.name)}
+                                                            checked={
+                                                                checkedItems[
+                                                                    objectName
+                                                                ] || false
+                                                            }
+                                                            onChange={() =>
+                                                                handleObjectCheckboxChange(
+                                                                    objectName
+                                                                )
+                                                            }
                                                         />
-                                                        <span>{item.name}</span>
+                                                        <span>
+                                                            {objectName}
+                                                        </span>
                                                     </label>
                                                 </div>
                                             </div>
                                         </div>
-                                    ))}
-                                </div>
-                            ))}
+                                        {items.map((item, itemIndex) => (
+                                            <div
+                                                key={itemIndex}
+                                                className="mb-5"
+                                            >
+                                                <div className="space-y-2 pt-3">
+                                                    <div>
+                                                        <label className="inline-flex">
+                                                            <input
+                                                                type="checkbox"
+                                                                className="form-checkbox text-dark rounded-full"
+                                                                checked={
+                                                                    checkedItems[
+                                                                        item
+                                                                            .name
+                                                                    ] || false
+                                                                }
+                                                                onChange={() =>
+                                                                    handleItemCheckboxChange(
+                                                                        item.name
+                                                                    )
+                                                                }
+                                                            />
+                                                            <span>
+                                                                {item.name}
+                                                            </span>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        ))}
+                                    </div>
+                                )
+                            )}
                             <button
                                 type="submit"
                                 className="btn btn-primary !mt-6 bg-[#ff6243] border-[#ff6243] text-base"
@@ -285,7 +347,7 @@ function Edit() {
 }
 
 Edit.layout = (page) => (
-    <MainLayout children={page} title="My Tutor || Add Tutor"/>
+    <MainLayout children={page} title="Luminous E-shop || Edit Permission" />
 );
 
 export default Edit;

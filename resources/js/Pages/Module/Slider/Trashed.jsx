@@ -180,7 +180,7 @@ function Index() {
                         </Link>
                     </li>
                     <li className="before:content-['/'] ltr:before:mr-2 rtl:before:ml-2 text-base">
-                        <span>List</span>
+                        <span>Trashed</span>
                     </li>
                 </ul>
 
@@ -190,14 +190,14 @@ function Index() {
                         method="get"
                         className="flex items-center px-7 py-2 bg-indigo-700 text-white rounded-md text-[15px] shadow-lg transition-transform transform-gpu hover:scale-105"
                     >
-                        Undo All
+                       Slider
                     </Link>
                     <Link
                         href={`${base_url}/admin/slider/permanent-delete-all`}
                         method="get"
                         className="flex items-center px-7 py-2 bg-red-600 text-white rounded-md text-[15px] shadow-lg transition-transform transform-gpu hover:scale-105"
                     >
-                        Delete All
+                       Trashed
                     </Link>
                 </div>
             </div>
@@ -209,7 +209,7 @@ function Index() {
 }
 
 Index.layout = (page) => (
-    <MainLayout children={page} title="slider Trashed List || Luminous-Ecommerce" />
+    <MainLayout children={page} title="Luminous-Ecommerce || Trashed" />
 );
 
 export default Index;

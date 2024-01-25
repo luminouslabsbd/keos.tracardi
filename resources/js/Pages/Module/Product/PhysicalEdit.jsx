@@ -16,7 +16,6 @@ function PhysicalEdit() {
         units,
         product,
     } = usePage().props;
-        console.log("🚀 ~ PhysicalEdit ~ product:", product)
 
     // console.log("All Product",product);
     // Set Product Description 
@@ -25,104 +24,69 @@ function PhysicalEdit() {
     const allow_product_preorder = product.physical.allow_product_preorder;
     // Set End
 
-   
+
     const [atributeData, setAtributeData] = useState(product.variationprice);
     const [selectedColorOptions, setSelectedColorOptions] = useState(
-        product.productcolor 
+        product.productcolor
     );
     const [selectedSizeOptions, setSelectedSizeOptions] = useState(
-        product.productsize 
+        product.productsize
     );
-    const [attributesLength, setAttributesLength] = useState(product.variationprice);
+    const [attributesLength, setAttributesLength] = useState([]);
     const [hiddenAttributesLength, setHiddenAttributesLength] = useState([]);
 
     const [IsproductVariationValue, setProductVariationValue] = useState(false);
 
     const [show, setShow] = useState(product.product_variation);
 
-    const isEqual = (obj1, obj2) => {
-        return obj1.size_id === obj2.size_id && obj1.color_id === obj2.color_id;
-    }
-
     const generateInputValues = () => {
+        const inputValues = [];
+        const hiddenValues = [];
 
+        selectedSizeOptions.forEach((sizeOption) => {
+            selectedColorOptions.forEach((colorOption) => {
+                let localColor = {
+                        label: "",
+                        value: "",
+                    },
+                    localSize = {
+                        label: "",
+                        value: "",
+                    };
 
-        var newVariations = [],
-        existingVariations = attributesLength;
-        console.log(selectedSizeOptions);
-        console.log(selectedColorOptions);
-        selectedSizeOptions.forEach(function(sizeItem) {
-            selectedColorOptions.forEach(function(colorItem) {
-            var newVariation = { 
-                size_id: undefined !== sizeItem.id ? sizeItem.id : sizeItem.value, 
-                color_id: undefined !== colorItem.id ? colorItem.id : colorItem.value,
-                price : 0,
-                qty : 1,
-                product_id : '',
-                discount : 0,
-            };
+                if (undefined !== sizeOption.label) {
+                    localSize.label = sizeOption.label;
+                } else {
+                    localSize.label = sizeOption.name;
+                }
 
-            // Check if the new variation already exists
-            if (!existingVariations.some(existing => isEqual(existing, newVariation))) {
-                newVariations.push(newVariation);
-            }
+                if (undefined !== sizeOption.value) {
+                    localSize.value = sizeOption.value;
+                } else {
+                    localSize.value = sizeOption.id;
+                }
+
+                if (undefined !== colorOption.value) {
+                    localColor.value = colorOption.value;
+                } else {
+                    localColor.value = colorOption.id;
+                }
+
+                if (undefined !== colorOption.label) {
+                    localColor.label = colorOption.label;
+                } else {
+                    localColor.label = colorOption.name;
+                }
+
+                const inputValue = `${localSize.label}/${localColor.label}`;
+                const hiddenValue = `${localSize.value}/${localColor.value}`;
+                inputValues.push(inputValue);
+                hiddenValues.push(hiddenValue);
             });
         });
-        // Filter out variations that don't exist in the updated arrays
-        existingVariations = existingVariations.filter(existing => {
-            return selectedSizeOptions.some(sizeItem => undefined !== sizeItem.id ? sizeItem.id : sizeItem.value === existing.size_id) &&
-            selectedColorOptions.some(colorItem => undefined !== colorItem.id ? colorItem.id : colorItem.value === existing.color_id);
-        });
-        let variations = existingVariations.concat(newVariations);
-        console.log(variations)
-        // return existingVariations.concat(newVariations);
-        setAttributesLength(variations);
-        // const inputValues = [];
-        // const hiddenValues = [];
-     
-        // console.log(attributesLength);
-        // selectedSizeOptions.forEach((sizeOption) => {
-        //     selectedColorOptions.forEach((colorOption) => {
-        //         let localColor = {
-        //                 label: "",
-        //                 value: "",
-        //             },
-        //             localSize = {
-        //                 label: "",
-        //                 value: "",
-        //             };
 
-        //         if (undefined !== sizeOption.label) {
-        //             localSize.label = sizeOption.label;
-        //         } else {
-        //             localSize.label = sizeOption.name;
-        //         }
-
-        //         if (undefined !== sizeOption.value) {
-        //             localSize.value = sizeOption.value;
-        //         } else {
-        //             localSize.value = sizeOption.id;
-        //         }
-
-        //         if (undefined !== colorOption.value) {
-        //             localColor.value = colorOption.value;
-        //         } else {
-        //             localColor.value = colorOption.id;
-        //         }
-
-        //         if (undefined !== colorOption.label) {
-        //             localColor.label = colorOption.label;
-        //         } else {
-        //             localColor.label = colorOption.name;
-        //         }
-
-        //         const inputValue = `${localSize.label}/${localColor.label}`;
-        //         const hiddenValue = `${localSize.value}/${localColor.value}`;
-        //         inputValues.push(inputValue);
-        //         hiddenValues.push(hiddenValue);
-        //     });
-        // });
-        // setHiddenAttributesLength(hiddenValues);
+        setAtributeData(inputValues);
+        setHiddenAttributesLength(hiddenValues);
     };
 
     useEffect(() => {
@@ -310,7 +274,7 @@ function PhysicalEdit() {
             items: total_items,
         };
         // router.post("/admin/product/physical/store", newData);
-       
+        console.log(newData);
     }
     const defultColor = product?.productcolor?.map((data) => ({
         value: data?.id,
@@ -737,7 +701,7 @@ function PhysicalEdit() {
                                         </h5>
                                     </div>
                                     <div className="mb-5 space-y-5 relative">
-                                        {attributesLength.map((item, index) => (
+                                        {atributeData.map((item, index) => (
                                             <div
                                                 key={index}
                                                 className="grid grid-cols-1 sm:grid-cols-4 gap-4"
@@ -753,14 +717,9 @@ function PhysicalEdit() {
                                                     <input
                                                         type="text"
                                                         className="form-input"
-                                                        value={
-                                                            selectedSizeOptions.find(sitem => sitem.id === item.size_id || sitem.value === item.size_id)?.label+ '/' +
-                                                            selectedColorOptions.find(cItem => undefined !== cItem.id ? cItem.id : cItem.value === item.color_id)?.label
-                                                        } // Set the value here
+                                                        value={item} // Set the value here
                                                     />
-                                                    {console.log(selectedColorOptions)} {console.log(item.color_id)}
                                                 </div>
-                                            
                                                 <div>
                                                     <label>
                                                         {" "}
@@ -779,10 +738,10 @@ function PhysicalEdit() {
                                                         )}
                                                         type="number"
                                                         className="form-input"
-                                                        value={item.price}
-                                                        // defaultValue={
-                                                        //     item.price
-                                                        // }
+                                                        // value={item.price}
+                                                        defaultValue={
+                                                            item.price
+                                                        }
                                                         placeholder="10$"
                                                     />
                                                 </div>
@@ -834,7 +793,6 @@ function PhysicalEdit() {
                                                         placeholder="8%"
                                                     />
                                                 </div>
-                                                
                                             </div>
                                         ))}
                                     </div>
@@ -1190,7 +1148,7 @@ function PhysicalEdit() {
 }
 
 PhysicalEdit.layout = (page) => (
-    <MainLayout children={page} title="E-SHOP || Add Group Of Company" />
+    <MainLayout children={page} title="Luminous-Ecommerce || Edit" />
 );
 
 export default PhysicalEdit;

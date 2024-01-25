@@ -180,7 +180,7 @@ function Index() {
                         </Link>
                     </li>
                     <li className="before:content-['/'] ltr:before:mr-2 rtl:before:ml-2 text-base">
-                        <span>List</span>
+                        <span>Trashed</span>
                     </li>
                 </ul>
 
@@ -209,7 +209,7 @@ function Index() {
 }
 
 Index.layout = (page) => (
-    <MainLayout children={page} title="Unit Trashed List || Luminous-Ecommerce" />
+    <MainLayout children={page} title="Luminous-Ecommerce || Trashed Unit" />
 );
 
 export default Index;

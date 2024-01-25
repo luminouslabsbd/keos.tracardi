@@ -82,6 +82,6 @@ function Index() {
     );
 }
 
-Index.layout = (page) => <MainLayout children={page} title="E-SHOP || Admin Dashboard" />;
+Index.layout = (page) => <MainLayout children={page} title="Luminous-Ecommerce || Extra" />;
 
 export default Index;
