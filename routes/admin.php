@@ -21,6 +21,7 @@ use App\Http\Controllers\Admin\RolesController;
 use App\Http\Controllers\Admin\AdminProfileController;
 use App\Http\Controllers\Admin\SizeController;
 use App\Http\Controllers\Admin\SliderController;
+use App\Http\Controllers\Admin\SocialLinkController;
 use App\Http\Controllers\Admin\UnitController;
 use App\Http\Controllers\Admin\UsersController;
 use Illuminate\Support\Facades\Route;
@@ -334,6 +335,12 @@ Route::group(['middleware' => ['auth:admin'],'as' =>'admin.'],function() {
         Route::get('delete/{file}', [ExtraController::class, 'backupDelete'])->name('backup.delete');
         Route::get('download/{file}', [ExtraController::class, 'backupDownload'])->name('backup.download');
 
+    });
+
+    // social links
+    Route::group(['prefix' => 'social-link'],function (){
+        Route::get('get-social-link-data', [SocialLinkController::class, 'socialLinkData'])->name('social-link.data');
+        Route::post('/update-social-link', [SocialLinkController::class, 'updateSocialLink'])->name('social-link.update_link');
     });
 
 });
