@@ -14,7 +14,8 @@ function Physical() {
     const [attributesLength, setAttributesLength] = useState([]);
     const [hiddenAttributesLength, setHiddenAttributesLength] = useState([]);
     const [IsproductVariationValue, setProductVariationValue] = useState(false);
-
+    console.log("🚀 ~ Physical ~ IsproductVariationValue:", IsproductVariationValue)
+    console.log(hiddenAttributesLength)
 
     useEffect(() => {
         const generateInputValues = () => {
