@@ -5,31 +5,31 @@ import { Link, router, usePage } from "@inertiajs/react";
 import Select from 'react-select';
 import { useForm, Controller } from "react-hook-form";
 function Add() {
-    const { categories } = usePage().props;
-    const { control, register, handleSubmit, setValue, reset, formState: { errors } } = useForm();
-    const options = categories.map((item) => ({
-        value: item?.id,
-        label: item?.name ? `${item.name}` : '',
-    }));
+    // const { categories } = usePage().props;
+    // const { control, register, handleSubmit, setValue, reset, formState: { errors } } = useForm();
+    // const options = categories.map((item) => ({
+    //     value: item?.id,
+    //     label: item?.name ? `${item.name}` : '',
+    // }));
 
-    const handleSelectChange = (selectedOption) => {
-        setValue('parent_id', selectedOption?.value);
-    };
-    const [selectedImage, setSelectedImage] = useState(null);
-    const handleImageChange = (e) => {
-        const file = e.target.files[0];
-        if (file) {
-            setSelectedImage(URL.createObjectURL(file));
-        }
-    };
-    function handleDeleteImage() {
-        setSelectedImage(null);
-        reset({ thumbnail: '' });
-    }
-    function onSubmit(data) {
-        // console.log(data);
-        router.post("/admin/category/store", data);
-    }
+    // const handleSelectChange = (selectedOption) => {
+    //     setValue('parent_id', selectedOption?.value);
+    // };
+    // const [selectedImage, setSelectedImage] = useState(null);
+    // const handleImageChange = (e) => {
+    //     const file = e.target.files[0];
+    //     if (file) {
+    //         setSelectedImage(URL.createObjectURL(file));
+    //     }
+    // };
+    // function handleDeleteImage() {
+    //     setSelectedImage(null);
+    //     reset({ thumbnail: '' });
+    // }
+    // function onSubmit(data) {
+    //     // console.log(data);
+    //     router.post("/admin/category/store", data);
+    // }
     return (
         <>
             <div className="panel flex items-center overflow-x-auto whitespace-nowrap p-3 ">

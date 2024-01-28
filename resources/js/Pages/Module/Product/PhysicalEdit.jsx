@@ -17,7 +17,9 @@ function PhysicalEdit() {
         product,
     } = usePage().props;
 
+
     // console.log("All Product",product);
+    console.log(product.productcolor)
     // Set Product Description 
     const allow_minimum_order_qty = product.physical.allow_minimum_order_qty;
     const allow_product_conditions = product.physical.allow_product_conditions;
@@ -85,7 +87,7 @@ function PhysicalEdit() {
             });
         });
 
-        setAtributeData(inputValues);
+        // setAtributeData(inputValues);
         setHiddenAttributesLength(hiddenValues);
     };
 
@@ -676,7 +678,7 @@ function PhysicalEdit() {
                         <>
                             {hiddenAttributesLength.length > 0 ||
                             product.variationprice.length > 0
-                                ? hiddenAttributesLength ||
+                                ? 
                                   product.variationprice.map((item, index) => (
                                       <input
                                           key={index} // Provide a unique key for each input
@@ -687,8 +689,8 @@ function PhysicalEdit() {
                                                       "Product SKU Is required",
                                               }
                                           )}
-                                          type="hidden"
-                                          value={item} // Display the value from the hiddenAttributesLength array
+                                          type="text"
+                                          value={item.color_id +"/"+ item.size_id} // Display the value from the hiddenAttributesLength array
                                       />
                                   ))
                                 : null}
@@ -702,7 +704,9 @@ function PhysicalEdit() {
                                     </div>
                                     <div className="mb-5 space-y-5 relative">
                                         {atributeData.map((item, index) => (
-                                            <div
+                                           {
+                                            if(){
+                                                <div
                                                 key={index}
                                                 className="grid grid-cols-1 sm:grid-cols-4 gap-4"
                                             >
@@ -717,9 +721,10 @@ function PhysicalEdit() {
                                                     <input
                                                         type="text"
                                                         className="form-input"
-                                                        value={item} // Set the value here
+                                                        value={"bb"} // Set the value here
                                                     />
                                                 </div>
+                                                {console.log(item)}
                                                 <div>
                                                     <label>
                                                         {" "}
@@ -794,6 +799,9 @@ function PhysicalEdit() {
                                                     />
                                                 </div>
                                             </div>
+                                            }
+                                           }
+                                          
                                         ))}
                                     </div>
                                 </div>

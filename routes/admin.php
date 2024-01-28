@@ -24,6 +24,8 @@ use App\Http\Controllers\Admin\SliderController;
 use App\Http\Controllers\Admin\UnitController;
 use App\Http\Controllers\Admin\UsersController;
 use App\Http\Controllers\Admin\CouponController;
+use App\Http\Controllers\Admin\TaxController;
+
 
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -232,6 +234,14 @@ Route::group(['middleware' => ['auth:admin'],'as' =>'admin.'],function() {
         Route::get('/edit/{id}', [CouponController::class, 'edit'])->name('coupon.edit');
     });
     //end coupons
+
+    //tax
+    Route::group(['prefix' => 'tax' ],function (){
+        Route::get('create', [TaxController::class, 'create'])->name('tax.create');
+        Route::get('/edit/{id}', [TaxController::class, 'edit'])->name('tax.edit');
+    });
+    //end tax
+
      //Blog Category
      Route::group(['prefix' => 'blog-category' ],function (){
          Route::get('', [BlogCategoryController::class, 'index'])->name('blog-category');
