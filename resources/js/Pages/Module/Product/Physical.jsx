@@ -31,14 +31,14 @@ function Physical() {
                     hiddenValues.push(hiddenValue);
                 });
             });
-            
+
             setAttributesLength(inputValues);
             setHiddenAttributesLength(hiddenValues);
         };
 
         generateInputValues();
     }, [selectedColorOptions, selectedSizeOptions]);
-    
+
 
     const {
         control,
