@@ -62,9 +62,16 @@ function Index() {
 
         router.post("/admin/social-link/update-social-link", data);
     } 
-    // For Logo Image Handle
-    const [selectedImage, setSelectedImage] = useState(result?.thumbnail ? `/storage/brand/${result?.thumbnail}` : '/assets/images/user-profile.jpeg');
-    const handleImageChange = (e) => {
+
+  function websiteLogoSubmit(data){
+    console.log(data)
+  }
+
+
+    // For Header Logo Image Handle
+    const [isSvgShow, setSvgShow] = useState(true);
+    const [selectedImage, setSelectedImage] = useState(result?.headerLogo ? `/storage/brand/${result?.headerLogo}` : '/assets/images/user-profile.jpeg');
+    const handleHeaderLogoChange = (e) => {
         const file = e.target.files[0];
         if (file) {
             setSelectedImage(URL.createObjectURL(file));
@@ -72,9 +79,45 @@ function Index() {
     };
     function handleDeleteImage() {
         setSelectedImage(null);
-        reset({ thumbnail: '' });
+        reset({ headerLogo: '' });
     }
-    // For Logo Image Handle end   
+    // For Header Logo Image Handle end
+
+
+
+
+
+    // Footer Logo Image Handle 
+    const [footerImage ,  setFooterImage] = useState(result?.footerLogo ? `/storage/brand/${result?.footerLogo}` : '/assets/images/user-profile.jpeg');
+    const handleFooterLogoChange = (e) => {
+        const file = e.target.files[0];
+        if (file) {
+            setFooterImage(URL.createObjectURL(file));
+        }
+    };
+
+    function handleFooterDeleteImage() {
+        setFooterImage(null);
+        reset({ footerLogo: '' });
+    }
+    // Footer Logo Image Handle End
+
+    
+     // Invoice Logo Image Handle 
+     const [invoiceImage ,  setInvoiceImage] = useState(result?.invoiceLogo ? `/storage/brand/${result?.invoiceLogo}` : '/assets/images/user-profile.jpeg');
+     const handleInvoiceLogoChange = (e) => {
+         const file = e.target.files[0];
+         if (file) {
+            setInvoiceImage(URL.createObjectURL(file));
+         }
+     };
+ 
+     function handleInvoiceDeleteImage() {
+        setInvoiceImage(null);
+         reset({ invoiceLogo: '' });
+     }
+     // Invoice Logo Image Handle End
+
     return (
         <div>
             <div className="flex gap-5 relative sm:h-[calc(100vh_-_150px)] h-full">
@@ -87,7 +130,7 @@ function Index() {
                             <div className="space-y-1">
                                 <button
                                     type="button"
-                                    className={`w-full flex justify-between items-center p-2 hover:bg-white-dark/10 rounded-md dark:hover:text-primary hover:text-primary dark:hover:bg-[#181F32] font-medium h-10 ${selectedTab === 'inbox' ? 'bg-gray-100 dark:text-primary text-primary dark:bg-[#181F32]' : ''
+                                    className={`w-full flex justify-between items-center p-2 hover:bg-white-dark/10 rounded-md dark:hover:text-[#FF6243] hover:text-[#FF6243] dark:hover:bg-[#181F32] font-medium h-10 ${selectedTab === 'inbox' ? 'bg-gray-100 dark:text-[#FF6243] text-[#FF6243] dark:bg-[#181F32]' : ''
                                         }`}
                                     onClick={() => {
                                         setSelectedTab('inbox');
@@ -118,7 +161,7 @@ function Index() {
 
                                 <button
                                     type="button"
-                                    className={`w-full flex justify-between items-center p-2 hover:bg-white-dark/10 rounded-md dark:hover:text-primary hover:text-primary dark:hover:bg-[#181F32] font-medium h-10 ${selectedTab === 'social_link' ? 'bg-gray-100 dark:text-primary text-primary dark:bg-[#181F32]' : ''
+                                    className={`w-full flex justify-between items-center p-2 hover:bg-white-dark/10 rounded-md dark:hover:text-[#FF6243] hover:text-[#FF6243] dark:hover:bg-[#181F32] font-medium h-10 ${selectedTab === 'social_link' ? 'bg-gray-100 dark:text-[#FF6243] text-[#FF6243] dark:bg-[#181F32]' : ''
                                         }`}
                                         onClick={getSocialLink}
                                     // onClick={() => {
@@ -145,7 +188,7 @@ function Index() {
                                 {/* Testing Pourpose for Logo */}
                                 <button
                                     type="button"
-                                    className={`w-full flex justify-between items-center p-2 hover:bg-white-dark/10 rounded-md dark:hover:text-primary hover:text-primary dark:hover:bg-[#181F32] font-medium h-10 ${selectedTab === 'logo' ? 'bg-gray-100 dark:text-primary text-primary dark:bg-[#181F32]' : ''
+                                    className={`w-full flex justify-between items-center p-2 hover:bg-white-dark/10 rounded-md dark:hover:text-[#FF6243] hover:text-[#FF6243] dark:hover:bg-[#181F32] font-medium h-10 ${selectedTab === 'logo' ? 'bg-gray-100 dark:text-[#FF6243] text-[#FF6243] dark:bg-[#181F32]' : ''
                                         }`}
                                        
                                     onClick={() => {
@@ -293,7 +336,7 @@ function Index() {
                                                 </div>
                                                 <button
                                                     type="submit"
-                                                    className="btn btn-primary !mt-6"
+                                                    className="btn btn-primary !mt-6 border border-solid border-[#FF6243] bg-[#FF6243]"
                                                 >
                                                     Submit
                                                 </button>
@@ -423,7 +466,7 @@ function Index() {
                                             </div>
                                             <button
                                                 type="submit"
-                                                className="btn btn-primary !mt-6"
+                                                className="btn btn-primary !mt-6 border border-solid border-[#FF6243] bg-[#FF6243]"
                                             >
                                                 Submit
                                             </button>
@@ -443,52 +486,124 @@ function Index() {
                                         </h5>
                                     </div>
 
-                                    <form className="space-y-5" onSubmit={handleSubmit("")} method="post">
+                                    <form className="space-y-5" onSubmit={handleSubmit(websiteLogoSubmit)} method="post">
                                         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                                            
-                                            
+                                       {/* Header Logo */}      
                                             <div className="panel" id="forms_grid">
-
-
-                                               
+                                
                                                 <div>
-                                                    <label className="text-xl">Header Logo</label>
+                                                    <label className="text-xl font-semibold mb-6 ">Header Logo</label>
 
                                                         <>
-                                    { selectedImage && (
-                                        <div style={{ position: 'relative' }}>
-                                            <img className="rounded-lg max-w-[100px]" src={selectedImage} alt="Selected Avatar" />
-                                            {result?.thumbnail && isSvgShow && (
-                                                <span
-                                                    onClick={handleDeleteImage}
-                                                    className="absolute top-[-15px] left-[23%] bg-white text-red-700 rounded-full p-1 shadow-[0_10px_20px_-10px_rgba(67,97,238,0.44)]"
-                                                >
-                                                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-6 h-6">
-                                                        <circle opacity="0.5" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="1.5"></circle>
-                                                        <path d="M14.5 9.50002L9.5 14.5M9.49998 9.5L14.5 14.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"></path>
-                                                    </svg>
-                                                </span>
-                                            )}
-                                        </div>
-                                    )}
+                                                        { selectedImage && (
+                                                            <div style={{ position: 'relative',
+                                                             left: "10px"
+                                                            }}>
+                                                                <img className="rounded-lg max-w-[100px]" src={selectedImage} alt="Selected Avatar" />
+                                                                {isSvgShow && (
+                                                                    <span
+                                                                        onClick={handleDeleteImage}
+                                                                        className="absolute top-[-15px] left-[23%] bg-white text-red-700 rounded-full p-1 shadow-[0_10px_20px_-10px_rgba(67,97,238,0.44)]"
+                                                                    >
+                                                                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-6 h-6">
+                                                                            <circle opacity="0.5" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="1.5"></circle>
+                                                                            <path d="M14.5 9.50002L9.5 14.5M9.49998 9.5L14.5 14.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"></path>
+                                                                        </svg>
+                                                                    </span>
+                                                                )}
+                                                            </div>
+                                                        )}
 
-                                </>
+                                                        </>
                                                     <input
                                                         type="file"
-                                                        className="form-input"
+                                                        className="form-input mt-6"
                                                         {...register("headerLogo")}
-                                                        onChange={handleImageChange}
+                                                        onChange={handleHeaderLogoChange}
                                                     />
                                                 </div>
-
+                                              
                                               </div>
+                                              {/* Header logo End */}
 
-                                           
+                                          {/* Footer Logo */}
+                                            <div className="panel" id="forms_grid" >  
+                                                <div>
+                                                    <label className="text-xl font-semibold mb-6 ">Footer Logo</label>
+
+                                                        <>
+                                                        { footerImage && (
+                                                            <div style={{ position: 'relative',
+                                                             left: "10px"
+                                                            }}>
+                                                                <img className="rounded-lg max-w-[100px]" src={footerImage} alt="Selected Avatar" />
+                                                                {isSvgShow && (
+                                                                    <span
+                                                                        onClick={handleFooterDeleteImage}
+                                                                        className="absolute top-[-15px] left-[23%] bg-white text-red-700 rounded-full p-1 shadow-[0_10px_20px_-10px_rgba(67,97,238,0.44)]"
+                                                                    >
+                                                                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-6 h-6">
+                                                                            <circle opacity="0.5" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="1.5"></circle>
+                                                                            <path d="M14.5 9.50002L9.5 14.5M9.49998 9.5L14.5 14.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"></path>
+                                                                        </svg>
+                                                                    </span>
+                                                                )}
+                                                            </div>
+                                                        )}
+
+                                                        </>
+                                                    <input
+                                                        type="file"
+                                                        className="form-input mt-6"
+                                                        {...register("footerLogo")}
+                                                        onChange={handleFooterLogoChange}
+                                                    />
+                                                </div>                                              
+                                           </div>    
+                                          {/* Footer Logo End */}
+
+                                           {/* invoiceLogo */}
+                                           <div className="panel" id="forms_grid">                                                                         
+                                                <div>
+                                                    <label className="text-xl font-semibold mb-6 ">Invoice Logo</label>
+
+                                                        <>
+                                                        { invoiceImage && (
+                                                            <div style={{ position: 'relative',
+                                                             left: "10px"
+                                                            }}>
+                                                                <img className="rounded-lg max-w-[100px]" src={invoiceImage} alt="Selected Avatar" />
+                                                                {isSvgShow && (
+                                                                    <span
+                                                                        onClick={handleInvoiceDeleteImage}
+                                                                        className="absolute top-[-15px] left-[23%] bg-white text-red-700 rounded-full p-1 shadow-[0_10px_20px_-10px_rgba(67,97,238,0.44)]"
+                                                                    >
+                                                                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-6 h-6">
+                                                                            <circle opacity="0.5" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="1.5"></circle>
+                                                                            <path d="M14.5 9.50002L9.5 14.5M9.49998 9.5L14.5 14.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"></path>
+                                                                        </svg>
+                                                                    </span>
+                                                                )}
+                                                            </div>
+                                                        )}
+
+                                                        </>
+                                                    <input
+                                                        type="file"
+                                                        className="form-input mt-6"
+                                                        {...register("invoiceLogo")}
+                                                        onChange={handleInvoiceLogoChange}
+                                                    />
+                                                </div>                                            
+                                           </div>
+                                         {/* invoiceLogo End */}
+                                              
                                         </div>
 
                                         <button
                                             type="submit"
-                                            className="btn btn-primary !mt-6"
+                                            className="btn btn-primary !mt-6 border border-solid border-[#FF6243] bg-[#FF6243]"
                                         >
                                             Submit
                                         </button>
