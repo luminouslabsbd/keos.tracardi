@@ -5,35 +5,35 @@ import { Link, router, usePage } from "@inertiajs/react";
 import Select from 'react-select';
 import { useForm, Controller } from "react-hook-form";
 function Add() {
-    // const { categories } = usePage().props;
-    // const { control, register, handleSubmit, setValue, reset, formState: { errors } } = useForm();
-    // const options = categories.map((item) => ({
-    //     value: item?.id,
-    //     label: item?.name ? `${item.name}` : '',
-    // }));
 
-    // const handleSelectChange = (selectedOption) => {
-    //     setValue('parent_id', selectedOption?.value);
-    // };
-    // const [selectedImage, setSelectedImage] = useState(null);
-    // const handleImageChange = (e) => {
-    //     const file = e.target.files[0];
-    //     if (file) {
-    //         setSelectedImage(URL.createObjectURL(file));
-    //     }
-    // };
-    // function handleDeleteImage() {
-    //     setSelectedImage(null);
-    //     reset({ thumbnail: '' });
-    // }
-    // function onSubmit(data) {
-    //     // console.log(data);
-    //     router.post("/admin/category/store", data);
-    // }
+    //   Declearing State
+const [IsproductVariationValue, setProductVariationValue] = useState(false);
+// End Of the State 
+
+const productVariationValue = (event) => {
+    const value = event.target.value;
+    if (value === "1") {
+        setProductVariationValue(false);
+    }
+    if (value === "2") {
+        setProductVariationValue(true);
+    }
+};
+
+
+
+
+    // const { categories } = usePage().props;
+    const { control, register, handleSubmit, setValue, reset, formState: { errors } } = useForm();
+
+    function onSubmit(data) {
+        console.log(data);
+        // router.post("/admin/category/store", data);
+    }
     return (
         <>
             <div className="panel flex items-center overflow-x-auto whitespace-nowrap p-3 ">
-                <div className="rounded-full bg-primary p-1.5 text-white ring-2 ring-primary/30 ltr:mr-3 rtl:ml-3">
+                <div  className="rounded-full bg-[#FF6243] p-1.5 text-white ring-2 ring-primary/30 ltr:mr-3 rtl:ml-3">
                     <svg
                         width="24"
                         height="24"
@@ -56,14 +56,14 @@ function Add() {
                         />
                     </svg>
                 </div>
-                <ul className="flex space-x-2 rtl:space-x-reverse">
+                <ul className="flex space-x-2 rtl:space-x-reverse items-center">
                     <li>
-                        <Link href="#" className="text-primary hover:underline">
-                            Category
+                        <Link href="#" className="text-[#FF6243] hover:underline text-base">
+                            Dashboard
                         </Link>
                     </li>
                     <li className="before:content-['/'] ltr:before:mr-2 rtl:before:ml-2">
-                        <span>Add</span>
+                        <span>Tax</span>
                     </li>
                 </ul>
             </div>
@@ -71,117 +71,96 @@ function Add() {
                 <div className="panel" id="forms_grid">
                     <div className="flex items-center justify-between mb-5">
                         <h5 className="font-semibold text-lg dark:text-white-light">
-                            Category Add Form
+                           Tax Add From
                         </h5>
                     </div>
                     <div className="mb-5">
                         <form className="space-y-5" onSubmit={handleSubmit(onSubmit)} method="post">
-                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                                <div>
-                                    <label> Name <span className="text-danger">*</span> </label>
-                                    <input
-                                        {...register("name", { required: "Category Name Is required" })}
-                                        type="text"
-                                        className="form-input"
-                                        placeholder="Enter Category Name"
-                                    />
-                                    {errors.name && <p className="text-red-600 pt-2">{errors.name.message}</p>}
-                                </div>
-                                <div>
-                                    <div className="flex gap-2">
-                                        <label>Slug</label>
-                                        <span>
-                                            <Tippy content="Leave the name field blank, and the slug will auto-generate." className="bg-black text-white p-5 rounded-lg dark:bg-[#2e3249] dark:text-white">
+                            <div className="grid grid-cols-1 sm:grid-cols-1 gap-4">
+                               
+                             <div className="grid grid-cols-3 gap-6">
 
-                                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
-                                                    xmlns="http://www.w3.org/2000/svg">
-                                                    <circle opacity="0.5" cx="12" cy="12" r="10"
-                                                        stroke="currentColor" strokeWidth="1.5" />
-                                                    <path
-                                                        d="M10.125 8.875C10.125 7.83947 10.9645 7 12 7C13.0355 7 13.875 7.83947 13.875 8.875C13.875 9.56245 13.505 10.1635 12.9534 10.4899C12.478 10.7711 12 11.1977 12 11.75V13"
-                                                        stroke="currentColor"
-                                                        strokeWidth="1.5"
-                                                        strokeLinecap="round"
-                                                    />
-                                                    <circle cx="12" cy="16" r="1" fill="currentColor" />
-                                                </svg>
-
-                                            </Tippy>
-                                        </span>
+                                    <div>
+                                        <label> Name <span className="text-danger">*</span> </label>
+                                        <input
+                                            {...register("name", { required: "Category Name Is required" })}
+                                            type="text"
+                                            className="form-input"
+                                            placeholder="Enter Tax Name"
+                                        />
+                                        {errors.name && <p className="text-red-600 pt-2">{errors.name.message}</p>}
                                     </div>
 
-                                    <input
-                                        {...register("slug")}
-                                        type="text"
-                                        className="form-input"
-                                        placeholder="Enter Category Slug"
-                                    />
-                                </div>
-                            </div>
-                            <div className="grid grid-cols-1 md:grid-cols-4 gap-5">
-                                <div className="md:col-span-2">
-                                    <label>Parent Category</label>
-                                    <Controller
-                                        control={control}
-                                        name="parent_id"
-                                        render={({ field }) => (
-                                            <Select
-                                                placeholder="Select an option"
-                                                options={options}
-                                                value={options.find((option) => option.value === field.value)}
-                                                onChange={handleSelectChange}
-                                            />
+                                    <div className="items-center mb-7">
+                                        <label>Select Tax Type<span className="text-danger">*</span></label>
+
+                                        <select
+                                            className="form-select text-white-dark"
+                                            {...register("product_variation")}
+                                            onChange={productVariationValue}
+                                        >
+                                            <option value="1">Amount</option>
+                                            <option value="2">Parcentage</option>
+                                        </select>
+                                        {errors?.product_variation && (
+                                            <p className="text-red-600 pt-2">
+                                                {errors?.product_variation}
+                                            </p>
                                         )}
-                                    />
-                                </div>
-                                <div>
-                                    <label>Thumbnail</label>
-                                    <input
-                                        type="file"
-                                        className="form-input"
-                                        {...register("thumbnail")}
-                                        onChange={handleImageChange}
-                                    />
-                                </div>
-                                <>
-                                    {selectedImage && (
-                                        <div style={{ position: 'relative' }}>
-                                            <img className="rounded-lg max-w-[100px]" src={selectedImage} alt="Selected Avatar" />
-                                            <span
-                                                onClick={handleDeleteImage}
-                                                className="absolute top-[-15px] left-[23%] bg-white text-red-700 rounded-full p-1 shadow-[0_10px_20px_-10px_rgba(67,97,238,0.44)]"
-                                            >
-                                                <svg
-                                                    width="40"
-                                                    height="40"
-                                                    viewBox="0 0 24 24"
-                                                    fill="none"
-                                                    xmlns="http://www.w3.org/2000/svg"
-                                                    className="w-6 h-6"
-                                                >
-                                                    <circle
-                                                        opacity="0.5"
-                                                        cx="12"
-                                                        cy="12"
-                                                        r="10"
-                                                        stroke="currentColor"
-                                                        strokeWidth="1.5"
-                                                    ></circle>
-                                                    <path
-                                                        d="M14.5 9.50002L9.5 14.5M9.49998 9.5L14.5 14.5"
-                                                        stroke="currentColor"
-                                                        strokeWidth="1.5"
-                                                        strokeLinecap="round"
-                                                    ></path>
-                                                </svg>
-                                            </span>
-                                        </div>
+                                    </div>
+
+                                    {IsproductVariationValue === true ? (
+                                        <>
+                                                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                                    <div className="md:col-span-2">
+                                                        <label>Parcentage<span className="text-red-600 ">*</span></label>
+                                                        <input
+                                                           {...register(
+                                                            "parcentage",
+                                                            {
+                                                                required:
+                                                                    "parcentage Is required",
+                                                            }
+                                                        )}
+                                                        type="text"
+                                                        className="form-input"
+                                                        placeholder="Enter Parcentage"
+
+                                                        />
+                                                    </div>
+                                                </div>
+                                        </>
+                                    ) : (
+                                        <>
+                                               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                                    <div className="md:col-span-2">
+                                                        <label>Amount<span className="text-danger">*</span></label>
+                                                        <div className="flex items-center gap-2">
+                                                            <input
+                                                                {...register(
+                                                                    "amount",
+                                                                    {
+                                                                        required:
+                                                                            "amount Is required",
+                                                                    }
+                                                                )}
+                                                                type="Text"
+                                                                className="form-input"
+                                                                placeholder="Enter Amount"
+                                                            />
+                                                        </div>
+                                                    </div>                               
+                                                </div>
+                                        </>
                                     )}
-                                </>
+                                            
+                             </div>                     
+                               
                             </div>
+                          
                             <button
                                 type="submit"
-                                className="btn btn-primary !mt-6"
+                                className="btn btn-primary border border-solid border-[#FF6243] bg-[#FF6243] !mt-6"
                             >
                                 Submit
                             </button>

@@ -26,6 +26,10 @@ function PhysicalEdit() {
     const allow_product_preorder = product.physical.allow_product_preorder;
     // Set End
 
+    
+    //This State For Compareing Product Attribute
+     const [comparingData, setComparingData] = useState([])
+    //This State For Compareing Product Attribute End Comment
 
     const [atributeData, setAtributeData] = useState(product.variationprice);
     const [selectedColorOptions, setSelectedColorOptions] = useState(
@@ -704,8 +708,7 @@ function PhysicalEdit() {
                                     </div>
                                     <div className="mb-5 space-y-5 relative">
                                         {atributeData.map((item, index) => (
-                                           {
-                                            if(){
+                                         
                                                 <div
                                                 key={index}
                                                 className="grid grid-cols-1 sm:grid-cols-4 gap-4"
@@ -721,7 +724,7 @@ function PhysicalEdit() {
                                                     <input
                                                         type="text"
                                                         className="form-input"
-                                                        value={"bb"} // Set the value here
+                                                        value={item} // Set the value here
                                                     />
                                                 </div>
                                                 {console.log(item)}
@@ -799,8 +802,7 @@ function PhysicalEdit() {
                                                     />
                                                 </div>
                                             </div>
-                                            }
-                                           }
+                                          
                                         ))}
                                     </div>
                                 </div>

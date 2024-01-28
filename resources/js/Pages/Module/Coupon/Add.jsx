@@ -97,7 +97,7 @@ const productVariationValue = (event) => {
                                     </label>
                                     <input
                                         {...register("coupon_code", {
-                                            required: "Color Name Is required",
+                                            required: "Coupon Code Is required",
                                         })}
                                         type="text"
                                         className="form-input"
@@ -105,7 +105,7 @@ const productVariationValue = (event) => {
                                     />
                                     {errors.name && (
                                         <p className="text-red-600 pt-2">
-                                            {errors.name.message}
+                                            {errors.coupon_code.message}
                                         </p>
                                     )}
                                 </div>
@@ -119,7 +119,7 @@ const productVariationValue = (event) => {
                                     </label>
                                     <input
                                         {...register("start_date", {
-                                            required: "Color Name Is required",
+                                            required: "Date required",
                                         })}
                                         type="date"
                                         className="form-input"
@@ -140,7 +140,7 @@ const productVariationValue = (event) => {
                                     </label>
                                     <input
                                         {...register("end_date", {
-                                            required: "Color Name Is required",
+                                            required: "End Date Is required",
                                         })}
                                         type="date"
                                         className="form-input"
@@ -156,11 +156,7 @@ const productVariationValue = (event) => {
                                
                     <div className="pt-5 grid grid-cols-1 lg:grid-cols-2 gap-6">
                     <div className="panel">
-                        <div className="flex items-center justify-between mb-5">
-                            <h5 className="font-semibold text-lg dark:text-white-light">
-                                Basic
-                            </h5>
-                        </div>
+                      
                         <div className="mb-5 space-y-5 relative">
                             <div className="grid grid-cols-1  gap-4">
                             <div>
@@ -168,7 +164,26 @@ const productVariationValue = (event) => {
 
                                     <select
                                         className="form-select text-white-dark"
-                                        {...register("product_variation")}
+                                        {...register("coupon_variation")}
+                                        // onChange={productVariationValue}
+                                    >
+                                        <option value="1">indivisual</option>
+                                        <option value="2">Category</option>
+                                        <option value="3">Sub-Category</option>
+                                    </select>
+                                    {errors?.product_variation && (
+                                        <p className="text-red-600 pt-2">
+                                            {errors?.product_variation}
+                                        </p>
+                                    )}
+                                </div>
+
+                                <div>
+                                    <label>Select Coupon Variation Type</label>
+
+                                    <select
+                                        className="form-select text-white-dark"
+                                        {...register("coupon_variation_type")}
                                         // onChange={productVariationValue}
                                     >
                                         <option value="1">indivisual</option>
@@ -195,7 +210,7 @@ const productVariationValue = (event) => {
 
                                         <select
                                             className="form-select text-white-dark"
-                                            {...register("product_variation")}
+                                            {...register("coupon_variation_price")}
                                             onChange={productVariationValue}
                                         >
                                             <option value="1">Discount</option>
@@ -208,61 +223,50 @@ const productVariationValue = (event) => {
                                         )}
                                     </div>
 
-                        {IsproductVariationValue === true ? (
-                            <>
-                                <div className="flex items-center justify-between mb-5">
-                                    <h5 className="font-semibold text-lg dark:text-white-light">
-                                        Parcentage
-                                    </h5>
-                                </div>
-                                <div className="mb-5 space-y-5 relative">
-                                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                                        <div className="md:col-span-2">
-                                            <label>Price<span className="text-red-600 ">*</span></label>
-                                             <input
-                                             
-                                             type="text"
-                                             className="form-input"
-                                             placeholder="Enter Product Name"
-
-                                             />
+                        {IsproductVariationValue === true ?  (
+                                       <>                          
+                                       <div className="mb-5 space-y-5 relative">
+                                           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                               <div className="md:col-span-2">
+                                                   <label>Parcentage<span className="text-red-600 ">*</span></label>
+                                                    <input
+                                                    
+                                                    type="text"
+                                                    className="form-input"
+                                                    placeholder="Set Parcentage"
+           
+                                                    />
+                                               </div>
+                                           </div>
+                                       </div>
+                                   </>
+                        ) : (
+                             <>
+                                    <div className="mb-5 space-y-5 relative">
+                                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                            <div className="md:col-span-2">
+                                                <label>Discount<span className="text-red-600 ">*</span></label>
+                                                <div className="flex items-center gap-2">
+                                                    <input
+                                                        {...register(
+                                                            "single_product_price",
+                                                            {
+                                                                required:
+                                                                    "Product Name Is required",
+                                                            }
+                                                        )}
+                                                        type="number"
+                                                        className="form-input"
+                                                        placeholder="Set Discount"
+                                                    />
+                                                </div>
+                                            </div>                               
                                         </div>
                                     </div>
-                                </div>
-                            </>
-                        ) : (
-                            <>
-                                <div className="flex items-center justify-between mb-5">
-                                    <h5 className="font-semibold text-lg dark:text-white-light">
-                                      Discount
-                                    </h5>
-                                </div>
-
-                                <div className="mb-5 space-y-5 relative">
-                                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                                        <div className="md:col-span-2">
-                                            <label>Price</label>
-                                            <div className="flex items-center gap-2">
-                                                <input
-                                                    {...register(
-                                                        "single_product_price",
-                                                        {
-                                                            required:
-                                                                "Product Name Is required",
-                                                        }
-                                                    )}
-                                                    type="number"
-                                                    className="form-input"
-                                                    placeholder="99$"
-                                                />
-                                            </div>
-                                        </div>                               
-                                    </div>
-                                </div>
                             </>
                         )}
                     </div>
-                </div>
+                    </div>
 
                             <button
                                 type="submit"
