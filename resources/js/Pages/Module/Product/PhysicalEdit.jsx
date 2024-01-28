@@ -19,7 +19,7 @@ function PhysicalEdit() {
 
 
     // console.log("All Product",product);
-    console.log(product.productcolor)
+    // console.log(product.productcolor)
     // Set Product Description
     const allow_minimum_order_qty = product.physical.allow_minimum_order_qty;
     const allow_product_conditions = product.physical.allow_product_conditions;
