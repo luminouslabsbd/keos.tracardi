@@ -17,6 +17,7 @@ return new class extends Migration
             $table->tinyInteger('tax_type');
             $table->integer('tax_amount');
             $table->tinyInteger('status');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

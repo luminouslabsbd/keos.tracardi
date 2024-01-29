@@ -219,7 +219,7 @@ function Index() {
 
                 <div className="ml-auto flex justify-center items-center gap-3">
                     <Link
-                        href={`${base_url}/admin/category/trashed`}
+                        href={`${base_url}/admin/tax/trashed`}
                         method="get"
                         className="flex items-center px-7 py-2 bg-[#4d4d4d] text-white rounded-md text-[15px] shadow-lg transition-transform transform-gpu hover:scale-105"
                     >
@@ -264,7 +264,7 @@ function Index() {
             </div>
             <br />
             <MantineReactTable table={table} />
-            <DeleteModal isDeleteNoteModal={isDeleteNoteModal} setIsDeleteNoteModal={setIsDeleteNoteModal} fileToDelete={fileToDelete} name="Category" route="category"></DeleteModal>
+            <DeleteModal isDeleteNoteModal={isDeleteNoteModal} setIsDeleteNoteModal={setIsDeleteNoteModal} fileToDelete={fileToDelete} name="Tax" route="tax"></DeleteModal>
         </>
     );
 }

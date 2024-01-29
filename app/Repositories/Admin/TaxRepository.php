@@ -32,7 +32,7 @@ class TaxRepository {
         try {
             $result=$this->edit($id)->delete();
             if($result){
-                 return ['status'=>true , 'message'=>'Category Delete successfully'];
+                 return ['status'=>true , 'message'=>'Tax Delete successfully'];
             }
          } catch (\Throwable $th) {
             //throw $th;
