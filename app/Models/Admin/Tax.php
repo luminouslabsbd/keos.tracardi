@@ -12,6 +12,7 @@ class Tax extends Model
     protected $fillable = [
         'tax_name',
         'tax_type',
-        'tax_amount'
+        'tax_amount',
+        'status'
     ];
 }

@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('tax_name');
             $table->tinyInteger('tax_type');
             $table->integer('tax_amount');
+            $table->tinyInteger('status');
             $table->timestamps();
         });
     }

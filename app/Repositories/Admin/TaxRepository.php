@@ -68,6 +68,7 @@ class TaxRepository {
                     'tax_name' => $request->tax_name,
                     'tax_type' => $request->tax_type,
                     'tax_amount' => $request->tax_amount ?? null,
+                    'status' => $request->status ?? 1,
                 ]
             );
 

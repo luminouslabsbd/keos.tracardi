@@ -1,23 +1,23 @@
 {
-  "_Dropdown-18d15c21.js": {
-    "file": "assets/Dropdown-18d15c21.js",
+  "_Dropdown-54b9120c.js": {
+    "file": "assets/Dropdown-54b9120c.js",
     "imports": [
       "resources/js/app.jsx"
     ],
     "isDynamicEntry": true
   },
-  "_Header-f4f996fd.js": {
-    "file": "assets/Header-f4f996fd.js",
+  "_Header-8927717f.js": {
+    "file": "assets/Header-8927717f.js",
     "imports": [
       "resources/js/app.jsx",
       "_ThemeConfig-49c8c6b2.js",
-      "_Dropdown-18d15c21.js",
+      "_Dropdown-54b9120c.js",
       "_nonIterableRest-5e64c36b.js"
     ],
     "isDynamicEntry": true
   },
-  "_Sidebar-c883cd57.js": {
-    "file": "assets/Sidebar-c883cd57.js",
+  "_Sidebar-03816c6e.js": {
+    "file": "assets/Sidebar-03816c6e.js",
     "imports": [
       "resources/js/app.jsx",
       "_ThemeConfig-49c8c6b2.js",
@@ -25,8 +25,8 @@
     ],
     "isDynamicEntry": true
   },
-  "_Table-c247dcba.js": {
-    "file": "assets/Table-c247dcba.js",
+  "_Table-2bef576d.js": {
+    "file": "assets/Table-2bef576d.js",
     "imports": [
       "resources/js/app.jsx",
       "_floating-ui.dom-0b485352.js"
@@ -35,8 +35,8 @@
   "_ThemeConfig-49c8c6b2.js": {
     "file": "assets/ThemeConfig-49c8c6b2.js"
   },
-  "_emotion-react.browser.esm-99a0c51c.js": {
-    "file": "assets/emotion-react.browser.esm-99a0c51c.js",
+  "_emotion-react.browser.esm-c92de9e7.js": {
+    "file": "assets/emotion-react.browser.esm-c92de9e7.js",
     "imports": [
       "resources/js/app.jsx",
       "_floating-ui.dom-0b485352.js"
@@ -45,67 +45,67 @@
   "_floating-ui.dom-0b485352.js": {
     "file": "assets/floating-ui.dom-0b485352.js"
   },
-  "_index-d096138a.js": {
-    "file": "assets/index-d096138a.js",
+  "_index-d93b3358.js": {
+    "file": "assets/index-d93b3358.js",
     "imports": [
       "resources/js/app.jsx",
-      "_Table-c247dcba.js"
+      "_Table-2bef576d.js"
     ]
   },
-  "_index.esm-58ffd830.js": {
-    "file": "assets/index.esm-58ffd830.js",
+  "_index.esm-f70f84b5.js": {
+    "file": "assets/index.esm-f70f84b5.js",
     "imports": [
       "resources/js/app.jsx"
     ]
   },
-  "_mantine-react-table.esm-03bd8ae7.js": {
-    "file": "assets/mantine-react-table.esm-03bd8ae7.js",
+  "_mantine-react-table.esm-46492c0b.js": {
+    "file": "assets/mantine-react-table.esm-46492c0b.js",
     "imports": [
       "resources/js/app.jsx",
-      "_Table-c247dcba.js",
-      "_emotion-react.browser.esm-99a0c51c.js",
+      "_Table-2bef576d.js",
+      "_emotion-react.browser.esm-c92de9e7.js",
       "_floating-ui.dom-0b485352.js",
-      "_Sidebar-c883cd57.js"
+      "_Sidebar-03816c6e.js"
     ]
   },
   "_nonIterableRest-5e64c36b.js": {
     "file": "assets/nonIterableRest-5e64c36b.js"
   },
-  "_quill.snow-12f04981.js": {
+  "_quill.snow-217a1235.js": {
     "css": [
       "assets/quill-8e59e50e.css"
     ],
-    "file": "assets/quill.snow-12f04981.js",
+    "file": "assets/quill.snow-217a1235.js",
     "imports": [
       "resources/js/app.jsx"
     ]
   },
-  "_react-select.esm-c4f37c68.js": {
-    "file": "assets/react-select.esm-c4f37c68.js",
+  "_react-select.esm-f1c59e23.js": {
+    "file": "assets/react-select.esm-f1c59e23.js",
     "imports": [
       "_nonIterableRest-5e64c36b.js",
-      "_Sidebar-c883cd57.js",
+      "_Sidebar-03816c6e.js",
       "resources/js/app.jsx",
       "_floating-ui.dom-0b485352.js",
-      "_Header-f4f996fd.js",
-      "_emotion-react.browser.esm-99a0c51c.js"
+      "_Header-8927717f.js",
+      "_emotion-react.browser.esm-c92de9e7.js"
     ]
   },
-  "_sweetalert2.all-22908a15.js": {
-    "file": "assets/sweetalert2.all-22908a15.js",
+  "_sweetalert2.all-bbfce168.js": {
+    "file": "assets/sweetalert2.all-bbfce168.js",
     "imports": [
       "resources/js/app.jsx"
     ]
   },
-  "_tippy-react.esm-710d5c08.js": {
-    "file": "assets/tippy-react.esm-710d5c08.js",
+  "_tippy-react.esm-0690d7b9.js": {
+    "file": "assets/tippy-react.esm-0690d7b9.js",
     "imports": [
-      "_Dropdown-18d15c21.js",
+      "_Dropdown-54b9120c.js",
       "resources/js/app.jsx"
     ]
   },
-  "_transition-4a60efde.js": {
-    "file": "assets/transition-4a60efde.js",
+  "_transition-0dcad84f.js": {
+    "file": "assets/transition-0dcad84f.js",
     "imports": [
       "resources/js/app.jsx"
     ]
@@ -120,25 +120,25 @@
     "src": "resources/css/app.css"
   },
   "resources/js/Pages/Component/DeleteModal.jsx": {
-    "file": "assets/DeleteModal-2f3b8da5.js",
+    "file": "assets/DeleteModal-c830521e.js",
     "imports": [
       "resources/js/app.jsx",
-      "_transition-4a60efde.js"
+      "_transition-0dcad84f.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Component/DeleteModal.jsx"
   },
   "resources/js/Pages/Component/FlashMessage.jsx": {
-    "file": "assets/FlashMessage-5dd6c328.js",
+    "file": "assets/FlashMessage-5e889edb.js",
     "imports": [
       "resources/js/app.jsx",
-      "_sweetalert2.all-22908a15.js"
+      "_sweetalert2.all-bbfce168.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Component/FlashMessage.jsx"
   },
   "resources/js/Pages/Component/Footer.jsx": {
-    "file": "assets/Footer-aa869156.js",
+    "file": "assets/Footer-679c6102.js",
     "imports": [
       "resources/js/app.jsx"
     ],
@@ -146,16 +146,16 @@
     "src": "resources/js/Pages/Component/Footer.jsx"
   },
   "resources/js/Pages/Component/ParmanentDeleteModal.jsx": {
-    "file": "assets/ParmanentDeleteModal-47ab791c.js",
+    "file": "assets/ParmanentDeleteModal-0a20f9fb.js",
     "imports": [
       "resources/js/app.jsx",
-      "_transition-4a60efde.js"
+      "_transition-0dcad84f.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Component/ParmanentDeleteModal.jsx"
   },
   "resources/js/Pages/Component/Portals.jsx": {
-    "file": "assets/Portals-7f772992.js",
+    "file": "assets/Portals-779321ba.js",
     "imports": [
       "resources/js/app.jsx"
     ],
@@ -163,7 +163,7 @@
     "src": "resources/js/Pages/Component/Portals.jsx"
   },
   "resources/js/Pages/Component/Settings.jsx": {
-    "file": "assets/Settings-ac408221.js",
+    "file": "assets/Settings-eef56619.js",
     "imports": [
       "resources/js/app.jsx"
     ],
@@ -171,7 +171,7 @@
     "src": "resources/js/Pages/Component/Settings.jsx"
   },
   "resources/js/Pages/Error.jsx": {
-    "file": "assets/Error-6da3da30.js",
+    "file": "assets/Error-f595b6ee.js",
     "imports": [
       "resources/js/app.jsx"
     ],
@@ -186,672 +186,672 @@
     "css": [
       "assets/Mainlayout-4fdd8b83.css"
     ],
-    "file": "assets/Mainlayout-df64b153.js",
+    "file": "assets/Mainlayout-6b220831.js",
     "imports": [
       "resources/js/app.jsx",
       "_ThemeConfig-49c8c6b2.js",
       "resources/js/Pages/Component/Footer.jsx",
-      "_Header-f4f996fd.js",
-      "_Sidebar-c883cd57.js",
+      "_Header-8927717f.js",
+      "_Sidebar-03816c6e.js",
       "resources/js/Pages/Component/FlashMessage.jsx",
-      "_Dropdown-18d15c21.js",
+      "_Dropdown-54b9120c.js",
       "_nonIterableRest-5e64c36b.js",
-      "_sweetalert2.all-22908a15.js"
+      "_sweetalert2.all-bbfce168.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Layout/Mainlayout.jsx"
   },
   "resources/js/Pages/Module/Auth/Login.jsx": {
-    "file": "assets/Login-08fd997a.js",
+    "file": "assets/Login-e8324e5f.js",
     "imports": [
       "resources/js/app.jsx",
       "_ThemeConfig-49c8c6b2.js",
-      "_sweetalert2.all-22908a15.js"
+      "_sweetalert2.all-bbfce168.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Module/Auth/Login.jsx"
   },
   "resources/js/Pages/Module/Backup/Index.jsx": {
-    "file": "assets/Index-fb22fb20.js",
+    "file": "assets/Index-6525bc83.js",
     "imports": [
       "resources/js/app.jsx",
       "resources/js/Pages/Layout/Mainlayout.jsx",
       "resources/js/Pages/Component/DeleteModal.jsx",
       "_ThemeConfig-49c8c6b2.js",
       "resources/js/Pages/Component/Footer.jsx",
-      "_Header-f4f996fd.js",
-      "_Dropdown-18d15c21.js",
+      "_Header-8927717f.js",
+      "_Dropdown-54b9120c.js",
       "_nonIterableRest-5e64c36b.js",
-      "_Sidebar-c883cd57.js",
+      "_Sidebar-03816c6e.js",
       "resources/js/Pages/Component/FlashMessage.jsx",
-      "_sweetalert2.all-22908a15.js",
-      "_transition-4a60efde.js"
+      "_sweetalert2.all-bbfce168.js",
+      "_transition-0dcad84f.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Module/Backup/Index.jsx"
   },
   "resources/js/Pages/Module/BlogCategory/Add.jsx": {
-    "file": "assets/Add-07c301f9.js",
+    "file": "assets/Add-2975218c.js",
     "imports": [
       "resources/js/app.jsx",
       "resources/js/Pages/Layout/Mainlayout.jsx",
-      "_index.esm-58ffd830.js",
+      "_index.esm-f70f84b5.js",
       "_ThemeConfig-49c8c6b2.js",
       "resources/js/Pages/Component/Footer.jsx",
-      "_Header-f4f996fd.js",
-      "_Dropdown-18d15c21.js",
+      "_Header-8927717f.js",
+      "_Dropdown-54b9120c.js",
       "_nonIterableRest-5e64c36b.js",
-      "_Sidebar-c883cd57.js",
+      "_Sidebar-03816c6e.js",
       "resources/js/Pages/Component/FlashMessage.jsx",
-      "_sweetalert2.all-22908a15.js"
+      "_sweetalert2.all-bbfce168.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Module/BlogCategory/Add.jsx"
   },
   "resources/js/Pages/Module/BlogCategory/Edit.jsx": {
-    "file": "assets/Edit-64f71d59.js",
+    "file": "assets/Edit-00346ba9.js",
     "imports": [
       "resources/js/app.jsx",
       "resources/js/Pages/Layout/Mainlayout.jsx",
-      "_index.esm-58ffd830.js",
+      "_index.esm-f70f84b5.js",
       "_ThemeConfig-49c8c6b2.js",
       "resources/js/Pages/Component/Footer.jsx",
-      "_Header-f4f996fd.js",
-      "_Dropdown-18d15c21.js",
+      "_Header-8927717f.js",
+      "_Dropdown-54b9120c.js",
       "_nonIterableRest-5e64c36b.js",
-      "_Sidebar-c883cd57.js",
+      "_Sidebar-03816c6e.js",
       "resources/js/Pages/Component/FlashMessage.jsx",
-      "_sweetalert2.all-22908a15.js"
+      "_sweetalert2.all-bbfce168.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Module/BlogCategory/Edit.jsx"
   },
   "resources/js/Pages/Module/BlogCategory/Index.jsx": {
-    "file": "assets/Index-429b3aa9.js",
+    "file": "assets/Index-487297cf.js",
     "imports": [
       "resources/js/app.jsx",
       "resources/js/Pages/Layout/Mainlayout.jsx",
-      "_mantine-react-table.esm-03bd8ae7.js",
+      "_mantine-react-table.esm-46492c0b.js",
       "resources/js/Pages/Component/DeleteModal.jsx",
       "_ThemeConfig-49c8c6b2.js",
       "resources/js/Pages/Component/Footer.jsx",
-      "_Header-f4f996fd.js",
-      "_Dropdown-18d15c21.js",
+      "_Header-8927717f.js",
+      "_Dropdown-54b9120c.js",
       "_nonIterableRest-5e64c36b.js",
-      "_Sidebar-c883cd57.js",
+      "_Sidebar-03816c6e.js",
       "resources/js/Pages/Component/FlashMessage.jsx",
-      "_sweetalert2.all-22908a15.js",
-      "_Table-c247dcba.js",
+      "_sweetalert2.all-bbfce168.js",
+      "_Table-2bef576d.js",
       "_floating-ui.dom-0b485352.js",
-      "_emotion-react.browser.esm-99a0c51c.js",
-      "_transition-4a60efde.js"
+      "_emotion-react.browser.esm-c92de9e7.js",
+      "_transition-0dcad84f.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Module/BlogCategory/Index.jsx"
   },
   "resources/js/Pages/Module/BlogCategory/Trashed.jsx": {
-    "file": "assets/Trashed-c56be7c9.js",
+    "file": "assets/Trashed-abd83016.js",
     "imports": [
       "resources/js/app.jsx",
       "resources/js/Pages/Layout/Mainlayout.jsx",
-      "_mantine-react-table.esm-03bd8ae7.js",
+      "_mantine-react-table.esm-46492c0b.js",
       "resources/js/Pages/Component/ParmanentDeleteModal.jsx",
       "_ThemeConfig-49c8c6b2.js",
       "resources/js/Pages/Component/Footer.jsx",
-      "_Header-f4f996fd.js",
-      "_Dropdown-18d15c21.js",
+      "_Header-8927717f.js",
+      "_Dropdown-54b9120c.js",
       "_nonIterableRest-5e64c36b.js",
-      "_Sidebar-c883cd57.js",
+      "_Sidebar-03816c6e.js",
       "resources/js/Pages/Component/FlashMessage.jsx",
-      "_sweetalert2.all-22908a15.js",
-      "_Table-c247dcba.js",
+      "_sweetalert2.all-bbfce168.js",
+      "_Table-2bef576d.js",
       "_floating-ui.dom-0b485352.js",
-      "_emotion-react.browser.esm-99a0c51c.js",
-      "_transition-4a60efde.js"
+      "_emotion-react.browser.esm-c92de9e7.js",
+      "_transition-0dcad84f.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Module/BlogCategory/Trashed.jsx"
   },
   "resources/js/Pages/Module/BlogPost/Add.jsx": {
-    "file": "assets/Add-2f64a119.js",
+    "file": "assets/Add-026bff72.js",
     "imports": [
       "resources/js/app.jsx",
       "resources/js/Pages/Layout/Mainlayout.jsx",
-      "_react-select.esm-c4f37c68.js",
-      "_quill.snow-12f04981.js",
-      "_index.esm-58ffd830.js",
+      "_react-select.esm-f1c59e23.js",
+      "_quill.snow-217a1235.js",
+      "_index.esm-f70f84b5.js",
       "_ThemeConfig-49c8c6b2.js",
       "resources/js/Pages/Component/Footer.jsx",
-      "_Header-f4f996fd.js",
-      "_Dropdown-18d15c21.js",
+      "_Header-8927717f.js",
+      "_Dropdown-54b9120c.js",
       "_nonIterableRest-5e64c36b.js",
-      "_Sidebar-c883cd57.js",
+      "_Sidebar-03816c6e.js",
       "resources/js/Pages/Component/FlashMessage.jsx",
-      "_sweetalert2.all-22908a15.js",
+      "_sweetalert2.all-bbfce168.js",
       "_floating-ui.dom-0b485352.js",
-      "_emotion-react.browser.esm-99a0c51c.js"
+      "_emotion-react.browser.esm-c92de9e7.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Module/BlogPost/Add.jsx"
   },
   "resources/js/Pages/Module/BlogPost/Edit.jsx": {
-    "file": "assets/Edit-bcb5430c.js",
+    "file": "assets/Edit-07b86cad.js",
     "imports": [
       "resources/js/app.jsx",
       "resources/js/Pages/Layout/Mainlayout.jsx",
-      "_react-select.esm-c4f37c68.js",
-      "_quill.snow-12f04981.js",
-      "_index.esm-58ffd830.js",
+      "_react-select.esm-f1c59e23.js",
+      "_quill.snow-217a1235.js",
+      "_index.esm-f70f84b5.js",
       "_ThemeConfig-49c8c6b2.js",
       "resources/js/Pages/Component/Footer.jsx",
-      "_Header-f4f996fd.js",
-      "_Dropdown-18d15c21.js",
+      "_Header-8927717f.js",
+      "_Dropdown-54b9120c.js",
       "_nonIterableRest-5e64c36b.js",
-      "_Sidebar-c883cd57.js",
+      "_Sidebar-03816c6e.js",
       "resources/js/Pages/Component/FlashMessage.jsx",
-      "_sweetalert2.all-22908a15.js",
+      "_sweetalert2.all-bbfce168.js",
       "_floating-ui.dom-0b485352.js",
-      "_emotion-react.browser.esm-99a0c51c.js"
+      "_emotion-react.browser.esm-c92de9e7.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Module/BlogPost/Edit.jsx"
   },
   "resources/js/Pages/Module/BlogPost/Index.jsx": {
-    "file": "assets/Index-e867f2cc.js",
+    "file": "assets/Index-7317addc.js",
     "imports": [
       "resources/js/app.jsx",
       "resources/js/Pages/Layout/Mainlayout.jsx",
-      "_mantine-react-table.esm-03bd8ae7.js",
+      "_mantine-react-table.esm-46492c0b.js",
       "resources/js/Pages/Component/DeleteModal.jsx",
       "_ThemeConfig-49c8c6b2.js",
       "resources/js/Pages/Component/Footer.jsx",
-      "_Header-f4f996fd.js",
-      "_Dropdown-18d15c21.js",
+      "_Header-8927717f.js",
+      "_Dropdown-54b9120c.js",
       "_nonIterableRest-5e64c36b.js",
-      "_Sidebar-c883cd57.js",
+      "_Sidebar-03816c6e.js",
       "resources/js/Pages/Component/FlashMessage.jsx",
-      "_sweetalert2.all-22908a15.js",
-      "_Table-c247dcba.js",
+      "_sweetalert2.all-bbfce168.js",
+      "_Table-2bef576d.js",
       "_floating-ui.dom-0b485352.js",
-      "_emotion-react.browser.esm-99a0c51c.js",
-      "_transition-4a60efde.js"
+      "_emotion-react.browser.esm-c92de9e7.js",
+      "_transition-0dcad84f.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Module/BlogPost/Index.jsx"
   },
   "resources/js/Pages/Module/BlogPost/Trashed.jsx": {
-    "file": "assets/Trashed-8f0fc995.js",
+    "file": "assets/Trashed-e3f18bc9.js",
     "imports": [
       "resources/js/app.jsx",
       "resources/js/Pages/Layout/Mainlayout.jsx",
-      "_mantine-react-table.esm-03bd8ae7.js",
+      "_mantine-react-table.esm-46492c0b.js",
       "resources/js/Pages/Component/ParmanentDeleteModal.jsx",
       "_ThemeConfig-49c8c6b2.js",
       "resources/js/Pages/Component/Footer.jsx",
-      "_Header-f4f996fd.js",
-      "_Dropdown-18d15c21.js",
+      "_Header-8927717f.js",
+      "_Dropdown-54b9120c.js",
       "_nonIterableRest-5e64c36b.js",
-      "_Sidebar-c883cd57.js",
+      "_Sidebar-03816c6e.js",
       "resources/js/Pages/Component/FlashMessage.jsx",
-      "_sweetalert2.all-22908a15.js",
-      "_Table-c247dcba.js",
+      "_sweetalert2.all-bbfce168.js",
+      "_Table-2bef576d.js",
       "_floating-ui.dom-0b485352.js",
-      "_emotion-react.browser.esm-99a0c51c.js",
-      "_transition-4a60efde.js"
+      "_emotion-react.browser.esm-c92de9e7.js",
+      "_transition-0dcad84f.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Module/BlogPost/Trashed.jsx"
   },
   "resources/js/Pages/Module/Brand/Add.jsx": {
-    "file": "assets/Add-9298344b.js",
+    "file": "assets/Add-a9a0aa50.js",
     "imports": [
       "resources/js/app.jsx",
       "resources/js/Pages/Layout/Mainlayout.jsx",
-      "_tippy-react.esm-710d5c08.js",
-      "_index.esm-58ffd830.js",
+      "_tippy-react.esm-0690d7b9.js",
+      "_index.esm-f70f84b5.js",
       "_ThemeConfig-49c8c6b2.js",
       "resources/js/Pages/Component/Footer.jsx",
-      "_Header-f4f996fd.js",
-      "_Dropdown-18d15c21.js",
+      "_Header-8927717f.js",
+      "_Dropdown-54b9120c.js",
       "_nonIterableRest-5e64c36b.js",
-      "_Sidebar-c883cd57.js",
+      "_Sidebar-03816c6e.js",
       "resources/js/Pages/Component/FlashMessage.jsx",
-      "_sweetalert2.all-22908a15.js"
+      "_sweetalert2.all-bbfce168.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Module/Brand/Add.jsx"
   },
   "resources/js/Pages/Module/Brand/Edit.jsx": {
-    "file": "assets/Edit-ada7e13b.js",
+    "file": "assets/Edit-572406ca.js",
     "imports": [
       "resources/js/app.jsx",
       "resources/js/Pages/Layout/Mainlayout.jsx",
-      "_index.esm-58ffd830.js",
+      "_index.esm-f70f84b5.js",
       "_ThemeConfig-49c8c6b2.js",
       "resources/js/Pages/Component/Footer.jsx",
-      "_Header-f4f996fd.js",
-      "_Dropdown-18d15c21.js",
+      "_Header-8927717f.js",
+      "_Dropdown-54b9120c.js",
       "_nonIterableRest-5e64c36b.js",
-      "_Sidebar-c883cd57.js",
+      "_Sidebar-03816c6e.js",
       "resources/js/Pages/Component/FlashMessage.jsx",
-      "_sweetalert2.all-22908a15.js"
+      "_sweetalert2.all-bbfce168.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Module/Brand/Edit.jsx"
   },
   "resources/js/Pages/Module/Brand/Index.jsx": {
-    "file": "assets/Index-349eff7e.js",
+    "file": "assets/Index-d66969c7.js",
     "imports": [
       "resources/js/app.jsx",
       "resources/js/Pages/Layout/Mainlayout.jsx",
-      "_mantine-react-table.esm-03bd8ae7.js",
+      "_mantine-react-table.esm-46492c0b.js",
       "resources/js/Pages/Component/DeleteModal.jsx",
       "_ThemeConfig-49c8c6b2.js",
       "resources/js/Pages/Component/Footer.jsx",
-      "_Header-f4f996fd.js",
-      "_Dropdown-18d15c21.js",
+      "_Header-8927717f.js",
+      "_Dropdown-54b9120c.js",
       "_nonIterableRest-5e64c36b.js",
-      "_Sidebar-c883cd57.js",
+      "_Sidebar-03816c6e.js",
       "resources/js/Pages/Component/FlashMessage.jsx",
-      "_sweetalert2.all-22908a15.js",
-      "_Table-c247dcba.js",
+      "_sweetalert2.all-bbfce168.js",
+      "_Table-2bef576d.js",
       "_floating-ui.dom-0b485352.js",
-      "_emotion-react.browser.esm-99a0c51c.js",
-      "_transition-4a60efde.js"
+      "_emotion-react.browser.esm-c92de9e7.js",
+      "_transition-0dcad84f.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Module/Brand/Index.jsx"
   },
   "resources/js/Pages/Module/Brand/Trashed.jsx": {
-    "file": "assets/Trashed-8603f94a.js",
+    "file": "assets/Trashed-e2ca478a.js",
     "imports": [
       "resources/js/app.jsx",
       "resources/js/Pages/Layout/Mainlayout.jsx",
-      "_mantine-react-table.esm-03bd8ae7.js",
+      "_mantine-react-table.esm-46492c0b.js",
       "resources/js/Pages/Component/ParmanentDeleteModal.jsx",
       "_ThemeConfig-49c8c6b2.js",
       "resources/js/Pages/Component/Footer.jsx",
-      "_Header-f4f996fd.js",
-      "_Dropdown-18d15c21.js",
+      "_Header-8927717f.js",
+      "_Dropdown-54b9120c.js",
       "_nonIterableRest-5e64c36b.js",
-      "_Sidebar-c883cd57.js",
+      "_Sidebar-03816c6e.js",
       "resources/js/Pages/Component/FlashMessage.jsx",
-      "_sweetalert2.all-22908a15.js",
-      "_Table-c247dcba.js",
+      "_sweetalert2.all-bbfce168.js",
+      "_Table-2bef576d.js",
       "_floating-ui.dom-0b485352.js",
-      "_emotion-react.browser.esm-99a0c51c.js",
-      "_transition-4a60efde.js"
+      "_emotion-react.browser.esm-c92de9e7.js",
+      "_transition-0dcad84f.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Module/Brand/Trashed.jsx"
   },
   "resources/js/Pages/Module/Category/Add.jsx": {
-    "file": "assets/Add-3fa1688f.js",
+    "file": "assets/Add-05ecad93.js",
     "imports": [
       "resources/js/app.jsx",
       "resources/js/Pages/Layout/Mainlayout.jsx",
-      "_tippy-react.esm-710d5c08.js",
-      "_react-select.esm-c4f37c68.js",
-      "_index.esm-58ffd830.js",
+      "_tippy-react.esm-0690d7b9.js",
+      "_react-select.esm-f1c59e23.js",
+      "_index.esm-f70f84b5.js",
       "_ThemeConfig-49c8c6b2.js",
       "resources/js/Pages/Component/Footer.jsx",
-      "_Header-f4f996fd.js",
-      "_Dropdown-18d15c21.js",
+      "_Header-8927717f.js",
+      "_Dropdown-54b9120c.js",
       "_nonIterableRest-5e64c36b.js",
-      "_Sidebar-c883cd57.js",
+      "_Sidebar-03816c6e.js",
       "resources/js/Pages/Component/FlashMessage.jsx",
-      "_sweetalert2.all-22908a15.js",
+      "_sweetalert2.all-bbfce168.js",
       "_floating-ui.dom-0b485352.js",
-      "_emotion-react.browser.esm-99a0c51c.js"
+      "_emotion-react.browser.esm-c92de9e7.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Module/Category/Add.jsx"
   },
   "resources/js/Pages/Module/Category/Edit.jsx": {
-    "file": "assets/Edit-7d65ee06.js",
+    "file": "assets/Edit-e8247945.js",
     "imports": [
       "resources/js/app.jsx",
       "resources/js/Pages/Layout/Mainlayout.jsx",
-      "_react-select.esm-c4f37c68.js",
-      "_index.esm-58ffd830.js",
+      "_react-select.esm-f1c59e23.js",
+      "_index.esm-f70f84b5.js",
       "_ThemeConfig-49c8c6b2.js",
       "resources/js/Pages/Component/Footer.jsx",
-      "_Header-f4f996fd.js",
-      "_Dropdown-18d15c21.js",
+      "_Header-8927717f.js",
+      "_Dropdown-54b9120c.js",
       "_nonIterableRest-5e64c36b.js",
-      "_Sidebar-c883cd57.js",
+      "_Sidebar-03816c6e.js",
       "resources/js/Pages/Component/FlashMessage.jsx",
-      "_sweetalert2.all-22908a15.js",
+      "_sweetalert2.all-bbfce168.js",
       "_floating-ui.dom-0b485352.js",
-      "_emotion-react.browser.esm-99a0c51c.js"
+      "_emotion-react.browser.esm-c92de9e7.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Module/Category/Edit.jsx"
   },
   "resources/js/Pages/Module/Category/Index.jsx": {
-    "file": "assets/Index-3f1dba6a.js",
+    "file": "assets/Index-4ed211d9.js",
     "imports": [
       "resources/js/app.jsx",
       "resources/js/Pages/Layout/Mainlayout.jsx",
-      "_mantine-react-table.esm-03bd8ae7.js",
+      "_mantine-react-table.esm-46492c0b.js",
       "resources/js/Pages/Component/DeleteModal.jsx",
       "_ThemeConfig-49c8c6b2.js",
       "resources/js/Pages/Component/Footer.jsx",
-      "_Header-f4f996fd.js",
-      "_Dropdown-18d15c21.js",
+      "_Header-8927717f.js",
+      "_Dropdown-54b9120c.js",
       "_nonIterableRest-5e64c36b.js",
-      "_Sidebar-c883cd57.js",
+      "_Sidebar-03816c6e.js",
       "resources/js/Pages/Component/FlashMessage.jsx",
-      "_sweetalert2.all-22908a15.js",
-      "_Table-c247dcba.js",
+      "_sweetalert2.all-bbfce168.js",
+      "_Table-2bef576d.js",
       "_floating-ui.dom-0b485352.js",
-      "_emotion-react.browser.esm-99a0c51c.js",
-      "_transition-4a60efde.js"
+      "_emotion-react.browser.esm-c92de9e7.js",
+      "_transition-0dcad84f.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Module/Category/Index.jsx"
   },
   "resources/js/Pages/Module/Category/Trashed.jsx": {
-    "file": "assets/Trashed-5fd6cd9b.js",
+    "file": "assets/Trashed-3e1b83cc.js",
     "imports": [
       "resources/js/app.jsx",
       "resources/js/Pages/Layout/Mainlayout.jsx",
-      "_mantine-react-table.esm-03bd8ae7.js",
+      "_mantine-react-table.esm-46492c0b.js",
       "resources/js/Pages/Component/ParmanentDeleteModal.jsx",
       "_ThemeConfig-49c8c6b2.js",
       "resources/js/Pages/Component/Footer.jsx",
-      "_Header-f4f996fd.js",
-      "_Dropdown-18d15c21.js",
+      "_Header-8927717f.js",
+      "_Dropdown-54b9120c.js",
       "_nonIterableRest-5e64c36b.js",
-      "_Sidebar-c883cd57.js",
+      "_Sidebar-03816c6e.js",
       "resources/js/Pages/Component/FlashMessage.jsx",
-      "_sweetalert2.all-22908a15.js",
-      "_Table-c247dcba.js",
+      "_sweetalert2.all-bbfce168.js",
+      "_Table-2bef576d.js",
       "_floating-ui.dom-0b485352.js",
-      "_emotion-react.browser.esm-99a0c51c.js",
-      "_transition-4a60efde.js"
+      "_emotion-react.browser.esm-c92de9e7.js",
+      "_transition-0dcad84f.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Module/Category/Trashed.jsx"
   },
   "resources/js/Pages/Module/Color/Add.jsx": {
-    "file": "assets/Add-81878a9c.js",
+    "file": "assets/Add-d2f7578e.js",
     "imports": [
       "resources/js/app.jsx",
       "resources/js/Pages/Layout/Mainlayout.jsx",
-      "_index.esm-58ffd830.js",
+      "_index.esm-f70f84b5.js",
       "_ThemeConfig-49c8c6b2.js",
       "resources/js/Pages/Component/Footer.jsx",
-      "_Header-f4f996fd.js",
-      "_Dropdown-18d15c21.js",
+      "_Header-8927717f.js",
+      "_Dropdown-54b9120c.js",
       "_nonIterableRest-5e64c36b.js",
-      "_Sidebar-c883cd57.js",
+      "_Sidebar-03816c6e.js",
       "resources/js/Pages/Component/FlashMessage.jsx",
-      "_sweetalert2.all-22908a15.js"
+      "_sweetalert2.all-bbfce168.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Module/Color/Add.jsx"
   },
   "resources/js/Pages/Module/Color/Edit.jsx": {
-    "file": "assets/Edit-6a112ae7.js",
+    "file": "assets/Edit-546e171d.js",
     "imports": [
       "resources/js/app.jsx",
       "resources/js/Pages/Layout/Mainlayout.jsx",
-      "_index.esm-58ffd830.js",
+      "_index.esm-f70f84b5.js",
       "_ThemeConfig-49c8c6b2.js",
       "resources/js/Pages/Component/Footer.jsx",
-      "_Header-f4f996fd.js",
-      "_Dropdown-18d15c21.js",
+      "_Header-8927717f.js",
+      "_Dropdown-54b9120c.js",
       "_nonIterableRest-5e64c36b.js",
-      "_Sidebar-c883cd57.js",
+      "_Sidebar-03816c6e.js",
       "resources/js/Pages/Component/FlashMessage.jsx",
-      "_sweetalert2.all-22908a15.js"
+      "_sweetalert2.all-bbfce168.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Module/Color/Edit.jsx"
   },
   "resources/js/Pages/Module/Color/Index.jsx": {
-    "file": "assets/Index-4c959a97.js",
+    "file": "assets/Index-633abf48.js",
     "imports": [
       "resources/js/app.jsx",
       "resources/js/Pages/Layout/Mainlayout.jsx",
-      "_mantine-react-table.esm-03bd8ae7.js",
+      "_mantine-react-table.esm-46492c0b.js",
       "resources/js/Pages/Component/DeleteModal.jsx",
       "_ThemeConfig-49c8c6b2.js",
       "resources/js/Pages/Component/Footer.jsx",
-      "_Header-f4f996fd.js",
-      "_Dropdown-18d15c21.js",
+      "_Header-8927717f.js",
+      "_Dropdown-54b9120c.js",
       "_nonIterableRest-5e64c36b.js",
-      "_Sidebar-c883cd57.js",
+      "_Sidebar-03816c6e.js",
       "resources/js/Pages/Component/FlashMessage.jsx",
-      "_sweetalert2.all-22908a15.js",
-      "_Table-c247dcba.js",
+      "_sweetalert2.all-bbfce168.js",
+      "_Table-2bef576d.js",
       "_floating-ui.dom-0b485352.js",
-      "_emotion-react.browser.esm-99a0c51c.js",
-      "_transition-4a60efde.js"
+      "_emotion-react.browser.esm-c92de9e7.js",
+      "_transition-0dcad84f.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Module/Color/Index.jsx"
   },
   "resources/js/Pages/Module/Color/Trashed.jsx": {
-    "file": "assets/Trashed-7e06b533.js",
+    "file": "assets/Trashed-271174da.js",
     "imports": [
       "resources/js/app.jsx",
       "resources/js/Pages/Layout/Mainlayout.jsx",
-      "_mantine-react-table.esm-03bd8ae7.js",
+      "_mantine-react-table.esm-46492c0b.js",
       "resources/js/Pages/Component/ParmanentDeleteModal.jsx",
       "_ThemeConfig-49c8c6b2.js",
       "resources/js/Pages/Component/Footer.jsx",
-      "_Header-f4f996fd.js",
-      "_Dropdown-18d15c21.js",
+      "_Header-8927717f.js",
+      "_Dropdown-54b9120c.js",
       "_nonIterableRest-5e64c36b.js",
-      "_Sidebar-c883cd57.js",
+      "_Sidebar-03816c6e.js",
       "resources/js/Pages/Component/FlashMessage.jsx",
-      "_sweetalert2.all-22908a15.js",
-      "_Table-c247dcba.js",
+      "_sweetalert2.all-bbfce168.js",
+      "_Table-2bef576d.js",
       "_floating-ui.dom-0b485352.js",
-      "_emotion-react.browser.esm-99a0c51c.js",
-      "_transition-4a60efde.js"
+      "_emotion-react.browser.esm-c92de9e7.js",
+      "_transition-0dcad84f.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Module/Color/Trashed.jsx"
   },
   "resources/js/Pages/Module/Coupon/Add.jsx": {
-    "file": "assets/Add-6781ec78.js",
+    "file": "assets/Add-bf7f6805.js",
     "imports": [
       "resources/js/app.jsx",
       "resources/js/Pages/Layout/Mainlayout.jsx",
-      "_index.esm-58ffd830.js",
+      "_index.esm-f70f84b5.js",
       "_ThemeConfig-49c8c6b2.js",
       "resources/js/Pages/Component/Footer.jsx",
-      "_Header-f4f996fd.js",
-      "_Dropdown-18d15c21.js",
+      "_Header-8927717f.js",
+      "_Dropdown-54b9120c.js",
       "_nonIterableRest-5e64c36b.js",
-      "_Sidebar-c883cd57.js",
+      "_Sidebar-03816c6e.js",
       "resources/js/Pages/Component/FlashMessage.jsx",
-      "_sweetalert2.all-22908a15.js"
+      "_sweetalert2.all-bbfce168.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Module/Coupon/Add.jsx"
   },
   "resources/js/Pages/Module/Coupon/Edit.jsx": {
-    "file": "assets/Edit-29756e1d.js",
+    "file": "assets/Edit-436691b0.js",
     "imports": [
       "resources/js/app.jsx",
       "resources/js/Pages/Layout/Mainlayout.jsx",
-      "_index.esm-58ffd830.js",
+      "_index.esm-f70f84b5.js",
       "_ThemeConfig-49c8c6b2.js",
       "resources/js/Pages/Component/Footer.jsx",
-      "_Header-f4f996fd.js",
-      "_Dropdown-18d15c21.js",
+      "_Header-8927717f.js",
+      "_Dropdown-54b9120c.js",
       "_nonIterableRest-5e64c36b.js",
-      "_Sidebar-c883cd57.js",
+      "_Sidebar-03816c6e.js",
       "resources/js/Pages/Component/FlashMessage.jsx",
-      "_sweetalert2.all-22908a15.js"
+      "_sweetalert2.all-bbfce168.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Module/Coupon/Edit.jsx"
   },
   "resources/js/Pages/Module/Coupon/Index.jsx": {
-    "file": "assets/Index-ad33c9c0.js",
+    "file": "assets/Index-f4989061.js",
     "imports": [
       "resources/js/app.jsx",
       "resources/js/Pages/Layout/Mainlayout.jsx",
-      "_mantine-react-table.esm-03bd8ae7.js",
+      "_mantine-react-table.esm-46492c0b.js",
       "resources/js/Pages/Component/DeleteModal.jsx",
       "_ThemeConfig-49c8c6b2.js",
       "resources/js/Pages/Component/Footer.jsx",
-      "_Header-f4f996fd.js",
-      "_Dropdown-18d15c21.js",
+      "_Header-8927717f.js",
+      "_Dropdown-54b9120c.js",
       "_nonIterableRest-5e64c36b.js",
-      "_Sidebar-c883cd57.js",
+      "_Sidebar-03816c6e.js",
       "resources/js/Pages/Component/FlashMessage.jsx",
-      "_sweetalert2.all-22908a15.js",
-      "_Table-c247dcba.js",
+      "_sweetalert2.all-bbfce168.js",
+      "_Table-2bef576d.js",
       "_floating-ui.dom-0b485352.js",
-      "_emotion-react.browser.esm-99a0c51c.js",
-      "_transition-4a60efde.js"
+      "_emotion-react.browser.esm-c92de9e7.js",
+      "_transition-0dcad84f.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Module/Coupon/Index.jsx"
   },
   "resources/js/Pages/Module/Coupon/Trashed.jsx": {
-    "file": "assets/Trashed-d61af2ee.js",
+    "file": "assets/Trashed-9387e15c.js",
     "imports": [
       "resources/js/app.jsx",
       "resources/js/Pages/Layout/Mainlayout.jsx",
-      "_mantine-react-table.esm-03bd8ae7.js",
+      "_mantine-react-table.esm-46492c0b.js",
       "resources/js/Pages/Component/ParmanentDeleteModal.jsx",
       "_ThemeConfig-49c8c6b2.js",
       "resources/js/Pages/Component/Footer.jsx",
-      "_Header-f4f996fd.js",
-      "_Dropdown-18d15c21.js",
+      "_Header-8927717f.js",
+      "_Dropdown-54b9120c.js",
       "_nonIterableRest-5e64c36b.js",
-      "_Sidebar-c883cd57.js",
+      "_Sidebar-03816c6e.js",
       "resources/js/Pages/Component/FlashMessage.jsx",
-      "_sweetalert2.all-22908a15.js",
-      "_Table-c247dcba.js",
+      "_sweetalert2.all-bbfce168.js",
+      "_Table-2bef576d.js",
       "_floating-ui.dom-0b485352.js",
-      "_emotion-react.browser.esm-99a0c51c.js",
-      "_transition-4a60efde.js"
+      "_emotion-react.browser.esm-c92de9e7.js",
+      "_transition-0dcad84f.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Module/Coupon/Trashed.jsx"
   },
   "resources/js/Pages/Module/Currency/Add.jsx": {
-    "file": "assets/Add-a821b9e9.js",
+    "file": "assets/Add-191f52b3.js",
     "imports": [
       "resources/js/app.jsx",
       "resources/js/Pages/Layout/Mainlayout.jsx",
-      "_index.esm-58ffd830.js",
+      "_index.esm-f70f84b5.js",
       "_ThemeConfig-49c8c6b2.js",
       "resources/js/Pages/Component/Footer.jsx",
-      "_Header-f4f996fd.js",
-      "_Dropdown-18d15c21.js",
+      "_Header-8927717f.js",
+      "_Dropdown-54b9120c.js",
       "_nonIterableRest-5e64c36b.js",
-      "_Sidebar-c883cd57.js",
+      "_Sidebar-03816c6e.js",
       "resources/js/Pages/Component/FlashMessage.jsx",
-      "_sweetalert2.all-22908a15.js"
+      "_sweetalert2.all-bbfce168.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Module/Currency/Add.jsx"
   },
   "resources/js/Pages/Module/Currency/Edit.jsx": {
-    "file": "assets/Edit-7e8689c3.js",
+    "file": "assets/Edit-d2cd753a.js",
     "imports": [
       "resources/js/app.jsx",
       "resources/js/Pages/Layout/Mainlayout.jsx",
-      "_index.esm-58ffd830.js",
+      "_index.esm-f70f84b5.js",
       "_ThemeConfig-49c8c6b2.js",
       "resources/js/Pages/Component/Footer.jsx",
-      "_Header-f4f996fd.js",
-      "_Dropdown-18d15c21.js",
+      "_Header-8927717f.js",
+      "_Dropdown-54b9120c.js",
       "_nonIterableRest-5e64c36b.js",
-      "_Sidebar-c883cd57.js",
+      "_Sidebar-03816c6e.js",
       "resources/js/Pages/Component/FlashMessage.jsx",
-      "_sweetalert2.all-22908a15.js"
+      "_sweetalert2.all-bbfce168.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Module/Currency/Edit.jsx"
   },
   "resources/js/Pages/Module/Currency/Index.jsx": {
-    "file": "assets/Index-a0926873.js",
+    "file": "assets/Index-e1d9f991.js",
     "imports": [
       "resources/js/app.jsx",
       "resources/js/Pages/Layout/Mainlayout.jsx",
-      "_mantine-react-table.esm-03bd8ae7.js",
+      "_mantine-react-table.esm-46492c0b.js",
       "resources/js/Pages/Component/DeleteModal.jsx",
       "_ThemeConfig-49c8c6b2.js",
       "resources/js/Pages/Component/Footer.jsx",
-      "_Header-f4f996fd.js",
-      "_Dropdown-18d15c21.js",
+      "_Header-8927717f.js",
+      "_Dropdown-54b9120c.js",
       "_nonIterableRest-5e64c36b.js",
-      "_Sidebar-c883cd57.js",
+      "_Sidebar-03816c6e.js",
       "resources/js/Pages/Component/FlashMessage.jsx",
-      "_sweetalert2.all-22908a15.js",
-      "_Table-c247dcba.js",
+      "_sweetalert2.all-bbfce168.js",
+      "_Table-2bef576d.js",
       "_floating-ui.dom-0b485352.js",
-      "_emotion-react.browser.esm-99a0c51c.js",
-      "_transition-4a60efde.js"
+      "_emotion-react.browser.esm-c92de9e7.js",
+      "_transition-0dcad84f.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Module/Currency/Index.jsx"
   },
   "resources/js/Pages/Module/Currency/Trashed.jsx": {
-    "file": "assets/Trashed-c96ff6d3.js",
+    "file": "assets/Trashed-93d65bcc.js",
     "imports": [
       "resources/js/app.jsx",
       "resources/js/Pages/Layout/Mainlayout.jsx",
-      "_mantine-react-table.esm-03bd8ae7.js",
+      "_mantine-react-table.esm-46492c0b.js",
       "resources/js/Pages/Component/ParmanentDeleteModal.jsx",
       "_ThemeConfig-49c8c6b2.js",
       "resources/js/Pages/Component/Footer.jsx",
-      "_Header-f4f996fd.js",
-      "_Dropdown-18d15c21.js",
+      "_Header-8927717f.js",
+      "_Dropdown-54b9120c.js",
       "_nonIterableRest-5e64c36b.js",
-      "_Sidebar-c883cd57.js",
+      "_Sidebar-03816c6e.js",
       "resources/js/Pages/Component/FlashMessage.jsx",
-      "_sweetalert2.all-22908a15.js",
-      "_Table-c247dcba.js",
+      "_sweetalert2.all-bbfce168.js",
+      "_Table-2bef576d.js",
       "_floating-ui.dom-0b485352.js",
-      "_emotion-react.browser.esm-99a0c51c.js",
-      "_transition-4a60efde.js"
+      "_emotion-react.browser.esm-c92de9e7.js",
+      "_transition-0dcad84f.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Module/Currency/Trashed.jsx"
   },
   "resources/js/Pages/Module/Dashboard/Index.jsx": {
-    "file": "assets/Index-c3b016db.js",
+    "file": "assets/Index-2a4b928d.js",
     "imports": [
       "resources/js/app.jsx",
       "resources/js/Pages/Layout/Mainlayout.jsx",
       "_ThemeConfig-49c8c6b2.js",
-      "_index.esm-58ffd830.js",
+      "_index.esm-f70f84b5.js",
       "resources/js/Pages/Component/Footer.jsx",
-      "_Header-f4f996fd.js",
-      "_Dropdown-18d15c21.js",
+      "_Header-8927717f.js",
+      "_Dropdown-54b9120c.js",
       "_nonIterableRest-5e64c36b.js",
-      "_Sidebar-c883cd57.js",
+      "_Sidebar-03816c6e.js",
       "resources/js/Pages/Component/FlashMessage.jsx",
-      "_sweetalert2.all-22908a15.js"
+      "_sweetalert2.all-bbfce168.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Module/Dashboard/Index.jsx"
   },
   "resources/js/Pages/Module/Extra/Css.jsx": {
-    "file": "assets/Css-1ef9e93c.js",
+    "file": "assets/Css-df72ab7f.js",
     "imports": [
       "resources/js/app.jsx",
       "resources/js/Pages/Layout/Mainlayout.jsx",
-      "_index.esm-58ffd830.js",
+      "_index.esm-f70f84b5.js",
       "_ThemeConfig-49c8c6b2.js",
       "resources/js/Pages/Component/Footer.jsx",
-      "_Header-f4f996fd.js",
-      "_Dropdown-18d15c21.js",
+      "_Header-8927717f.js",
+      "_Dropdown-54b9120c.js",
       "_nonIterableRest-5e64c36b.js",
-      "_Sidebar-c883cd57.js",
+      "_Sidebar-03816c6e.js",
       "resources/js/Pages/Component/FlashMessage.jsx",
-      "_sweetalert2.all-22908a15.js"
+      "_sweetalert2.all-bbfce168.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Module/Extra/Css.jsx"
@@ -864,756 +864,756 @@
     "css": [
       "assets/Index-a1ae07b3.css"
     ],
-    "file": "assets/Index-b1e44306.js",
+    "file": "assets/Index-03123c96.js",
     "imports": [
       "resources/js/app.jsx",
       "resources/js/Pages/Layout/Mainlayout.jsx",
-      "_Sidebar-c883cd57.js",
-      "_index.esm-58ffd830.js",
+      "_Sidebar-03816c6e.js",
+      "_index.esm-f70f84b5.js",
       "_ThemeConfig-49c8c6b2.js",
       "resources/js/Pages/Component/Footer.jsx",
-      "_Header-f4f996fd.js",
-      "_Dropdown-18d15c21.js",
+      "_Header-8927717f.js",
+      "_Dropdown-54b9120c.js",
       "_nonIterableRest-5e64c36b.js",
       "resources/js/Pages/Component/FlashMessage.jsx",
-      "_sweetalert2.all-22908a15.js"
+      "_sweetalert2.all-bbfce168.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Module/GeneralSettings/Index.jsx"
   },
   "resources/js/Pages/Module/Language/Add.jsx": {
-    "file": "assets/Add-137b73e8.js",
+    "file": "assets/Add-9d8e0c19.js",
     "imports": [
       "resources/js/app.jsx",
       "resources/js/Pages/Layout/Mainlayout.jsx",
-      "_index.esm-58ffd830.js",
+      "_index.esm-f70f84b5.js",
       "_ThemeConfig-49c8c6b2.js",
       "resources/js/Pages/Component/Footer.jsx",
-      "_Header-f4f996fd.js",
-      "_Dropdown-18d15c21.js",
+      "_Header-8927717f.js",
+      "_Dropdown-54b9120c.js",
       "_nonIterableRest-5e64c36b.js",
-      "_Sidebar-c883cd57.js",
+      "_Sidebar-03816c6e.js",
       "resources/js/Pages/Component/FlashMessage.jsx",
-      "_sweetalert2.all-22908a15.js"
+      "_sweetalert2.all-bbfce168.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Module/Language/Add.jsx"
   },
   "resources/js/Pages/Module/Language/Edit.jsx": {
-    "file": "assets/Edit-11cd15fe.js",
+    "file": "assets/Edit-ffa09984.js",
     "imports": [
       "resources/js/app.jsx",
       "resources/js/Pages/Layout/Mainlayout.jsx",
-      "_index.esm-58ffd830.js",
+      "_index.esm-f70f84b5.js",
       "_ThemeConfig-49c8c6b2.js",
       "resources/js/Pages/Component/Footer.jsx",
-      "_Header-f4f996fd.js",
-      "_Dropdown-18d15c21.js",
+      "_Header-8927717f.js",
+      "_Dropdown-54b9120c.js",
       "_nonIterableRest-5e64c36b.js",
-      "_Sidebar-c883cd57.js",
+      "_Sidebar-03816c6e.js",
       "resources/js/Pages/Component/FlashMessage.jsx",
-      "_sweetalert2.all-22908a15.js"
+      "_sweetalert2.all-bbfce168.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Module/Language/Edit.jsx"
   },
   "resources/js/Pages/Module/Language/Index.jsx": {
-    "file": "assets/Index-c5c6f968.js",
+    "file": "assets/Index-7e93d756.js",
     "imports": [
       "resources/js/app.jsx",
       "resources/js/Pages/Layout/Mainlayout.jsx",
-      "_mantine-react-table.esm-03bd8ae7.js",
+      "_mantine-react-table.esm-46492c0b.js",
       "resources/js/Pages/Component/DeleteModal.jsx",
       "_ThemeConfig-49c8c6b2.js",
       "resources/js/Pages/Component/Footer.jsx",
-      "_Header-f4f996fd.js",
-      "_Dropdown-18d15c21.js",
+      "_Header-8927717f.js",
+      "_Dropdown-54b9120c.js",
       "_nonIterableRest-5e64c36b.js",
-      "_Sidebar-c883cd57.js",
+      "_Sidebar-03816c6e.js",
       "resources/js/Pages/Component/FlashMessage.jsx",
-      "_sweetalert2.all-22908a15.js",
-      "_Table-c247dcba.js",
+      "_sweetalert2.all-bbfce168.js",
+      "_Table-2bef576d.js",
       "_floating-ui.dom-0b485352.js",
-      "_emotion-react.browser.esm-99a0c51c.js",
-      "_transition-4a60efde.js"
+      "_emotion-react.browser.esm-c92de9e7.js",
+      "_transition-0dcad84f.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Module/Language/Index.jsx"
   },
   "resources/js/Pages/Module/Language/Translate.jsx": {
-    "file": "assets/Translate-6ca8d624.js",
+    "file": "assets/Translate-4cf6389c.js",
     "imports": [
       "resources/js/app.jsx",
       "resources/js/Pages/Layout/Mainlayout.jsx",
-      "_index.esm-58ffd830.js",
-      "_transition-4a60efde.js",
+      "_index.esm-f70f84b5.js",
+      "_transition-0dcad84f.js",
       "_ThemeConfig-49c8c6b2.js",
       "resources/js/Pages/Component/Footer.jsx",
-      "_Header-f4f996fd.js",
-      "_Dropdown-18d15c21.js",
+      "_Header-8927717f.js",
+      "_Dropdown-54b9120c.js",
       "_nonIterableRest-5e64c36b.js",
-      "_Sidebar-c883cd57.js",
+      "_Sidebar-03816c6e.js",
       "resources/js/Pages/Component/FlashMessage.jsx",
-      "_sweetalert2.all-22908a15.js"
+      "_sweetalert2.all-bbfce168.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Module/Language/Translate.jsx"
   },
   "resources/js/Pages/Module/Language/Trashed.jsx": {
-    "file": "assets/Trashed-66a6bcb2.js",
+    "file": "assets/Trashed-6feef001.js",
     "imports": [
       "resources/js/app.jsx",
       "resources/js/Pages/Layout/Mainlayout.jsx",
-      "_mantine-react-table.esm-03bd8ae7.js",
+      "_mantine-react-table.esm-46492c0b.js",
       "resources/js/Pages/Component/ParmanentDeleteModal.jsx",
       "_ThemeConfig-49c8c6b2.js",
       "resources/js/Pages/Component/Footer.jsx",
-      "_Header-f4f996fd.js",
-      "_Dropdown-18d15c21.js",
+      "_Header-8927717f.js",
+      "_Dropdown-54b9120c.js",
       "_nonIterableRest-5e64c36b.js",
-      "_Sidebar-c883cd57.js",
+      "_Sidebar-03816c6e.js",
       "resources/js/Pages/Component/FlashMessage.jsx",
-      "_sweetalert2.all-22908a15.js",
-      "_Table-c247dcba.js",
+      "_sweetalert2.all-bbfce168.js",
+      "_Table-2bef576d.js",
       "_floating-ui.dom-0b485352.js",
-      "_emotion-react.browser.esm-99a0c51c.js",
-      "_transition-4a60efde.js"
+      "_emotion-react.browser.esm-c92de9e7.js",
+      "_transition-0dcad84f.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Module/Language/Trashed.jsx"
   },
   "resources/js/Pages/Module/Product/Digital.jsx": {
-    "file": "assets/Digital-153d96a6.js",
+    "file": "assets/Digital-7ad110a8.js",
     "imports": [
       "resources/js/app.jsx",
       "resources/js/Pages/Layout/Mainlayout.jsx",
       "resources/js/Pages/Component/FlashMessage.jsx",
-      "_index.esm-58ffd830.js",
-      "_react-select.esm-c4f37c68.js",
-      "_quill.snow-12f04981.js",
+      "_index.esm-f70f84b5.js",
+      "_react-select.esm-f1c59e23.js",
+      "_quill.snow-217a1235.js",
       "_ThemeConfig-49c8c6b2.js",
       "resources/js/Pages/Component/Footer.jsx",
-      "_Header-f4f996fd.js",
-      "_Dropdown-18d15c21.js",
+      "_Header-8927717f.js",
+      "_Dropdown-54b9120c.js",
       "_nonIterableRest-5e64c36b.js",
-      "_Sidebar-c883cd57.js",
-      "_sweetalert2.all-22908a15.js",
+      "_Sidebar-03816c6e.js",
+      "_sweetalert2.all-bbfce168.js",
       "_floating-ui.dom-0b485352.js",
-      "_emotion-react.browser.esm-99a0c51c.js"
+      "_emotion-react.browser.esm-c92de9e7.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Module/Product/Digital.jsx"
   },
   "resources/js/Pages/Module/Product/DigitalEdit.jsx": {
-    "file": "assets/DigitalEdit-5324a674.js",
+    "file": "assets/DigitalEdit-8e022e9f.js",
     "imports": [
       "resources/js/app.jsx",
       "resources/js/Pages/Layout/Mainlayout.jsx",
-      "_index.esm-58ffd830.js",
-      "_react-select.esm-c4f37c68.js",
-      "_quill.snow-12f04981.js",
+      "_index.esm-f70f84b5.js",
+      "_react-select.esm-f1c59e23.js",
+      "_quill.snow-217a1235.js",
       "_ThemeConfig-49c8c6b2.js",
       "resources/js/Pages/Component/Footer.jsx",
-      "_Header-f4f996fd.js",
-      "_Dropdown-18d15c21.js",
+      "_Header-8927717f.js",
+      "_Dropdown-54b9120c.js",
       "_nonIterableRest-5e64c36b.js",
-      "_Sidebar-c883cd57.js",
+      "_Sidebar-03816c6e.js",
       "resources/js/Pages/Component/FlashMessage.jsx",
-      "_sweetalert2.all-22908a15.js",
+      "_sweetalert2.all-bbfce168.js",
       "_floating-ui.dom-0b485352.js",
-      "_emotion-react.browser.esm-99a0c51c.js"
+      "_emotion-react.browser.esm-c92de9e7.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Module/Product/DigitalEdit.jsx"
   },
   "resources/js/Pages/Module/Product/Index.jsx": {
-    "file": "assets/Index-a8a16733.js",
+    "file": "assets/Index-6b01997f.js",
     "imports": [
       "resources/js/app.jsx",
       "resources/js/Pages/Layout/Mainlayout.jsx",
-      "_mantine-react-table.esm-03bd8ae7.js",
+      "_mantine-react-table.esm-46492c0b.js",
       "resources/js/Pages/Component/DeleteModal.jsx",
       "_ThemeConfig-49c8c6b2.js",
       "resources/js/Pages/Component/Footer.jsx",
-      "_Header-f4f996fd.js",
-      "_Dropdown-18d15c21.js",
+      "_Header-8927717f.js",
+      "_Dropdown-54b9120c.js",
       "_nonIterableRest-5e64c36b.js",
-      "_Sidebar-c883cd57.js",
+      "_Sidebar-03816c6e.js",
       "resources/js/Pages/Component/FlashMessage.jsx",
-      "_sweetalert2.all-22908a15.js",
-      "_Table-c247dcba.js",
+      "_sweetalert2.all-bbfce168.js",
+      "_Table-2bef576d.js",
       "_floating-ui.dom-0b485352.js",
-      "_emotion-react.browser.esm-99a0c51c.js",
-      "_transition-4a60efde.js"
+      "_emotion-react.browser.esm-c92de9e7.js",
+      "_transition-0dcad84f.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Module/Product/Index.jsx"
   },
   "resources/js/Pages/Module/Product/License.jsx": {
-    "file": "assets/License-8206184d.js",
+    "file": "assets/License-db8ecacb.js",
     "imports": [
       "resources/js/app.jsx",
       "resources/js/Pages/Layout/Mainlayout.jsx",
-      "_index.esm-58ffd830.js",
-      "_react-select.esm-c4f37c68.js",
-      "_quill.snow-12f04981.js",
+      "_index.esm-f70f84b5.js",
+      "_react-select.esm-f1c59e23.js",
+      "_quill.snow-217a1235.js",
       "_ThemeConfig-49c8c6b2.js",
       "resources/js/Pages/Component/Footer.jsx",
-      "_Header-f4f996fd.js",
-      "_Dropdown-18d15c21.js",
+      "_Header-8927717f.js",
+      "_Dropdown-54b9120c.js",
       "_nonIterableRest-5e64c36b.js",
-      "_Sidebar-c883cd57.js",
+      "_Sidebar-03816c6e.js",
       "resources/js/Pages/Component/FlashMessage.jsx",
-      "_sweetalert2.all-22908a15.js",
+      "_sweetalert2.all-bbfce168.js",
       "_floating-ui.dom-0b485352.js",
-      "_emotion-react.browser.esm-99a0c51c.js"
+      "_emotion-react.browser.esm-c92de9e7.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Module/Product/License.jsx"
   },
   "resources/js/Pages/Module/Product/LicenseEdit.jsx": {
-    "file": "assets/LicenseEdit-c86db84c.js",
+    "file": "assets/LicenseEdit-15301a38.js",
     "imports": [
       "resources/js/app.jsx",
       "resources/js/Pages/Layout/Mainlayout.jsx",
-      "_index.esm-58ffd830.js",
-      "_react-select.esm-c4f37c68.js",
-      "_quill.snow-12f04981.js",
+      "_index.esm-f70f84b5.js",
+      "_react-select.esm-f1c59e23.js",
+      "_quill.snow-217a1235.js",
       "_ThemeConfig-49c8c6b2.js",
       "resources/js/Pages/Component/Footer.jsx",
-      "_Header-f4f996fd.js",
-      "_Dropdown-18d15c21.js",
+      "_Header-8927717f.js",
+      "_Dropdown-54b9120c.js",
       "_nonIterableRest-5e64c36b.js",
-      "_Sidebar-c883cd57.js",
+      "_Sidebar-03816c6e.js",
       "resources/js/Pages/Component/FlashMessage.jsx",
-      "_sweetalert2.all-22908a15.js",
+      "_sweetalert2.all-bbfce168.js",
       "_floating-ui.dom-0b485352.js",
-      "_emotion-react.browser.esm-99a0c51c.js"
+      "_emotion-react.browser.esm-c92de9e7.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Module/Product/LicenseEdit.jsx"
   },
   "resources/js/Pages/Module/Product/Physical.jsx": {
-    "file": "assets/Physical-3141e487.js",
+    "file": "assets/Physical-c5679cf0.js",
     "imports": [
       "resources/js/app.jsx",
       "resources/js/Pages/Layout/Mainlayout.jsx",
-      "_index.esm-58ffd830.js",
-      "_react-select.esm-c4f37c68.js",
-      "_quill.snow-12f04981.js",
+      "_index.esm-f70f84b5.js",
+      "_react-select.esm-f1c59e23.js",
+      "_quill.snow-217a1235.js",
       "_ThemeConfig-49c8c6b2.js",
       "resources/js/Pages/Component/Footer.jsx",
-      "_Header-f4f996fd.js",
-      "_Dropdown-18d15c21.js",
+      "_Header-8927717f.js",
+      "_Dropdown-54b9120c.js",
       "_nonIterableRest-5e64c36b.js",
-      "_Sidebar-c883cd57.js",
+      "_Sidebar-03816c6e.js",
       "resources/js/Pages/Component/FlashMessage.jsx",
-      "_sweetalert2.all-22908a15.js",
+      "_sweetalert2.all-bbfce168.js",
       "_floating-ui.dom-0b485352.js",
-      "_emotion-react.browser.esm-99a0c51c.js"
+      "_emotion-react.browser.esm-c92de9e7.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Module/Product/Physical.jsx"
   },
   "resources/js/Pages/Module/Product/PhysicalEdit.jsx": {
-    "file": "assets/PhysicalEdit-ce9d7920.js",
+    "file": "assets/PhysicalEdit-ad8ac346.js",
     "imports": [
       "resources/js/app.jsx",
       "resources/js/Pages/Layout/Mainlayout.jsx",
-      "_index.esm-58ffd830.js",
-      "_react-select.esm-c4f37c68.js",
-      "_quill.snow-12f04981.js",
+      "_index.esm-f70f84b5.js",
+      "_react-select.esm-f1c59e23.js",
+      "_quill.snow-217a1235.js",
       "_ThemeConfig-49c8c6b2.js",
       "resources/js/Pages/Component/Footer.jsx",
-      "_Header-f4f996fd.js",
-      "_Dropdown-18d15c21.js",
+      "_Header-8927717f.js",
+      "_Dropdown-54b9120c.js",
       "_nonIterableRest-5e64c36b.js",
-      "_Sidebar-c883cd57.js",
+      "_Sidebar-03816c6e.js",
       "resources/js/Pages/Component/FlashMessage.jsx",
-      "_sweetalert2.all-22908a15.js",
+      "_sweetalert2.all-bbfce168.js",
       "_floating-ui.dom-0b485352.js",
-      "_emotion-react.browser.esm-99a0c51c.js"
+      "_emotion-react.browser.esm-c92de9e7.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Module/Product/PhysicalEdit.jsx"
   },
   "resources/js/Pages/Module/Product/Type.jsx": {
-    "file": "assets/Type-ce4ca4f0.js",
+    "file": "assets/Type-7ebf1145.js",
     "imports": [
       "resources/js/app.jsx",
       "resources/js/Pages/Layout/Mainlayout.jsx",
-      "_index.esm-58ffd830.js",
+      "_index.esm-f70f84b5.js",
       "_ThemeConfig-49c8c6b2.js",
       "resources/js/Pages/Component/Footer.jsx",
-      "_Header-f4f996fd.js",
-      "_Dropdown-18d15c21.js",
+      "_Header-8927717f.js",
+      "_Dropdown-54b9120c.js",
       "_nonIterableRest-5e64c36b.js",
-      "_Sidebar-c883cd57.js",
+      "_Sidebar-03816c6e.js",
       "resources/js/Pages/Component/FlashMessage.jsx",
-      "_sweetalert2.all-22908a15.js"
+      "_sweetalert2.all-bbfce168.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Module/Product/Type.jsx"
   },
   "resources/js/Pages/Module/Profile/Index.jsx": {
-    "file": "assets/Index-17a0b954.js",
+    "file": "assets/Index-23aba92a.js",
     "imports": [
       "resources/js/app.jsx",
       "resources/js/Pages/Layout/Mainlayout.jsx",
-      "_index-d096138a.js",
+      "_index-d93b3358.js",
       "_ThemeConfig-49c8c6b2.js",
       "resources/js/Pages/Component/Footer.jsx",
-      "_Header-f4f996fd.js",
-      "_Dropdown-18d15c21.js",
+      "_Header-8927717f.js",
+      "_Dropdown-54b9120c.js",
       "_nonIterableRest-5e64c36b.js",
-      "_Sidebar-c883cd57.js",
+      "_Sidebar-03816c6e.js",
       "resources/js/Pages/Component/FlashMessage.jsx",
-      "_sweetalert2.all-22908a15.js",
-      "_Table-c247dcba.js",
+      "_sweetalert2.all-bbfce168.js",
+      "_Table-2bef576d.js",
       "_floating-ui.dom-0b485352.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Module/Profile/Index.jsx"
   },
   "resources/js/Pages/Module/RolePermission/Add.jsx": {
-    "file": "assets/Add-aa06677e.js",
+    "file": "assets/Add-0318d721.js",
     "imports": [
       "resources/js/app.jsx",
       "resources/js/Pages/Layout/Mainlayout.jsx",
-      "_index.esm-58ffd830.js",
+      "_index.esm-f70f84b5.js",
       "_ThemeConfig-49c8c6b2.js",
       "resources/js/Pages/Component/Footer.jsx",
-      "_Header-f4f996fd.js",
-      "_Dropdown-18d15c21.js",
+      "_Header-8927717f.js",
+      "_Dropdown-54b9120c.js",
       "_nonIterableRest-5e64c36b.js",
-      "_Sidebar-c883cd57.js",
+      "_Sidebar-03816c6e.js",
       "resources/js/Pages/Component/FlashMessage.jsx",
-      "_sweetalert2.all-22908a15.js"
+      "_sweetalert2.all-bbfce168.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Module/RolePermission/Add.jsx"
   },
   "resources/js/Pages/Module/RolePermission/Edit.jsx": {
-    "file": "assets/Edit-7c2587e7.js",
+    "file": "assets/Edit-0f72b686.js",
     "imports": [
       "resources/js/app.jsx",
       "resources/js/Pages/Layout/Mainlayout.jsx",
-      "_index.esm-58ffd830.js",
+      "_index.esm-f70f84b5.js",
       "_ThemeConfig-49c8c6b2.js",
       "resources/js/Pages/Component/Footer.jsx",
-      "_Header-f4f996fd.js",
-      "_Dropdown-18d15c21.js",
+      "_Header-8927717f.js",
+      "_Dropdown-54b9120c.js",
       "_nonIterableRest-5e64c36b.js",
-      "_Sidebar-c883cd57.js",
+      "_Sidebar-03816c6e.js",
       "resources/js/Pages/Component/FlashMessage.jsx",
-      "_sweetalert2.all-22908a15.js"
+      "_sweetalert2.all-bbfce168.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Module/RolePermission/Edit.jsx"
   },
   "resources/js/Pages/Module/RolePermission/Index.jsx": {
-    "file": "assets/Index-ec34af5f.js",
+    "file": "assets/Index-f50b208f.js",
     "imports": [
       "resources/js/app.jsx",
       "resources/js/Pages/Layout/Mainlayout.jsx",
-      "_mantine-react-table.esm-03bd8ae7.js",
+      "_mantine-react-table.esm-46492c0b.js",
       "resources/js/Pages/Component/DeleteModal.jsx",
       "_ThemeConfig-49c8c6b2.js",
       "resources/js/Pages/Component/Footer.jsx",
-      "_Header-f4f996fd.js",
-      "_Dropdown-18d15c21.js",
+      "_Header-8927717f.js",
+      "_Dropdown-54b9120c.js",
       "_nonIterableRest-5e64c36b.js",
-      "_Sidebar-c883cd57.js",
+      "_Sidebar-03816c6e.js",
       "resources/js/Pages/Component/FlashMessage.jsx",
-      "_sweetalert2.all-22908a15.js",
-      "_Table-c247dcba.js",
+      "_sweetalert2.all-bbfce168.js",
+      "_Table-2bef576d.js",
       "_floating-ui.dom-0b485352.js",
-      "_emotion-react.browser.esm-99a0c51c.js",
-      "_transition-4a60efde.js"
+      "_emotion-react.browser.esm-c92de9e7.js",
+      "_transition-0dcad84f.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Module/RolePermission/Index.jsx"
   },
   "resources/js/Pages/Module/Size/Add.jsx": {
-    "file": "assets/Add-ed34c375.js",
+    "file": "assets/Add-2e0e8c84.js",
     "imports": [
       "resources/js/app.jsx",
       "resources/js/Pages/Layout/Mainlayout.jsx",
-      "_index.esm-58ffd830.js",
+      "_index.esm-f70f84b5.js",
       "_ThemeConfig-49c8c6b2.js",
       "resources/js/Pages/Component/Footer.jsx",
-      "_Header-f4f996fd.js",
-      "_Dropdown-18d15c21.js",
+      "_Header-8927717f.js",
+      "_Dropdown-54b9120c.js",
       "_nonIterableRest-5e64c36b.js",
-      "_Sidebar-c883cd57.js",
+      "_Sidebar-03816c6e.js",
       "resources/js/Pages/Component/FlashMessage.jsx",
-      "_sweetalert2.all-22908a15.js"
+      "_sweetalert2.all-bbfce168.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Module/Size/Add.jsx"
   },
   "resources/js/Pages/Module/Size/Edit.jsx": {
-    "file": "assets/Edit-76ae9dbb.js",
+    "file": "assets/Edit-be7cc873.js",
     "imports": [
       "resources/js/app.jsx",
       "resources/js/Pages/Layout/Mainlayout.jsx",
-      "_index.esm-58ffd830.js",
+      "_index.esm-f70f84b5.js",
       "_ThemeConfig-49c8c6b2.js",
       "resources/js/Pages/Component/Footer.jsx",
-      "_Header-f4f996fd.js",
-      "_Dropdown-18d15c21.js",
+      "_Header-8927717f.js",
+      "_Dropdown-54b9120c.js",
       "_nonIterableRest-5e64c36b.js",
-      "_Sidebar-c883cd57.js",
+      "_Sidebar-03816c6e.js",
       "resources/js/Pages/Component/FlashMessage.jsx",
-      "_sweetalert2.all-22908a15.js"
+      "_sweetalert2.all-bbfce168.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Module/Size/Edit.jsx"
   },
   "resources/js/Pages/Module/Size/Index.jsx": {
-    "file": "assets/Index-377a279a.js",
+    "file": "assets/Index-8c429392.js",
     "imports": [
       "resources/js/app.jsx",
       "resources/js/Pages/Layout/Mainlayout.jsx",
-      "_mantine-react-table.esm-03bd8ae7.js",
+      "_mantine-react-table.esm-46492c0b.js",
       "resources/js/Pages/Component/DeleteModal.jsx",
       "_ThemeConfig-49c8c6b2.js",
       "resources/js/Pages/Component/Footer.jsx",
-      "_Header-f4f996fd.js",
-      "_Dropdown-18d15c21.js",
+      "_Header-8927717f.js",
+      "_Dropdown-54b9120c.js",
       "_nonIterableRest-5e64c36b.js",
-      "_Sidebar-c883cd57.js",
+      "_Sidebar-03816c6e.js",
       "resources/js/Pages/Component/FlashMessage.jsx",
-      "_sweetalert2.all-22908a15.js",
-      "_Table-c247dcba.js",
+      "_sweetalert2.all-bbfce168.js",
+      "_Table-2bef576d.js",
       "_floating-ui.dom-0b485352.js",
-      "_emotion-react.browser.esm-99a0c51c.js",
-      "_transition-4a60efde.js"
+      "_emotion-react.browser.esm-c92de9e7.js",
+      "_transition-0dcad84f.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Module/Size/Index.jsx"
   },
   "resources/js/Pages/Module/Size/Trashed.jsx": {
-    "file": "assets/Trashed-455dd0c6.js",
+    "file": "assets/Trashed-7369261c.js",
     "imports": [
       "resources/js/app.jsx",
       "resources/js/Pages/Layout/Mainlayout.jsx",
-      "_mantine-react-table.esm-03bd8ae7.js",
+      "_mantine-react-table.esm-46492c0b.js",
       "resources/js/Pages/Component/ParmanentDeleteModal.jsx",
       "_ThemeConfig-49c8c6b2.js",
       "resources/js/Pages/Component/Footer.jsx",
-      "_Header-f4f996fd.js",
-      "_Dropdown-18d15c21.js",
+      "_Header-8927717f.js",
+      "_Dropdown-54b9120c.js",
       "_nonIterableRest-5e64c36b.js",
-      "_Sidebar-c883cd57.js",
+      "_Sidebar-03816c6e.js",
       "resources/js/Pages/Component/FlashMessage.jsx",
-      "_sweetalert2.all-22908a15.js",
-      "_Table-c247dcba.js",
+      "_sweetalert2.all-bbfce168.js",
+      "_Table-2bef576d.js",
       "_floating-ui.dom-0b485352.js",
-      "_emotion-react.browser.esm-99a0c51c.js",
-      "_transition-4a60efde.js"
+      "_emotion-react.browser.esm-c92de9e7.js",
+      "_transition-0dcad84f.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Module/Size/Trashed.jsx"
   },
   "resources/js/Pages/Module/Slider/Add.jsx": {
-    "file": "assets/Add-06095e8b.js",
+    "file": "assets/Add-bd756d00.js",
     "imports": [
       "resources/js/app.jsx",
       "resources/js/Pages/Layout/Mainlayout.jsx",
-      "_index.esm-58ffd830.js",
+      "_index.esm-f70f84b5.js",
       "_ThemeConfig-49c8c6b2.js",
       "resources/js/Pages/Component/Footer.jsx",
-      "_Header-f4f996fd.js",
-      "_Dropdown-18d15c21.js",
+      "_Header-8927717f.js",
+      "_Dropdown-54b9120c.js",
       "_nonIterableRest-5e64c36b.js",
-      "_Sidebar-c883cd57.js",
+      "_Sidebar-03816c6e.js",
       "resources/js/Pages/Component/FlashMessage.jsx",
-      "_sweetalert2.all-22908a15.js"
+      "_sweetalert2.all-bbfce168.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Module/Slider/Add.jsx"
   },
   "resources/js/Pages/Module/Slider/Edit.jsx": {
-    "file": "assets/Edit-03c6e6fe.js",
+    "file": "assets/Edit-4d544c38.js",
     "imports": [
       "resources/js/app.jsx",
       "resources/js/Pages/Layout/Mainlayout.jsx",
-      "_index.esm-58ffd830.js",
+      "_index.esm-f70f84b5.js",
       "_ThemeConfig-49c8c6b2.js",
       "resources/js/Pages/Component/Footer.jsx",
-      "_Header-f4f996fd.js",
-      "_Dropdown-18d15c21.js",
+      "_Header-8927717f.js",
+      "_Dropdown-54b9120c.js",
       "_nonIterableRest-5e64c36b.js",
-      "_Sidebar-c883cd57.js",
+      "_Sidebar-03816c6e.js",
       "resources/js/Pages/Component/FlashMessage.jsx",
-      "_sweetalert2.all-22908a15.js"
+      "_sweetalert2.all-bbfce168.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Module/Slider/Edit.jsx"
   },
   "resources/js/Pages/Module/Slider/Index.jsx": {
-    "file": "assets/Index-d58390ad.js",
+    "file": "assets/Index-011a3fef.js",
     "imports": [
       "resources/js/app.jsx",
       "resources/js/Pages/Layout/Mainlayout.jsx",
-      "_mantine-react-table.esm-03bd8ae7.js",
+      "_mantine-react-table.esm-46492c0b.js",
       "resources/js/Pages/Component/DeleteModal.jsx",
       "_ThemeConfig-49c8c6b2.js",
       "resources/js/Pages/Component/Footer.jsx",
-      "_Header-f4f996fd.js",
-      "_Dropdown-18d15c21.js",
+      "_Header-8927717f.js",
+      "_Dropdown-54b9120c.js",
       "_nonIterableRest-5e64c36b.js",
-      "_Sidebar-c883cd57.js",
+      "_Sidebar-03816c6e.js",
       "resources/js/Pages/Component/FlashMessage.jsx",
-      "_sweetalert2.all-22908a15.js",
-      "_Table-c247dcba.js",
+      "_sweetalert2.all-bbfce168.js",
+      "_Table-2bef576d.js",
       "_floating-ui.dom-0b485352.js",
-      "_emotion-react.browser.esm-99a0c51c.js",
-      "_transition-4a60efde.js"
+      "_emotion-react.browser.esm-c92de9e7.js",
+      "_transition-0dcad84f.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Module/Slider/Index.jsx"
   },
   "resources/js/Pages/Module/Slider/Trashed.jsx": {
-    "file": "assets/Trashed-1e919d4a.js",
+    "file": "assets/Trashed-7a4a0432.js",
     "imports": [
       "resources/js/app.jsx",
       "resources/js/Pages/Layout/Mainlayout.jsx",
-      "_mantine-react-table.esm-03bd8ae7.js",
+      "_mantine-react-table.esm-46492c0b.js",
       "resources/js/Pages/Component/ParmanentDeleteModal.jsx",
       "_ThemeConfig-49c8c6b2.js",
       "resources/js/Pages/Component/Footer.jsx",
-      "_Header-f4f996fd.js",
-      "_Dropdown-18d15c21.js",
+      "_Header-8927717f.js",
+      "_Dropdown-54b9120c.js",
       "_nonIterableRest-5e64c36b.js",
-      "_Sidebar-c883cd57.js",
+      "_Sidebar-03816c6e.js",
       "resources/js/Pages/Component/FlashMessage.jsx",
-      "_sweetalert2.all-22908a15.js",
-      "_Table-c247dcba.js",
+      "_sweetalert2.all-bbfce168.js",
+      "_Table-2bef576d.js",
       "_floating-ui.dom-0b485352.js",
-      "_emotion-react.browser.esm-99a0c51c.js",
-      "_transition-4a60efde.js"
+      "_emotion-react.browser.esm-c92de9e7.js",
+      "_transition-0dcad84f.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Module/Slider/Trashed.jsx"
   },
   "resources/js/Pages/Module/Tax/Add.jsx": {
-    "file": "assets/Add-070fb1c5.js",
+    "file": "assets/Add-74c36060.js",
     "imports": [
       "resources/js/app.jsx",
       "resources/js/Pages/Layout/Mainlayout.jsx",
-      "_index.esm-58ffd830.js",
+      "_index.esm-f70f84b5.js",
       "_ThemeConfig-49c8c6b2.js",
       "resources/js/Pages/Component/Footer.jsx",
-      "_Header-f4f996fd.js",
-      "_Dropdown-18d15c21.js",
+      "_Header-8927717f.js",
+      "_Dropdown-54b9120c.js",
       "_nonIterableRest-5e64c36b.js",
-      "_Sidebar-c883cd57.js",
+      "_Sidebar-03816c6e.js",
       "resources/js/Pages/Component/FlashMessage.jsx",
-      "_sweetalert2.all-22908a15.js"
+      "_sweetalert2.all-bbfce168.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Module/Tax/Add.jsx"
   },
   "resources/js/Pages/Module/Tax/Edit.jsx": {
-    "file": "assets/Edit-b8e188f8.js",
+    "file": "assets/Edit-66f3ae59.js",
     "imports": [
       "resources/js/app.jsx",
       "resources/js/Pages/Layout/Mainlayout.jsx",
-      "_react-select.esm-c4f37c68.js",
-      "_index.esm-58ffd830.js",
+      "_react-select.esm-f1c59e23.js",
+      "_index.esm-f70f84b5.js",
       "_ThemeConfig-49c8c6b2.js",
       "resources/js/Pages/Component/Footer.jsx",
-      "_Header-f4f996fd.js",
-      "_Dropdown-18d15c21.js",
+      "_Header-8927717f.js",
+      "_Dropdown-54b9120c.js",
       "_nonIterableRest-5e64c36b.js",
-      "_Sidebar-c883cd57.js",
+      "_Sidebar-03816c6e.js",
       "resources/js/Pages/Component/FlashMessage.jsx",
-      "_sweetalert2.all-22908a15.js",
+      "_sweetalert2.all-bbfce168.js",
       "_floating-ui.dom-0b485352.js",
-      "_emotion-react.browser.esm-99a0c51c.js"
+      "_emotion-react.browser.esm-c92de9e7.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Module/Tax/Edit.jsx"
   },
   "resources/js/Pages/Module/Tax/Index.jsx": {
-    "file": "assets/Index-769ab897.js",
+    "file": "assets/Index-1fce9a6d.js",
     "imports": [
       "resources/js/app.jsx",
       "resources/js/Pages/Layout/Mainlayout.jsx",
-      "_mantine-react-table.esm-03bd8ae7.js",
+      "_mantine-react-table.esm-46492c0b.js",
       "resources/js/Pages/Component/DeleteModal.jsx",
       "_ThemeConfig-49c8c6b2.js",
       "resources/js/Pages/Component/Footer.jsx",
-      "_Header-f4f996fd.js",
-      "_Dropdown-18d15c21.js",
+      "_Header-8927717f.js",
+      "_Dropdown-54b9120c.js",
       "_nonIterableRest-5e64c36b.js",
-      "_Sidebar-c883cd57.js",
+      "_Sidebar-03816c6e.js",
       "resources/js/Pages/Component/FlashMessage.jsx",
-      "_sweetalert2.all-22908a15.js",
-      "_Table-c247dcba.js",
+      "_sweetalert2.all-bbfce168.js",
+      "_Table-2bef576d.js",
       "_floating-ui.dom-0b485352.js",
-      "_emotion-react.browser.esm-99a0c51c.js",
-      "_transition-4a60efde.js"
+      "_emotion-react.browser.esm-c92de9e7.js",
+      "_transition-0dcad84f.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Module/Tax/Index.jsx"
   },
   "resources/js/Pages/Module/Tax/Trashed.jsx": {
-    "file": "assets/Trashed-daef011a.js",
+    "file": "assets/Trashed-2bf62edc.js",
     "imports": [
       "resources/js/app.jsx",
       "resources/js/Pages/Layout/Mainlayout.jsx",
-      "_mantine-react-table.esm-03bd8ae7.js",
+      "_mantine-react-table.esm-46492c0b.js",
       "resources/js/Pages/Component/ParmanentDeleteModal.jsx",
       "_ThemeConfig-49c8c6b2.js",
       "resources/js/Pages/Component/Footer.jsx",
-      "_Header-f4f996fd.js",
-      "_Dropdown-18d15c21.js",
+      "_Header-8927717f.js",
+      "_Dropdown-54b9120c.js",
       "_nonIterableRest-5e64c36b.js",
-      "_Sidebar-c883cd57.js",
+      "_Sidebar-03816c6e.js",
       "resources/js/Pages/Component/FlashMessage.jsx",
-      "_sweetalert2.all-22908a15.js",
-      "_Table-c247dcba.js",
+      "_sweetalert2.all-bbfce168.js",
+      "_Table-2bef576d.js",
       "_floating-ui.dom-0b485352.js",
-      "_emotion-react.browser.esm-99a0c51c.js",
-      "_transition-4a60efde.js"
+      "_emotion-react.browser.esm-c92de9e7.js",
+      "_transition-0dcad84f.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Module/Tax/Trashed.jsx"
   },
   "resources/js/Pages/Module/Unit/Add.jsx": {
-    "file": "assets/Add-f2fa0af7.js",
+    "file": "assets/Add-f93f5851.js",
     "imports": [
       "resources/js/app.jsx",
       "resources/js/Pages/Layout/Mainlayout.jsx",
-      "_index.esm-58ffd830.js",
+      "_index.esm-f70f84b5.js",
       "_ThemeConfig-49c8c6b2.js",
       "resources/js/Pages/Component/Footer.jsx",
-      "_Header-f4f996fd.js",
-      "_Dropdown-18d15c21.js",
+      "_Header-8927717f.js",
+      "_Dropdown-54b9120c.js",
       "_nonIterableRest-5e64c36b.js",
-      "_Sidebar-c883cd57.js",
+      "_Sidebar-03816c6e.js",
       "resources/js/Pages/Component/FlashMessage.jsx",
-      "_sweetalert2.all-22908a15.js"
+      "_sweetalert2.all-bbfce168.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Module/Unit/Add.jsx"
   },
   "resources/js/Pages/Module/Unit/Edit.jsx": {
-    "file": "assets/Edit-23f51dfc.js",
+    "file": "assets/Edit-543363a7.js",
     "imports": [
       "resources/js/app.jsx",
       "resources/js/Pages/Layout/Mainlayout.jsx",
-      "_index.esm-58ffd830.js",
+      "_index.esm-f70f84b5.js",
       "_ThemeConfig-49c8c6b2.js",
       "resources/js/Pages/Component/Footer.jsx",
-      "_Header-f4f996fd.js",
-      "_Dropdown-18d15c21.js",
+      "_Header-8927717f.js",
+      "_Dropdown-54b9120c.js",
       "_nonIterableRest-5e64c36b.js",
-      "_Sidebar-c883cd57.js",
+      "_Sidebar-03816c6e.js",
       "resources/js/Pages/Component/FlashMessage.jsx",
-      "_sweetalert2.all-22908a15.js"
+      "_sweetalert2.all-bbfce168.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Module/Unit/Edit.jsx"
   },
   "resources/js/Pages/Module/Unit/Index.jsx": {
-    "file": "assets/Index-54ef353a.js",
+    "file": "assets/Index-4038c4ac.js",
     "imports": [
       "resources/js/app.jsx",
       "resources/js/Pages/Layout/Mainlayout.jsx",
-      "_mantine-react-table.esm-03bd8ae7.js",
+      "_mantine-react-table.esm-46492c0b.js",
       "resources/js/Pages/Component/DeleteModal.jsx",
       "_ThemeConfig-49c8c6b2.js",
       "resources/js/Pages/Component/Footer.jsx",
-      "_Header-f4f996fd.js",
-      "_Dropdown-18d15c21.js",
+      "_Header-8927717f.js",
+      "_Dropdown-54b9120c.js",
       "_nonIterableRest-5e64c36b.js",
-      "_Sidebar-c883cd57.js",
+      "_Sidebar-03816c6e.js",
       "resources/js/Pages/Component/FlashMessage.jsx",
-      "_sweetalert2.all-22908a15.js",
-      "_Table-c247dcba.js",
+      "_sweetalert2.all-bbfce168.js",
+      "_Table-2bef576d.js",
       "_floating-ui.dom-0b485352.js",
-      "_emotion-react.browser.esm-99a0c51c.js",
-      "_transition-4a60efde.js"
+      "_emotion-react.browser.esm-c92de9e7.js",
+      "_transition-0dcad84f.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Module/Unit/Index.jsx"
   },
   "resources/js/Pages/Module/Unit/Trashed.jsx": {
-    "file": "assets/Trashed-ca202e17.js",
+    "file": "assets/Trashed-89e9c8cb.js",
     "imports": [
       "resources/js/app.jsx",
       "resources/js/Pages/Layout/Mainlayout.jsx",
-      "_mantine-react-table.esm-03bd8ae7.js",
+      "_mantine-react-table.esm-46492c0b.js",
       "resources/js/Pages/Component/ParmanentDeleteModal.jsx",
       "_ThemeConfig-49c8c6b2.js",
       "resources/js/Pages/Component/Footer.jsx",
-      "_Header-f4f996fd.js",
-      "_Dropdown-18d15c21.js",
+      "_Header-8927717f.js",
+      "_Dropdown-54b9120c.js",
       "_nonIterableRest-5e64c36b.js",
-      "_Sidebar-c883cd57.js",
+      "_Sidebar-03816c6e.js",
       "resources/js/Pages/Component/FlashMessage.jsx",
-      "_sweetalert2.all-22908a15.js",
-      "_Table-c247dcba.js",
+      "_sweetalert2.all-bbfce168.js",
+      "_Table-2bef576d.js",
       "_floating-ui.dom-0b485352.js",
-      "_emotion-react.browser.esm-99a0c51c.js",
-      "_transition-4a60efde.js"
+      "_emotion-react.browser.esm-c92de9e7.js",
+      "_transition-0dcad84f.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Module/Unit/Trashed.jsx"
   },
   "resources/js/Pages/Module/User/Createuser.jsx": {
-    "file": "assets/Createuser-59e9cd65.js",
+    "file": "assets/Createuser-19892158.js",
     "imports": [
       "resources/js/app.jsx",
       "resources/js/Pages/Layout/Mainlayout.jsx",
       "_ThemeConfig-49c8c6b2.js",
       "resources/js/Pages/Component/Footer.jsx",
-      "_Header-f4f996fd.js",
-      "_Dropdown-18d15c21.js",
+      "_Header-8927717f.js",
+      "_Dropdown-54b9120c.js",
       "_nonIterableRest-5e64c36b.js",
-      "_Sidebar-c883cd57.js",
+      "_Sidebar-03816c6e.js",
       "resources/js/Pages/Component/FlashMessage.jsx",
-      "_sweetalert2.all-22908a15.js"
+      "_sweetalert2.all-bbfce168.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Module/User/Createuser.jsx"
   },
   "resources/js/Pages/Module/User/Edituser.jsx": {
-    "file": "assets/Edituser-6af79b9b.js",
+    "file": "assets/Edituser-8f03bc1c.js",
     "imports": [
       "resources/js/app.jsx",
       "resources/js/Pages/Layout/Mainlayout.jsx",
       "_ThemeConfig-49c8c6b2.js",
       "resources/js/Pages/Component/Footer.jsx",
-      "_Header-f4f996fd.js",
-      "_Dropdown-18d15c21.js",
+      "_Header-8927717f.js",
+      "_Dropdown-54b9120c.js",
       "_nonIterableRest-5e64c36b.js",
-      "_Sidebar-c883cd57.js",
+      "_Sidebar-03816c6e.js",
       "resources/js/Pages/Component/FlashMessage.jsx",
-      "_sweetalert2.all-22908a15.js"
+      "_sweetalert2.all-bbfce168.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Module/User/Edituser.jsx"
   },
   "resources/js/Pages/Module/User/Userlist.jsx": {
-    "file": "assets/Userlist-5d4106de.js",
+    "file": "assets/Userlist-51f4c1e4.js",
     "imports": [
       "resources/js/app.jsx",
       "_ThemeConfig-49c8c6b2.js",
       "resources/js/Pages/Layout/Mainlayout.jsx",
-      "_index-d096138a.js",
-      "_Sidebar-c883cd57.js",
+      "_index-d93b3358.js",
+      "_Sidebar-03816c6e.js",
       "resources/js/Pages/Component/Footer.jsx",
-      "_Header-f4f996fd.js",
-      "_Dropdown-18d15c21.js",
+      "_Header-8927717f.js",
+      "_Dropdown-54b9120c.js",
       "_nonIterableRest-5e64c36b.js",
       "resources/js/Pages/Component/FlashMessage.jsx",
-      "_sweetalert2.all-22908a15.js",
-      "_Table-c247dcba.js",
+      "_sweetalert2.all-bbfce168.js",
+      "_Table-2bef576d.js",
       "_floating-ui.dom-0b485352.js"
     ],
     "isDynamicEntry": true,
@@ -1622,14 +1622,14 @@
   "resources/js/app.jsx": {
     "dynamicImports": [
       "resources/js/Pages/Component/DeleteModal.jsx",
-      "_Dropdown-18d15c21.js",
+      "_Dropdown-54b9120c.js",
       "resources/js/Pages/Component/FlashMessage.jsx",
       "resources/js/Pages/Component/Footer.jsx",
-      "_Header-f4f996fd.js",
+      "_Header-8927717f.js",
       "resources/js/Pages/Component/ParmanentDeleteModal.jsx",
       "resources/js/Pages/Component/Portals.jsx",
       "resources/js/Pages/Component/Settings.jsx",
-      "_Sidebar-c883cd57.js",
+      "_Sidebar-03816c6e.js",
       "resources/js/Pages/Error.jsx",
       "resources/js/Pages/Layout/Mainlayout.jsx",
       "resources/js/Pages/Module/Auth/Login.jsx",
@@ -1702,7 +1702,7 @@
       "resources/js/Pages/Module/User/Edituser.jsx",
       "resources/js/Pages/Module/User/Userlist.jsx"
     ],
-    "file": "assets/app-c5b2fbc5.js",
+    "file": "assets/app-cccb41b5.js",
     "isEntry": true,
     "src": "resources/js/app.jsx"
   }
