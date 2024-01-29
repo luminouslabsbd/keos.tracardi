@@ -99,9 +99,15 @@ function Index() {
                 header: 'Tax Name',
             },
             {
-                accessorKey: 'tax_type',
                 header: 'Tax Type',
+                Cell: ({ row }) => (
+                    <div className="flex items-center gap-2">
+                       {row.original.tax_type === 1 ? "Amount" : "Percentage"}
+                    </div>
+                ),
             },
+
+
             {
                 accessorKey: 'tax_amount',
                 header: 'Tax Amount / Percentage',
