@@ -223,7 +223,7 @@ useEffect(() => {
                                 </Link>
                             </li>
                             <li className="nav-item">
-                                <Link href={`${base_url}/admin/tax/create`} className="group">
+                                <Link href={`${base_url}/admin/tax`} className="group">
                                     <div className="flex items-center">
 
                                         <svg width="20" height="20" viewBox="0 0 20 20" fill="none"

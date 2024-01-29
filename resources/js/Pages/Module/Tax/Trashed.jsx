@@ -33,7 +33,7 @@ function Index() {
             } else {
                 setIsRefetching(true);
             }
-            const url = new URL('/admin/category/trashed/data', base_url);
+            const url = new URL('/admin/tax/trashed/data', base_url);
             url.searchParams.set(
                 'start',
                 `${pagination.pageIndex * pagination.pageSize}`
@@ -78,36 +78,27 @@ function Index() {
     ]);
 
     function handleUndoClick(data) {
-        router.get("/admin/category/undo-trashed/" + data);
+        router.get("/admin/tax/undo-trashed/" + data);
     }
+    
     function handleDeleteClick(data) {
         setFileToDelete(data);
         setIsDeleteNoteModal(true);
     }
-    const ImageRenderer = ({ data }) => {
-        return (
-            <div>
-                <img
-                    src={data ? `/storage/category/${data}` : '/assets/images/user-profile.jpeg'}
-                    alt="image"
-                    className="h-[40px] w-[40px] rounded-full"
-                />
-            </div>
-        );
-    };
+ 
     const columns = useMemo(
         () => [
             {
-                header: 'Thumbnail',
-                Cell: ({ row }) => <ImageRenderer data={row.original?.thumbnail} />,
+                accessorKey: 'tax_name',
+                header: 'Tax Name',
             },
             {
-                accessorKey: 'name',
-                header: ' Category Name',
+                accessorKey: 'tax_type',
+                header: 'Tax Type',
             },
             {
-                accessorKey: 'slug',
-                header: ' Category Slug',
+                accessorKey: 'tax_amount',
+                header: 'Tax Amount / Percentage',
             },
             {
                 header: 'Actions',
@@ -195,7 +186,7 @@ function Index() {
                 <ul className="flex space-x-2 rtl:space-x-reverse">
                     <li>
                         <Link href="#" className="text-[#FF6243] hover:underline text-base">
-                            Category
+                            Tax
                         </Link>
                     </li>
                     <li className="before:content-['/'] ltr:before:mr-2 rtl:before:ml-2 text-base">
@@ -205,14 +196,14 @@ function Index() {
 
                 <div className="ml-auto flex justify-center items-center gap-3">
                     <Link
-                        href={`${base_url}/admin/category/restore-all`}
+                        href={`${base_url}/admin/tax/restore-all`}
                         method="get"
                         className="flex items-center px-7 py-2 bg-indigo-700 text-white rounded-md text-[15px] shadow-lg transition-transform transform-gpu hover:scale-105"
                     >
                         Undo All
                     </Link>
                     <Link
-                        href={`${base_url}/admin/category/permanent-delete-all`}
+                        href={`${base_url}/admin/tax/permanent-delete-all`}
                         method="get"
                         className="flex items-center px-7 py-2 bg-red-600 text-white rounded-md text-[15px] shadow-lg transition-transform transform-gpu hover:scale-105"
                     >
@@ -222,7 +213,7 @@ function Index() {
             </div>
             <br />
             <MantineReactTable table={table} />
-            <ParmanentDeleteModal isDeleteNoteModal={isDeleteNoteModal} setIsDeleteNoteModal={setIsDeleteNoteModal} fileToDelete={fileToDelete} name="Category" route="category/permanent-delete"></ParmanentDeleteModal>
+            <ParmanentDeleteModal isDeleteNoteModal={isDeleteNoteModal} setIsDeleteNoteModal={setIsDeleteNoteModal} fileToDelete={fileToDelete} name="Tax" route="tax/permanent-delete"></ParmanentDeleteModal>
         </>
     );
 }
