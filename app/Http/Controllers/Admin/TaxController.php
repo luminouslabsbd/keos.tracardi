@@ -79,4 +79,9 @@ class TaxController extends Controller
             return back()->with('error', 'Data Does not Insert');
         }
     }
+
+    public function status($id){
+        $result = $this->tax->status($id);
+        return back()->with('success', $result['message']);
+    }
 }

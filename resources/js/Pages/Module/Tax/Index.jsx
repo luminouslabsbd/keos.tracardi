@@ -88,7 +88,7 @@ function Index() {
     }
 
     function handleStatusClick(data) {
-        router.get("/admin/category/status/" + data);
+        router.get("/admin/tax/status/" + data);
     }
 
     
