@@ -76,9 +76,7 @@ const taxType = (event) => {
                     <div className="mb-5">
                         <form className="space-y-5" onSubmit={handleSubmit(onSubmit)} method="post">
                             <div className="grid grid-cols-1 sm:grid-cols-1 gap-4">
-                               
-                             <div className="grid grid-cols-3 gap-6">
-
+                                <div className="grid grid-cols-3 gap-6">
                                     <div>
                                         <label>Tax Name <span className="text-danger">*</span> </label>
                                         <input
@@ -115,8 +113,7 @@ const taxType = (event) => {
                                             {errors.tax_amount && <p className="text-red-600 pt-2">{errors.tax_amount.message}</p>}
                                         </div>
                                     </div>   
-                             </div>                     
-                               
+                                </div>
                             </div>
                           
                             <button

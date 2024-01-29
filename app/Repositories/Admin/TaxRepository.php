@@ -64,6 +64,7 @@ class TaxRepository {
         try
         {
             $data = $this->model::updateOrCreate(
+                ['id' => isset($request->id) ? $request->id : ''],
                 [
                     'tax_name' => $request->tax_name,
                     'tax_type' => $request->tax_type,

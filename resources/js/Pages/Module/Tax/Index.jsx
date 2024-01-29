@@ -78,7 +78,7 @@ function Index() {
     ]);
 
     function handleEditClick(data) {
-        router.get("/admin/category/edit/" + data);
+        router.get("/admin/tax/edit/" + data);
     }
 
     function handleDeleteClick(data) {

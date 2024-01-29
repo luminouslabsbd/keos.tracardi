@@ -4,41 +4,34 @@ import { Link, router, usePage } from "@inertiajs/react";
 import Select from 'react-select';
 import { useForm, Controller } from "react-hook-form";
 function Add() {
-    const { categories, result } = usePage().props;
+    const { result } = usePage().props;
     const [isSvgShow, setSvgShow] = useState(false);
     const { control, register, handleSubmit, setValue, reset, formState: { errors } } = useForm({
         defaultValues: {
             id: result.id,
-            name: result.name,
-            slug: result.slug,
-            parent_id: result?.parent_id ? result.parent_id : null,
+            tax_name: result.tax_name,
+            tax_type: result.tax_type,
+            tax_amount: result.tax_amount,
+            status: result.status
         }
     });
+    
+    const [IstaxType, settaxType] = useState(false);
+    // End Of the State 
 
-
-    const options = categories.map((item) => ({
-        value: item?.id,
-        label: item?.name ? `${item.name}` : '',
-    }));
-
-    const handleSelectChange = (selectedOption) => {
-        setValue('parent_id', selectedOption?.value);
-    };
-    const [selectedImage, setSelectedImage] = useState(result?.thumbnail ? `/storage/category/${result?.thumbnail}` : '/assets/images/user-profile.jpeg');
-    const handleImageChange = (e) => {
-        const file = e.target.files[0];
-        if (file) {
-            setSvgShow(true);
-            setSelectedImage(URL.createObjectURL(file));
+    const taxType = (event) => {
+        const value = event.target.value;
+        if (value === "1") {
+            settaxType(false);
+        }
+        if (value === "2") {
+            settaxType(true);
         }
     };
-    function handleDeleteImage() {
-        setSelectedImage(null);
-        reset({ thumbnail: '' });
-    }
+
     function onSubmit(data) {
         // console.log(data);
-        router.post("/admin/category/update", data);
+        router.post("/admin/tax/update", data);
     }
     return (
         <>
@@ -69,7 +62,7 @@ function Add() {
                 <ul className="flex space-x-2 rtl:space-x-reverse">
                     <li>
                         <Link href="#" className="text-primary hover:underline">
-                            Category
+                            Tax
                         </Link>
                     </li>
                     <li className="before:content-['/'] ltr:before:mr-2 rtl:before:ml-2">
@@ -77,84 +70,64 @@ function Add() {
                     </li>
                 </ul>
             </div>
+            
             <div className="pt-5 grid lg:grid-cols-1 grid-cols-1 gap-6">
                 <div className="panel" id="forms_grid">
                     <div className="flex items-center justify-between mb-5">
                         <h5 className="font-semibold text-lg dark:text-white-light">
-                            Category Add Form
+                            Tax Edit Form
                         </h5>
                     </div>
                     <div className="mb-5">
                         <form className="space-y-5" onSubmit={handleSubmit(onSubmit)} method="post">
-                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                                <input
-                                    type="hidden"
-                                    {...register("id")}
-                                />
-                                <div>
-                                    <label>Name</label>
+                            <div className="grid grid-cols-1 sm:grid-cols-1 gap-4">
+                                <div className="grid grid-cols-3 gap-6">
                                     <input
-                                        {...register("name", { required: "Category Name Is required" })}
-                                        type="text"
-                                        className="form-input"
-                                        placeholder="Enter Category Name"
+                                        type="hidden"
+                                        {...register("id")}
                                     />
-                                    {errors.name && <p className="text-red-600 pt-2">{errors.name.message}</p>}
-                                </div>
-                                <div>
-                                    <label>Slug</label>
                                     <input
-                                        {...register("slug")}
-                                        type="text"
-                                        className="form-input"
-                                        placeholder="Enter Category Slug"
+                                        type="hidden"
+                                        {...register("status")}
                                     />
-                                </div>
-                            </div>
-                            <div className="grid grid-cols-1 md:grid-cols-4 gap-5">
-                                <div className="md:col-span-2">
-                                    <label>Parent Category</label>
-                                    <Controller
-                                        control={control}
-                                        name="parent_id"
-                                        render={({ field }) => (
-                                            <Select
-                                                placeholder="Select an option"
-                                                options={options}
-                                                value={options.find((option) => option.value === field.value)}
-                                                onChange={handleSelectChange}
-                                            />
-                                        )}
-                                    />
-                                </div>
-                                <div>
-                                    <label>Thumbnail</label>
-                                    <input
-                                        type="file"
-                                        className="form-input"
-                                        {...register("thumbnail")}
-                                        onChange={handleImageChange}
-                                    />
-                                </div>
-                                <>
-                                    {selectedImage && (
-                                        <div style={{ position: 'relative' }}>
-                                            <img className="rounded-lg max-w-[100px]" src={selectedImage} alt="Selected Avatar" />
-                                            {result?.thumbnail && isSvgShow && (
-                                                <span
-                                                    onClick={handleDeleteImage}
-                                                    className="absolute top-[-15px] left-[23%] bg-white text-red-700 rounded-full p-1 shadow-[0_10px_20px_-10px_rgba(67,97,238,0.44)]"
-                                                >
-                                                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-6 h-6">
-                                                        <circle opacity="0.5" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="1.5"></circle>
-                                                        <path d="M14.5 9.50002L9.5 14.5M9.49998 9.5L14.5 14.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"></path>
-                                                    </svg>
-                                                </span>
-                                            )}
-                                        </div>
-                                    )}
 
-                                </>
+                                    <div>
+                                        <label>Tax Name <span className="text-danger">*</span></label>
+                                        <input
+                                            {...register("tax_name", { required: "Tax Name Is Required" })}
+                                            type="text"
+                                            className="form-input"
+                                            placeholder="Enter Tax Name"
+                                        />
+                                        {errors.tax_name && <p className="text-red-600 pt-2">{errors.tax_name.message}</p>}
+                                    </div>
+
+                                    <div className="items-center mb-7">
+                                        <label>Select Tax Type</label>
+
+                                        <select
+                                            className="form-select text-white-dark"
+                                            {...register("tax_type")}
+                                            onChange={taxType}
+                                        >
+                                            <option value="1">Amount</option>
+                                            <option value="2">Percentage</option>
+                                        </select>
+                                    </div>
+
+                                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                        <div className="md:col-span-2">
+                                            <label>{IstaxType ? "Parcentage" : "Amount"}<span className="text-red-600 ">*</span></label>
+                                            <input
+                                                {...register("tax_amount", {required: "Field Is Required"})}
+                                                type="number"
+                                                className="form-input"
+                                                placeholder={IstaxType ? "Enter Parcentage" : "Enter Amount"}
+                                            />
+                                            {errors.tax_amount && <p className="text-red-600 pt-2">{errors.tax_amount.message}</p>}
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                             <button
                                 type="submit"

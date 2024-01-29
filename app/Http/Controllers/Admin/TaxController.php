@@ -80,6 +80,24 @@ class TaxController extends Controller
         }
     }
 
+    public function edit($id){
+        $result = $this->tax->edit($id);
+        
+        return Inertia::render('Module/Tax/Edit',[
+            'result'=>$result
+        ]);
+    }
+
+    public function update(Request $request){
+        $result = $this->tax->update($request);
+
+        if($result['status']== true){
+            return back()->with('success', $result['message']);
+        }else{
+            return back()->with('error', 'Data Does not Insert');
+        }
+    }
+
     public function delete($id){
         $result= $this->tax->delete($id);
         return back()->with('success', $result['message']);
