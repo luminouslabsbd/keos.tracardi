@@ -33,7 +33,7 @@ function Index() {
                 setIsRefetching(true);
             }
 
-            const url = new URL('/admin/category/data', base_url);
+            const url = new URL('/admin/tax/data', base_url);
             url.searchParams.set(
                 'start',
                 `${pagination.pageIndex * pagination.pageSize}`
@@ -78,40 +78,33 @@ function Index() {
     ]);
 
     function handleEditClick(data) {
-        router.get("/admin/category/edit/" + data);
+        router.get("/admin/tax/edit/" + data);
     }
+
     function handleDeleteClick(data) {
         setFileToDelete(data);
         // router.post("/admin/category/delete", data);
         setIsDeleteNoteModal(true);
     }
+
     function handleStatusClick(data) {
-        router.get("/admin/category/status/" + data);
+        router.get("/admin/tax/status/" + data);
     }
-    const ImageRenderer = ({ data }) => {
-        return (
-            <div>
-                <img
-                    src={data ? `/storage/category/${data}` : '/assets/images/user-profile.jpeg'}
-                    alt="image"
-                    className="h-[40px] w-[40px] rounded-full"
-                />
-            </div>
-        );
-    };
+
+    
     const columns = useMemo(
         () => [
             {
-                header: 'Thumbnail',
-                Cell: ({ row }) => <ImageRenderer data={row.original?.thumbnail} />,
+                accessorKey: 'tax_name',
+                header: 'Tax Name',
             },
             {
-                accessorKey: 'name',
-                header: ' Category Name',
+                accessorKey: 'tax_type',
+                header: 'Tax Type',
             },
             {
-                accessorKey: 'slug',
-                header: ' Category Slug',
+                accessorKey: 'tax_amount',
+                header: 'Tax Amount / Percentage',
             },
             {
 
@@ -220,13 +213,13 @@ function Index() {
                         </Link>
                     </li>
                     <li className="before:content-['/'] ltr:before:mr-2 rtl:before:ml-2 text-base">
-                        <span>Category</span>
+                        <span>Tax</span>
                     </li>
                 </ul>
 
                 <div className="ml-auto flex justify-center items-center gap-3">
                     <Link
-                        href={`${base_url}/admin/category/trashed`}
+                        href={`${base_url}/admin/tax/trashed`}
                         method="get"
                         className="flex items-center px-7 py-2 bg-[#4d4d4d] text-white rounded-md text-[15px] shadow-lg transition-transform transform-gpu hover:scale-105"
                     >
@@ -256,7 +249,7 @@ function Index() {
                         Trash
                     </Link>
                     <Link
-                        href={`${base_url}/admin/category/create`}
+                        href={`${base_url}/admin/tax/create`}
                         method="get"
                         className="flex items-center px-7 py-2 bg-[#ff6243] text-white rounded-md text-[15px] shadow-lg transition-transform transform-gpu hover:scale-105"
                     >
@@ -271,13 +264,13 @@ function Index() {
             </div>
             <br />
             <MantineReactTable table={table} />
-            <DeleteModal isDeleteNoteModal={isDeleteNoteModal} setIsDeleteNoteModal={setIsDeleteNoteModal} fileToDelete={fileToDelete} name="Category" route="category"></DeleteModal>
+            <DeleteModal isDeleteNoteModal={isDeleteNoteModal} setIsDeleteNoteModal={setIsDeleteNoteModal} fileToDelete={fileToDelete} name="Tax" route="tax"></DeleteModal>
         </>
     );
 }
 
 Index.layout = (page) => (
-    <MainLayout children={page} title="Luminous-Ecommerce || All Category" />
+    <MainLayout children={page} title="Luminous-Ecommerce || All Tax" />
 );
 
 export default Index;

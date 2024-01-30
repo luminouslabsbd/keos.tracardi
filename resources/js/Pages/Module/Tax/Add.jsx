@@ -7,16 +7,16 @@ import { useForm, Controller } from "react-hook-form";
 function Add() {
 
     //   Declearing State
-const [IsproductVariationValue, setProductVariationValue] = useState(false);
+const [IstaxType, settaxType] = useState(false);
 // End Of the State 
 
-const productVariationValue = (event) => {
+const taxType = (event) => {
     const value = event.target.value;
     if (value === "1") {
-        setProductVariationValue(false);
+        settaxType(false);
     }
     if (value === "2") {
-        setProductVariationValue(true);
+        settaxType(true);
     }
 };
 
@@ -27,8 +27,7 @@ const productVariationValue = (event) => {
     const { control, register, handleSubmit, setValue, reset, formState: { errors } } = useForm();
 
     function onSubmit(data) {
-        console.log(data);
-        // router.post("/admin/category/store", data);
+        router.post("/admin/tax/store", data);
     }
     return (
         <>
@@ -77,85 +76,44 @@ const productVariationValue = (event) => {
                     <div className="mb-5">
                         <form className="space-y-5" onSubmit={handleSubmit(onSubmit)} method="post">
                             <div className="grid grid-cols-1 sm:grid-cols-1 gap-4">
-                               
-                             <div className="grid grid-cols-3 gap-6">
-
+                                <div className="grid grid-cols-3 gap-6">
                                     <div>
-                                        <label> Name <span className="text-danger">*</span> </label>
+                                        <label>Tax Name <span className="text-danger">*</span> </label>
                                         <input
-                                            {...register("name", { required: "Category Name Is required" })}
+                                            {...register("tax_name", { required: "Tax Name Is Required" })}
                                             type="text"
                                             className="form-input"
                                             placeholder="Enter Tax Name"
                                         />
-                                        {errors.name && <p className="text-red-600 pt-2">{errors.name.message}</p>}
+                                        {errors.tax_name && <p className="text-red-600 pt-2">{errors.tax_name.message}</p>}
                                     </div>
 
                                     <div className="items-center mb-7">
-                                        <label>Select Tax Type<span className="text-danger">*</span></label>
+                                        <label>Select Tax Type</label>
 
                                         <select
                                             className="form-select text-white-dark"
-                                            {...register("product_variation")}
-                                            onChange={productVariationValue}
+                                            {...register("tax_type")}
+                                            onChange={taxType}
                                         >
                                             <option value="1">Amount</option>
-                                            <option value="2">Parcentage</option>
+                                            <option value="2">Percentage</option>
                                         </select>
-                                        {errors?.product_variation && (
-                                            <p className="text-red-600 pt-2">
-                                                {errors?.product_variation}
-                                            </p>
-                                        )}
                                     </div>
 
-                                    {IsproductVariationValue === true ? (
-                                        <>
-                                                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                                                    <div className="md:col-span-2">
-                                                        <label>Parcentage<span className="text-red-600 ">*</span></label>
-                                                        <input
-                                                           {...register(
-                                                            "parcentage",
-                                                            {
-                                                                required:
-                                                                    "parcentage Is required",
-                                                            }
-                                                        )}
-                                                        type="text"
-                                                        className="form-input"
-                                                        placeholder="Enter Parcentage"
-
-                                                        />
-                                                    </div>
-                                                </div>
-                                        </>
-                                    ) : (
-                                        <>
-                                               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                                                    <div className="md:col-span-2">
-                                                        <label>Amount<span className="text-danger">*</span></label>
-                                                        <div className="flex items-center gap-2">
-                                                            <input
-                                                                {...register(
-                                                                    "amount",
-                                                                    {
-                                                                        required:
-                                                                            "amount Is required",
-                                                                    }
-                                                                )}
-                                                                type="Text"
-                                                                className="form-input"
-                                                                placeholder="Enter Amount"
-                                                            />
-                                                        </div>
-                                                    </div>                               
-                                                </div>
-                                        </>
-                                    )}
-                                            
-                             </div>                     
-                               
+                                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                        <div className="md:col-span-2">
+                                            <label>{IstaxType ? "Parcentage" : "Amount"}<span className="text-red-600 ">*</span></label>
+                                            <input
+                                                {...register("tax_amount", {required: "Field Is Required"})}
+                                                type="number"
+                                                className="form-input"
+                                                placeholder={IstaxType ? "Enter Parcentage" : "Enter Amount"}
+                                            />
+                                            {errors.tax_amount && <p className="text-red-600 pt-2">{errors.tax_amount.message}</p>}
+                                        </div>
+                                    </div>   
+                                </div>
                             </div>
                           
                             <button

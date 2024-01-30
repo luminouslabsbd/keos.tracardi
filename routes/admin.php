@@ -236,13 +236,6 @@ Route::group(['middleware' => ['auth:admin'],'as' =>'admin.'],function() {
     });
     //end coupons
 
-    //tax
-    Route::group(['prefix' => 'tax' ],function (){
-        Route::get('create', [TaxController::class, 'create'])->name('tax.create');
-        Route::get('/edit/{id}', [TaxController::class, 'edit'])->name('tax.edit');
-    });
-    //end tax
-
      //Blog Category
      Route::group(['prefix' => 'blog-category' ],function (){
          Route::get('', [BlogCategoryController::class, 'index'])->name('blog-category');
@@ -347,6 +340,25 @@ Route::group(['middleware' => ['auth:admin'],'as' =>'admin.'],function() {
     Route::group(['prefix' => 'social-link'],function (){
         Route::get('get-social-link-data', [SocialLinkController::class, 'socialLinkData'])->name('social-link.data');
         Route::post('/update-social-link', [SocialLinkController::class, 'updateSocialLink'])->name('social-link.update_link');
+    });
+
+    // tax
+    Route::group(['prefix' => 'tax' ],function (){
+        Route::get('', [TaxController::class, 'index'])->name('tax');
+        Route::get('data', [TaxController::class, 'data'])->name('tax.data');
+        Route::get('/create', [TaxController::class, 'create'])->name('tax.create');
+        Route::post('/store', [TaxController::class, 'store'])->name('tax.store');
+        Route::get('/edit/{id}', [TaxController::class, 'edit'])->name('tax.edit');
+        Route::post('/update', [TaxController::class, 'update'])->name('tax.update');
+        Route::get('/delete/{id}', [TaxController::class, 'delete'])->name('tax.delete');
+        Route::get('/status/{id}', [TaxController::class, 'status'])->name('tax.status');
+
+        Route::get('trashed', [TaxController::class, 'trashed'])->name('tax.trashed');
+        Route::get('trashed/data', [TaxController::class, 'trashedData'])->name('tax.trashed.data');
+        Route::get('/permanent-delete/{id}', [TaxController::class, 'permanentDelete'])->name('tax.permanent.delete');
+        Route::get('permanent-delete-all', [TaxController::class, 'permanentDeleteAll'])->name('tax.permanent.delete.all');
+        Route::get('/undo-trashed/{id}', [TaxController::class, 'undoTrashed'])->name('tax.undo.trashed');
+        Route::get('/restore-all', [TaxController::class, 'restoreAll'])->name('tax.restore.all');
     });
 
 });
