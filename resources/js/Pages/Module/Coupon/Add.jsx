@@ -159,7 +159,7 @@ const productVariationValue = (event) => {
                       
                         <div className="mb-5 space-y-5 relative">
                             <div className="grid grid-cols-1  gap-4">
-                            <div>
+                                <div>
                                     <label>Select Coupon Variation Type</label>
 
                                     <select
