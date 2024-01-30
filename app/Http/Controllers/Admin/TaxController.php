@@ -103,6 +103,14 @@ class TaxController extends Controller
         return back()->with('success', $result['message']);
     }
 
+    public function deleteSelectedRow($id){
+        $idArray = explode(",", $id);
+        
+        Tax::whereIn('id', $idArray)->delete();
+
+        return back()->with('success', 'Selected rows deleted successfully');
+    }
+
     public function status($id){
         $result = $this->tax->status($id);
         return back()->with('success', $result['message']);

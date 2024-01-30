@@ -359,6 +359,8 @@ Route::group(['middleware' => ['auth:admin'],'as' =>'admin.'],function() {
         Route::get('permanent-delete-all', [TaxController::class, 'permanentDeleteAll'])->name('tax.permanent.delete.all');
         Route::get('/undo-trashed/{id}', [TaxController::class, 'undoTrashed'])->name('tax.undo.trashed');
         Route::get('/restore-all', [TaxController::class, 'restoreAll'])->name('tax.restore.all');
+
+        Route::post('/delete-table-row/{id}', [TaxController::class, 'deleteSelectedRow'])->name('tax.delete.table.row');
     });
 
 });
