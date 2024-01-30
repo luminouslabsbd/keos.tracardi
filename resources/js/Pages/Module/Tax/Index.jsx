@@ -3,6 +3,7 @@ import MainLayout from "../../Layout/Mainlayout";
 import { Link, router, usePage } from "@inertiajs/react";
 import { MantineReactTable, useMantineReactTable } from 'mantine-react-table';
 import DeleteModal from "../../Component/DeleteModal.jsx";
+import { DataTable } from 'mantine-datatable';
 
 function Index() {
 
@@ -19,10 +20,11 @@ function Index() {
         pageIndex: 0,
         pageSize: 10,
     });
-
+    
     const [isDeleteNoteModal, setIsDeleteNoteModal] = useState(false);
     const [fileToDelete, setFileToDelete] = useState(null);
-
+    
+    const [rowSelection, setRowSelection] = useState({});
 
     const [data, setData] = useState(initialData || []);
     useEffect(() => {
@@ -91,6 +93,12 @@ function Index() {
         router.get("/admin/tax/status/" + data);
     }
 
+
+    function handleDeleteAllClick(data) {
+        const idArray = Object.keys(data).map(Number);
+
+        router.post("/admin/tax/delete-table-row/" + idArray);
+    }
     
     const columns = useMemo(
         () => [
@@ -99,9 +107,15 @@ function Index() {
                 header: 'Tax Name',
             },
             {
-                accessorKey: 'tax_type',
                 header: 'Tax Type',
+                Cell: ({ row }) => (
+                    <div className="flex items-center gap-2">
+                       {row.original.tax_type === 1 ? "Amount" : "Percentage"}
+                    </div>
+                ),
             },
+
+
             {
                 accessorKey: 'tax_amount',
                 header: 'Tax Amount / Percentage',
@@ -144,6 +158,8 @@ function Index() {
         data,
         paginationDisplayMode: 'pages',
         enableRowSelection: true,
+        selectDisplayMode: 'switch',
+        onRowSelectionChange: setRowSelection,
         enableDensityToggle: false,
         getRowId: (row) => row.id,
         initialState: {
@@ -173,6 +189,7 @@ function Index() {
             showAlertBanner: isError,
             showProgressBars: isRefetching,
             sorting,
+            rowSelection
         },
         mantineToolbarAlertBannerProps: isError
             ? { color: 'red', children: 'Error loading data' }
@@ -260,6 +277,10 @@ function Index() {
 
                         Add
                     </Link>
+
+                    {
+                        Object.keys(rowSelection).length > 0 && <button onClick={() => handleDeleteAllClick(rowSelection)} className="flex items-center px-7 py-2 bg-red-600 text-white rounded-md text-[15px] shadow-lg transition-transform transform-gpu hover:scale-105">Delete All</button>
+                    }
                 </div>
             </div>
             <br />
