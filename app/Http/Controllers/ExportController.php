@@ -36,7 +36,7 @@ class ExportController extends Controller
                 'Title' => $product->product_name,
                 'Description' => $product->product_description,
                 'Availability' => $product->single_product_quantity > 0 ? "in stock" : "Out of stock",
-                'Condition' => "yes", // Assuming 'Condition' is constant
+                'Condition' => "new", // Assuming 'Condition' is constant
                 'Price' => $product->single_product_price,
                 'Link' => url("/product/".$product->id),
                 'Image' => url("/storage/product/".$product->thumbnail),
