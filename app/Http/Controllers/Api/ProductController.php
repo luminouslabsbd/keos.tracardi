@@ -66,7 +66,7 @@ class ProductController extends Controller
     {
         $data = $request->all();
         $whatsapNumber = $data['user']['visitor']['phone'][0]['phoneNumber'] ?? null;
-        return $productId = $data['product_id'];
+        $productId = $data['product_id'];
 
         if (! $whatsapNumber){
             return response()->json([

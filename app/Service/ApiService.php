@@ -27,6 +27,11 @@ class ApiService
             )),
             'src.name' => 'CoKeos4App'
         );
+
+        return $data;
+        exit();
+
+
         $ch = curl_init($url);
 
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
