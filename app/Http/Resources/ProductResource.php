@@ -19,7 +19,6 @@ class ProductResource extends JsonResource
             'title' => $this->product_name,
             'price' => $this->single_product_price,
             'image' => url('storage/product/'.$this->thumbnail),
-            'image' => $this->thumbnail,
         ];
     }
 }
