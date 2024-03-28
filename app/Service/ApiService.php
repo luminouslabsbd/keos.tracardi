@@ -28,10 +28,6 @@ class ApiService
             'src.name' => 'CoKeos4App'
         );
 
-        return $data;
-        exit();
-
-
         $ch = curl_init($url);
 
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
@@ -47,7 +43,13 @@ class ApiService
             echo 'Error: ' . curl_error($ch);
         }
         curl_close($ch);
-        return $response;
+
+        $myResponse = [
+            'apiResponse' => $response,
+            'messageData' => $data,
+        ];
+
+        return $myResponse;
     }
 
 
