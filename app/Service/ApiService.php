@@ -17,7 +17,7 @@ class ApiService
                 "type" => "product_details",
                 "subType" => "product",
                 "catalogId" => "2676589475826894",
-                "productId" => "xesw76jin3",
+                "productId" => "1",
                 "body" => array(
                     "text" => "body content!"
                 ),
