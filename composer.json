@@ -14,7 +14,8 @@
         "laravel/tinker": "^2.8",
         "spatie/laravel-backup": "^8.4",
         "spatie/laravel-permission": "^6.3",
-        "yajra/laravel-datatables-oracle": "*"
+        "yajra/laravel-datatables-oracle": "*",
+        "maatwebsite/excel": "^3.1"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.9",

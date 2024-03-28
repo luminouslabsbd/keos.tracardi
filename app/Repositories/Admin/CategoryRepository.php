@@ -99,7 +99,7 @@ class CategoryRepository {
                 ]
             );
             if ($data) {
-                $message = $action == "save" ?"Category Save Successfully" :"Category Update Successfully";
+                $message = $action == "save" ? "Category Save Successfully" : "Category Update Successfully";
                 return ['status' => true, 'message' => $message,];
             }
 

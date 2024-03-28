@@ -19,6 +19,7 @@ use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\RolePermissionController;
 use App\Http\Controllers\Admin\RolesController;
 use App\Http\Controllers\Admin\AdminProfileController;
+use App\Http\Controllers\admin\SemiController;
 use App\Http\Controllers\Admin\SizeController;
 use App\Http\Controllers\Admin\SliderController;
 use App\Http\Controllers\Admin\SocialLinkController;
@@ -204,7 +205,7 @@ Route::group(['middleware' => ['auth:admin'],'as' =>'admin.'],function() {
         Route::get('/restore-all', [CurrencyController::class, 'restoreAll'])->name('currency.restore.all');
     });
     //end size
-    
+
 
     //product
     Route::group(['prefix' => 'product' ],function (){
