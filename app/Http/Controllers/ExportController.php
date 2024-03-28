@@ -15,13 +15,13 @@ class ExportController extends Controller
 
         $heading = [
             'id',
-            'Title',
-            'Description',
-            'Availability',
-            'Condition',
+            'title',
+            'description',
+            'availability',
+            'condition',
             'Price',
-            'Link',
-            'Image',
+            'link',
+            'image_link',
             'Brand'
         ];
 
