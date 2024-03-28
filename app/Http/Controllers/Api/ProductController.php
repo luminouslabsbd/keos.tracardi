@@ -66,6 +66,7 @@ class ProductController extends Controller
     {
         $data = $request->all();
         $whatsapNumber = $data['user']['visitor']['phone'][0]['phoneNumber'] ?? null;
+        $productId = $data['product_id'];
 
         if (! $whatsapNumber){
             return response()->json([
@@ -75,7 +76,7 @@ class ProductController extends Controller
             ],200);
         }
 
-        $response = self::$apiService->sendSmsInWhatsapp($whatsapNumber);
+        $response = self::$apiService->sendSmsInWhatsapp($whatsapNumber,$productId);
 
         return response()->json([
            'status' => true,

@@ -4,7 +4,7 @@ namespace App\Service;
 
 class ApiService
 {
-    public function sendSmsInWhatsapp($data)
+    public function sendSmsInWhatsapp($data,$productId)
     {
         $url = "https://api.gupshup.io/sm/api/v1/msg";
         $apiKey = "cky6px6gylnajx0epf1xafnxqluh8lyh";
@@ -17,7 +17,7 @@ class ApiService
                 "type" => "product_details",
                 "subType" => "product",
                 "catalogId" => "2676589475826894",
-                "productId" => "1",
+                "productId" => $productId ?? null,
                 "body" => array(
                     "text" => "body content!"
                 ),
