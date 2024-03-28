@@ -80,7 +80,7 @@ function Add() {
                                 <div>
                                     <label> Name <span className="text-danger">*</span> </label>
                                     <input
-                                        {...register("name", { required: "Category Name Is required" })}
+                                        {...register("name", { required: " Category Name Is required" })}
                                         type="text"
                                         className="form-input"
                                         placeholder="Enter Category Name"

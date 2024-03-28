@@ -336,6 +336,9 @@ useEffect(() => {
                                         <li>
                                             <Link href={`${base_url}/admin/product/type`}>{t('Add Product')}</Link>
                                         </li>
+                                        <li>
+                                            <Link href={`${base_url}/admin/product/product-settings`}>{t('Product Settings')}</Link>
+                                        </li>
                                     </ul>
                                 </AnimateHeight>
                             </li>

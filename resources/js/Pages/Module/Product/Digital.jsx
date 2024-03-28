@@ -106,7 +106,6 @@ function Digital() {
     }
     return (
         <>
-            <FlashMessage flash={flash} />
             <div className="panel flex items-center overflow-x-auto whitespace-nowrap p-3 ">
                 <div className="rounded-full bg-primary p-1.5 text-white ring-2 ring-primary/30 ltr:mr-3 rtl:ml-3">
                     <svg
@@ -440,61 +439,6 @@ function Digital() {
                         </div>
                     </div>
                 </div>
-                {/*<div className="pt-5 grid grid-cols-1 lg:grid-cols-1 gap-6">*/}
-                {/*    <div className="panel">*/}
-                {/*        <div className="flex items-center justify-between mb-5">*/}
-                {/*            <h5 className="font-semibold text-lg dark:text-white-light">Basic</h5>*/}
-                {/*        </div>*/}
-                {/*        <div className="mb-5 space-y-5 relative">*/}
-                {/*            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">*/}
-
-                {/*                <div>*/}
-                {/*                    <label> Select Upload Type <span className="text-danger">*</span></label>*/}
-                {/*                    <select*/}
-                {/*                        className="form-select text-white-dark"*/}
-                {/*                        {...register("upload_type")}*/}
-                {/*                        onChange={uploadType}*/}
-                {/*                    >*/}
-                {/*                        <option value="1">Upload By Link</option>*/}
-                {/*                        <option value="2">Upload By File</option>*/}
-                {/*                    </select>*/}
-                {/*                </div>*/}
-                {/*                {*/}
-                {/*                    IsUploadType ? (*/}
-                {/*                        <div>*/}
-                {/*                            <label>Select File <span className="text-danger">*</span> </label>*/}
-                {/*                            <input*/}
-                {/*                                {...register("upload_link", {required: "Product Name Is required"})}*/}
-                {/*                                type="file"*/}
-                {/*                                className="form-input"*/}
-                {/*                                placeholder="Enter Product Name"*/}
-                {/*                            />*/}
-                {/*                            {errors.product_name &&*/}
-                {/*                                <p className="text-red-600 pt-2">{errors.product_name.message}</p>}*/}
-                {/*                        </div>*/}
-                {/*                    ) : (*/}
-                {/*                        <div>*/}
-                {/*                            <label>Link<span className="text-danger">*</span> </label>*/}
-                {/*                            <input*/}
-                {/*                                {...register("upload_file", {required: "Product Name Is required"})}*/}
-                {/*                                type="text"*/}
-                {/*                                className="form-input"*/}
-                {/*                                placeholder="Enter Product Name"*/}
-                {/*                            />*/}
-                {/*                            {errors.product_name &&*/}
-                {/*                                <p className="text-red-600 pt-2">{errors.product_name.message}</p>}*/}
-                {/*                        </div>*/}
-
-                {/*                    )*/}
-                {/*                }*/}
-
-                {/*            </div>*/}
-
-                {/*        </div>*/}
-
-                {/*    </div>*/}
-                {/*</div>*/}
-
                 <button
                     type="submit"
                     className="btn btn-primary !mt-6"

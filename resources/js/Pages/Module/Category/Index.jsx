@@ -67,7 +67,6 @@ function Index() {
                 setIsRefetching(false);
             }
         };
-
         fetchData();
     }, [
         columnFilters,

@@ -6,30 +6,36 @@ import Select from "react-select";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 function PhysicalEdit() {
-    const {
-        categories,
-        sub_categories,
-        brands,
-        type,
-        colors,
-        sizes,
-        units,
-        product,
-    } = usePage().props;
-
-
-    // console.log("All Product",product);
-    // console.log(product.productcolor)
-    // Set Product Description
+    const { categories, sub_categories, brands, type, colors, sizes, units, product } = usePage().props;
     const allow_minimum_order_qty = product.physical.allow_minimum_order_qty;
     const allow_product_conditions = product.physical.allow_product_conditions;
     const allow_product_preorder = product.physical.allow_product_preorder;
-    // Set End
 
-    
-    //This State For Compareing Product Attribute
-     const [comparingData, setComparingData] = useState([])
-    //This State For Compareing Product Attribute End Comment
+    const { control, register, handleSubmit, setValue, reset, formState: { errors }, watch } = useForm({
+        defaultValues: {
+            category_id: product?.category_id,
+            sub_category_id: product?.sub_category_id,
+            brand_id: product?.brand_id,
+            unit_id: product?.unit_id,
+            product_sku: product?.product_sku,
+            product_name: product?.product_name,
+            product_variation: product.product_variation,
+            single_product_price: product?.single_product_price,
+            single_product_discount: product?.single_product_discount,
+            single_product_quantity: product?.single_product_quantity,
+            upload_type: product?.upload_type,
+            upload_link: product?.upload_link,
+            upload_file: product?.upload_file,
+            product_description: product?.product_description,
+            product_buy_return_policy: product?.product_buy_return_policy,
+            thumbnail: product?.thumbnail.name,
+            meta_keywords: product?.meta_keywords,
+            meta_description: product?.product_description,
+            product_condition:allow_product_conditions,
+            product_preorder: allow_product_preorder,
+        },
+    });
+
 
     const [atributeData, setAtributeData] = useState(product.variationprice);
     const [selectedColorOptions, setSelectedColorOptions] = useState(
@@ -44,6 +50,11 @@ function PhysicalEdit() {
     const [IsproductVariationValue, setProductVariationValue] = useState(false);
 
     const [show, setShow] = useState(product.product_variation);
+    const product_description = watch("product_description", "");
+
+
+
+
 
     const generateInputValues = () => {
         const inputValues = [];
@@ -100,41 +111,8 @@ function PhysicalEdit() {
     }, [selectedColorOptions, selectedSizeOptions]);
 
 
-    const {
-        control,
-        register,
-        handleSubmit,
-        setValue,
-        reset,
-        formState: { errors },
-        watch,
-    } = useForm({
-        defaultValues: {
-            category_id: product?.category_id,
-            sub_category_id: product?.sub_category_id,
-            brand_id: product?.brand_id,
-            unit_id: product?.unit_id,
-            product_sku: product?.product_sku,
-            product_name: product?.product_name,
-            product_variation: product.product_variation,
-            single_product_price: product?.single_product_price,
-            single_product_discount: product?.single_product_discount,
-            single_product_quantity: product?.single_product_quantity,
-            upload_type: product?.upload_type,
-            upload_link: product?.upload_link,
-            upload_file: product?.upload_file,
-            product_description: product?.product_description,
-            product_buy_return_policy: product?.product_buy_return_policy,
-            thumbnail: product?.thumbnail.name,
-            meta_keywords: product?.meta_keywords,
-            meta_description: product?.product_description,
-            product_condition:allow_product_conditions,
-            product_preorder: allow_product_preorder,
-        },
-    });
 
 
-    // This iS for Thumbnail Image Preview
     const [isSvgShow, setSvgShow] = useState(false);
     const [selectedImage, setSelectedImage] = useState(
         product?.thumbnail
@@ -152,10 +130,6 @@ function PhysicalEdit() {
         setSelectedImage(null);
         reset({ thumbnail: "" });
     }
-
-    // This iS for Thumbnail Image Preview End
-
-    const product_description = watch("product_description", "");
     const handleQuillChange = (value) => {
         setValue("product_description", value);
     };
@@ -219,26 +193,25 @@ function PhysicalEdit() {
         }
     };
 
+
+
+
     const [isProductConditionAllowed, setProductConditionAllowed] =
         useState(false);
 
     const allowProductCondition = (e) => {
-        // Update the state when the checkbox is clicked
         setProductConditionAllowed(e.target.checked);
     };
 
-    const [isProductPreorderAllowed, setProductPreorderAllowed] =
-        useState(false);
+    const [isProductPreorderAllowed, setProductPreorderAllowed] = useState(false);
 
     const allowProductPreOrder = (e) => {
-        // Update the state when the checkbox is clicked
         setProductPreorderAllowed(e.target.checked);
     };
 
-    const [isProductWholeSaleAllow, setProductWholeSaleAllow] = useState(product.physical.allow_whole_sale);
+    const [isProductWholeSaleAllow, setProductWholeSaleAllow] = useState(product?.physical?.allow_whole_sale);
 
     const allowWholeSaleProduct = () => {
-        // Toggle the state when the checkbox is clicked
         setProductWholeSaleAllow((prevValue) => (prevValue === 1 ? 0 : 1));
     };
     const [items, setItems] = useState(product.wholesale);
@@ -282,6 +255,7 @@ function PhysicalEdit() {
         // router.post("/admin/product/physical/store", newData);
         console.log(newData);
     }
+
     const defultColor = product?.productcolor?.map((data) => ({
         value: data?.id,
         label: data?.name ? `${data.name}` : "",
@@ -290,7 +264,6 @@ function PhysicalEdit() {
         value: item?.id,
         label: item?.name ? `${item?.name}` : "",
     }));
-
     return (
         <>
             <div className="panel flex items-center overflow-x-auto whitespace-nowrap p-3 ">
@@ -499,55 +472,29 @@ function PhysicalEdit() {
                                                     *
                                                 </span>
                                             </label>
-                                            <div className="flex items-center gap-2">
+                                            <div className="flex items-center gap-2" style={{width: '50%'}}>
                                                 <Controller
                                                     control={control}
                                                     {...register("color_id")}
-                                                    render={({ field }) => (
+                                                    render={({field}) => (
                                                         <Select
                                                             className="w-full"
                                                             placeholder="Select a color"
-                                                            options={
-                                                                colorsOption
-                                                            }
-                                                            defaultValue={[
-                                                                ...defultColor,
-                                                            ]}
+                                                            options={colorsOption}
+                                                            defaultValue={[...defultColor]}
                                                             isMulti
                                                             isSearchable={true}
-                                                            // value={
-                                                            //     Array.isArray(
-                                                            //         field.value
-                                                            //     )
-                                                            //         ? colorsOption.filter(
-                                                            //             (
-                                                            //                 option
-                                                            //             ) =>
-                                                            //                 field.value.includes(
-                                                            //                     option.value
-                                                            //                 )
-                                                            //         )
-                                                            //         : []
-                                                            // }
-                                                            onChange={(
-                                                                selectedOptions
-                                                            ) => {
+                                                            onChange={(selectedOptions) => {
                                                                 field.onChange(
-                                                                    selectedOptions.map(
-                                                                        (
-                                                                            option
-                                                                        ) =>
-                                                                            option.value
-                                                                    )
+                                                                    selectedOptions.map((option) => option.value)
                                                                 );
-                                                                setSelectedColorOptions(
-                                                                    selectedOptions
-                                                                ); // Assuming setSelectedColorOptions is declared elsewhere
+                                                                setSelectedColorOptions(selectedOptions);
                                                             }}
                                                         />
                                                     )}
                                                 />
                                             </div>
+
                                         </div>
                                         <div className="md:col-span-2">
                                             <label>
@@ -556,55 +503,29 @@ function PhysicalEdit() {
                                                     *
                                                 </span>
                                             </label>
-                                            <div className="flex items-center gap-2">
+                                            <div className="flex items-center gap-2" style={{width: '50%'}}>
                                                 <Controller
                                                     control={control}
                                                     {...register("size_id")}
-                                                    render={({ field }) => (
+                                                    render={({field}) => (
                                                         <Select
                                                             className="w-full"
                                                             placeholder="Select size"
-                                                            defaultValue={[
-                                                                ...defultsizeOptions,
-                                                            ]}
-                                                            options={
-                                                                sizeOptions
-                                                            }
+                                                            defaultValue={[...defultsizeOptions]}
+                                                            options={sizeOptions}
                                                             isMulti
                                                             isSearchable={true}
-                                                            // value={
-                                                            //     Array.isArray(
-                                                            //         field.value
-                                                            //     )
-                                                            //         ? sizeOptions.filter(
-                                                            //             (
-                                                            //                 option
-                                                            //             ) =>
-                                                            //                 field.value.includes(
-                                                            //                     option.value
-                                                            //                 )
-                                                            //         )
-                                                            //         : []
-                                                            // }
-                                                            onChange={(
-                                                                selectedOptions
-                                                            ) => {
+                                                            onChange={(selectedOptions) => {
                                                                 field.onChange(
-                                                                    selectedOptions.map(
-                                                                        (
-                                                                            option
-                                                                        ) =>
-                                                                            option.value
-                                                                    )
+                                                                    selectedOptions.map((option) => option.value)
                                                                 );
-                                                                setSelectedSizeOptions(
-                                                                    selectedOptions
-                                                                ); // Assuming setSelectedColorOptions is declared elsewhere
+                                                                setSelectedSizeOptions(selectedOptions);
                                                             }}
                                                         />
                                                     )}
                                                 />
                                             </div>
+
                                         </div>
                                     </div>
                                 </div>
@@ -688,12 +609,8 @@ function PhysicalEdit() {
                                           key={index} // Provide a unique key for each input
                                           {...register(
                                               `product_attribute_${index}`,
-                                              {
-                                                  required:
-                                                      "Product SKU Is required",
-                                              }
                                           )}
-                                          type="text"
+                                          type="hidden"
                                           value={item.color_id +"/"+ item.size_id} // Display the value from the hiddenAttributesLength array
                                       />
                                   ))
@@ -708,101 +625,55 @@ function PhysicalEdit() {
                                     </div>
                                     <div className="mb-5 space-y-5 relative">
                                         {atributeData.map((item, index) => (
-                                         
-                                                <div
-                                                key={index}
-                                                className="grid grid-cols-1 sm:grid-cols-4 gap-4"
-                                            >
+                                            <div key={index} className="grid grid-cols-1 sm:grid-cols-4 gap-4">
                                                 <div>
-                                                    <label>
-                                                        {" "}
-                                                        Product attribute{" "}
-                                                        <span className="text-danger">
-                                                            *
-                                                        </span>
-                                                    </label>
+                                                    <label> Product attribute <span
+                                                        className="text-danger">*</span></label>
                                                     <input
                                                         type="text"
                                                         className="form-input"
-                                                        value={item} // Set the value here
+                                                        value={`${selectedSizeOptions.find(sitem => sitem.id === item.size_id || sitem.value === item.size_id)?.name}/${selectedColorOptions.find(cItem => undefined !== cItem.id ? cItem.id : cItem.value === item.color_id)?.name}`}
                                                     />
                                                 </div>
-                                                {console.log(item)}
                                                 <div>
-                                                    <label>
-                                                        {" "}
-                                                        Product Price{" "}
-                                                        <span className="text-danger">
-                                                            *
-                                                        </span>
-                                                    </label>
+                                                    <label> Product Price <span className="text-danger">*</span></label>
                                                     <input
-                                                        {...register(
-                                                            `product_price_${index}`,
-                                                            {
-                                                                required:
-                                                                    "Product Price Is required",
-                                                            }
-                                                        )}
+                                                        {...register(`product_price_${index}`, {
+                                                            required: "Product Price Is required",
+                                                        })}
                                                         type="number"
                                                         className="form-input"
-                                                        // value={item.price}
-                                                        defaultValue={
-                                                            item.price
-                                                        }
+                                                        defaultValue={item.price}
                                                         placeholder="10$"
                                                     />
                                                 </div>
                                                 <div>
-                                                    <label>
-                                                        {" "}
-                                                        Product quantity{" "}
-                                                        <span className="text-danger">
-                                                            *
-                                                        </span>
-                                                    </label>
+                                                    <label> Product quantity <span
+                                                        className="text-danger">*</span></label>
                                                     <input
-                                                        {...register(
-                                                            `product_quantity_${index}`,
-                                                            {
-                                                                required:
-                                                                    "Product quantity Is required",
-                                                            }
-                                                        )}
+                                                        {...register(`product_quantity_${index}`, {
+                                                            required: "Product quantity Is required",
+                                                        })}
                                                         type="number"
                                                         className="form-input"
-                                                        // value={item.qty}
                                                         defaultValue={item.qty}
                                                         placeholder="5"
                                                     />
                                                 </div>
                                                 <div>
-                                                    <label>
-                                                        {" "}
-                                                        Product discount{" "}
-                                                        <span className="text-danger">
-                                                            *
-                                                        </span>
-                                                    </label>
+                                                    <label> Product discount <span
+                                                        className="text-danger">*</span></label>
                                                     <input
-                                                        {...register(
-                                                            `product_discount_${index}`,
-                                                            {
-                                                                required:
-                                                                    "Product discount Is required",
-                                                            }
-                                                        )}
+                                                        {...register(`product_discount_${index}`, {
+                                                            required: "Product discount Is required",
+                                                        })}
                                                         type="number"
                                                         className="form-input"
-                                                        // value={item.discount}
-                                                        defaultValue={
-                                                            item.discount
-                                                        }
+                                                        defaultValue={item.discount}
                                                         placeholder="8%"
                                                     />
                                                 </div>
                                             </div>
-                                          
                                         ))}
                                     </div>
                                 </div>

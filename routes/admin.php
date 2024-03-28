@@ -19,6 +19,7 @@ use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\RolePermissionController;
 use App\Http\Controllers\Admin\RolesController;
 use App\Http\Controllers\Admin\AdminProfileController;
+use App\Http\Controllers\admin\SemiController;
 use App\Http\Controllers\Admin\SizeController;
 use App\Http\Controllers\Admin\SliderController;
 use App\Http\Controllers\Admin\SocialLinkController;
@@ -204,7 +205,7 @@ Route::group(['middleware' => ['auth:admin'],'as' =>'admin.'],function() {
         Route::get('/restore-all', [CurrencyController::class, 'restoreAll'])->name('currency.restore.all');
     });
     //end size
-    
+
 
     //product
     Route::group(['prefix' => 'product' ],function (){
@@ -226,6 +227,8 @@ Route::group(['middleware' => ['auth:admin'],'as' =>'admin.'],function() {
         Route::get('permanent-delete-all', [ProductController::class, 'permanentDeleteAll'])->name('product.permanent.delete.all');
         Route::get('/undo-trashed/{id}', [ProductController::class, 'undoTrashed'])->name('product.undo.trashed');
         Route::get('/restore-all', [ProductController::class, 'restoreAll'])->name('product.restore.all');
+
+        Route::get('/product-settings', [ProductController::class, 'productSettings'])->name('product.settings');
     });
     //end product
 

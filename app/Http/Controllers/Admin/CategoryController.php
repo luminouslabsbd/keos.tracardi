@@ -16,7 +16,6 @@ class CategoryController extends Controller
     {
         $this->category = $category;
     }
-
     public function index(){
         return Inertia::render('Module/Category/Index');
     }

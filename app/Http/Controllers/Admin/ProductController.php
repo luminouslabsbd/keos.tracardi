@@ -271,4 +271,8 @@ class ProductController extends Controller
     public function type(){
         return Inertia::render('Module/Product/Type');
     }
+
+    public function productSettings() {
+        return Inertia::render('Module/Product/Settings');
+    }
 }
