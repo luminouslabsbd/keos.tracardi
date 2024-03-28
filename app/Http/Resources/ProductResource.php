@@ -16,7 +16,10 @@ class ProductResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'image' => "https://testhrm.luminousdemo.com/storage/product/".$this->thumbnail
+            'title' => $this->product_name,
+            'price' => $this->single_product_price,
+            'image' => url('storage/product/'.$this->thumbnail),
+            'image' => $this->thumbnail,
         ];
     }
 }
