@@ -86,21 +86,18 @@ class ProductController extends Controller
     }
     public function sendWpMessageCartProduct(Request $request)
     {
-
         $data = $request->all();
         $whatsapNumber = $data['user']['visitor']['phone'][0]['phoneNumber'] ?? null;
         $productsId = $data['products'];
         $totalProducts = count($productsId);
-
-        return $totalProducts;
-
-
         $responseData = [];
 
-        foreach ($productsId as $item){
-            $response = self::$apiService->sendSmsInWhatsapp($whatsapNumber,$item);
+        while ($totalProducts){
+            $response = self::$apiService->sendSmsInWhatsapp($whatsapNumber,$productsId[$totalProducts - 1]);
             $decodedResponse = json_decode($response, true);
             $responseData[] = $decodedResponse;
+
+            $totalProducts --;
         }
 
         return response()->json([
