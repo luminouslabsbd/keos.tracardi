@@ -93,11 +93,8 @@ class ProductController extends Controller
         $responseData = [];
 //
         foreach ($productsId as $item){
-            return $item;
+            return $response = self::$apiService->sendSmsInWhatsapp($whatsapNumber,$item);
             exit();
-
-            $response = self::$apiService->sendSmsInWhatsapp($whatsapNumber,$item);
-            $responseData.push($response);
         }
 //
 //        if (! $whatsapNumber){
