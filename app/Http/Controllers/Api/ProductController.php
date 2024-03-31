@@ -91,26 +91,17 @@ class ProductController extends Controller
         $productsId = $data['products'];
 
         $responseData = [];
-//
+
         foreach ($productsId as $item){
-            return $response = self::$apiService->sendSmsInWhatsapp($whatsapNumber,$item);
-            exit();
+            $response = self::$apiService->sendSmsInWhatsapp($whatsapNumber,$item);
+            $decodedResponse = json_decode($response, true);
+            $responseData[] = $decodedResponse;
         }
-//
-//        if (! $whatsapNumber){
-//            return response()->json([
-//                'status' => true,
-//                'message' => 'Send Success',
-//                'data' => "Whatsapp number cannot found"
-//            ],200);
-//        }
-//
-//        $response = self::$apiService->sendSmsInWhatsapp($whatsapNumber,$productsId);
 
         return response()->json([
            'status' => true,
            'message' => 'Return Request',
-           'data' => $productsId
+           'data' => $responseData
         ],200);
     }
 }
