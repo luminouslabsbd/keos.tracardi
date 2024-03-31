@@ -90,7 +90,7 @@ class ProductController extends Controller
         $data = $request->all();
         $whatsapNumber = $data['user']['visitor']['phone'][0]['phoneNumber'] ?? null;
         $productsId = $data['products'];
-        $totalProducts = $productsId->count();
+        $totalProducts = count($productsId);
 
         return $totalProducts;
 
