@@ -62,7 +62,7 @@ class ProductController extends Controller
     /**
      * Send whatsapp message here.
      */
-    public function sendWpMessage(Request $request)
+    public function sendWpMessageSingleProduct(Request $request)
     {
         $data = $request->all();
         $whatsapNumber = $data['user']['visitor']['phone'][0]['phoneNumber'] ?? null;
@@ -82,6 +82,28 @@ class ProductController extends Controller
            'status' => true,
            'message' => 'Send Success',
            'data' => $response
+        ],200);
+    }
+    public function sendWpMessageCartProduct(Request $request)
+    {
+        $data = $request->all();
+//        $whatsapNumber = $data['user']['visitor']['phone'][0]['phoneNumber'] ?? null;
+//        $productsId = $data['products'];
+//
+//        if (! $whatsapNumber){
+//            return response()->json([
+//                'status' => true,
+//                'message' => 'Send Success',
+//                'data' => "Whatsapp number cannot found"
+//            ],200);
+//        }
+//
+//        $response = self::$apiService->sendSmsInWhatsapp($whatsapNumber,$productsId);
+
+        return response()->json([
+           'status' => true,
+           'message' => 'Return Request',
+           'data' => $data
         ],200);
     }
 }
