@@ -87,8 +87,15 @@ class ProductController extends Controller
     public function sendWpMessageCartProduct(Request $request)
     {
         $data = $request->all();
-//        $whatsapNumber = $data['user']['visitor']['phone'][0]['phoneNumber'] ?? null;
-//        $productsId = $data['products'];
+        $whatsapNumber = $data['user']['visitor']['phone'][0]['phoneNumber'] ?? null;
+        $productsId = $data['products'];
+
+        $responseData = [];
+
+        foreach ($productsId as $item){
+            $response = self::$apiService->sendSmsInWhatsapp($whatsapNumber,$item);
+            $responseData.push($response);
+        }
 //
 //        if (! $whatsapNumber){
 //            return response()->json([
@@ -103,7 +110,7 @@ class ProductController extends Controller
         return response()->json([
            'status' => true,
            'message' => 'Return Request',
-           'data' => $data
+           'data' => $responseData
         ],200);
     }
 }
