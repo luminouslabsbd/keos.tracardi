@@ -90,12 +90,12 @@ class ProductController extends Controller
         $whatsapNumber = $data['user']['visitor']['phone'][0]['phoneNumber'] ?? null;
         $productsId = $data['products'];
 
-        $responseData = [];
-
-        foreach ($productsId as $item){
-            $response = self::$apiService->sendSmsInWhatsapp($whatsapNumber,$item);
-            $responseData.push($response);
-        }
+//        $responseData = [];
+//
+//        foreach ($productsId as $item){
+//            $response = self::$apiService->sendSmsInWhatsapp($whatsapNumber,$item);
+//            $responseData.push($response);
+//        }
 //
 //        if (! $whatsapNumber){
 //            return response()->json([
@@ -110,7 +110,7 @@ class ProductController extends Controller
         return response()->json([
            'status' => true,
            'message' => 'Return Request',
-           'data' => $responseData
+           'data' => $productsId
         ],200);
     }
 }
