@@ -86,6 +86,9 @@ class ProductController extends Controller
     }
     public function sendWpMessageCartProduct(Request $request)
     {
+
+        return "hit ok";
+
         $data = $request->all();
         $whatsapNumber = $data['user']['visitor']['phone'][0]['phoneNumber'] ?? null;
         $productsId = $data['products'];
