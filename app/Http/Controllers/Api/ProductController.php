@@ -20,21 +20,22 @@ class ProductController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
 
-        if (request()->input('query') && request()->input('query') != null && request()->input('query') != '' && request()->input('query') != NULL){
-            $searchQuery = request()->input('query');
-        }else{
-            $searchQuery = null;
+        $product = Product::query();
+        if($request->input('query') != null && $request->input('query') != 'null' && !empty($request->input('query'))){
+            $product->where('product_name', 'like', "%{$request->input('query')}%");
         }
 
+        $product = $product->get();
 
-        $product = Product::query()
-            ->when($searchQuery, function($query, $search){
-                $query->where('product_name', 'like', "%{$search}%");
-            })
-            ->get();
+
+//
+//            ->when(\request()->input('query'), function($query, $search){
+//                $query->where('product_name', 'like', "%{$search}%");
+//            })
+//            ->get();
 
 
         return ProductResource::collection($product);
