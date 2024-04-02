@@ -22,8 +22,16 @@ class ProductController extends Controller
      */
     public function index()
     {
+
+        if (request()->input('query') && request()->input('query') != null && request()->input('query') != '' && request()->input('query') != NULL){
+            $searchQuery = request()->input('query');
+        }else{
+            $searchQuery = null;
+        }
+
+
         $product = Product::query()
-            ->when(\request()->input('query'), function($query, $search){
+            ->when($searchQuery, function($query, $search){
                 $query->where('product_name', 'like', "%{$search}%");
             })
             ->get();
