@@ -43,7 +43,7 @@ class ProductController extends Controller
 
     public function getAllProducts()
     {
-        return Product::all();
+        return ProductResource::collection(Product::simplePaginate(8));
     }
 
     /**
