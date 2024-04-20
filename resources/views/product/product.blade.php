@@ -8,7 +8,7 @@
 
     <style>
         .description-wrapper {
-            height: 290px;
+            height: 220px;
             overflow: hidden;
         }
     </style>
@@ -62,7 +62,7 @@
         $(".showLess").click(function(){
             $(this).hide();
             $(".showMore").show();
-            $(".description-wrapper").css('height', '290px');
+            $(".description-wrapper").css('height', '220px');
         })
 
 
