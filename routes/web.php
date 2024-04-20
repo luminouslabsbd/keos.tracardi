@@ -1,6 +1,7 @@
 <?php
 
 
+use App\Http\Controllers\Api\ProductController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -11,3 +12,4 @@ Route::get('/', function () {
 Route::get('export-product', [\App\Http\Controllers\ExportController::class, 'exportAllEmployee'])->name('export.all.employee');
 
 
+Route::get('/product/{id}',[ProductController::class,'getSingleProduct']);

@@ -141,4 +141,10 @@ class ProductController extends Controller
            'data' => $responseData
         ],200);
     }
+
+    public function getSingleProduct($id)
+    {
+        $product = Product::findOrFail($id);
+        return view('product.product',compact('product'));
+    }
 }
