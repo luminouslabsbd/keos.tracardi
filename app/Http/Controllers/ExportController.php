@@ -31,10 +31,11 @@ class ExportController extends Controller
         $products = \App\Models\Admin\Product::get();
 
         foreach ($products as $product) {
+            $description = strip_tags($product->product_description);
             $productLists[] = [
                 'id' => $product->id,
                 'Title' => $product->product_name,
-                'Description' => $product->product_description,
+                'Description' => $description,
                 'Availability' => $product->single_product_quantity > 0 ? "in stock" : "Out of stock",
                 'Condition' => "new", // Assuming 'Condition' is constant
                 'Price' => $product->single_product_price,
