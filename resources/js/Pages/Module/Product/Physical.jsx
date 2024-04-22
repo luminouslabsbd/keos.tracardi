@@ -5,6 +5,7 @@ import { Controller, useForm } from "react-hook-form";
 import Select from "react-select";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
+import { Editor } from 'primereact/editor';
 function Physical() {
     const { categories, sub_categories, brands, type, colors, sizes, units } =
         usePage().props;
@@ -16,6 +17,9 @@ function Physical() {
     const [IsproductVariationValue, setProductVariationValue] = useState(false);
     console.log("🚀 ~ Physical ~ IsproductVariationValue:", IsproductVariationValue)
     console.log(hiddenAttributesLength)
+
+
+    const [text, setText] = useState('');
 
     useEffect(() => {
         const generateInputValues = () => {
@@ -218,12 +222,12 @@ function Physical() {
                     <div className="col-span-1 pt-4"></div>
                     <div className="col-span-7 pt-4">
                         <div className="">
-                            <div className="panel">
-                                <div className="flex items-center justify-between mb-5">
+                        <div className="panel">
+                                {/* <div className="flex items-center justify-between mb-5">
                                     <h5 className="font-semibold text-lg dark:text-white-light">
                                         Basic
                                     </h5>
-                                </div>
+                                </div> */}
                                 <div className="mb-5 space-y-5 relative">
                                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                                         <div>
