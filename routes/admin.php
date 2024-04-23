@@ -230,6 +230,7 @@ Route::group(['middleware' => ['auth:admin'],'as' =>'admin.'],function() {
 
         Route::get('/attributes', [ProductController::class, 'attributes'])->name('product.attributes');
         Route::post('/attribute/store', [ProductController::class, 'attributeStore'])->name('product.attribute.store');
+        Route::delete('/attribute/delete/{id}', [ProductController::class, 'attributeDelete'])->name('product.attribute.delete');
         Route::get('/product-settings', [ProductController::class, 'productSettings'])->name('product.settings');
     });
     //end product

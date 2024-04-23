@@ -10,6 +10,7 @@ use App\Models\Admin\Color;
 use App\Models\Admin\Product;
 use App\Models\Admin\Size;
 use App\Models\Admin\Unit;
+use App\Models\Admin\Attributes;
 use App\Repositories\Admin\ProductRepository;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
@@ -273,12 +274,20 @@ class ProductController extends Controller
     }
 
     public function attributes() {
-        return Inertia::render('Module/Product/Attributes');
+        $attributes = Attributes::all();
+        return Inertia::render('Module/Product/Attributes', [
+            'attributes' => $attributes,
+        ]);
     }
 
     public function attributeStore(Request $request) {
         $result = $this->product->attributeStore($request);
         return to_route('admin.product.attributes')->with('success', $result['message']);
+    }
+
+    public function attributeDelete($id) {
+        Attributes::destroy($id);
+        return to_route('admin.product.attributes')->with('success', 'Attribute Delete Successfully');
     }
 
     public function productSettings() {
