@@ -272,6 +272,15 @@ class ProductController extends Controller
         return Inertia::render('Module/Product/Type');
     }
 
+    public function attributes() {
+        return Inertia::render('Module/Product/Attributes');
+    }
+
+    public function attributeStore(Request $request) {
+        $result = $this->product->attributeStore($request);
+        return to_route('admin.product.attributes')->with('success', $result['message']);
+    }
+
     public function productSettings() {
         return Inertia::render('Module/Product/Settings');
     }

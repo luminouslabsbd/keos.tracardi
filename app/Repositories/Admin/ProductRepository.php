@@ -9,6 +9,7 @@ use App\Models\Admin\Physical;
 use App\Models\Admin\Product;
 use App\Models\Admin\VariationPrice;
 use App\Models\Admin\WholeSale;
+use App\Models\Admin\Attributes;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 
@@ -333,5 +334,19 @@ class ProductRepository {
             }
         }
         return $data;
+    }
+    public function attributeStore($request){
+
+        $data = Attributes::updateOrCreate(
+            ['name' => $request->attribute],
+            ['name' => $request->attribute]
+        );
+
+        if ($data->wasRecentlyCreated) {
+            $message = "Attribute Created Successfully";
+        } else {
+            $message = "Atributes Updated Successfully";
+        }
+        return ['status' => true, 'message' => $message,];
     }
 }
