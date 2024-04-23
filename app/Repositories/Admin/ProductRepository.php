@@ -335,10 +335,10 @@ class ProductRepository {
         }
         return $data;
     }
-    public function attributeStore($request){
+    public function attributeStore($request, $id = null){
 
         $data = Attributes::updateOrCreate(
-            ['name' => $request->attribute],
+            ['id' => $id],
             ['name' => $request->attribute]
         );
 

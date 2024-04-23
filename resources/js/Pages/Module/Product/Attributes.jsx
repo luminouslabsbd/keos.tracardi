@@ -3,19 +3,37 @@ import MainLayout from "../../Layout/Mainlayout";
 import { Link, router, usePage } from "@inertiajs/react";
 import { useForm } from "react-hook-form"
 
-function attributes({attributes}) {
+function Attributes({ attributes }) {
     const [inputValue, setInputValue] = useState("");
+    const [selectedAttribute, setSelectedAttribute] = useState(null);
+    const [isModalOpen, setIsModalOpen] = useState(false);
     const { base_url } = usePage().props;
-    const{
-        register,
-        handleSubmit,
-        formState: { errors },
-    } = useForm()
+    const { register: addRegister, handleSubmit: handleAddSubmit, formState: addFormState, reset: addReset } = useForm();
+    const { register: editRegister, handleSubmit: handleEditFormSubmit, formState: editFormState, reset: editReset } = useForm();
 
-    function onSubmit(data) {
+    const onSubmit = (data) => {
         router.post("/admin/product/attribute/store", data);
         setInputValue("");
-    }
+    };
+
+    const handleEdit = (attribute) => {
+        setSelectedAttribute(attribute);
+        setIsModalOpen(true);
+    };
+
+    const handleCloseModal = () => {
+        setSelectedAttribute(null);
+        setIsModalOpen(false);
+    };
+
+    const handleEditSubmit = async (data) => {
+        try {
+            router.post(`/admin/product/attribute/update/${selectedAttribute.id}`, data);
+            setIsModalOpen(false);
+        } catch (error) {
+            console.error("Error updating attribute:", error);
+        }
+    };
 
     const handleDelete = (id) => {
         if (confirm('Are you sure you want to delete this attribute?')) {
@@ -56,7 +74,7 @@ function attributes({attributes}) {
                         <table className="table">
                             <thead>
                                 <tr>
-                                    <th>ID</th>
+                                    <th>SL</th>
                                     <th>Name</th>
                                     <th>Values</th>
                                     <th className="!text-center">Action</th>
@@ -67,16 +85,19 @@ function attributes({attributes}) {
                                     <tr key={attribute.id}>
                                         <td>{index + 1}</td>
                                         <td>{attribute.name}</td>
-                                        <td>{attribute.name}</td>
+                                        <td>
+                                            <span className="inline-block px-2 py-1 text-sm font-semibold leading-none text-gray-800 bg-gray-200 rounded-full mr-2">XL</span>
+                                            <span className="inline-block px-2 py-1 text-sm font-semibold leading-none text-gray-800 bg-gray-200 rounded-full">XXL</span>
+                                        </td>
                                         <td className="text-right">
                                             <div className="flex justify-end">
-                                                <a href="#" className="inline-block px-2 py-1 leading-none border border-blue-500 text-blue-500 rounded-md hover:text-white hover:bg-blue-500 mr-2" title="Edit">
+                                                <a href="#" className="inline-block px-2 py-1 leading-none border border-blue-500 text-blue-500 rounded-md hover:text-white hover:bg-blue-500 mr-2" title="Edit" onClick={() => handleEdit(attribute)}>
                                                     <i className="las la-edit"></i>Edit
                                                 </a>
                                                 <a href="#" className="inline-block px-2 py-1 leading-none border border-red-500 text-red-500 rounded-md hover:text-white hover:bg-red-500 mr-2" title="Delete" onClick={() => handleDelete(attribute.id)}>
                                                     <i className="las la-delete"></i>Delete
                                                 </a>
-                                                <a href="#" className="inline-block px-2 py-1 leading-none border border-green-500 text-green-500 rounded-md hover:text-white hover:bg-green-500" title="Delete" onClick={() => handleDelete(attribute.id)}>
+                                                <a href="#" className="inline-block px-2 py-1 leading-none border border-green-500 text-green-500 rounded-md hover:text-white hover:bg-green-500" title="Delete" onClick={() => handleSettings(attribute.id)}>
                                                     <i className="las la-delete"></i>Settings
                                                 </a>
                                             </div>
@@ -89,22 +110,45 @@ function attributes({attributes}) {
                 </div>
                 <div className="col-span-3 pt-4">
                     <div className="panel">
-                        <form onSubmit={handleSubmit(onSubmit)} method="post">
-                            <label>Product attribute</label>
-                            <input type="text" {...register("attribute", { required: "Attribute is required" })} className="form-input" placeholder="Enter attributes name" value={inputValue} onChange={(e) => setInputValue(e.target.value)}/>
-                            {errors.attribute && <p className="text-red-500" role="alert">{errors.attribute.message}</p>}
+                        <form onSubmit={handleAddSubmit(onSubmit)} method="post">
+                            <label>Add New Attribute</label>
+                            <input type="text" {...addRegister("attribute", { required: "Attribute is required" })} className="form-input" placeholder="Enter attributes name" value={inputValue} onChange={(e) => setInputValue(e.target.value)}/>
+                            {addFormState.errors.attribute && <p className="text-red-500" role="alert">{addFormState.errors.attribute.message}</p>}
                             <button type="submit" className="btn btn-success mt-6">Submit</button>
                         </form>
                     </div>
                 </div>
                 <div className="col-span-1 pt-4"></div>
             </div>
+
+            {isModalOpen && selectedAttribute && (
+                <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+                    <div className="bg-white rounded-lg shadow-md w-96">
+                        <div className="flex justify-between items-center px-4 py-2 bg-gray-200">
+                            <h2 className="text-xl font-bold">Edit Attribute</h2>
+                            <button className="text-gray-600 hover:text-red-600" onClick={handleCloseModal}>
+                                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                                </svg>
+                            </button>
+                        </div>
+                        <div className="p-6">
+                            <form onSubmit={handleEditFormSubmit(handleEditSubmit)}>
+                                <input type="text" {...editRegister("attribute", { required: true })} defaultValue={selectedAttribute.name} className="form-input" placeholder="Enter attribute name" />
+                                {editFormState.errors.name && <p className="text-red-500">Attribute name is required</p>}
+                                <button type="submit" className="bg-blue-500 text-white px-4 py-2 rounded-lg mt-4">Update</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            )}
+
         </>
     );
 }
 
-attributes.layout = (page) => (
+Attributes.layout = (page) => (
     <MainLayout children={page} title="Luminous-Ecommerce || Attributes" />
 );
 
-export default attributes;
+export default Attributes;

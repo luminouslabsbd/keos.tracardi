@@ -285,6 +285,11 @@ class ProductController extends Controller
         return to_route('admin.product.attributes')->with('success', $result['message']);
     }
 
+    public function attributeUpdate(Request $request, $id) {
+        $result = $this->product->attributeStore($request,$id);
+        return to_route('admin.product.attributes')->with('success', $result['message']);
+    }
+
     public function attributeDelete($id) {
         Attributes::destroy($id);
         return to_route('admin.product.attributes')->with('success', 'Attribute Delete Successfully');
