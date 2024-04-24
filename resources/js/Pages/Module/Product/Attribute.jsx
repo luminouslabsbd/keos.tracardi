@@ -73,8 +73,11 @@ function Attribute({ attributes }) {
                 <div className="col-span-1 pt-4"></div>
                 <div className="col-span-7 pt-4">
                     <div className="panel">
-                        <strong>Attributes list</strong>
+                        <div className="mb-2">
+                            <h5 className="font-bold">Attributes list</h5>
+                        </div>
                         <hr/>
+
                         <table className="table">
                             <thead>
                                 <tr>
@@ -90,8 +93,9 @@ function Attribute({ attributes }) {
                                         <td>{index + 1}</td>
                                         <td>{attribute.name}</td>
                                         <td>
-                                            <span className="inline-block px-2 py-1 text-sm font-semibold leading-none text-gray-800 bg-gray-200 rounded-full mr-2">XL</span>
-                                            <span className="inline-block px-2 py-1 text-sm font-semibold leading-none text-gray-800 bg-gray-200 rounded-full">XXL</span>
+                                            {attribute.items.map((item) => (
+                                                <span key={item.id} className="inline-block px-2 py-1 my-1 text-sm font-semibold leading-none text-gray-800 bg-gray-200 rounded-full mr-2">{item.item_name}</span>
+                                            ))}
                                         </td>
                                         <td className="text-right">
                                             <div className="flex justify-end">
@@ -114,8 +118,12 @@ function Attribute({ attributes }) {
                 </div>
                 <div className="col-span-3 pt-4">
                     <div className="panel">
+                        <div className="mb-2">
+                            <h5 className="mb-2 font-bold">Add New Attribute</h5>
+                            <hr/>
+                        </div>
                         <form onSubmit={handleAddSubmit(onSubmit)} method="post">
-                            <label>Add New Attribute</label>
+                            <label className="font-normal">Attribute name</label>
                             <input type="text" {...addRegister("attribute", { required: "Attribute is required" })} className="form-input" placeholder="Enter attributes name" value={inputValue} onChange={(e) => setInputValue(e.target.value)}/>
                             {addFormState.errors.attribute && <p className="text-red-500" role="alert">{addFormState.errors.attribute.message}</p>}
                             <button type="submit" className="btn btn-success mt-6">Submit</button>

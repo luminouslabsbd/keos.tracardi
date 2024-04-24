@@ -10,6 +10,7 @@ use App\Models\Admin\Product;
 use App\Models\Admin\VariationPrice;
 use App\Models\Admin\WholeSale;
 use App\Models\Admin\Attribute;
+use App\Models\Admin\AttributeItems;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 
@@ -335,6 +336,7 @@ class ProductRepository {
         }
         return $data;
     }
+
     public function attributeStore($request, $id = null){
 
         $data = Attribute::updateOrCreate(
@@ -348,5 +350,20 @@ class ProductRepository {
             $message = "Atributes Updated Successfully";
         }
         return ['status' => true, 'message' => $message,];
+    }
+
+    public function attributeItemStore($request, $id = null){
+        $data = AttributeItems::updateOrCreate(
+            ['id' => $id],
+            ['attribute_id' => $request->attribute_id,'item_name' => $request->item_name]
+        );
+
+        $id = $request->attribute_id;
+        if ($data->wasRecentlyCreated) {
+            $message = "Attribute Item Created Successfully";
+        } else {
+            $message = "Atributes Item Updated Successfully";
+        }
+        return ['id' => $id, 'message' => $message,];
     }
 }

@@ -3,8 +3,8 @@ import MainLayout from "../../Layout/Mainlayout";
 import { Link, router, usePage } from "@inertiajs/react";
 import { useForm } from "react-hook-form"
 
-function AttributeDetails({ attribute }) {
-    console.log(attribute);
+function AttributeDetails() {
+    const { attributeItems, attribute } = usePage().props;
     const [inputValue, setInputValue] = useState("");
     const [selectedAttribute, setSelectedAttribute] = useState(null);
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -13,12 +13,12 @@ function AttributeDetails({ attribute }) {
     const { register: editRegister, handleSubmit: handleEditFormSubmit, formState: editFormState, reset: editReset } = useForm();
 
     const onSubmit = (data) => {
-        router.post("/admin/product/attribute/store", data);
+        router.post("/admin/product/attribute-item/store", data);
         setInputValue("");
     };
 
-    const handleEdit = (attribute) => {
-        setSelectedAttribute(attribute);
+    const handleEdit = (item) => {
+        setSelectedAttribute(item);
         setIsModalOpen(true);
     };
 
@@ -29,22 +29,19 @@ function AttributeDetails({ attribute }) {
 
     const handleEditSubmit = async (data) => {
         try {
-            router.post(`/admin/product/attribute/update/${selectedAttribute.id}`, data);
+            router.post(`/admin/product/attribute-item/update/${selectedAttribute.id}`, data);
             setIsModalOpen(false);
         } catch (error) {
-            console.error("Error updating attribute:", error);
+            console.error("Error updating attribute item:", error);
         }
     };
 
     const handleDelete = (id) => {
-        if (confirm('Are you sure you want to delete this attribute?')) {
-            router.delete(`/admin/product/attribute/delete/${id}`);
+        if (confirm('Are you sure you want to delete this attribute item?')) {
+            router.delete(`/admin/product/attribute-item/delete/${id}`);
         }
     };
 
-    const handleSettings = () => {
-        router.get("/admin/product/attribute/settings");
-    };
 
     return (
         <>
@@ -60,7 +57,7 @@ function AttributeDetails({ attribute }) {
                         </div>
                         <ul className="flex space-x-2 rtl:space-x-reverse">
                             <li>
-                                <Link href={`${base_url}/admin/dashboard`} className="text-[#ff6243] hover:underline">Dashboard</Link>
+                                <Link href={`${base_url}/admin/product/attribute`} className="text-[#ff6243] hover:underline">Attribute</Link>
                             </li>
                             <li className="before:content-['/'] ltr:before:mr-2 rtl:before:ml-2">
                                 <span>Attribute Details</span>
@@ -74,8 +71,11 @@ function AttributeDetails({ attribute }) {
                 <div className="col-span-1 pt-4"></div>
                 <div className="col-span-7 pt-4">
                     <div className="panel">
-                        <strong>Attributes list</strong>
+                        <div className="mb-2">
+                            <h5 className="font-bold">{attribute.name}</h5>
+                        </div>
                         <hr/>
+
                         <table className="table">
                             <thead>
                                 <tr>
@@ -85,7 +85,22 @@ function AttributeDetails({ attribute }) {
                                 </tr>
                             </thead>
                             <tbody>
-
+                                {attributeItems.map((item, index) => (
+                                    <tr key={item.id}>
+                                        <td>{index + 1}</td>
+                                        <td>{item.item_name}</td>
+                                        <td className="text-right">
+                                            <div className="flex justify-end">
+                                                <a href="#" className="inline-block px-2 py-1 leading-none border border-blue-500 text-blue-500 rounded-md hover:text-white hover:bg-blue-500 mr-2" title="Edit" onClick={() => handleEdit(item)}>
+                                                    <i className="las la-edit"></i>Edit
+                                                </a>
+                                                <a href="#" className="inline-block px-2 py-1 leading-none border border-red-500 text-red-500 rounded-md hover:text-white hover:bg-red-500 mr-2" title="Delete" onClick={() => handleDelete(item.id)}>
+                                                    <i className="las la-delete"></i>Delete
+                                                </a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                ))}
                             </tbody>
                         </table>
                     </div>
@@ -93,17 +108,18 @@ function AttributeDetails({ attribute }) {
                 <div className="col-span-3 pt-4">
                     <div className="panel">
                         <div className="mb-2">
-                            <strong className="mb-2">Add New Attribute Value</strong>
+                            <h5 className="mb-2 font-bold">Add New Attribute Value</h5>
                             <hr/>
                         </div>
                         <form onSubmit={handleAddSubmit(onSubmit)} method="post">
                             <div className="mb-2">
-                                <label className="">Attribute Name</label>
+                                <label className="font-normal">Attribute Name</label>
                                 <input className="form-input" value={attribute.name} disabled={true}/>
+                                <input hidden {...addRegister("attribute_id")} value={attribute.id}/>
                             </div>
                             <div className="">
-                                <label>Attribute Value</label>
-                                <input type="text" {...addRegister("value", { required: "Attribute is required" })} className="form-input" placeholder="Enter attributes value" value={inputValue} onChange={(e) => setInputValue(e.target.value)}/>
+                                <label className="font-normal">Attribute Value</label>
+                                <input type="text" {...addRegister("item_name", { required: "Attribute is required" })} className="form-input" placeholder="Enter attributes value" value={inputValue} onChange={(e) => setInputValue(e.target.value)}/>
                                 {addFormState.errors.attribute && <p className="text-red-500" role="alert">{addFormState.errors.attribute.message}</p>}
                             </div>
                             <button type="submit" className="btn btn-success mt-6">Submit</button>
@@ -117,7 +133,7 @@ function AttributeDetails({ attribute }) {
                 <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
                     <div className="bg-white rounded-lg shadow-md w-96">
                         <div className="flex justify-between items-center px-4 py-2 bg-gray-200">
-                            <h2 className="text-xl font-bold">Edit Attribute</h2>
+                            <h2 className="text-xl font-bold">Edit Attribute Item</h2>
                             <button className="text-gray-600 hover:text-red-600" onClick={handleCloseModal}>
                                 <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
@@ -126,8 +142,9 @@ function AttributeDetails({ attribute }) {
                         </div>
                         <div className="p-6">
                             <form onSubmit={handleEditFormSubmit(handleEditSubmit)}>
-                                <input type="text" {...editRegister("attribute", { required: true })} defaultValue={selectedAttribute.name} className="form-input" placeholder="Enter attribute name" />
-                                {editFormState.errors.name && <p className="text-red-500">Attribute name is required</p>}
+                                <input hidden {...editRegister("attribute_id")} value={attribute.id}/>
+                                <input type="text" {...editRegister("item_name", { required: true })} defaultValue={selectedAttribute.item_name} className="form-input" placeholder="Enter attribute name" />
+                                {editFormState.errors.item_name && <p className="text-red-500 pt-2 pl-1">Attribute item name is required</p>}
                                 <button type="submit" className="bg-blue-500 text-white px-4 py-2 rounded-lg mt-4">Update</button>
                             </form>
                         </div>

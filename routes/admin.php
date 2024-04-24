@@ -233,6 +233,9 @@ Route::group(['middleware' => ['auth:admin'],'as' =>'admin.'],function() {
         Route::post('/attribute/update/{id}', [ProductController::class, 'attributeUpdate'])->name('product.attribute.update');
         Route::delete('/attribute/delete/{id}', [ProductController::class, 'attributeDelete'])->name('product.attribute.delete');
         Route::get('/attribute/details/{id}', [ProductController::class, 'attributeDetails'])->name('product.attribute.details');
+        Route::post('/attribute-item/store', [ProductController::class, 'attributeItemStore'])->name('product.attribute.item.store');
+        Route::post('/attribute-item/update/{id}', [ProductController::class, 'attributeItemUpdate'])->name('product.attribute.item.update');
+        Route::delete('/attribute-item/delete/{id}', [ProductController::class, 'attributeItemDelete'])->name('product.attribute.item.delete');
 
         Route::get('/product-settings', [ProductController::class, 'productSettings'])->name('product.settings');
     });

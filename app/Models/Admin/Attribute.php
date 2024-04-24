@@ -12,4 +12,10 @@ class Attribute extends Model
     protected $fillable = [
         'name',
     ];
+
+    public function items()
+    {
+        return $this->hasMany(AttributeItems::class, 'attribute_id');
+    }
+
 }
