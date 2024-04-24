@@ -228,10 +228,12 @@ Route::group(['middleware' => ['auth:admin'],'as' =>'admin.'],function() {
         Route::get('/undo-trashed/{id}', [ProductController::class, 'undoTrashed'])->name('product.undo.trashed');
         Route::get('/restore-all', [ProductController::class, 'restoreAll'])->name('product.restore.all');
 
-        Route::get('/attributes', [ProductController::class, 'attributes'])->name('product.attributes');
+        Route::get('/attribute', [ProductController::class, 'attribute'])->name('product.attribute');
         Route::post('/attribute/store', [ProductController::class, 'attributeStore'])->name('product.attribute.store');
         Route::post('/attribute/update/{id}', [ProductController::class, 'attributeUpdate'])->name('product.attribute.update');
         Route::delete('/attribute/delete/{id}', [ProductController::class, 'attributeDelete'])->name('product.attribute.delete');
+        Route::get('/attribute/details/{id}', [ProductController::class, 'attributeDetails'])->name('product.attribute.details');
+
         Route::get('/product-settings', [ProductController::class, 'productSettings'])->name('product.settings');
     });
     //end product

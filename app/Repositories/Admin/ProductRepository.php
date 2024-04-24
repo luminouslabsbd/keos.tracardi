@@ -9,7 +9,7 @@ use App\Models\Admin\Physical;
 use App\Models\Admin\Product;
 use App\Models\Admin\VariationPrice;
 use App\Models\Admin\WholeSale;
-use App\Models\Admin\Attributes;
+use App\Models\Admin\Attribute;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 
@@ -337,7 +337,7 @@ class ProductRepository {
     }
     public function attributeStore($request, $id = null){
 
-        $data = Attributes::updateOrCreate(
+        $data = Attribute::updateOrCreate(
             ['id' => $id],
             ['name' => $request->attribute]
         );

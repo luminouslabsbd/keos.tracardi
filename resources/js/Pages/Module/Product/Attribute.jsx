@@ -3,7 +3,7 @@ import MainLayout from "../../Layout/Mainlayout";
 import { Link, router, usePage } from "@inertiajs/react";
 import { useForm } from "react-hook-form"
 
-function Attributes({ attributes }) {
+function Attribute({ attributes }) {
     const [inputValue, setInputValue] = useState("");
     const [selectedAttribute, setSelectedAttribute] = useState(null);
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -41,6 +41,10 @@ function Attributes({ attributes }) {
         }
     };
 
+    const handleDetails = (id) => {
+        router.get(`/admin/product/attribute/details/${id}`);
+    };
+
     return (
         <>
             <div className="attributes-header grid grid-cols-12 gap-4">
@@ -58,7 +62,7 @@ function Attributes({ attributes }) {
                                 <Link href={`${base_url}/admin/dashboard`} className="text-[#ff6243] hover:underline">Dashboard</Link>
                             </li>
                             <li className="before:content-['/'] ltr:before:mr-2 rtl:before:ml-2">
-                                <span>Attributes</span>
+                                <span>Attribute</span>
                             </li>
                         </ul>
                     </div>
@@ -97,7 +101,7 @@ function Attributes({ attributes }) {
                                                 <a href="#" className="inline-block px-2 py-1 leading-none border border-red-500 text-red-500 rounded-md hover:text-white hover:bg-red-500 mr-2" title="Delete" onClick={() => handleDelete(attribute.id)}>
                                                     <i className="las la-delete"></i>Delete
                                                 </a>
-                                                <a href="#" className="inline-block px-2 py-1 leading-none border border-green-500 text-green-500 rounded-md hover:text-white hover:bg-green-500" title="Delete" onClick={() => handleSettings(attribute.id)}>
+                                                <a href="#" className="inline-block px-2 py-1 leading-none border border-green-500 text-green-500 rounded-md hover:text-white hover:bg-green-500" title="Delete" onClick={() => handleDetails(attribute.id)}>
                                                     <i className="las la-delete"></i>Settings
                                                 </a>
                                             </div>
@@ -147,8 +151,8 @@ function Attributes({ attributes }) {
     );
 }
 
-Attributes.layout = (page) => (
+Attribute.layout = (page) => (
     <MainLayout children={page} title="Luminous-Ecommerce || Attributes" />
 );
 
-export default Attributes;
+export default Attribute;

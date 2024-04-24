@@ -135,7 +135,7 @@ useEffect(() => {
                                             <Link href={`${base_url}/admin/product/type`}>{t('Add Product')}</Link>
                                         </li>
                                         <li>
-                                            <Link href={`${base_url}/admin/product/attributes`}>{t('Attributes')}</Link>
+                                            <Link href={`${base_url}/admin/product/attribute`}>{t('Attribute')}</Link>
                                         </li>
                                         <li>
                                             <Link href={`${base_url}/admin/product/product-settings`}>{t('Product Settings')}</Link>

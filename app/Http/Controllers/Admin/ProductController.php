@@ -10,7 +10,7 @@ use App\Models\Admin\Color;
 use App\Models\Admin\Product;
 use App\Models\Admin\Size;
 use App\Models\Admin\Unit;
-use App\Models\Admin\Attributes;
+use App\Models\Admin\Attribute;
 use App\Repositories\Admin\ProductRepository;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
@@ -273,26 +273,33 @@ class ProductController extends Controller
         return Inertia::render('Module/Product/Type');
     }
 
-    public function attributes() {
-        $attributes = Attributes::all();
-        return Inertia::render('Module/Product/Attributes', [
+    public function attribute() {
+        $attributes = Attribute::all();
+        return Inertia::render('Module/Product/Attribute', [
             'attributes' => $attributes,
         ]);
     }
 
     public function attributeStore(Request $request) {
         $result = $this->product->attributeStore($request);
-        return to_route('admin.product.attributes')->with('success', $result['message']);
+        return to_route('admin.product.attribute')->with('success', $result['message']);
     }
 
     public function attributeUpdate(Request $request, $id) {
         $result = $this->product->attributeStore($request,$id);
-        return to_route('admin.product.attributes')->with('success', $result['message']);
+        return to_route('admin.product.attribute')->with('success', $result['message']);
     }
 
     public function attributeDelete($id) {
-        Attributes::destroy($id);
-        return to_route('admin.product.attributes')->with('success', 'Attribute Delete Successfully');
+        Attribute::destroy($id);
+        return to_route('admin.product.attribute')->with('success', 'Attribute Delete Successfully');
+    }
+
+    public function attributeDetails($id) {
+        $attribute = Attribute::find($id);
+        return Inertia::render('Module/Product/AttributeDetails', [
+            'attribute' => $attribute,
+        ]);
     }
 
     public function productSettings() {
