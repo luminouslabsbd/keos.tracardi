@@ -48,8 +48,7 @@ function Attribute({ attributes }) {
     return (
         <>
             <div className="attributes-header grid grid-cols-12 gap-4">
-                <div className="col-span-1 pt-4"></div>
-                    <div className="col-span-10 pt-4">
+                <div className="col-span-12 pt-4">
                     <div className="panel flex items-center overflow-x-auto whitespace-nowrap p-3 ">
                         <div className="rounded-full bg-[#ff6243] p-1.5 text-white ring-2 ring-primary/30 ltr:mr-3 rtl:ml-3 h-[35px] w-[35px] flex items-center justify-center">
                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="h-3.5 w-3.5">
@@ -67,11 +66,9 @@ function Attribute({ attributes }) {
                         </ul>
                     </div>
                 </div>
-                <div className="col-span-1 pt-4"></div>
             </div>
             <div className="attributes-info grid grid-cols-12 gap-4">
-                <div className="col-span-1 pt-4"></div>
-                <div className="col-span-7 pt-4">
+                <div className="col-span-9 pt-4">
                     <div className="panel">
                         <div className="mb-2">
                             <h5 className="font-bold">Attributes list</h5>
@@ -130,7 +127,6 @@ function Attribute({ attributes }) {
                         </form>
                     </div>
                 </div>
-                <div className="col-span-1 pt-4"></div>
             </div>
 
             {isModalOpen && selectedAttribute && (

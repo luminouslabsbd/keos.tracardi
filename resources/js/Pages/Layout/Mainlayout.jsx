@@ -81,7 +81,11 @@ function MainLayout({children , title}) {
                     <Sidebar handleToggleSidebar = {handleToggleSidebar} />
                     <div className="main-content flex flex-col min-h-screen">
                         <Header handleToggleSidebar = {handleToggleSidebar} />
-                            <div className={`${themeConfig.animation} p-6 animate__animated`}>{children}</div>
+                        <div className='luminous-e-shop-main-div px-[20px]'>
+                            <div className="">
+                                <div className={`${themeConfig.animation} p-6 animate__animated`}>{children}</div>
+                            </div>
+                        </div>
                         <Footer />
                     </div>
                 </div>
