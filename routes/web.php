@@ -13,3 +13,5 @@ Route::get('export-product', [\App\Http\Controllers\ExportController::class, 'ex
 
 
 Route::get('/product/{id}',[ProductController::class,'getSingleProduct']);
+
+Route::get('/send-multi-product',[ProductController::class,'sendMultipleProduct']);
