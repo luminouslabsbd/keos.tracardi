@@ -202,6 +202,7 @@ body.dark button.mantine-UnstyledButton-root.mantine-Pagination-control.mantine-
 .sidebar ul.sub-menu li button, .sidebar ul.sub-menu li a:hover{
     background-color: rgba(92, 86, 86, 0.103) !important;
     border-radius: 6px;
+    color: #ff6243 !important;
 }
 .mantine-12fau64[data-with-icon] {
     border: 1px solid #c5c5c5;
