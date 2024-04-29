@@ -268,7 +268,7 @@ Route::group(['middleware' => ['auth:admin'],'as' =>'admin.'],function() {
     });
     //end Blog Category
 
-    //Blog Category
+    //Blog
     Route::group(['prefix' => 'blog-post' ],function (){
         Route::get('', [BlogPostController::class, 'index'])->name('blog-post');
         Route::get('data', [BlogPostController::class, 'data'])->name('blog-post.data');
@@ -286,7 +286,7 @@ Route::group(['middleware' => ['auth:admin'],'as' =>'admin.'],function() {
         Route::get('/undo-trashed/{id}', [BlogPostController::class, 'undoTrashed'])->name('blog-post.undo.trashed');
         Route::get('/restore-all', [BlogPostController::class, 'restoreAll'])->name('blog-post.restore.all');
     });
-    //end Blog Category
+    //end Blog
 
 
     //Language

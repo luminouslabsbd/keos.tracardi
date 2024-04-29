@@ -58,7 +58,7 @@ class CategoryController extends Controller
         ]);
     }
     public function create(){
-        $categories = Category::where('parent_id',null)->select('id', 'name')->get();
+        $categories = Category::select('id', 'name')->get();
         return Inertia::render('Module/Category/Add',[
             'categories' => $categories
         ]);
