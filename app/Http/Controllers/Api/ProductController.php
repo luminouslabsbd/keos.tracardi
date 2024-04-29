@@ -23,22 +23,15 @@ class ProductController extends Controller
      */
     public function index(Request $request)
     {
-
         $product = Product::query();
         if($request->input('query') != null && $request->input('query') != 'null' && !empty($request->input('query'))){
             $product->where('product_name', 'like', "%{$request->input('query')}%");
         }
-
-        $product = $product->get();
-
-
-//
+        $product = $product->simplePaginate(8);
 //            ->when(\request()->input('query'), function($query, $search){
 //                $query->where('product_name', 'like', "%{$search}%");
 //            })
 //            ->get();
-
-
         return ProductResource::collection($product);
     }
 
