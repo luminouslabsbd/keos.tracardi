@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Repositories\Admin;
+namespace App\Repositories\Admin;
 use Illuminate\Support\Facades\DB;
 use App\Models\Admin\Domains;
 
