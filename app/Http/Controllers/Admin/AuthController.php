@@ -7,6 +7,7 @@ use App\Repositories\Admin\AuthRepository;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use Inertia\Inertia;
+use Illuminate\Support\Facades\DB;
 
 class AuthController extends Controller
 {
@@ -25,7 +26,6 @@ class AuthController extends Controller
         return Inertia::render('Module/Auth/Login');
     }
     public function loginPost(LoginRequest $request){
-//        dd('ok');
         $result = $this->authRepository->login($request);
         if($result['status']== true){
             Session::put('adminLogin', 'admin_log_in');
@@ -41,6 +41,15 @@ class AuthController extends Controller
             Session::forget('adminLogin');
             Auth::logout();
             return to_route('login')->with('success', 'Logout Successfully');
+        }
+    }
+
+    public function userRegister(){
+        $countries = DB::table('countries')->select('id', 'name')->get();
+        if (!Auth::check()) {
+            return Inertia::render('Module/Auth/UserRegister',[
+                'countries' => $countries
+            ]);
         }
     }
 }
