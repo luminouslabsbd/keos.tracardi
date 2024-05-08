@@ -1,9 +1,10 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
+
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\LoginRequest;
-use App\Repositories\Admin\AuthRepository;
+use App\Http\Repositories\Admin\AuthRepository;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use Inertia\Inertia;
@@ -18,25 +19,28 @@ class AuthController extends Controller
         $this->authRepository = $authRepository;
     }
 
-    public function login(){
-        if(Session::get('adminLogin')){
+    public function login()
+    {
+        if (Session::get('adminLogin')) {
             return to_route('admin.dashboard');
         }
 
         return Inertia::render('Module/Auth/Login');
     }
-    public function loginPost(LoginRequest $request){
+    public function loginPost(LoginRequest $request)
+    {
         $result = $this->authRepository->login($request);
-        if($result['status']== true){
+        if ($result['status'] == true) {
             Session::put('adminLogin', 'admin_log_in');
             return to_route('admin.dashboard')->with('success', $result['message']);
-        }else{
-            if($result['status']== false) {
+        } else {
+            if ($result['status'] == false) {
                 return to_route('login')->with('error', $result['message']);
             }
         }
     }
-    public function logout(){
+    public function logout()
+    {
         if (Auth::check()) {
             Session::forget('adminLogin');
             Auth::logout();
@@ -44,10 +48,11 @@ class AuthController extends Controller
         }
     }
 
-    public function userRegister(){
+    public function userRegister()
+    {
         $countries = DB::table('countries')->select('id', 'name')->get();
         if (!Auth::check()) {
-            return Inertia::render('Module/Auth/UserRegister',[
+            return Inertia::render('Module/Auth/UserRegister', [
                 'countries' => $countries
             ]);
         }
