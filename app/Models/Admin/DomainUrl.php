@@ -4,13 +4,17 @@ namespace App\Models\Admin;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Unit extends Model
+class DomainUrl extends Model
 {
-    use HasFactory,SoftDeletes;
+    use HasFactory;
+
     protected $fillable = [
-        'name',
-        'status',
+        'domain_id',
+        'url',
+        'action',
+        'role',
+        'event_name',
+        'event_type'
     ];
 }

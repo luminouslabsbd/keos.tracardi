@@ -4,18 +4,18 @@ import React, { useState } from "react";
 import axios from "axios";
 
 function Index() {
-    const { domains, base_url } = usePage().props;
+    const { result, base_url } = usePage().props;
 
     const handleCreate = () => {
-        router.get(`/admin/domain/create`);
+        router.get(`/admin/domain/domainUrl/create`);
     };
 
     const handleEdit = (id) => {
-        router.get(`/admin/domain/edit/${id}`);
+        router.get(`/admin/domain/domainUrl/${id}/edit`);
     };
     const handleDelete = (id) => {
         if (confirm("Are you sure you want to delete this domain?")) {
-            router.delete(`/admin/domain/delete/${id}`);
+            router.delete(`/admin/domain/domainUrl/${id}`);
         }
     };
 
@@ -23,7 +23,10 @@ function Index() {
         try {
             const updatedStatus = checked ? 1 : 0;
             console.log(updatedStatus);
-            router.post("/admin/domain/status", { id, status: updatedStatus });
+            router.post("/admin/domain/domainUrl/status", {
+                id,
+                status: updatedStatus,
+            });
         } catch (error) {
             console.error("Error updating domain:", error);
         }
@@ -87,7 +90,7 @@ function Index() {
                 <div className="col-span-12 pt-4">
                     <div className="panel">
                         <div className="mb-2">
-                            <h5 className="font-bold">Domain list</h5>
+                            <h5 className="font-bold">Url list</h5>
                         </div>
                         <hr />
 
@@ -95,37 +98,19 @@ function Index() {
                             <thead>
                                 <tr>
                                     <th>SL</th>
-                                    <th>Domain name</th>
-                                    <th>Username</th>
-                                    <th>Status</th>
+                                    <th>Url</th>
+                                    <th>Event name</th>
+                                    <th>Event type</th>
                                     <th className="!text-right">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                {domains.map((domain, index) => (
+                                {result.map((domain, index) => (
                                     <tr key={domain.id}>
                                         <td>{index + 1}</td>
-                                        <td>{domain.domain}</td>
-                                        <td>{domain.user_name}</td>
-                                        <td>
-                                            <label className="w-12 h-6 relative">
-                                                <input
-                                                    type="checkbox"
-                                                    className="custom_switch absolute w-full h-full opacity-0 z-10 cursor-pointer peer"
-                                                    id={`custom_switch_checkbox${index}`}
-                                                    checked={
-                                                        domain.status === 1
-                                                    } // Check if status is 1
-                                                    onChange={(e) =>
-                                                        handleCheckboxChange(
-                                                            domain.id,
-                                                            e.target.checked
-                                                        )
-                                                    } // Handle checkbox change
-                                                />
-                                                <span className="bg-[#ebedf2] dark:bg-dark block h-full rounded-full before:absolute before:left-1 before:bg-white dark:before:bg-white-dark dark:peer-checked:before:bg-white before:bottom-1 before:w-4 before:h-4 before:rounded-full peer-checked:before:left-7 peer-checked:bg-primary before:transition-all before:duration-300"></span>
-                                            </label>
-                                        </td>
+                                        <td>{domain.url}</td>
+                                        <td>{domain.event_name}</td>
+                                        <td>{domain.event_type}</td>
                                         <td className="!tex-right">
                                             <div className="flex justify-end">
                                                 <a
@@ -149,19 +134,6 @@ function Index() {
                                                 >
                                                     <i className="las la-delete"></i>
                                                     Delete
-                                                </a>
-                                                <a
-                                                    href="#"
-                                                    className="inline-block px-2 py-1 leading-none border border-green-500 text-green-500 rounded-md hover:text-white hover:bg-green-500 mr-2"
-                                                    title="Settings"
-                                                    onClick={() =>
-                                                        handleSettings(
-                                                            domain.id
-                                                        )
-                                                    }
-                                                >
-                                                    <i className="las la-delete"></i>
-                                                    Settings
                                                 </a>
                                             </div>
                                         </td>

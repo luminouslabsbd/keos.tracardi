@@ -6,7 +6,7 @@ use App\Http\Controllers\Admin\AuthController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\AdminProfileController;
 use App\Http\Controllers\Admin\DomainController;
-
+use App\Http\Controllers\DomainUrlController;
 
 Route::get('/login', [AuthController::class, 'login'])->name('login');
 Route::post('/login', [AuthController::class, 'loginPost'])->name('login.post');
@@ -33,5 +33,16 @@ Route::group(['middleware' => ['auth:admin'], 'as' => 'admin.'], function () {
         Route::post('/update', [DomainController::class, 'update'])->name('domain.update');
         Route::post('/status', [DomainController::class, 'domainStatus'])->name('domain.status');
         Route::delete('/delete/{id}', [DomainController::class, 'domainDelete'])->name('domain.delete');
+    });
+
+    Route::group(['prefix' => 'domain'], function () {
+        Route::resource('domainUrl', DomainUrlController::class);
+        // Route::get('/', [DomainController::class, 'index'])->name('url.index');
+        // Route::get('/create', [DomainController::class, 'domainCreate'])->name('url.create');
+        // Route::get('/edit/{domainUrl}', [DomainController::class, 'edit'])->name('url.edit');
+        // Route::post('/store', [DomainController::class, 'domainStore'])->name('url.store');
+        // Route::post('/update', [DomainController::class, 'update'])->name('url.update');
+        Route::post('/domainUrl/status', [DomainController::class, 'domainStatus'])->name('url.status');
+        // Route::delete('/delete/{id}', [DomainController::class, 'domainDelete'])->name('url.delete');
     });
 });
