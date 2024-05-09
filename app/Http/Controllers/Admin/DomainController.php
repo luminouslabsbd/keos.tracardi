@@ -33,6 +33,18 @@ class DomainController extends Controller
         return to_route('admin.domains')->with('success', $result['message']);
     }
 
+    public function domainEdit($id){
+        $domain = DB::table('domains')->where('id',$id)->first();
+        return Inertia::render('Module/Domain/Edit', [
+            'domain' => $domain
+        ]);
+    }
+
+    public function domainUpdate(Request $request, $id){
+        $result = $this->DomainRepository->store($request,$id);
+        return to_route('admin.domains')->with('success', $result['message']);
+    }
+
     public function domainStatus(Request $request){
         $message = $this->DomainRepository->statusUpdate($request);
         return back()->with('success', $message['message']);
@@ -41,5 +53,19 @@ class DomainController extends Controller
     public function domainDelete($id){
         DB::table('domains')->where('id',$id)->delete();
         return back()->with('success', 'Domain Delete Successfully');
+    }
+
+    public function domainSettings($id){
+        return Inertia::render('Module/Domain/Settings', [
+            'domain_id' => $id
+        ]);
+    }
+
+    public function domainCsvUpload(Request $request){
+        $message = $this->DomainRepository->csvUpload($request);
+        
+        return Inertia::render('Module/Domain/Settings', [
+            'domain_id' => $id
+        ]);
     }
 }

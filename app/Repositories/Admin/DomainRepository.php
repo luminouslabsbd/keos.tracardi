@@ -15,17 +15,14 @@ class DomainRepository {
     public function store($request, $id = null){
         $data = $this->model::updateOrCreate(
             ['id' => $id],
-            ['domain' => $request->domain,'user_name' => $request->user_name,'user_pss' => $request->user_pss,]
+            ['domain' => $request->domain,'user_name' => $request->user_name,'user_pass' => $request->user_pass,]
         );
-
-        // $id = $request->attribute_id;
 
         if ($data->wasRecentlyCreated) {
             $message = "Domain Created Successfully";
         } else {
             $message = "Domain Updated Successfully";
         }
-        // return ['id' => $id, 'message' => $message,];
         return ['message' => $message,];
     }
 
@@ -34,6 +31,21 @@ class DomainRepository {
             'status'=>$request->status
         ]);
 
+        $message = "Domain status updated successfully";
+        return ['message' => $message,];
+    }
+
+    public function csvUpload($request){
+        $file = $request->file('file');
+        $fileContents = file($file->getPathname());
+
+        foreach ($fileContents as $line) {
+            $data = str_getcsv($line);
+            dd($data);
+            DB::table('roles')->insert([
+                'name'=> $data[0]
+            ]);
+        }
         $message = "Domain status updated successfully";
         return ['message' => $message,];
     }

@@ -48,8 +48,8 @@ useEffect(() => {
         <div className="bg-white dark:bg-black h-full">
             <div className="flex justify-between items-center px-4 py-3">
                 <Link href="/" className="main-logo flex items-center shrink-0">
-                    <img className="w-8 ml-[5px] flex-none" src="/assets/images/logo.svg" alt="logo" />
-                    <span className="text-xl ltr:ml-1.5 rtl:mr-1.5 font-semibold align-middle lg:inline dark:text-white-light">{t('LUMINOUS SHOP')}</span>
+                    {/* <img className="w-8 ml-[5px] flex-none" src="/assets/images/logo.svg" alt="logo" /> */}
+                    <span className="text-xl ltr:ml-1.5 rtl:mr-1.5 font-semibold align-middle lg:inline dark:text-white-light">{t('TRACARDI')}</span>
                 </Link>
                 <button
                     type="button"
@@ -111,7 +111,7 @@ useEffect(() => {
                                         </svg>
 
                                         <span
-                                            className="ltr:pl-3 rtl:pr-3 text-black dark:text-[#506690] dark:group-hover:text-white-dark">{t('TrackID Management')}</span>
+                                            className="ltr:pl-3 rtl:pr-3 text-black dark:text-[#506690] dark:group-hover:text-white-dark">{t('Tracardi Management')}</span>
                                     </div>
 
                                     <div

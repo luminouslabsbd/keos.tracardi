@@ -5,23 +5,27 @@ import React, { useState } from 'react';
 function Index() {
     const { domains, base_url } = usePage().props;
 
-    const handleCreate = (id) => {
+    const handleCreate = () => {
         router.get(`/admin/domain/create`);
     };
 
-    const handleEdit = (domain) => {
-
+    const handleEdit = (id) => {
+        router.post(`/admin/domain/edit/${id}`);
     };
+
     const handleDelete = (id) => {
         if (confirm('Are you sure you want to delete this domain?')) {
             router.delete(`/admin/domain/delete/${id}`);
         }
     };
 
+    const handleSettings = (id) => {
+        router.post(`/admin/domain/settings/${id}`);
+    };
+
     const handleCheckboxChange = async (id, checked) => {
         try {
             const updatedStatus = checked ? 1 : 0;
-            console.log(updatedStatus);
             router.post("/admin/domain/status", { id, status: updatedStatus });
         } catch (error) {
             console.error('Error updating domain:', error);
@@ -48,7 +52,7 @@ function Index() {
                             </li>
                         </ul>
                         <div className='ml-auto'>
-                            <a href="#" className='btn btn-info btn-sm' onClick={() => handleCreate()}>+ Add</a>
+                            <a href="#" className='btn btn-success btn-md' onClick={() => handleCreate()}>+ Add</a>
                         </div>
                     </div>
                 </div>
@@ -86,15 +90,15 @@ function Index() {
                                                     type="checkbox"
                                                     className="custom_switch absolute w-full h-full opacity-0 z-10 cursor-pointer peer"
                                                     id={`custom_switch_checkbox${index}`}
-                                                    checked={domain.status === 1} // Check if status is 1
-                                                    onChange={(e) => handleCheckboxChange(domain.id, e.target.checked)} // Handle checkbox change
+                                                    checked={domain.status === 1}
+                                                    onChange={(e) => handleCheckboxChange(domain.id, e.target.checked)}
                                                 />
                                                 <span className="bg-[#ebedf2] dark:bg-dark block h-full rounded-full before:absolute before:left-1 before:bg-white dark:before:bg-white-dark dark:peer-checked:before:bg-white before:bottom-1 before:w-4 before:h-4 before:rounded-full peer-checked:before:left-7 peer-checked:bg-primary before:transition-all before:duration-300"></span>
                                             </label>
                                         </td>
                                         <td className="!tex-right">
                                             <div className="flex justify-end">
-                                                <a href="#" className="inline-block px-2 py-1 leading-none border border-blue-500 text-blue-500 rounded-md hover:text-white hover:bg-blue-500 mr-2" title="Edit" onClick={() => handleEdit(domain)}>
+                                                <a href="#" className="inline-block px-2 py-1 leading-none border border-blue-500 text-blue-500 rounded-md hover:text-white hover:bg-blue-500 mr-2" title="Edit" onClick={() => handleEdit(domain.id)}>
                                                     <i className="las la-edit"></i>Edit
                                                 </a>
                                                 <a href="#" className="inline-block px-2 py-1 leading-none border border-red-500 text-red-500 rounded-md hover:text-white hover:bg-red-500 mr-2" title="Delete" onClick={() => handleDelete(domain.id)}>
