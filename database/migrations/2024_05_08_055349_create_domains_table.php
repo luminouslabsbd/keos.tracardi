@@ -14,10 +14,10 @@ return new class extends Migration
         Schema::create('domains', function (Blueprint $table) {
             $table->id();
             $table->string('domain');
-            $table->string('user_name')->nullable();
-            $table->string('user_pass')->nullable();
-            $table->string('avatar')->nullable();
-            $table->integer('status')->default(1);
+            $table->string('user_name');
+            $table->string('user_pass');
+            $table->string('backend_api_url');
+            $table->tinyInteger('status')->default(1);
             $table->timestamp('created_at')->default(now());
             $table->timestamp('updated_at')->default(now());
         });

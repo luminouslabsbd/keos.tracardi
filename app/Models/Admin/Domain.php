@@ -5,7 +5,7 @@ namespace App\Models\Admin;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Domains extends Model
+class Domain extends Model
 {
     use HasFactory;
     protected $table = 'domains';
@@ -13,6 +13,7 @@ class Domains extends Model
         'domain',
         'user_name',
         'user_pass',
+        'backend_api_url',
         'status',
     ];
 }

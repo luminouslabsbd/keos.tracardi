@@ -1,19 +1,31 @@
 import { Link, router, usePage } from "@inertiajs/react";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import MainLayout from "../../Layout/Mainlayout";
 import { useForm } from "react-hook-form";
+// import usePage from "@inertiajs/react";
 
-function Create() {
+function Edit() {
+    const { domain } = usePage().props;
+    console.log(domain);
     const [inputValue, setInputValue] = useState("");
     const {
         register: addRegister,
         handleSubmit: handleAddSubmit,
         formState: addFormState,
         reset: addReset,
+        setValue,
     } = useForm();
+    useEffect(() => {
+        setValue("id", domain.id);
+        setValue("domain", domain.domain);
+        setValue("user_name", domain.user_name);
+        setValue("user_pass", domain.user_pass);
+        setValue("backend_api_url", domain.backend_api_url);
+    });
     const { base_url } = usePage().props;
     const onSubmit = (data) => {
-        router.post("/admin/domain/store", data);
+        router.post("/admin/domain/update", data);
+        addReset();
     };
 
     return (
@@ -54,7 +66,7 @@ function Create() {
                                 </Link>
                             </li>
                             <li className="before:content-['/'] ltr:before:mr-2 rtl:before:ml-2">
-                                <span>Domain Create</span>
+                                <span>Domain Edit</span>
                             </li>
                         </ul>
                     </div>
@@ -65,13 +77,18 @@ function Create() {
                 <div className="col-span-12 pt-4">
                     <div className="panel">
                         <div className="mb-2">
-                            <h5 className="mb-2 font-bold">Add New Domain</h5>
+                            <h5 className="mb-2 font-bold">Edit domain</h5>
                             <hr />
                         </div>
                         <form
                             onSubmit={handleAddSubmit(onSubmit)}
                             method="post"
                         >
+                            <input
+                                {...addRegister("id")}
+                                type="hidden"
+                                name=""
+                            />
                             <div>
                                 <label className="font-normal">
                                     Domain name
@@ -118,7 +135,7 @@ function Create() {
                                         required: "User password is required",
                                     })}
                                     className="form-input"
-                                    placeholder="Enter your password name"
+                                    placeholder="Enter your password"
                                     value={inputValue}
                                     onChange={(e) =>
                                         setInputValue(e.target.value)
@@ -164,7 +181,7 @@ function Create() {
         </>
     );
 }
-Create.layout = (page) => (
-    <MainLayout children={page} title="Lumin Trackid || Trackid create" />
+Edit.layout = (page) => (
+    <MainLayout children={page} title="Lumin Trackid || Trackid edit" />
 );
-export default Create;
+export default Edit;

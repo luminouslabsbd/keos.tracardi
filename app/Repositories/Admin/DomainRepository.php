@@ -1,37 +1,49 @@
 <?php
 
 namespace App\Repositories\Admin;
-use Illuminate\Support\Facades\DB;
-use App\Models\Admin\Domains;
 
-class DomainRepository {
+use Illuminate\Support\Facades\DB;
+use App\Models\Admin\Domain;
+
+class DomainRepository
+{
     protected $model;
-    public function __construct(Domains $model)
+    public function __construct(Domain $model)
     {
-        $this->model=$model;
+        $this->model = $model;
+    }
+
+    public function update($request)
+    {
+        $message = $this->store($request, $request->id);
+        return $message;
     }
 
 
-    public function store($request, $id = null){
+    public function store($request, $id = null)
+    {
         $data = $this->model::updateOrCreate(
             ['id' => $id],
-            ['domain' => $request->domain,'user_name' => $request->user_name,'user_pss' => $request->user_pss,]
+            [
+                'domain' => $request->domain,
+                'user_name' => $request->user_name,
+                'user_pass' => $request->user_pass,
+                'backend_api_url' => $request->backend_api_url,
+            ]
         );
-
-        // $id = $request->attribute_id;
 
         if ($data->wasRecentlyCreated) {
             $message = "Domain Created Successfully";
         } else {
             $message = "Domain Updated Successfully";
         }
-        // return ['id' => $id, 'message' => $message,];
         return ['message' => $message,];
     }
 
-    public function statusUpdate($request){
-        DB::table('domains')->where('id',$request->id)->update([
-            'status'=>$request->status
+    public function statusUpdate($request)
+    {
+        DB::table('domain')->where('id', $request->id)->update([
+            'status' => $request->status
         ]);
 
         $message = "Domain status updated successfully";

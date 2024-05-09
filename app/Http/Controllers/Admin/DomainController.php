@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Admin\Domain;
 use App\Repositories\Admin\DomainRepository;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
@@ -17,29 +18,47 @@ class DomainController extends Controller
         $this->DomainRepository = $DomainRepository;
     }
 
-    public function index(){
+    public function index()
+    {
         $domains = DB::table('domains')->get();
         return Inertia::render('Module/Domain/Index', [
             'domains' => $domains
         ]);
     }
 
-    public function domainCreate(){
+    public function edit(Domain $domain)
+    {
+        return Inertia::render('Module/Domain/Edit', [
+            'domain' => $domain
+        ]);
+    }
+
+    public function domainCreate()
+    {
         return Inertia::render('Module/Domain/Create');
     }
 
-    public function domainStore(Request $request){
+    public function domainStore(Request $request)
+    {
         $result = $this->DomainRepository->store($request);
         return to_route('admin.domains')->with('success', $result['message']);
     }
 
-    public function domainStatus(Request $request){
+    public function update(Request $request)
+    {
+        $result = $this->DomainRepository->update($request);
+        return to_route('admin.domains')->with('success', $result['message']);
+    }
+
+    public function domainStatus(Request $request)
+    {
         $message = $this->DomainRepository->statusUpdate($request);
         return back()->with('success', $message['message']);
     }
 
-    public function domainDelete($id){
-        DB::table('domains')->where('id',$id)->delete();
+    public function domainDelete($id)
+    {
+        DB::table('domains')->where('id', $id)->delete();
         return back()->with('success', 'Domain Delete Successfully');
     }
 }
