@@ -40,10 +40,15 @@ function Index() {
                             <h5 className="font-bold">Upload New CSV file</h5>
                         </div>
                         <hr/>
-                        <form onSubmit={handleAddSubmit(onSubmit)} method="post">
+                        <form onSubmit={handleAddSubmit(onSubmit)} method="post" enctype="multipart/form-data">
                             <div className='csv-upload'>
                                 <label className="font-normal pt-3">CSV Upload</label>
-                                <input type="file" {...addRegister("file", { required: "File is required" })} className="form-input" placeholder="Upload your file"/>
+                                <input
+                                    type="file"
+                                    {...addRegister("file", { required: "File is required" })}
+                                    className="form-input"
+                                    placeholder="Upload your file"
+                                />
                                 {addFormState.errors.file && <p className="text-red-500" role="alert">{addFormState.errors.file.message}</p>}
 
                                 <button type="submit" className="btn btn-success mt-6">Submit</button>

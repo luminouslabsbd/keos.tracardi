@@ -3,6 +3,9 @@
 namespace App\Repositories\Admin;
 use Illuminate\Support\Facades\DB;
 use App\Models\Admin\Domains;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Imports\CsvImport;
+
 
 class DomainRepository {
     protected $model;
@@ -36,16 +39,8 @@ class DomainRepository {
     }
 
     public function csvUpload($request){
-        $file = $request->file('file');
-        $fileContents = file($file->getPathname());
+        Excel::import(new CsvImport, $request->file('file')->store('files'));
 
-        foreach ($fileContents as $line) {
-            $data = str_getcsv($line);
-            dd($data);
-            DB::table('roles')->insert([
-                'name'=> $data[0]
-            ]);
-        }
         $message = "Domain status updated successfully";
         return ['message' => $message,];
     }
