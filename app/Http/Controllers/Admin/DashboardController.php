@@ -4,9 +4,6 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Admin;
-use App\Models\Department;
-use App\Models\LeaveApplication;
-use App\Models\Notice;
 use Illuminate\Support\Facades\Session;
 use Inertia\Inertia;
 

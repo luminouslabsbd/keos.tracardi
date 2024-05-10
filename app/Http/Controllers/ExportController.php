@@ -41,7 +41,7 @@ class ExportController extends Controller
                 'Price' => $product->single_product_price,
                 'Link' => url("/product/".$product->id),
                 'Image' => url("/storage/product/".$product->thumbnail),
-                'Brand' => "Luminous Labs",
+                'Brand' => "Tracardi",
             ];
         }
 

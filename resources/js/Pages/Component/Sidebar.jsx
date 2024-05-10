@@ -37,12 +37,34 @@ function Sidebar({ handleToggleSidebar }) {
         }
     }, []);
 
-    useEffect(() => {
-        if (window.innerWidth < 1024 && themeConfig.sidebar) {
-            setToggleSidebar(!toggleSidebar);
-        }
-    }, []);
+useEffect(() => {
+    if (window.innerWidth < 1024 && themeConfig.sidebar) {
+        setToggleSidebar(!toggleSidebar);
+    }
+}, []);
 
+  return (
+    <div className={semidark ? 'dark' : ''}>
+    <nav
+        className={`sidebar fixed min-h-screen h-full top-0 bottom-0 w-[260px] shadow-[5px_0_25px_0_rgba(94,92,154,0.1)] z-50 transition-all duration-300 ${semidark ? 'text-white-dark' : ''}`}
+    >
+        <div className="bg-white dark:bg-black h-full">
+            <div className="flex justify-between items-center px-4 py-3">
+                <Link href="/" className="main-logo flex items-center shrink-0">
+                    {/* <img className="w-8 ml-[5px] flex-none" src="/assets/images/logo.svg" alt="logo" /> */}
+                    <span className="text-xl ltr:ml-1.5 rtl:mr-1.5 font-semibold align-middle lg:inline dark:text-white-light">{t('TRACARDI')}</span>
+                </Link>
+                <button
+                    type="button"
+                    className="11collapse-icon w-8 h-8 rounded-full flex items-center hover:bg-gray-500/10 dark:hover:bg-dark-light/10 dark:text-white-light transition duration-300 rtl:rotate-180"
+                    onClick={handleToggleSidebar}
+                >
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-5 h-5 m-auto">
+                        <path d="M13 19L7 12L13 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                        <path opacity="0.5" d="M16.9998 19L10.9998 12L16.9998 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                    </svg>
+                </button>
+            </div>
     return (
         <div className={semidark ? "dark" : ""}>
             <nav
@@ -170,11 +192,9 @@ function Sidebar({ handleToggleSidebar }) {
                                                     />
                                                 </svg>
 
-                                                <span className="ltr:pl-3 rtl:pr-3 text-black dark:text-[#506690] dark:group-hover:text-white-dark">
-                                                    {t("Tracardi Management")}
-                                                </span>
-                                            </div>
-
+                                        <span
+                                            className="ltr:pl-3 rtl:pr-3 text-black dark:text-[#506690] dark:group-hover:text-white-dark">{t('Tracardi Management')}</span>
+                                    </div>
                                             <div
                                                 className={
                                                     currentMenu ===
