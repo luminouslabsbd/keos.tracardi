@@ -228,6 +228,90 @@ function Sidebar({ handleToggleSidebar }) {
                                             </ul>
                                         </AnimateHeight>
                                     </li>
+                                    <li className="menu nav-item">
+                                        <button
+                                            type="button"
+                                            className={`${
+                                                currentMenu === "urls"
+                                                    ? "active"
+                                                    : ""
+                                            } nav-link group w-full`}
+                                            onClick={() => toggleMenu("urls")}
+                                        >
+                                            <div className="flex items-center">
+                                                <svg
+                                                    width="20"
+                                                    height="20"
+                                                    viewBox="0 0 20 20"
+                                                    fill="none"
+                                                    xmlns="http://www.w3.org/2000/svg"
+                                                >
+                                                    <path
+                                                        d="M10.114 1.87478C5.5445 1.81306 1.81404 5.54353 1.87575 10.1131C1.93669 14.4955 5.50505 18.0638 9.88747 18.1248C14.4578 18.1873 18.1875 14.4568 18.125 9.88728C18.0648 5.50408 14.4965 1.93572 10.114 1.87478ZM15.0523 14.658C15.0368 14.6748 15.0177 14.688 14.9965 14.6966C14.9752 14.7053 14.9524 14.7091 14.9295 14.7079C14.9066 14.7067 14.8842 14.7005 14.864 14.6897C14.8438 14.6789 14.8262 14.6638 14.8125 14.6455C14.4631 14.1883 14.0352 13.797 13.5488 13.4896C12.5543 12.8513 11.2941 12.4998 10.0008 12.4998C8.7074 12.4998 7.44724 12.8513 6.45271 13.4896C5.96633 13.7968 5.53845 14.1881 5.18904 14.6451C5.17531 14.6634 5.15771 14.6786 5.13749 14.6893C5.11728 14.7001 5.09493 14.7064 5.07204 14.7075C5.04916 14.7087 5.02629 14.7049 5.00505 14.6962C4.98382 14.6876 4.96475 14.6744 4.94919 14.6576C3.80297 13.4202 3.15368 11.8034 3.12575 10.117C3.06208 6.31579 6.18122 3.13415 9.98396 3.12478C13.7867 3.1154 16.8758 6.20329 16.8758 9.99978C16.8771 11.7269 16.2258 13.3907 15.0523 14.658Z"
+                                                        fill="#888EA8"
+                                                    />
+                                                    <path
+                                                        d="M9.99956 5.625C9.22925 5.625 8.53276 5.91367 8.03784 6.43828C7.54292 6.96289 7.29565 7.68828 7.35151 8.4668C7.4648 10 8.65269 11.25 9.99956 11.25C11.3464 11.25 12.532 10 12.6476 8.46719C12.7054 7.69609 12.4601 6.97734 11.957 6.44297C11.4601 5.91563 10.7648 5.625 9.99956 5.625Z"
+                                                        fill="#888EA8"
+                                                    />
+                                                </svg>
+
+                                                <span className="ltr:pl-3 rtl:pr-3 text-black dark:text-[#506690] dark:group-hover:text-white-dark">
+                                                    {t("URL's")}
+                                                </span>
+                                            </div>
+
+                                            <div
+                                                className={
+                                                    currentMenu === "urls"
+                                                        ? "rotate-90"
+                                                        : "rtl:rotate-180"
+                                                }
+                                            >
+                                                <svg
+                                                    width="16"
+                                                    height="16"
+                                                    viewBox="0 0 24 24"
+                                                    fill="none"
+                                                    xmlns="http://www.w3.org/2000/svg"
+                                                >
+                                                    <path
+                                                        d="M9 5L15 12L9 19"
+                                                        stroke="currentColor"
+                                                        strokeWidth="1.5"
+                                                        strokeLinecap="round"
+                                                        strokeLinejoin="round"
+                                                    />
+                                                </svg>
+                                            </div>
+                                        </button>
+
+                                        <AnimateHeight
+                                            duration={300}
+                                            height={
+                                                currentMenu === "urls"
+                                                    ? "auto"
+                                                    : 0
+                                            }
+                                        >
+                                            <ul className="sub-menu text-gray-500">
+                                                <li>
+                                                    <Link
+                                                        href={`${base_url}/admin/domain/domainUrl/create`}
+                                                    >
+                                                        {t("Add Url")}
+                                                    </Link>
+                                                </li>
+                                                <li>
+                                                    <Link
+                                                        href={`${base_url}/admin/domain/domainUrl`}
+                                                    >
+                                                        {t("All Domain")}
+                                                    </Link>
+                                                </li>
+                                            </ul>
+                                        </AnimateHeight>
+                                    </li>
                                 </ul>
                             </li>
                         </ul>
