@@ -5,12 +5,16 @@ namespace App\Models\Admin;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class AttributeItems extends Model
+class DomainUrl extends Model
 {
     use HasFactory;
-    protected $table = 'attribute_items';
+
     protected $fillable = [
-        'attribute_id',
-        'item_name',
+        'domain_id',
+        'url',
+        'action',
+        'role',
+        'event_name',
+        'event_type'
     ];
 }
