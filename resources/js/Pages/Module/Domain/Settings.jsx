@@ -42,6 +42,7 @@ function Index() {
                         <hr/>
                         <form onSubmit={handleAddSubmit(onSubmit)} method="post" enctype="multipart/form-data">
                             <div className='csv-upload'>
+                                <input type="hidden" {...addRegister("domain_id", { value: domain_id })}/>
                                 <label className="font-normal pt-3">CSV Upload</label>
                                 <input
                                     type="file"

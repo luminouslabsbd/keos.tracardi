@@ -62,10 +62,8 @@ class DomainController extends Controller
     }
 
     public function domainCsvUpload(Request $request){
-        $message = $this->DomainRepository->csvUpload($request);
-        
-        return Inertia::render('Module/Domain/Settings', [
-            'domain_id' => $id
-        ]);
+        $domain_id = (int)$request['domain_id'];
+        $message = $this->DomainRepository->csvUpload($request,$domain_id);
+        return to_route('admin.domains')->with('success', $message['message']);
     }
 }

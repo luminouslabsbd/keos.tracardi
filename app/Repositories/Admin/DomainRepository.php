@@ -38,10 +38,15 @@ class DomainRepository {
         return ['message' => $message,];
     }
 
-    public function csvUpload($request){
-        Excel::import(new CsvImport, $request->file('file')->store('files'));
+    public function csvUpload($request, $domain_id){
+        if ($request->hasFile('file') && isset($request->file[0])) {
+            Excel::import(new CsvImport($domain_id), $request->file[0]);
 
-        $message = "Domain status updated successfully";
-        return ['message' => $message,];
+            $message = "CSV data imported successfully";
+            return ['message' => $message];
+        }else{
+            $errorMessage = "No file uploaded";
+            return ['message' => $errorMessage];
+        }
     }
 }
