@@ -15,10 +15,10 @@ return new class extends Migration
             $table->id();
             $table->foreignId('domain_id')->nullable()->constrained()->cascadeOnDelete();
             $table->string('url');
-            $table->string('action');
-            $table->string('role');
             $table->string('event_name');
             $table->string('event_type');
+            $table->string('role');
+            $table->string('action');
             $table->timestamps();
         });
     }

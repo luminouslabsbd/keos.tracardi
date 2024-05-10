@@ -5,8 +5,7 @@ import { useForm } from "react-hook-form";
 // import usePage from "@inertiajs/react";
 
 function Edit() {
-    const { domainUrl, domains } = usePage().props;
-    console.log(domainUrl);
+    const { domain_url_data, base_url } = usePage().props;
     const [inputValue, setInputValue] = useState("");
     const {
         register: addRegister,
@@ -16,17 +15,16 @@ function Edit() {
         setValue,
     } = useForm();
     useEffect(() => {
-        setValue("id", domainUrl.id);
-        setValue("domain_id", domainUrl.domain_id);
-        setValue("url", domainUrl.url);
-        setValue("event_name", domainUrl.event_name);
-        setValue("event_type", domainUrl.event_type);
-        setValue("role", domainUrl.role);
-        setValue("action", domainUrl.action);
+        setValue("id", domain_url_data.id);
+        setValue("domain_id", domain_url_data.domain_id);
+        setValue("url", domain_url_data.url);
+        setValue("event_name", domain_url_data.event_name);
+        setValue("event_type", domain_url_data.event_type);
+        setValue("role", domain_url_data.role);
+        setValue("action", domain_url_data.action);
     });
-    const { base_url } = usePage().props;
     const onSubmit = (data) => {
-        router.put(`/admin/domain/domainUrl/${data.id}`, data);
+        router.put(`/admin/domain/domain-url/update/${data.id}`, data);
         addReset();
     };
 
@@ -87,30 +85,6 @@ function Edit() {
                             method="post"
                         >
                             <div className=" grid grid-cols-2 gap-x-3 gap-y-2">
-                                <div>
-                                    <label htmlFor="domains">
-                                        Select Domain
-                                    </label>
-                                    <select
-                                        className="form-select text-white-dark"
-                                        name="domains"
-                                        {...addRegister("domain_id", {
-                                            required:
-                                                "Select Domain is required",
-                                        })}
-                                        id="domains"
-                                    >
-                                        <option disabled>Select Domain</option>
-                                        {domains.map((domain, index) => (
-                                            <option
-                                                key={domain.id}
-                                                value={domain.id}
-                                            >
-                                                {domain.domain}
-                                            </option>
-                                        ))}
-                                    </select>
-                                </div>
                                 <div>
                                     <label className="font-normal">URL</label>
                                     <input

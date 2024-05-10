@@ -24,10 +24,9 @@ class DomainUrlController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create($id)
     {
-        $domains = Domain::select(['id', 'domain'])->get();
-        return Inertia::render('Module/DomainUrl/Create', ['domains' => $domains]);
+        return Inertia::render('Module/DomainUrl/Create', ['domain_id' => $id]);
     }
 
     /**
@@ -35,11 +34,13 @@ class DomainUrlController extends Controller
      */
     public function store(DomainUrlRequest $request)
     {
+        $domain_id = $request['domain_id'];
         $domain = Domain::findOrFail($request->domain_id);
-        $url = $domain->urls()->create([
-            'url' => $request->url,
-            'action' => $request->action,
-            'role' => $request->role,
+        $domain->urls()->create([
+            'domain_id'  => $domain_id,
+            'url'        => $request->url,
+            'action'     => $request->action,
+            'role'       => $request->role,
             'event_name' => $request->event_name,
             'event_type' => $request->event_type
         ]);
@@ -51,19 +52,18 @@ class DomainUrlController extends Controller
         $fileName = str_replace(' ', '_', strtolower($domainName)) . '.json';
         $filePath = public_path('json/' . $fileName);
         file_put_contents($filePath, $jsonData);
-        return to_route('admin.domainUrl.index')->with('success', 'Url successfully added.');
+        return to_route('admin.domain.details', ['id' => $domain_id])->with('success', 'Url successfully added.');
     }
 
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(DomainUrl $domainUrl)
+    public function edit($id)
     {
-        $domains = Domain::select(['id', 'domain'])->get();
+        $domain_url_data = DomainUrl::where('id',$id)->first();
         return Inertia::render('Module/DomainUrl/Edit', [
-            'domainUrl' => $domainUrl,
-            'domains' => $domains
+            'domain_url_data' => $domain_url_data
         ]);
     }
 

@@ -2,31 +2,14 @@ import { Link, router, usePage } from "@inertiajs/react";
 import MainLayout from "../../Layout/Mainlayout";
 
 function Index() {
-    const { result, base_url } = usePage().props;
-
-    const handleCreate = () => {
-        router.get(`/admin/domain/domainUrl/create`);
-    };
+    const { result, domain, base_url } = usePage().props;
 
     const handleEdit = (id) => {
-        router.get(`/admin/domain/domainUrl/${id}/edit`);
+        router.get(`/admin/domain/domain-url/edit/${id}`);
     };
     const handleDelete = (id) => {
         if (confirm("Are you sure you want to delete this domain?")) {
             router.delete(`/admin/domain/domainUrl/${id}`);
-        }
-    };
-
-    const handleCheckboxChange = async (id, checked) => {
-        try {
-            const updatedStatus = checked ? 1 : 0;
-            console.log(updatedStatus);
-            router.post("/admin/domain/domainUrl/status", {
-                id,
-                status: updatedStatus,
-            });
-        } catch (error) {
-            console.error("Error updating domain:", error);
         }
     };
 
@@ -60,18 +43,37 @@ function Index() {
                         </div>
                         <ul className="flex space-x-2 rtl:space-x-reverse">
                             <li>
-                                <Link
-                                    href={`${base_url}/admin/dashboard`}
-                                    className="text-[#ff6243] hover:underline"
-                                >
-                                    Dashboard
-                                </Link>
+                                <Link href={`${base_url}/admin/domain/domains`} className="text-[#ff6243] hover:underline">Domain</Link>
                             </li>
                             <li className="before:content-['/'] ltr:before:mr-2 rtl:before:ml-2">
-                                <span>Domain List</span>
+                                <span>Domain URL List</span>
                             </li>
                         </ul>
-                        
+                    </div>
+                </div>
+            </div>
+
+            <div className="pt-5">
+                <div className="col-span-12 pt-4">
+                    <div className="panel">
+                        <div className="mb-2">
+                            <h5 className="font-bold">Domain Information</h5>
+                        </div>
+                        <hr />
+                        <div className="grid grid-cols-12 gap-4 domain-info pt-3">
+                            <div className="col-span-2">
+                                <p className="text-green-500 font-semibold text-md">{domain.domain}</p>
+                            </div>
+                            <div className="col-span-2">
+                                <p className="text-green-500 font-semibold text-md">{domain.user_name}</p>
+                            </div>
+                            <div className="col-span-2">
+                                <p className="text-green-500 font-semibold text-md">{domain.user_pass}</p>
+                            </div>
+                            <div className="col-span-6">
+                                <p className="text-green-500 font-semibold text-md">{domain.backend_api_url}</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -105,7 +107,7 @@ function Index() {
                                             <div className="flex justify-end">
                                                 <a
                                                     href="#"
-                                                    className="inline-block px-2 py-1 leading-none border border-blue-500 text-blue-500 rounded-md hover:text-white hover:bg-blue-500 mr-2"
+                                                    className="inline-block px-2 py-1 leading-none border border-green-500 text-green-500 rounded-md hover:text-white hover:bg-green-500 mr-2"
                                                     title="Edit"
                                                     onClick={() =>
                                                         handleEdit(domain.id)
@@ -138,6 +140,6 @@ function Index() {
     );
 }
 Index.layout = (page) => (
-    <MainLayout children={page} title="Lumin Trackid || Trackid list" />
+    <MainLayout children={page} title="Trackid || Domain URL list" />
 );
 export default Index;

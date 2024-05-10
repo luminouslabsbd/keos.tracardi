@@ -284,7 +284,7 @@ function Sidebar({ handleToggleSidebar }) {
                                                         </ul>
                                                     </AnimateHeight>
                                                 </li>
-                                                <li className="menu nav-item">
+                                                {/* <li className="menu nav-item">
                                                     <button
                                                         type="button"
                                                         className={`${
@@ -376,7 +376,7 @@ function Sidebar({ handleToggleSidebar }) {
                                                             </li>
                                                         </ul>
                                                     </AnimateHeight>
-                                                </li>
+                                                </li> */}
                                             </ul>
                                         </li>
                                     </ul>

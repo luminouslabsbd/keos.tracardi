@@ -1,7 +1,5 @@
 import { Link, router, usePage } from "@inertiajs/react";
 import MainLayout from "../../Layout/Mainlayout";
-import React, { useState } from "react";
-import axios from "axios";
 
 function Index() {
     const { domains, base_url } = usePage().props;
@@ -20,8 +18,16 @@ function Index() {
         }
     };
 
-    const handleSettings = (id) => {
-        router.post(`/admin/domain/settings/${id}`);
+    const handleUrlCreate = (id) => {
+        router.get(`/admin/domain/domain-url/create/${id}`);
+    };
+
+    const handleCsv = (id) => {
+        router.get(`/admin/domain/csv/${id}`);
+    };
+
+    const handleDetails = (id) => {
+        router.get(`/admin/domain/details/${id}`);
     };
 
     const handleCheckboxChange = async (id, checked) => {
@@ -101,6 +107,8 @@ function Index() {
                                     <th>SL</th>
                                     <th>Domain name</th>
                                     <th>Username</th>
+                                    <th>User Password</th>
+                                    <th>Backend API url</th>
                                     <th>Status</th>
                                     <th className="!text-right">Action</th>
                                 </tr>
@@ -111,6 +119,8 @@ function Index() {
                                         <td>{index + 1}</td>
                                         <td>{domain.domain}</td>
                                         <td>{domain.user_name}</td>
+                                        <td>{domain.user_pass}</td>
+                                        <td>{domain.backend_api_url}</td>
                                         <td>
                                             <label className="w-12 h-6 relative">
                                                 <input
@@ -119,13 +129,13 @@ function Index() {
                                                     id={`custom_switch_checkbox${index}`}
                                                     checked={
                                                         domain.status === 1
-                                                    } // Check if status is 1
+                                                    }
                                                     onChange={(e) =>
                                                         handleCheckboxChange(
                                                             domain.id,
                                                             e.target.checked
                                                         )
-                                                    } // Handle checkbox change
+                                                    }
                                                 />
                                                 <span className="bg-[#ebedf2] dark:bg-dark block h-full rounded-full before:absolute before:left-1 before:bg-white dark:before:bg-white-dark dark:peer-checked:before:bg-white before:bottom-1 before:w-4 before:h-4 before:rounded-full peer-checked:before:left-7 peer-checked:bg-primary before:transition-all before:duration-300"></span>
                                             </label>
@@ -157,15 +167,41 @@ function Index() {
                                                 <a
                                                     href="#"
                                                     className="inline-block px-2 py-1 leading-none border border-green-500 text-green-500 rounded-md hover:text-white hover:bg-green-500 mr-2"
-                                                    title="Settings"
+                                                    title="Add url"
                                                     onClick={() =>
-                                                        handleSettings(
+                                                        handleUrlCreate(
                                                             domain.id
                                                         )
                                                     }
                                                 >
                                                     <i className="las la-delete"></i>
-                                                    Settings
+                                                    Add URL
+                                                </a>
+                                                <a
+                                                    href="#"
+                                                    className="inline-block px-2 py-1 leading-none border border-green-500 text-green-500 rounded-md hover:text-white hover:bg-green-500 mr-2"
+                                                    title="Csv"
+                                                    onClick={() =>
+                                                        handleCsv(
+                                                            domain.id
+                                                        )
+                                                    }
+                                                >
+                                                    <i className="las la-delete"></i>
+                                                    CSV Upload
+                                                </a>
+                                                <a
+                                                    href="#"
+                                                    className="inline-block px-2 py-1 leading-none border border-blue-500 text-blue-500 rounded-md hover:text-white hover:bg-blue-500 mr-2"
+                                                    title="Details"
+                                                    onClick={() =>
+                                                        handleDetails(
+                                                            domain.id
+                                                        )
+                                                    }
+                                                >
+                                                    <i className="las la-delete"></i>
+                                                    Details
                                                 </a>
                                             </div>
                                         </td>

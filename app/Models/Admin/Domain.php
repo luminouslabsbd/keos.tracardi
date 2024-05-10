@@ -11,6 +11,7 @@ class Domain extends Model
     use HasFactory;
     protected $table = 'domains';
     protected $fillable = [
+        'user_id',
         'domain',
         'user_name',
         'user_pass',

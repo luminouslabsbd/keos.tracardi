@@ -10,10 +10,10 @@ function Create() {
         formState: addFormState,
         reset: addReset,
     } = useForm();
-    const { base_url, domains } = usePage().props;
+
+    const { base_url, domain_id } = usePage().props;
     const onSubmit = (data) => {
-        console.log(data);
-        router.post("/admin/domain/url", data);
+        router.post("/admin/domain/domain-url/store", data);
         addReset();
     };
 
@@ -55,7 +55,7 @@ function Create() {
                                 </Link>
                             </li>
                             <li className="before:content-['/'] ltr:before:mr-2 rtl:before:ml-2">
-                                <span>Domain Create</span>
+                                <span>Manual URL Create</span>
                             </li>
                         </ul>
                     </div>
@@ -66,7 +66,7 @@ function Create() {
                 <div className="col-span-12 pt-4">
                     <div className="panel">
                         <div className="mb-2">
-                            <h5 className="mb-2 font-bold">Add New Url</h5>
+                            <h5 className="mb-2 font-bold">Add New Domain Url</h5>
                             <hr />
                         </div>
                         <form
@@ -74,30 +74,7 @@ function Create() {
                             method="post"
                         >
                             <div className=" grid grid-cols-2 gap-x-3 gap-y-2">
-                                <div>
-                                    <label htmlFor="domains">
-                                        Select Domain
-                                    </label>
-                                    <select
-                                        className="form-select text-white-dark"
-                                        name="domains"
-                                        {...addRegister("domain_id", {
-                                            required:
-                                                "Select Domain is required",
-                                        })}
-                                        id="domains"
-                                    >
-                                        <option disabled>Select Domain</option>
-                                        {domains.map((domain, index) => (
-                                            <option
-                                                key={domain.id}
-                                                value={domain.id}
-                                            >
-                                                {domain.domain}
-                                            </option>
-                                        ))}
-                                    </select>
-                                </div>
+                                <input type="hidden" {...addRegister("domain_id", { value: domain_id })}/>
                                 <div>
                                     <label className="font-normal">URL</label>
                                     <input

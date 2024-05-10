@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Admin\Domain;
 use App\Repositories\Admin\DomainRepository;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
 use Illuminate\Support\Facades\DB;
 
@@ -20,7 +21,7 @@ class DomainController extends Controller
 
     public function index()
     {
-        $domains = DB::table('domains')->get();
+        $domains = DB::table('domains')->where('user_id',Auth::user()->id)->get();
         return Inertia::render('Module/Domain/Index', [
             'domains' => $domains
         ]);
@@ -73,8 +74,14 @@ class DomainController extends Controller
         return back()->with('success', 'Domain Delete Successfully');
     }
 
-    public function domainSettings($id){
-        return Inertia::render('Module/Domain/Settings', [
+    public function domainDetails($id){
+        $data = $this->DomainRepository->domainUrl($id);
+        $domain = DB::table('domains')->where('id', $id)->first();
+        return Inertia::render('Module/Domain/Details', ['result' => $data,'domain' => $domain]);
+    }
+
+    public function domainCsv($id){
+        return Inertia::render('Module/Domain/Csv', [
             'domain_id' => $id
         ]);
     }
@@ -82,6 +89,6 @@ class DomainController extends Controller
     public function domainCsvUpload(Request $request){
         $domain_id = (int)$request['domain_id'];
         $message = $this->DomainRepository->csvUpload($request,$domain_id);
-        return to_route('admin.domains')->with('success', $message['message']);
+        return to_route('admin.domain.details', ['id' => $domain_id])->with('success', $message['message']);
     }
 }

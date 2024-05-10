@@ -17,7 +17,7 @@ class CsvImport implements ToModel, WithHeadingRow
 
     public function model(array $row)
     {
-        DB::table('roles')->insert([
+        DB::table('domain_urls')->insert([
             'domain_id'  => $this->domainId,
             'url'        => $row['url'],
             'event_name' => $row['event_name'],

@@ -28,23 +28,30 @@ Route::group(['middleware' => ['auth:admin'], 'as' => 'admin.'], function () {
     Route::group(['prefix' => 'domain'], function () {
         Route::get('/domains', [DomainController::class, 'index'])->name('domains');
         Route::get('/create', [DomainController::class, 'domainCreate'])->name('domain.create');
-        Route::get('/edit/{domain}', [DomainController::class, 'edit'])->name('domain.edit');
         Route::post('/store', [DomainController::class, 'domainStore'])->name('domain.store');
+        Route::get('/edit/{domain}', [DomainController::class, 'edit'])->name('domain.edit');
         Route::post('/update', [DomainController::class, 'update'])->name('domain.update');
         Route::post('/status', [DomainController::class, 'domainStatus'])->name('domain.status');
         Route::delete('/delete/{id}', [DomainController::class, 'domainDelete'])->name('domain.delete');
-        Route::post('/settings/{id}', [DomainController::class, 'domainSettings'])->name('domain.settings');
+        Route::get('/csv/{id}', [DomainController::class, 'domainCsv'])->name('domain.csv');
         Route::post('/csv-upload', [DomainController::class, 'domainCsvUpload'])->name('domain.csvupload');
+        Route::get('/details/{id}', [DomainController::class, 'domainDetails'])->name('domain.details');
+
+        // Route::resource('domainUrl', DomainUrlController::class);
+        // Route::post('/domainUrl/status', [DomainController::class, 'domainStatus'])->name('url.status');
+
+        Route::get('/domain-url/create/{id}', [DomainUrlController::class, 'create'])->name('domainurl.create');
+        Route::post('/domain-url/store', [DomainUrlController::class, 'store'])->name('domainurl.store');
+        Route::get('/domain-url/edit/{id}', [DomainUrlController::class, 'edit'])->name('domainurl.edit');
+
     });
 
-    Route::group(['prefix' => 'domain'], function () {
-        Route::resource('domainUrl', DomainUrlController::class);
+    //Route::group(['prefix' => 'domain'], function () {
         // Route::get('/', [DomainController::class, 'index'])->name('url.index');
         // Route::get('/create', [DomainController::class, 'domainCreate'])->name('url.create');
         // Route::get('/edit/{domainUrl}', [DomainController::class, 'edit'])->name('url.edit');
         // Route::post('/store', [DomainController::class, 'domainStore'])->name('url.store');
         // Route::post('/update', [DomainController::class, 'update'])->name('url.update');
-        Route::post('/domainUrl/status', [DomainController::class, 'domainStatus'])->name('url.status');
         // Route::delete('/delete/{id}', [DomainController::class, 'domainDelete'])->name('url.delete');
-    });
+    //});
 });

@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\DB;
 use App\Models\Admin\Domain;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Imports\CsvImport;
+use Illuminate\Support\Facades\Auth;
 
 class DomainRepository
 {
@@ -27,6 +28,7 @@ class DomainRepository
         $data = $this->model::updateOrCreate(
             ['id' => $id],
             [
+                'user_id' => Auth::user()->id,
                 'domain' => $request->domain,
                 'user_name' => $request->user_name,
                 'user_pass' => $request->user_pass,
@@ -44,12 +46,18 @@ class DomainRepository
 
     public function statusUpdate($request)
     {
-        DB::table('domain')->where('id', $request->id)->update([
+        DB::table('domains')->where('id', $request->id)->update([
             'status' => $request->status
         ]);
 
         $message = "Domain status updated successfully";
         return ['message' => $message,];
+    }
+
+    public function domainUrl($id)
+    {
+        $domain_url = DB::table('domain_urls')->where('domain_id',$id)->get();
+        return $domain_url;
     }
 
     public function csvUpload($request, $domain_id){
