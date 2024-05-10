@@ -58,12 +58,7 @@ function Edit() {
                         </div>
                         <ul className="flex space-x-2 rtl:space-x-reverse">
                             <li>
-                                <Link
-                                    href={`${base_url}/admin/dashboard`}
-                                    className="text-[#ff6243] hover:underline"
-                                >
-                                    Dashboard
-                                </Link>
+                                <Link href={`${base_url}/admin/domain/domains`} className="text-[#ff6243] hover:underline">Domain</Link>
                             </li>
                             <li className="before:content-['/'] ltr:before:mr-2 rtl:before:ml-2">
                                 <span>Domain Edit</span>

@@ -33,6 +33,8 @@ Route::group(['middleware' => ['auth:admin'], 'as' => 'admin.'], function () {
         Route::post('/update', [DomainController::class, 'update'])->name('domain.update');
         Route::post('/status', [DomainController::class, 'domainStatus'])->name('domain.status');
         Route::delete('/delete/{id}', [DomainController::class, 'domainDelete'])->name('domain.delete');
+        Route::post('/settings/{id}', [DomainController::class, 'domainSettings'])->name('domain.settings');
+        Route::post('/csv-upload', [DomainController::class, 'domainCsvUpload'])->name('domain.csvupload');
     });
 
     Route::group(['prefix' => 'domain'], function () {

@@ -41,7 +41,7 @@ class ProductExport implements FromCollection
                 'single_product_price' => $product->single_product_price,
                 'url'=> url("/product/".$product->id),
                 'thumbnail' => url("/storage/product/".$product->thumbnail),
-                'brand' => "Luminous Labs",
+                'brand' => "Tracardi",
             ];
         }
         return collect($productLists);

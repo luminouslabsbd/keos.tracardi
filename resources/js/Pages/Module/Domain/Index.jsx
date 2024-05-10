@@ -13,16 +13,20 @@ function Index() {
     const handleEdit = (id) => {
         router.get(`/admin/domain/edit/${id}`);
     };
+
     const handleDelete = (id) => {
         if (confirm("Are you sure you want to delete this domain?")) {
             router.delete(`/admin/domain/delete/${id}`);
         }
     };
 
+    const handleSettings = (id) => {
+        router.post(`/admin/domain/settings/${id}`);
+    };
+
     const handleCheckboxChange = async (id, checked) => {
         try {
             const updatedStatus = checked ? 1 : 0;
-            console.log(updatedStatus);
             router.post("/admin/domain/status", { id, status: updatedStatus });
         } catch (error) {
             console.error("Error updating domain:", error);
