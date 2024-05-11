@@ -9,13 +9,14 @@ function Index() {
     };
     const handleDelete = (id) => {
         if (confirm("Are you sure you want to delete this domain?")) {
-            router.delete(`/admin/domain/domain-url/delete/${id}`);
+            router.delete(`/admin/domain/domain-url/delete/${id}/${domain.id}`);
         }
     };
     const handleStatusChange = async (id, checked) => {
         try {
             const updatedStatus = checked ? 1 : 0;
-            router.post("/admin/domain/domain-url/status", { id, status: updatedStatus });
+            const domain_id = domain.id;
+            router.post("/admin/domain/domain-url/status", { id, domain_id, status: updatedStatus });
         } catch (error) {
             console.error("Error updating domain:", error);
         }
@@ -70,19 +71,19 @@ function Index() {
                         <div className="grid grid-cols-12 gap-4 domain-info pt-3">
                             <div className="col-span-2">
                                 <strong>Domain</strong>
-                                <p className="text-green-500 font-semibold text-md">{domain.domain}</p>
+                                <p className="text-green-400 font-semibold text-md">{domain.domain}</p>
                             </div>
                             <div className="col-span-2">
                                 <strong>Username</strong>
-                                <p className="text-green-500 font-semibold text-md">{domain.user_name}</p>
+                                <p className="text-green-400 font-semibold text-md">{domain.user_name}</p>
                             </div>
                             <div className="col-span-2">
                                 <strong>User Password</strong>
-                                <p className="text-green-500 font-semibold text-md">{domain.user_pass}</p>
+                                <p className="text-green-400 font-semibold text-md">{domain.user_pass}</p>
                             </div>
                             <div className="col-span-6">
                                 <strong>Backend api url</strong>
-                                <p className="text-green-500 font-semibold text-md">{domain.backend_api_url}</p>
+                                <p className="text-green-400 font-semibold text-md">{domain.backend_api_url}</p>
                             </div>
                         </div>
                     </div>
@@ -140,17 +141,6 @@ function Index() {
                                         </td>
                                         <td className="!tex-right">
                                             <div className="flex justify-end">
-                                                <a
-                                                    href="#"
-                                                    className="inline-block px-2 py-1 leading-none border border-green-500 text-green-500 rounded-md hover:text-white hover:bg-green-500 mr-2"
-                                                    title="Edit"
-                                                    onClick={() =>
-                                                        handleEdit(domain.id)
-                                                    }
-                                                >
-                                                    <i className="las la-edit"></i>
-                                                    Edit
-                                                </a>
                                                 <a
                                                     href="#"
                                                     className="inline-block px-2 py-1 leading-none border border-green-500 text-green-500 rounded-md hover:text-white hover:bg-green-500 mr-2"
