@@ -3,11 +3,11 @@
 namespace App\Http\Controllers;
 
 use Inertia\Inertia;
-use Illuminate\Support\Str;
 use App\Models\Admin\Domain;
 use Illuminate\Http\Request;
 use App\Models\Admin\DomainUrl;
 use App\Http\Requests\Admin\DomainUrlRequest;
+use Illuminate\Support\Facades\DB;
 
 class DomainUrlController extends Controller
 {
@@ -32,11 +32,11 @@ class DomainUrlController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(DomainUrlRequest $request)
+    public function store(Request $request)
     {
+        // $domain = Domain::findOrFail($request->domain_id);
         $domain_id = $request['domain_id'];
-        $domain = Domain::findOrFail($request->domain_id);
-        $domain->urls()->create([
+        DB::table('domain_urls')->create([
             'domain_id'  => $domain_id,
             'url'        => $request->url,
             'action'     => $request->action,
@@ -45,13 +45,13 @@ class DomainUrlController extends Controller
             'event_type' => $request->event_type
         ]);
 
-        $urls = $domain->urls()->select(['id', 'domain_id', 'url', 'action', 'role', 'event_name', 'event_type'])->get();
-        $jsonData = json_encode($urls);
+        // $urls = $domain->urls()->select(['id', 'domain_id', 'url', 'action', 'role', 'event_name', 'event_type'])->get();
+        // $jsonData = json_encode($urls);
 
-        $domainName = $domain->domain;
-        $fileName = str_replace(' ', '_', strtolower($domainName)) . '.json';
-        $filePath = public_path('json/' . $fileName);
-        file_put_contents($filePath, $jsonData);
+        // $domainName = $domain->domain;
+        // $fileName = str_replace(' ', '_', strtolower($domainName)) . '.json';
+        // $filePath = public_path('json/' . $fileName);
+        // file_put_contents($filePath, $jsonData);
         return to_route('admin.domain.details', ['id' => $domain_id])->with('success', 'Url successfully added.');
     }
 
@@ -59,21 +59,22 @@ class DomainUrlController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit($id)
+    public function edit($id, $domain_id)
     {
         $domain_url_data = DomainUrl::where('id',$id)->first();
         return Inertia::render('Module/DomainUrl/Edit', [
-            'domain_url_data' => $domain_url_data
+            'domain_url_data' => $domain_url_data,
+            'domain_id' => $domain_id
         ]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, DomainUrl $domainUrl)
+    public function update(Request $request)
     {
-        $domain = Domain::findOrFail($domainUrl->domain_id);
-        $url = $domainUrl->update([
+        // $domain = Domain::findOrFail($domainUrl->domain_id);
+        DB::table('domain_urls')->where('id',$request->id)->update([
             'url' => $request->url,
             'action' => $request->action,
             'role' => $request->role,
@@ -81,33 +82,22 @@ class DomainUrlController extends Controller
             'event_type' => $request->event_type
         ]);
 
-        $urls = $domain->urls()->select(['id', 'domain_id', 'url', 'action', 'role', 'event_name', 'event_type'])->get();
-        $jsonData = json_encode($urls);
+        // $urls = $domain->urls()->select(['id', 'domain_id', 'url', 'action', 'role', 'event_name', 'event_type'])->get();
+        // $jsonData = json_encode($urls);
 
-        $domainName = $domain->domain;
-        $fileName = str_replace(' ', '_', strtolower($domainName)) . '.json';
-        $filePath = public_path('json/' . $fileName);
-        file_put_contents($filePath, $jsonData);
-        return to_route('admin.domainUrl.index')->with('success', 'Url successfully updated.');
+        // $domainName = $domain->domain;
+        // $fileName = str_replace(' ', '_', strtolower($domainName)) . '.json';
+        // $filePath = public_path('json/' . $fileName);
+        // file_put_contents($filePath, $jsonData);
+        return to_route('admin.domain.details', ['id' => $request->domain_id])->with('success', 'Url successfully updated.');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(DomainUrl $domainUrl)
+    public function destroy($id)
     {
-        $domain = Domain::findOrFail($domainUrl->domain_id);
-        $domainUrl->delete();
-
-        //Create Fresh new json
-        $urls = $domain->urls()->select(['id', 'domain_id', 'url', 'action', 'role', 'event_name', 'event_type'])->get();
-        $jsonData = json_encode($urls);
-
-        $domainName = $domain->domain;
-        $fileName = str_replace(' ', '_', strtolower($domainName)) . '.json';
-        $filePath = public_path('json/' . $fileName);
-        file_put_contents($filePath, $jsonData);
-
-        return to_route('admin.domainUrl.index')->with('success', 'Url successfully deleted.');
+        DB::table('domain_urls')->where('id',$id)->delete();
+        return back()->with('success', 'Url successfully deleted.');
     }
 }

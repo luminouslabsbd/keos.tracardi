@@ -5,11 +5,11 @@ function Index() {
     const { result, domain, base_url } = usePage().props;
 
     const handleEdit = (id) => {
-        router.get(`/admin/domain/domain-url/edit/${id}`);
+        router.get(`/admin/domain/domain-url/edit/${id}/${domain.id}`);
     };
     const handleDelete = (id) => {
         if (confirm("Are you sure you want to delete this domain?")) {
-            router.delete(`/admin/domain/domainUrl/${id}`);
+            router.delete(`/admin/domain/domain-url/delete/${id}`);
         }
     };
 
@@ -93,6 +93,8 @@ function Index() {
                                     <th>Url</th>
                                     <th>Event name</th>
                                     <th>Event type</th>
+                                    <th>Role</th>
+                                    <th>Action</th>
                                     <th className="!text-right">Action</th>
                                 </tr>
                             </thead>
@@ -103,6 +105,8 @@ function Index() {
                                         <td>{domain.url}</td>
                                         <td>{domain.event_name}</td>
                                         <td>{domain.event_type}</td>
+                                        <td>{domain.role}</td>
+                                        <td>{domain.action}</td>
                                         <td className="!tex-right">
                                             <div className="flex justify-end">
                                                 <a

@@ -2,11 +2,9 @@ import { Link, router, usePage } from "@inertiajs/react";
 import React, { useEffect, useState } from "react";
 import MainLayout from "../../Layout/Mainlayout";
 import { useForm } from "react-hook-form";
-// import usePage from "@inertiajs/react";
 
 function Edit() {
-    const { domain_url_data, base_url } = usePage().props;
-    const [inputValue, setInputValue] = useState("");
+    const { domain_url_data, domain_id,base_url } = usePage().props;
     const {
         register: addRegister,
         handleSubmit: handleAddSubmit,
@@ -16,7 +14,7 @@ function Edit() {
     } = useForm();
     useEffect(() => {
         setValue("id", domain_url_data.id);
-        setValue("domain_id", domain_url_data.domain_id);
+        setValue("domain_id", domain_id);
         setValue("url", domain_url_data.url);
         setValue("event_name", domain_url_data.event_name);
         setValue("event_type", domain_url_data.event_type);
@@ -24,7 +22,7 @@ function Edit() {
         setValue("action", domain_url_data.action);
     });
     const onSubmit = (data) => {
-        router.put(`/admin/domain/domain-url/update/${data.id}`, data);
+        router.post(`/admin/domain/domain-url/update`, data);
         addReset();
     };
 
@@ -59,10 +57,10 @@ function Edit() {
                         <ul className="flex space-x-2 rtl:space-x-reverse">
                             <li>
                                 <Link
-                                    href={`${base_url}/admin/dashboard`}
+                                    href={`${base_url}/admin/domain/details/${domain_id}`}
                                     className="text-[#ff6243] hover:underline"
                                 >
-                                    Dashboard
+                                    Domain URL
                                 </Link>
                             </li>
                             <li className="before:content-['/'] ltr:before:mr-2 rtl:before:ml-2">
@@ -85,6 +83,16 @@ function Edit() {
                             method="post"
                         >
                             <div className=" grid grid-cols-2 gap-x-3 gap-y-2">
+                                <input
+                                    {...addRegister("id")}
+                                    type="hidden"
+                                    name=""
+                                />
+                                <input
+                                    {...addRegister("domain_id")}
+                                    type="hidden"
+                                    name=""
+                                />
                                 <div>
                                     <label className="font-normal">URL</label>
                                     <input
@@ -134,16 +142,11 @@ function Edit() {
                                         Event type
                                     </label>
                                     <select
-                                        className="form-select text-white-dark"
-                                        name=""
-                                        id=""
+                                        className="form-select text-white-dark" name="" id=""
                                         {...addRegister("event_type", {
                                             required: "Event type is required",
-                                        })}
-                                    >
-                                        <option disabled>
-                                            Select event type
-                                        </option>
+                                        })}>
+                                        <option disabled>Select event type</option>
                                         <option value="click">Click</option>
                                         <option value="view">View</option>
                                     </select>
@@ -165,16 +168,13 @@ function Edit() {
                                         Action
                                     </label>
                                     <select
-                                        className="form-select text-white-dark"
-                                        name=""
-                                        id=""
+                                        className="form-select text-white-dark"name="" id=""
                                         {...addRegister("action", {
                                             required: "Action is required",
-                                        })}
-                                    >
+                                        })}>
                                         <option disabled>Select Action</option>
-                                        <option value="Client">Client</option>
-                                        <option value="Lead">Lead</option>
+                                        <option value="client">Client</option>
+                                        <option value="lead">Lead</option>
                                     </select>
                                     {addFormState.errors.action && (
                                         <p
@@ -190,24 +190,14 @@ function Edit() {
                                     <label className="font-normal pt-2">
                                         Role
                                     </label>
-                                    <select
-                                        className="form-select text-white-dark"
-                                        name=""
-                                        id=""
+                                    <select className="form-select text-white-dark" name="" id=""
                                         {...addRegister("role", {
                                             required: "Role is required",
-                                        })}
-                                    >
-                                        <option value="" selected>
-                                            Select role
-                                        </option>
-                                        <option value="Organizer">
-                                            Organizer
-                                        </option>
-                                        <option value="Assistant">
-                                            Assistant
-                                        </option>
-                                        <option value="Scanner">Scanner</option>
+                                        })}>
+                                        <option value="" selected>Select role</option>
+                                        <option value="organizer">Organizer</option>
+                                        <option value="assistant">Assistant</option>
+                                        <option value="scanner">Scanner</option>
                                     </select>
                                     {addFormState.errors.role && (
                                         <p

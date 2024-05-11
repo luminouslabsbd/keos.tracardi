@@ -163,8 +163,8 @@ function Create() {
                                         })}
                                     >
                                         <option disabled>Select Action</option>
-                                        <option value="Client">Client</option>
-                                        <option value="Lead">Lead</option>
+                                        <option value="client">Client</option>
+                                        <option value="lead">Lead</option>
                                     </select>
                                     {addFormState.errors.action && (
                                         <p
@@ -191,13 +191,13 @@ function Create() {
                                         <option value="" selected>
                                             Select role
                                         </option>
-                                        <option value="Organizer">
+                                        <option value="organizer">
                                             Organizer
                                         </option>
-                                        <option value="Assistant">
+                                        <option value="assistant">
                                             Assistant
                                         </option>
-                                        <option value="Scanner">Scanner</option>
+                                        <option value="scanner">Scanner</option>
                                     </select>
                                     {addFormState.errors.role && (
                                         <p
