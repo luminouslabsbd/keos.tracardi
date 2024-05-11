@@ -66,7 +66,7 @@ class DomainRepository
 
             $domain = Domain::findOrFail($request['domain_id']);
 
-            $urls = $domain->urls()->select(['id', 'domain_id', 'url', 'action', 'role', 'event_name', 'event_type', 'status'])->get();
+            $urls = $domain->urls()->select(['id', 'domain_id', 'url', 'action', 'role', 'event_name', 'event_type'])->get();
             $jsonData = json_encode($urls);
 
             $domainName = $domain->domain;

@@ -26,6 +26,6 @@ class Domain extends Model
      */
     public function urls(): HasMany
     {
-        return $this->hasMany(DomainUrl::class, 'domain_id');
+        return $this->hasMany(DomainUrl::class, 'domain_id')->where('status', 1);
     }
 }

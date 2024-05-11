@@ -45,7 +45,7 @@ class DomainUrlController extends Controller
             'event_type' => $request->event_type
         ]);
 
-        $urls = $domain->urls()->select(['id', 'domain_id', 'url', 'action', 'role', 'event_name', 'event_type', 'status'])->get();
+        $urls = $domain->urls()->select(['id', 'domain_id', 'url', 'action', 'role', 'event_name', 'event_type'])->get();
         $jsonData = json_encode($urls);
 
         $domainName = $domain->domain;
@@ -82,7 +82,7 @@ class DomainUrlController extends Controller
             'event_type' => $request->event_type
         ]);
 
-        $urls = $domain->urls()->select(['id', 'domain_id', 'url', 'action', 'role', 'event_name', 'event_type', 'status'])->get();
+        $urls = $domain->urls()->select(['id', 'domain_id', 'url', 'action', 'role', 'event_name', 'event_type'])->get();
         $jsonData = json_encode($urls);
 
         $domainName = $domain->domain;
@@ -100,7 +100,7 @@ class DomainUrlController extends Controller
             'status' => $request->status
         ]);
 
-        $urls = $domain->urls()->select(['id', 'domain_id', 'url', 'action', 'role', 'event_name', 'event_type', 'status'])->get();
+        $urls = $domain->urls()->select(['id', 'domain_id', 'url', 'action', 'role', 'event_name', 'event_type'])->get();
         $jsonData = json_encode($urls);
 
         $domainName = $domain->domain;
