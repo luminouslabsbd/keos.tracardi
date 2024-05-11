@@ -253,8 +253,8 @@ var options = {
     tracker: {
         url: {
             // This is url to tracardi backend. Please mind the correct port.
-            script: "https://stg-bdp-api.keos.co/tracker",
-            api: "https://stg-bdp-api.keos.co",
+            script: "<API-SCRIPT>",
+            api: "<API-URL>",
         },
         source: {
             id: "c924ba93-9a58-4c05-b0bc-eb0553dc2e07",
@@ -270,43 +270,35 @@ var options = {
     },
 };
 
-// var jsonUrls = [];
-// function checkUrlRoleMapping() {
-//   var currentUrl = window.location.href;
+var jsonUrls = [];
+function checkUrlRoleMapping() {
+    var currentUrl = window.location.href;
 
-//   for (var i = 0; i < jsonUrls.length; i++) {
-//     var mapping = jsonUrls[i];
-//     if (
-//       currentUrl === mapping.url ||
-//       currentUrl.startsWith(mapping.url.split("{")[0])
-//     ) {
-//       window.tracker.track("additional", {
-//         // Tag: mapping.role,
-//         //Sending this while every mapping.role is same
-//         Tag: window.CURRENT_USER_ROLES,
-//       });
+    for (var i = 0; i < jsonUrls.length; i++) {
+        var mapping = jsonUrls[i];
+        if (
+            currentUrl === mapping.url ||
+            currentUrl.startsWith(mapping.url.split("{")[0])
+        ) {
+            window.tracker.track("additional", {
+                // Tag: mapping.role,
+                //Sending this while every mapping.role is same
+                Tag: "window.CURRENT_USER_ROLES",
+            });
 
-//       return mapping.role;
-//     }
-//   }
-//   console.log("No matching role found for URL: " + currentUrl);
-// }
-// fetch("/assets/ll_assets/assets/js/urls.json")
-//   .then((response) => response.json())
-//   .then((data) => {
-//     const replacedUrls = data.map((item) => {
-//       return {
-//         url: item.url
-//           .replace("%MAIN_DOMAIN%", window.MAIN_DOMAIN)
-//           .replace("%LOCALE%", window.LOCALE),
-//       };
-//     });
-//     jsonUrls = replacedUrls;
-//     checkUrlRoleMapping();
-//   })
-//   .catch((error) => {
-//     console.error("Error fetching JSON:", error);
-//   });
+            return mapping.role;
+        }
+    }
+    console.log("No matching role found for URL: " + currentUrl);
+}
+fetch("/assets/js/<domain-name>.json")
+    .then((response) => response.json())
+    .then((data) => {
+        checkUrlRoleMapping();
+    })
+    .catch((error) => {
+        console.error("Error fetching JSON:", error);
+    });
 // window.tracker.track("event-type", { propery: "Minhazul from Eventos" });
 // console.log(window.LOCALE);
 //
