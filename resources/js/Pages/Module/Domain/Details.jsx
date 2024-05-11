@@ -62,15 +62,19 @@ function Index() {
                         <hr />
                         <div className="grid grid-cols-12 gap-4 domain-info pt-3">
                             <div className="col-span-2">
+                                <strong>Domain</strong>
                                 <p className="text-green-500 font-semibold text-md">{domain.domain}</p>
                             </div>
                             <div className="col-span-2">
+                                <strong>Username</strong>
                                 <p className="text-green-500 font-semibold text-md">{domain.user_name}</p>
                             </div>
                             <div className="col-span-2">
+                                <strong>User Password</strong>
                                 <p className="text-green-500 font-semibold text-md">{domain.user_pass}</p>
                             </div>
                             <div className="col-span-6">
+                                <strong>Backend api url</strong>
                                 <p className="text-green-500 font-semibold text-md">{domain.backend_api_url}</p>
                             </div>
                         </div>

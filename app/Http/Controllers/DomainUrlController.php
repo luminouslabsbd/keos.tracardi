@@ -36,7 +36,7 @@ class DomainUrlController extends Controller
     {
         // $domain = Domain::findOrFail($request->domain_id);
         $domain_id = $request['domain_id'];
-        DB::table('domain_urls')->create([
+        DB::table('domain_urls')->insert([
             'domain_id'  => $domain_id,
             'url'        => $request->url,
             'action'     => $request->action,
