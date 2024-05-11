@@ -7,6 +7,7 @@ use App\Models\Admin\Domain;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Imports\CsvImport;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 
 class DomainRepository
 {
@@ -16,15 +17,27 @@ class DomainRepository
         $this->model = $model;
     }
 
-    public function update($request)
-    {
-        $message = $this->store($request, $request->id);
-        return $message;
-    }
-
 
     public function store($request, $id = null)
     {
+        $messages = [
+            'domain.unique' => 'The domain has already been taken.',
+        ];
+
+        $rules = ['domain' => 'unique:domains,domain'];
+
+        if ($id !== null) {
+            $rules['domain'] .= ',' . $id;
+        }
+
+        $validator = Validator::make($request->all(), $rules, $messages);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'error' => $validator->errors()->first(),
+            ], 422);
+        }
+
         $data = $this->model::updateOrCreate(
             ['id' => $id],
             [
@@ -36,12 +49,15 @@ class DomainRepository
             ]
         );
 
-        if ($data->wasRecentlyCreated) {
-            $message = "Domain Created Successfully";
-        } else {
-            $message = "Domain Updated Successfully";
-        }
-        return ['message' => $message,];
+        $message = $data->wasRecentlyCreated ? "Domain Created Successfully" : "Domain Updated Successfully";
+
+        return response()->json(['message' => $message]);
+    }
+
+    public function update($request)
+    {
+        $message = $this->store($request, $request->id);
+        return $message;
     }
 
     public function statusUpdate($request)

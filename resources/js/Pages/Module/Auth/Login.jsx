@@ -26,7 +26,7 @@ function Login() {
     }
     return (
         <>
-            <Head title="E-Shop || Login" />
+            <Head title="Tracardi || Login" />
             <div className="absolute inset-0">
                 <img
                     src="/assets/images/auth/bg-gradient.png"
