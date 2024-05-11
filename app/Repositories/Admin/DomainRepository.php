@@ -50,6 +50,19 @@ class DomainRepository
             'status' => $request->status
         ]);
 
+        $domain = Domain::findOrFail($request['id']);
+        $domainName = $domain->domain;
+        $fileName = str_replace(' ', '_', strtolower($domainName)) . '.json';
+        $filePath = public_path('json/' . $fileName);
+
+        if($request->status == 1){
+            $urls = $domain->urls()->select(['id', 'domain_id', 'url', 'action', 'role', 'event_name', 'event_type'])->get();
+            $jsonData = json_encode($urls);
+            file_put_contents($filePath, $jsonData);
+        }else{
+            file_put_contents($filePath, '');
+        }
+
         $message = "Domain status updated successfully";
         return ['message' => $message,];
     }
