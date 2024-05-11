@@ -92,6 +92,13 @@ class DomainUrlController extends Controller
         return to_route('admin.domain.details', ['id' => $request->domain_id])->with('success', 'Url successfully updated.');
     }
 
+    public function status(Request $request){
+        DB::table('domain_urls')->where('id',$request->id)->update([
+            'status' => $request->status
+        ]);
+        return back()->with('success', 'Domain url status update');
+    }
+
     /**
      * Remove the specified resource from storage.
      */

@@ -41,6 +41,7 @@ Route::group(['middleware' => ['auth:admin'], 'as' => 'admin.'], function () {
         Route::post('/domain-url/store', [DomainUrlController::class, 'store'])->name('domainurl.store');
         Route::get('/domain-url/edit/{id}/{domain_id}', [DomainUrlController::class, 'edit'])->name('domainurl.edit');
         Route::post('/domain-url/update', [DomainUrlController::class, 'update'])->name('domainurl.update');
+        Route::post('/domain-url/status', [DomainUrlController::class, 'status'])->name('domainurl.status');
         Route::delete('/domain-url/delete/{id}', [DomainUrlController::class, 'destroy'])->name('domainurl.delete');
 
     });

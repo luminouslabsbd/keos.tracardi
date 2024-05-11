@@ -12,7 +12,14 @@ function Index() {
             router.delete(`/admin/domain/domain-url/delete/${id}`);
         }
     };
-
+    const handleStatusChange = async (id, checked) => {
+        try {
+            const updatedStatus = checked ? 1 : 0;
+            router.post("/admin/domain/domain-url/status", { id, status: updatedStatus });
+        } catch (error) {
+            console.error("Error updating domain:", error);
+        }
+    };
     return (
         <>
             <div className="domains-header grid grid-cols-12 gap-4">
@@ -98,7 +105,8 @@ function Index() {
                                     <th>Event name</th>
                                     <th>Event type</th>
                                     <th>Role</th>
-                                    <th>Action</th>
+                                    <th>Url Action</th>
+                                    <th>Status</th>
                                     <th className="!text-right">Action</th>
                                 </tr>
                             </thead>
@@ -111,8 +119,38 @@ function Index() {
                                         <td>{domain.event_type}</td>
                                         <td>{domain.role}</td>
                                         <td>{domain.action}</td>
+                                        <td>
+                                            <label className="w-12 h-6 relative">
+                                                <input
+                                                    type="checkbox"
+                                                    className="custom_switch absolute w-full h-full opacity-0 z-10 cursor-pointer peer"
+                                                    id={`custom_switch_checkbox${index}`}
+                                                    checked={
+                                                        domain.status === 1
+                                                    }
+                                                    onChange={(e) =>
+                                                        handleStatusChange(
+                                                            domain.id,
+                                                            e.target.checked
+                                                        )
+                                                    }
+                                                />
+                                                <span className="bg-[#ebedf2] dark:bg-dark block h-full rounded-full before:absolute before:left-1 before:bg-white dark:before:bg-white-dark dark:peer-checked:before:bg-white before:bottom-1 before:w-4 before:h-4 before:rounded-full peer-checked:before:left-7 peer-checked:bg-primary before:transition-all before:duration-300"></span>
+                                            </label>
+                                        </td>
                                         <td className="!tex-right">
                                             <div className="flex justify-end">
+                                                <a
+                                                    href="#"
+                                                    className="inline-block px-2 py-1 leading-none border border-green-500 text-green-500 rounded-md hover:text-white hover:bg-green-500 mr-2"
+                                                    title="Edit"
+                                                    onClick={() =>
+                                                        handleEdit(domain.id)
+                                                    }
+                                                >
+                                                    <i className="las la-edit"></i>
+                                                    Edit
+                                                </a>
                                                 <a
                                                     href="#"
                                                     className="inline-block px-2 py-1 leading-none border border-green-500 text-green-500 rounded-md hover:text-white hover:bg-green-500 mr-2"
