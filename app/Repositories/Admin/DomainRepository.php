@@ -64,6 +64,16 @@ class DomainRepository
         if ($request->hasFile('file') && isset($request->file[0])) {
             Excel::import(new CsvImport($domain_id), $request->file[0]);
 
+            $domain = Domain::findOrFail($request['domain_id']);
+
+            $urls = $domain->urls()->select(['id', 'domain_id', 'url', 'action', 'role', 'event_name', 'event_type', 'status'])->get();
+            $jsonData = json_encode($urls);
+
+            $domainName = $domain->domain;
+            $fileName = str_replace(' ', '_', strtolower($domainName)) . '.json';
+            $filePath = public_path('json/' . $fileName);
+            file_put_contents($filePath, $jsonData);
+
             $message = "CSV data imported successfully";
             return ['message' => $message];
         }else{
