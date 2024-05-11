@@ -74,7 +74,7 @@ function Login() {
                         <div className="mx-auto w-full max-w-[440px]">
                             <div className="mb-10">
                                 <h1 className="text-3xl font-extrabold uppercase !leading-snug text-primary md:text-2xl">
-                                    Luminous E-Shop
+                                    Tacardi
                                 </h1>
                                 <p className="text-base font-bold leading-normal text-white-dark">
                                     Enter your ligal information

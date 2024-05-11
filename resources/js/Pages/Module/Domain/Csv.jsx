@@ -62,6 +62,6 @@ function Index() {
     );
 }
 Index.layout = (page) => (
-    <MainLayout children={page} title="Lumin Trackid || Trackid list" />
+    <MainLayout children={page} title="Trackid || Trackid list" />
 );
 export default Index;

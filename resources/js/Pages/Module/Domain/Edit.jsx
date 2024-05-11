@@ -177,6 +177,6 @@ function Edit() {
     );
 }
 Edit.layout = (page) => (
-    <MainLayout children={page} title="Lumin Trackid || Trackid edit" />
+    <MainLayout children={page} title="Trackid || Trackid edit" />
 );
 export default Edit;

@@ -165,6 +165,6 @@ function Create() {
     );
 }
 Create.layout = (page) => (
-    <MainLayout children={page} title="Lumin Trackid || Trackid create" />
+    <MainLayout children={page} title="Trackid || Trackid create" />
 );
 export default Create;
