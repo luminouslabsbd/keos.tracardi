@@ -60,6 +60,8 @@ class DomainRepository
         $fileName = str_replace(' ', '_', strtolower($domain)) . '.js';
         $domain_name = str_replace(' ', '_', strtolower($domain));
 
+        // Create an empty JSON file for the domain
+        $this->createJsonFile($domain_name);
 
         // Check if the file already exists Delete the old JavaScript file
         $this->deleteJsFile($fileName);
@@ -72,28 +74,42 @@ class DomainRepository
 
     private function updateJsFile($oldDomain, $newDomain, $apiUrl)
     {
-        // Generate file names for the old and new domains
-        $oldFileName = str_replace(' ', '_', strtolower($oldDomain)) . '.js';
-
+        dd($oldDomain, $newDomain);
         // Check if the old JavaScript file exists Delete the old JavaScript file
-        $this->deleteJsFile($oldFileName);
+        $this->deleteJsFile($oldDomain);
         // Create a new JavaScript file with the updated data
         $this->createJsFile($newDomain, $apiUrl);
     }
 
-    private function deleteJsFile($fileName)
+    private function createJsonFile($domain)
     {
-        if (File::exists(public_path("assets/js/$fileName"))) {
-            File::delete(public_path("assets/js/$fileName"));
+        // Create directory if it doesn't exist
+        $jsonDirectory = public_path('assets/json');
+        if (!File::isDirectory($jsonDirectory)) {
+            File::makeDirectory($jsonDirectory, 0777, true, true);
+        }
+        File::put(public_path("assets/json/$domain.json"), '');
+    }
+
+    private function deleteJsFile($domain)
+    {
+        // Generate file names for the domain
+        $jsFileName = str_replace(' ', '_', strtolower($domain)) . '.js';
+        $jsonFileName = "$domain.json";
+        if (File::exists(public_path("assets/js/$jsFileName"))) {
+            File::delete(public_path("assets/js/$jsFileName"));
+        }
+
+        // Delete the JSON file if it exists
+        if (File::exists(public_path("assets/json/$jsonFileName"))) {
+            File::delete(public_path("assets/json/$jsonFileName"));
         }
     }
 
     public function delete($domain)
     {
-        $fileName = str_replace(' ', '_', strtolower($domain->domain)) . '.js';
-
         // Check if the file already exists Delete the old JavaScript file
-        $this->deleteJsFile($fileName);
+        $this->deleteJsFile($domain->domain);
         $domain->delete();
     }
 
