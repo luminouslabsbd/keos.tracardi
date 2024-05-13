@@ -37,6 +37,39 @@ function Index() {
                 <div className="col-span-12 pt-4">
                     <div className="panel">
                         <div className="mb-2">
+                            <h5 className="font-bold">Example CSV Formate</h5>
+                        </div>
+                        <hr />
+                        <div className="grid grid-cols-12 gap-4 domain-info pt-3">
+                            <div className="col-span-4">
+                                <strong>url</strong>
+                                <p className="text-green-400 font-semibold text-md">https://test.com/test-url</p>
+                            </div>
+                            <div className="col-span-2">
+                                <strong>event_name</strong>
+                                <p className="text-green-400 font-semibold text-md">Test even name</p>
+                            </div>
+                            <div className="col-span-2">
+                                <strong>event_type</strong>
+                                <p className="text-green-400 font-semibold text-md">click</p>
+                            </div>
+                            <div className="col-span-2">
+                                <strong>role</strong>
+                                <p className="text-green-400 font-semibold text-md">organizer</p>
+                            </div>
+                            <div className="col-span-2">
+                                <strong>action</strong>
+                                <p className="text-green-400 font-semibold text-md">client</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div className="pt-5">
+                <div className="col-span-12 pt-4">
+                    <div className="panel">
+                        <div className="mb-2">
                             <h5 className="font-bold">Upload New CSV file</h5>
                         </div>
                         <hr/>

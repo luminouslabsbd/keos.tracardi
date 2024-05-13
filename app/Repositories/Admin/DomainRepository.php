@@ -8,6 +8,9 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 use Maatwebsite\Excel\Facades\Excel;
+use App\Imports\CsvImport;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 
 class DomainRepository
 {
@@ -17,15 +20,27 @@ class DomainRepository
         $this->model = $model;
     }
 
-    public function update($request)
-    {
-        $message = $this->store($request, $request->id);
-        return $message;
-    }
-
 
     public function store($request, $id = null)
     {
+        $messages = [
+            'domain.unique' => 'The domain has already been taken.',
+        ];
+
+        $rules = ['domain' => 'unique:domains,domain'];
+
+        if ($id !== null) {
+            $rules['domain'] .= ',' . $id;
+        }
+
+        $validator = Validator::make($request->all(), $rules, $messages);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'error' => $validator->errors()->first(),
+            ], 422);
+        }
+
         $oldDomain = Domain::where('id', $id)->select(['id', 'domain'])->first();
         // dd($oldDomain);
 
@@ -47,7 +62,7 @@ class DomainRepository
             $message = "Domain Updated Successfully";
             $this->updateJsFile($oldDomain->domain, $request->domain, $request->backend_api_url);
         }
-        return ['message' => $message,];
+        return response()->json(['message' => $message]);
     }
 
     private function createJsFile($domain, $apiUrl)
@@ -74,7 +89,6 @@ class DomainRepository
 
     private function updateJsFile($oldDomain, $newDomain, $apiUrl)
     {
-        dd($oldDomain, $newDomain);
         // Check if the old JavaScript file exists Delete the old JavaScript file
         $this->deleteJsFile($oldDomain);
         // Create a new JavaScript file with the updated data

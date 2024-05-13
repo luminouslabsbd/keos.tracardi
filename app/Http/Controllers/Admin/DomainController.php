@@ -27,13 +27,6 @@ class DomainController extends Controller
         ]);
     }
 
-    public function edit(Domain $domain)
-    {
-        return Inertia::render('Module/Domain/Edit', [
-            'domain' => $domain
-        ]);
-    }
-
     public function domainCreate()
     {
         return Inertia::render('Module/Domain/Create');
@@ -42,27 +35,36 @@ class DomainController extends Controller
     public function domainStore(Request $request)
     {
         $result = $this->DomainRepository->store($request);
-        return to_route('admin.domains')->with('success', $result['message']);
+        $data = json_decode($result->getContent(), true);
+
+        if (isset($data['error'])) {
+            $message = $data['error'];
+            return back()->with('error', $message);
+        } else {
+            $message = $data['message'];
+            return to_route('admin.domains')->with('success', $message);
+        }
     }
 
-    public function update(Request $request)
+    public function edit(Domain $domain)
     {
-        $result = $this->DomainRepository->update($request);
-        return to_route('admin.domains')->with('success', $result['message']);
-    }
-
-    public function domainEdit($id)
-    {
-        $domain = DB::table('domains')->where('id', $id)->first();
         return Inertia::render('Module/Domain/Edit', [
             'domain' => $domain
         ]);
     }
 
-    public function domainUpdate(Request $request, $id)
+    public function update(Request $request)
     {
-        $result = $this->DomainRepository->store($request, $id);
-        return to_route('admin.domains')->with('success', $result['message']);
+        $result = $this->DomainRepository->update($request);
+        $data = json_decode($result->getContent(), true);
+
+        if (isset($data['error'])) {
+            $message = $data['error'];
+            return back()->with('error', $message);
+        } else {
+            $message = $data['message'];
+            return to_route('admin.domains')->with('success', $message);
+        }
     }
 
     public function domainStatus(Request $request)
