@@ -347,7 +347,7 @@ function Edit() {
 }
 
 Edit.layout = (page) => (
-    <MainLayout children={page} title="Luminous E-shop || Edit Permission" />
+    <MainLayout children={page} title="Tacardi || Edit Permission" />
 );
 
 export default Edit;
