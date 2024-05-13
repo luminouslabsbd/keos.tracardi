@@ -8,8 +8,6 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 use Maatwebsite\Excel\Facades\Excel;
-use App\Imports\CsvImport;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
 class DomainRepository
@@ -20,6 +18,11 @@ class DomainRepository
         $this->model = $model;
     }
 
+    public function update($request)
+    {
+        $message = $this->store($request, $request->id);
+        return $message;
+    }
 
     public function store($request, $id = null)
     {
@@ -80,10 +83,12 @@ class DomainRepository
 
         // Check if the file already exists Delete the old JavaScript file
         $this->deleteJsFile($fileName);
-
+        $baseUrl = env('APP_URL');
         $modifiedJsContent = str_replace('<domain-name>', $domain_name, $demoJsContent);
         $modifiedJsContent = str_replace('<API-URL>', $apiUrl, $modifiedJsContent);
         $modifiedJsContent = str_replace('<API-SCRIPT>', $apiUrl . '/tracker', $modifiedJsContent);
+        $modifiedJsContent = str_replace('<APP-URL>', $baseUrl, $modifiedJsContent);
+
         File::put(public_path("assets/js/$fileName"), $modifiedJsContent);
     }
 

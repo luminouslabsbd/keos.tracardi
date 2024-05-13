@@ -253,8 +253,8 @@ var options = {
     tracker: {
         url: {
             // This is url to tracardi backend. Please mind the correct port.
-            script: "<API-SCRIPT>",
-            api: "<API-URL>",
+            script: "sdgsdg/tracker",
+            api: "sdgsdg",
         },
         source: {
             id: "c924ba93-9a58-4c05-b0bc-eb0553dc2e07",
@@ -291,7 +291,7 @@ function checkUrlRoleMapping() {
     }
     console.log("No matching role found for URL: " + currentUrl);
 }
-let url = "<APP-URL>/assets/json/<domain-name>.json";
+let url = "/http://localhost/assets/json/test.json";
 
 jsonUrls = fetch(url)
     .then((response) => response.json())
