@@ -1,0 +1,32 @@
+[
+    {
+        "id": 3,
+        "domain_id": 14,
+        "url": "http://127.0.0.1:8001/admin/dashboard",
+        "action": "lead",
+        "role": "scanner",
+        "event_name": "Colton Rocha",
+        "event_type": "view"
+    },
+    {
+        "id": 4,
+        "domain_id": 14,
+        "url": "http://127.0.0.1:8001/admin/dashboard",
+        "action": "client",
+        "role": "assistant",
+        "event_name": "Galena Petersen",
+        "event_type": "click",
+        "button_id": "click"
+    },
+
+    {
+        "id": 5,
+        "domain_id": 14,
+        "url": "http://127.0.0.1:8001/admin/dashboard",
+        "action": "id5",
+        "role": "id5",
+        "event_name": "id5",
+        "event_type": "click",
+        "button_id": "click3"
+    }
+]

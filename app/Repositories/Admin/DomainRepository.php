@@ -83,7 +83,7 @@ class DomainRepository
 
         // Check if the file already exists Delete the old JavaScript file
         $this->deleteJsFile($fileName);
-        $baseUrl = env('APP_URL');
+        $baseUrl = config('app.url');
         $modifiedJsContent = str_replace('<domain-name>', $domain_name, $demoJsContent);
         $modifiedJsContent = str_replace('<API-URL>', $apiUrl, $modifiedJsContent);
         $modifiedJsContent = str_replace('<API-SCRIPT>', $apiUrl . '/tracker', $modifiedJsContent);
