@@ -1,0 +1,11 @@
+[
+    {
+        "id": 2,
+        "domain_id": 11,
+        "url": "#",
+        "action": "lead",
+        "role": "organizer",
+        "event_name": "Event",
+        "event_type": "click"
+    }
+]
