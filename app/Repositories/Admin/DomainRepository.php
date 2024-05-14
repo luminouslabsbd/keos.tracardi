@@ -60,6 +60,18 @@ class DomainRepository
         return $message;
     }
 
+    public function domainDelete($id)
+    {
+        $domain = Domain::findOrFail($id);
+
+        $domain->delete();
+
+        $domainName = $domain->domain;
+        $fileName = str_replace(' ', '_', strtolower($domainName)) . '.json';
+        $filePath = public_path('json/' . $fileName);
+        file_put_contents($filePath, '');
+    }
+
     public function statusUpdate($request)
     {
         DB::table('domains')->where('id', $request->id)->update([
