@@ -7,6 +7,7 @@ use App\Http\Resources\ProductResource;
 use App\Models\Admin\Product;
 use App\Service\ApiService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
 
 class ProductController extends Controller
 {
@@ -22,22 +23,15 @@ class ProductController extends Controller
      */
     public function index(Request $request)
     {
-
         $product = Product::query();
         if($request->input('query') != null && $request->input('query') != 'null' && !empty($request->input('query'))){
             $product->where('product_name', 'like', "%{$request->input('query')}%");
         }
-
-        $product = $product->get();
-
-
-//
+        $product = $product->simplePaginate(8);
 //            ->when(\request()->input('query'), function($query, $search){
 //                $query->where('product_name', 'like', "%{$search}%");
 //            })
 //            ->get();
-
-
         return ProductResource::collection($product);
     }
 
@@ -61,7 +55,8 @@ class ProductController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $product = Product::query()->findOrFail($id);
+        return new ProductResource($product);
     }
 
     /**
@@ -146,5 +141,61 @@ class ProductController extends Controller
     {
         $product = Product::findOrFail($id);
         return view('product.product',compact('product'));
+    }
+
+
+    public function sendMultipleProduct()
+    {
+        // API endpoint
+        $apiUrl = 'https://api.gupshup.io/sm/api/v1/msg';
+
+        // HTTP headers
+        $headers = [
+            'apikey' => 'cky6px6gylnajx0epf1xafnxqluh8lyh', // Your API key
+            'Content-Type' => 'application/x-www-form-urlencoded', // Expected content type
+        ];
+
+        $requestData = [
+            'channel' => 'whatsapp',
+            'source' => '573022177303',
+            'destination' => '8801784124291',
+            'message' => [
+                'type' => 'product_details',
+                'subType' => 'product_list',
+                'catalogId' => '2676589475826894',
+                'productId' => '',
+                'body' => [
+                    'text' => 'body content!'
+                ],
+                'header' => [
+                    'type' => 'text',
+                    'text' => 'header content!'
+                ],
+                'footer' => [
+                    'text' => 'footer content!'
+                ],
+                'sections' => [
+                    [
+                        'title' => 'Titulo',
+                        'productList' => [
+                            [
+                                'productId' => '16'
+                            ],
+                            [
+                                'productId' => '17'
+                            ],
+                            [
+                                'productId' => '18'
+                            ]
+                        ]
+                    ]
+                ]
+            ],
+            'src.name' => 'Gersjdn',
+        ];
+
+        $response = Http::withHeaders($headers)->post($apiUrl, $requestData);
+
+        return $response;
     }
 }
