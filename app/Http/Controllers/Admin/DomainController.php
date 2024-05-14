@@ -22,8 +22,10 @@ class DomainController extends Controller
     public function index()
     {
         $domains = DB::table('domains')->where('user_id', Auth::user()->id)->get();
+        // $base_url = config('app.url');
         return Inertia::render('Module/Domain/Index', [
-            'domains' => $domains
+            'domains' => $domains,
+            // 'base_url' => $base_url,
         ]);
     }
 

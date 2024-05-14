@@ -1,9 +1,10 @@
 import { Link, router, usePage } from "@inertiajs/react";
 import MainLayout from "../../Layout/Mainlayout";
+import { useState } from "react";
 
 function Index() {
     const { result, domain, base_url } = usePage().props;
-
+    const domainName = domain.domain;
     const handleEdit = (id) => {
         router.get(`/admin/domain/domain-url/edit/${id}/${domain.id}`);
     };
@@ -16,7 +17,11 @@ function Index() {
         try {
             const updatedStatus = checked ? 1 : 0;
             const domain_id = domain.id;
-            router.post("/admin/domain/domain-url/status", { id, domain_id, status: updatedStatus });
+            router.post("/admin/domain/domain-url/status", {
+                id,
+                domain_id,
+                status: updatedStatus,
+            });
         } catch (error) {
             console.error("Error updating domain:", error);
         }
@@ -51,7 +56,12 @@ function Index() {
                         </div>
                         <ul className="flex space-x-2 rtl:space-x-reverse">
                             <li>
-                                <Link href={`${base_url}/admin/domain/domains`} className="text-[#ff6243] hover:underline">Domain</Link>
+                                <Link
+                                    href={`${base_url}/admin/domain/domains`}
+                                    className="text-[#ff6243] hover:underline"
+                                >
+                                    Domain
+                                </Link>
                             </li>
                             <li className="before:content-['/'] ltr:before:mr-2 rtl:before:ml-2">
                                 <span>Domain URL List</span>
@@ -71,19 +81,27 @@ function Index() {
                         <div className="grid grid-cols-12 gap-4 domain-info pt-3">
                             <div className="col-span-2">
                                 <strong>Domain</strong>
-                                <p className="text-green-400 font-semibold text-md">{domain.domain}</p>
+                                <p className="text-green-400 font-semibold text-md">
+                                    {domain.domain}
+                                </p>
                             </div>
                             <div className="col-span-2">
                                 <strong>Username</strong>
-                                <p className="text-green-400 font-semibold text-md">{domain.user_name}</p>
+                                <p className="text-green-400 font-semibold text-md">
+                                    {domain.user_name}
+                                </p>
                             </div>
                             <div className="col-span-2">
                                 <strong>User Password</strong>
-                                <p className="text-green-400 font-semibold text-md">{domain.user_pass}</p>
+                                <p className="text-green-400 font-semibold text-md">
+                                    {domain.user_pass}
+                                </p>
                             </div>
                             <div className="col-span-6">
                                 <strong>Backend api url</strong>
-                                <p className="text-green-400 font-semibold text-md">{domain.backend_api_url}</p>
+                                <p className="text-green-400 font-semibold text-md">
+                                    {domain.backend_api_url}
+                                </p>
                             </div>
                         </div>
                     </div>
