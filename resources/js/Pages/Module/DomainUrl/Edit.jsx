@@ -4,7 +4,8 @@ import MainLayout from "../../Layout/Mainlayout";
 import { useForm } from "react-hook-form";
 
 function Edit() {
-    const { domain_url_data, domain_id,base_url } = usePage().props;
+    const { domain_url_data, domain_id, base_url } = usePage().props;
+    const [showButtonIdOption, setShowButtonIdOption] = useState(false);
     const {
         register: addRegister,
         handleSubmit: handleAddSubmit,
@@ -13,6 +14,9 @@ function Edit() {
         setValue,
     } = useForm();
     useEffect(() => {
+        domain_url_data.event_type == "click"
+            ? setShowButtonIdOption(true)
+            : setShowButtonIdOption(false);
         setValue("id", domain_url_data.id);
         setValue("domain_id", domain_id);
         setValue("url", domain_url_data.url);
@@ -20,7 +24,10 @@ function Edit() {
         setValue("event_type", domain_url_data.event_type);
         setValue("role", domain_url_data.role);
         setValue("action", domain_url_data.action);
+        setValue("button_id", domain_url_data.button_id);
     });
+    console.log(domain_url_data);
+
     const onSubmit = (data) => {
         router.post(`/admin/domain/domain-url/update`, data);
         addReset();
@@ -142,11 +149,30 @@ function Edit() {
                                         Event type
                                     </label>
                                     <select
-                                        className="form-select text-white-dark" name="" id=""
+                                        className="form-select text-white-dark"
+                                        name=""
+                                        id=""
                                         {...addRegister("event_type", {
                                             required: "Event type is required",
-                                        })}>
-                                        <option disabled>Select event type</option>
+                                        })}
+                                        onChange={(event) => {
+                                            const selectedValue =
+                                                event.target.value;
+                                            console.log(selectedValue);
+                                            setValue(
+                                                "event_type",
+                                                selectedValue
+                                            );
+                                            if (selectedValue == "click") {
+                                                setShowButtonIdOption(true);
+                                            } else {
+                                                setShowButtonIdOption(false);
+                                            }
+                                        }}
+                                    >
+                                        <option disabled>
+                                            Select event type
+                                        </option>
                                         <option value="click">Click</option>
                                         <option value="view">View</option>
                                     </select>
@@ -163,15 +189,42 @@ function Edit() {
                                     )}
                                 </div>
 
+                                {showButtonIdOption && (
+                                    <div>
+                                        <label className="font-normal pt-2">
+                                            Button ID
+                                        </label>
+                                        <input
+                                            type="text"
+                                            {...addRegister("button_id")}
+                                            className="form-input"
+                                        />
+                                        {addFormState.errors.button_id && (
+                                            <p
+                                                className="text-red-500"
+                                                role="alert"
+                                            >
+                                                {
+                                                    addFormState.errors
+                                                        .button_id.message
+                                                }
+                                            </p>
+                                        )}
+                                    </div>
+                                )}
+
                                 <div>
                                     <label className="font-normal pt-2">
                                         Action
                                     </label>
                                     <select
-                                        className="form-select text-white-dark"name="" id=""
+                                        className="form-select text-white-dark"
+                                        name=""
+                                        id=""
                                         {...addRegister("action", {
                                             required: "Action is required",
-                                        })}>
+                                        })}
+                                    >
                                         <option disabled>Select Action</option>
                                         <option value="client">Client</option>
                                         <option value="lead">Lead</option>
@@ -190,13 +243,23 @@ function Edit() {
                                     <label className="font-normal pt-2">
                                         Role
                                     </label>
-                                    <select className="form-select text-white-dark" name="" id=""
+                                    <select
+                                        className="form-select text-white-dark"
+                                        name=""
+                                        id=""
                                         {...addRegister("role", {
                                             required: "Role is required",
-                                        })}>
-                                        <option value="" selected>Select role</option>
-                                        <option value="organizer">Organizer</option>
-                                        <option value="assistant">Assistant</option>
+                                        })}
+                                    >
+                                        <option value="" selected>
+                                            Select role
+                                        </option>
+                                        <option value="organizer">
+                                            Organizer
+                                        </option>
+                                        <option value="assistant">
+                                            Assistant
+                                        </option>
                                         <option value="scanner">Scanner</option>
                                     </select>
                                     {addFormState.errors.role && (

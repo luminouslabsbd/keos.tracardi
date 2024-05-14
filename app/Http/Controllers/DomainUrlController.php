@@ -42,15 +42,16 @@ class DomainUrlController extends Controller
             'action'     => $request->action,
             'role'       => $request->role,
             'event_name' => $request->event_name,
-            'event_type' => $request->event_type
+            'event_type' => $request->event_type,
+            'button_id' => $request->button_id
         ]);
 
-        $urls = $domain->urls()->select(['id', 'domain_id', 'url', 'action', 'role', 'event_name', 'event_type'])->get();
+        $urls = $domain->urls()->select(['id', 'domain_id', 'url', 'action', 'role', 'event_name', 'event_type', 'button_id'])->get();
         $jsonData = json_encode($urls);
 
         $domainName = $domain->domain;
         $fileName = str_replace(' ', '_', strtolower($domainName)) . '.json';
-        $filePath = public_path('json/' . $fileName);
+        $filePath = public_path('assets/json/' . $fileName);
         file_put_contents($filePath, $jsonData);
         return to_route('admin.domain.details', ['id' => $domain_id])->with('success', 'Url successfully added.');
     }
@@ -61,7 +62,7 @@ class DomainUrlController extends Controller
      */
     public function edit($id, $domain_id)
     {
-        $domain_url_data = DomainUrl::where('id',$id)->first();
+        $domain_url_data = DomainUrl::where('id', $id)->first();
         return Inertia::render('Module/DomainUrl/Edit', [
             'domain_url_data' => $domain_url_data,
             'domain_id' => $domain_id
@@ -74,20 +75,21 @@ class DomainUrlController extends Controller
     public function update(Request $request)
     {
         $domain = Domain::findOrFail($request->domain_id);
-        DB::table('domain_urls')->where('id',$request->id)->update([
+        DB::table('domain_urls')->where('id', $request->id)->update([
             'url' => $request->url,
             'action' => $request->action,
             'role' => $request->role,
             'event_name' => $request->event_name,
-            'event_type' => $request->event_type
+            'event_type' => $request->event_type,
+            'button_id' => $request->button_id
         ]);
 
-        $urls = $domain->urls()->select(['id', 'domain_id', 'url', 'action', 'role', 'event_name', 'event_type'])->get();
+        $urls = $domain->urls()->select(['id', 'domain_id', 'url', 'action', 'role', 'event_name', 'event_type', 'button_id'])->get();
         $jsonData = json_encode($urls);
 
         $domainName = $domain->domain;
         $fileName = str_replace(' ', '_', strtolower($domainName)) . '.json';
-        $filePath = public_path('json/' . $fileName);
+        $filePath = public_path('assets/json/' . $fileName);
         file_put_contents($filePath, $jsonData);
         return to_route('admin.domain.details', ['id' => $request->domain_id])->with('success', 'Url successfully updated.');
     }
@@ -96,16 +98,16 @@ class DomainUrlController extends Controller
     {
         $domain = Domain::findOrFail($request->domain_id);
 
-        DB::table('domain_urls')->where('id',$request->id)->update([
+        DB::table('domain_urls')->where('id', $request->id)->update([
             'status' => $request->status
         ]);
 
-        $urls = $domain->urls()->select(['id', 'domain_id', 'url', 'action', 'role', 'event_name', 'event_type'])->get();
+        $urls = $domain->urls()->select(['id', 'domain_id', 'url', 'action', 'role', 'event_name', 'event_type', 'button_id'])->get();
         $jsonData = json_encode($urls);
 
         $domainName = $domain->domain;
         $fileName = str_replace(' ', '_', strtolower($domainName)) . '.json';
-        $filePath = public_path('json/' . $fileName);
+        $filePath = public_path('assets/json/' . $fileName);
         file_put_contents($filePath, $jsonData);
 
         return back()->with('success', 'Domain url status update');
@@ -119,16 +121,16 @@ class DomainUrlController extends Controller
     public function destroy($id, $domain_id)
     {
         $domain = Domain::findOrFail($domain_id);
-        DB::table('domain_urls')->where('id',$id)->delete();
+        DB::table('domain_urls')->where('id', $id)->delete();
 
 
         //Create Fresh new json
-        $urls = $domain->urls()->select(['id', 'domain_id', 'url', 'action', 'role', 'event_name', 'event_type'])->get();
+        $urls = $domain->urls()->select(['id', 'domain_id', 'url', 'action', 'role', 'event_name', 'event_type', 'button_id'])->get();
         $jsonData = json_encode($urls);
 
         $domainName = $domain->domain;
         $fileName = str_replace(' ', '_', strtolower($domainName)) . '.json';
-        $filePath = public_path('json/' . $fileName);
+        $filePath = public_path('assets/json/' . $fileName);
         file_put_contents($filePath, $jsonData);
 
         return back()->with('success', 'Url successfully deleted.');

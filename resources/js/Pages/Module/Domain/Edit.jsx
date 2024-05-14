@@ -24,10 +24,15 @@ function Edit() {
     });
     const { base_url } = usePage().props;
     const onSubmit = (data) => {
+        data.domain = extractDomain(data.domain);
         router.post("/admin/domain/update", data);
         addReset();
     };
-
+    const extractDomain = (domain) => {
+        // Remove 'http://' or 'https://' and split by '/'
+        const parts = domain.replace(/(^\w+:|^)\/\//, "").split("/");
+        return parts[0];
+    };
     return (
         <>
             <div className="domains-header grid grid-cols-12 gap-4">
@@ -58,7 +63,12 @@ function Edit() {
                         </div>
                         <ul className="flex space-x-2 rtl:space-x-reverse">
                             <li>
-                                <Link href={`${base_url}/admin/domain/domains`} className="text-[#ff6243] hover:underline">Domain</Link>
+                                <Link
+                                    href={`${base_url}/admin/domain/domains`}
+                                    className="text-[#ff6243] hover:underline"
+                                >
+                                    Domain
+                                </Link>
                             </li>
                             <li className="before:content-['/'] ltr:before:mr-2 rtl:before:ml-2">
                                 <span>Domain Edit</span>

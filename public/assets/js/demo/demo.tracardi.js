@@ -253,7 +253,7 @@ var options = {
     tracker: {
         url: {
             // This is url to tracardi backend. Please mind the correct port.
-            script: "<API-SCRIPT>",
+            script: "<API-URL>/tracker",
             api: "<API-URL>",
         },
         source: {
@@ -269,41 +269,3 @@ var options = {
         },
     },
 };
-
-var jsonUrls = [];
-function checkUrlRoleMapping() {
-    var currentUrl = window.location.href;
-
-    for (var i = 0; i < jsonUrls.length; i++) {
-        var mapping = jsonUrls[i];
-        var item = jsonUrls[i];
-        if (
-            currentUrl === mapping.url ||
-            currentUrl.startsWith(mapping.url.split("{")[0])
-        ) {
-            console.log(item);
-            window.tracker.track("additional", {
-                // Tag: mapping.role,
-                //Sending this while every mapping.role is same
-                Tag: "window.CURRENT_USER_ROLES",
-            });
-
-            return mapping.role;
-        }
-    }
-    console.log("No matching role found for URL: " + currentUrl);
-}
-let url = "<APP-URL>/assets/json/<domain-name>.json";
-
-jsonUrls = fetch(url)
-    .then((response) => response.json())
-    .then((data) => {
-        console.log(data);
-        checkUrlRoleMapping();
-    })
-    .catch((error) => {
-        console.error("Error fetching JSON:", error);
-    });
-// window.tracker.track("event-type", { propery: "Minhazul from Eventos" });
-// console.log(window.LOCALE);
-//
