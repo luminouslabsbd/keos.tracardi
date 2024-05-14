@@ -21,7 +21,7 @@ class DomainController extends Controller
 
     public function index()
     {
-        $domains = DB::table('domains')->where('user_id',Auth::user()->id)->get();
+        $domains = DB::table('domains')->where('user_id', Auth::user()->id)->get();
         return Inertia::render('Module/Domain/Index', [
             'domains' => $domains
         ]);
@@ -44,7 +44,6 @@ class DomainController extends Controller
             $message = $data['message'];
             return to_route('admin.domains')->with('success', $message);
         }
-
     }
 
     public function edit(Domain $domain)
@@ -68,7 +67,8 @@ class DomainController extends Controller
         }
     }
 
-    public function domainStatus(Request $request){
+    public function domainStatus(Request $request)
+    {
         $message = $this->DomainRepository->statusUpdate($request);
         return back()->with('success', $message['message']);
     }
@@ -79,21 +79,24 @@ class DomainController extends Controller
         return back()->with('success', 'Domain Delete Successfully');
     }
 
-    public function domainDetails($id){
+    public function domainDetails($id)
+    {
         $data = $this->DomainRepository->domainUrl($id);
         $domain = DB::table('domains')->where('id', $id)->first();
-        return Inertia::render('Module/Domain/Details', ['result' => $data,'domain' => $domain]);
+        return Inertia::render('Module/Domain/Details', ['result' => $data, 'domain' => $domain]);
     }
 
-    public function domainCsv($id){
+    public function domainCsv($id)
+    {
         return Inertia::render('Module/Domain/Csv', [
             'domain_id' => $id
         ]);
     }
 
-    public function domainCsvUpload(Request $request){
+    public function domainCsvUpload(Request $request)
+    {
         $domain_id = (int)$request['domain_id'];
-        $message = $this->DomainRepository->csvUpload($request,$domain_id);
+        $message = $this->DomainRepository->csvUpload($request, $domain_id);
         return to_route('admin.domain.details', ['id' => $domain_id])->with('success', $message['message']);
     }
 }

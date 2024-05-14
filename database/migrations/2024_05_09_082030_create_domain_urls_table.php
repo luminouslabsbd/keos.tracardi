@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('event_type');
             $table->string('role');
             $table->string('action');
+            $table->string('button_id')->nullable();
             $table->integer('status')->default(1);
             $table->timestamps();
         });

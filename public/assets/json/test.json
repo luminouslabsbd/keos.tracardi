@@ -1,0 +1,12 @@
+[
+    {
+        "id": 1,
+        "domain_id": 1,
+        "url": "Delectus reiciendis",
+        "action": "lead",
+        "role": "assistant",
+        "event_name": "Gary Moody",
+        "event_type": "click",
+        "button_id": "up"
+    }
+]
