@@ -70,12 +70,14 @@ class DomainRepository
 
     private function createJsFile($domain, $apiUrl)
     {
-        // Read the content of demo.js
-        $demoJsContent = File::get(public_path('assets/js/tracardi.js'));
+        // Read the content of demo js files
+        $demoTracardiJsContent = File::get(public_path('assets/js/demo/demo.tracardi.js'));
+        $demoScriptJsContent = File::get(public_path('assets/js/demo/script.js'));
 
         // Create a new JavaScript file with the content of demo.js
         // and save it in public/js directory with the domain name as the file name
-        $fileName = str_replace(' ', '_', strtolower($domain)) . '.js';
+        $fileName = str_replace(' ', '_', strtolower($domain)) . '.tracardi.js';
+        $scriptFile = str_replace(' ', '_', strtolower($domain)) . '.js';
         $domain_name = str_replace(' ', '_', strtolower($domain));
 
         // Create an empty JSON file for the domain
@@ -83,13 +85,19 @@ class DomainRepository
 
         // Check if the file already exists Delete the old JavaScript file
         $this->deleteJsFile($fileName);
+        $this->deleteJsFile($scriptFile);
         $baseUrl = config('app.url');
-        $modifiedJsContent = str_replace('<domain-name>', $domain_name, $demoJsContent);
-        $modifiedJsContent = str_replace('<API-URL>', $apiUrl, $modifiedJsContent);
-        $modifiedJsContent = str_replace('<API-SCRIPT>', $apiUrl . '/tracker', $modifiedJsContent);
-        $modifiedJsContent = str_replace('<APP-URL>', $baseUrl, $modifiedJsContent);
+
+        //replacing variables from tracardi js
+        $modifiedJsContent = str_replace('<API-URL>', $apiUrl, $demoTracardiJsContent);
+
+        //replacing variables from script js
+        // $modifiedJsContent = str_replace('<API-SCRIPT>', $apiUrl . '/tracker', $modifiedJsContent);
+        $modifiedScriptJsContent = str_replace('<domain-name>', $domain_name, $demoScriptJsContent);
+        $modifiedScriptJsContent = str_replace('<APP-URL>', $baseUrl, $modifiedScriptJsContent);
 
         File::put(public_path("assets/js/$fileName"), $modifiedJsContent);
+        File::put(public_path("assets/js/$scriptFile"), $modifiedScriptJsContent);
     }
 
     private function updateJsFile($oldDomain, $newDomain, $apiUrl)
@@ -114,9 +122,14 @@ class DomainRepository
     {
         // Generate file names for the domain
         $jsFileName = str_replace(' ', '_', strtolower($domain)) . '.js';
+        $jsConfigFileName = str_replace(' ', '_', strtolower($domain)) . '.config.js';
         $jsonFileName = "$domain.json";
         if (File::exists(public_path("assets/js/$jsFileName"))) {
             File::delete(public_path("assets/js/$jsFileName"));
+        }
+
+        if (File::exists(public_path("assets/js/$jsConfigFileName"))) {
+            File::delete(public_path("assets/js/$jsConfigFileName"));
         }
 
         // Delete the JSON file if it exists
@@ -144,7 +157,7 @@ class DomainRepository
         $filePath = public_path('json/' . $fileName);
 
         if ($request->status == 1) {
-            $urls = $domain->urls()->select(['id', 'domain_id', 'url', 'action', 'role', 'event_name', 'event_type'])->get();
+            $urls = $domain->urls()->select(['id', 'domain_id', 'url', 'action', 'role', 'event_name', 'event_type', 'button_id'])->get();
             $jsonData = json_encode($urls);
             file_put_contents($filePath, $jsonData);
         } else {
@@ -168,7 +181,7 @@ class DomainRepository
 
             $domain = Domain::findOrFail($request['domain_id']);
 
-            $urls = $domain->urls()->select(['id', 'domain_id', 'url', 'action', 'role', 'event_name', 'event_type'])->get();
+            $urls = $domain->urls()->select(['id', 'domain_id', 'url', 'action', 'role', 'event_name', 'event_type', 'button_id'])->get();
             $jsonData = json_encode($urls);
 
             $domainName = $domain->domain;

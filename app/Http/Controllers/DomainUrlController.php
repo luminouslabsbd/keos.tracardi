@@ -42,10 +42,11 @@ class DomainUrlController extends Controller
             'action'     => $request->action,
             'role'       => $request->role,
             'event_name' => $request->event_name,
-            'event_type' => $request->event_type
+            'event_type' => $request->event_type,
+            'button_id' => $request->button_id
         ]);
 
-        $urls = $domain->urls()->select(['id', 'domain_id', 'url', 'action', 'role', 'event_name', 'event_type'])->get();
+        $urls = $domain->urls()->select(['id', 'domain_id', 'url', 'action', 'role', 'event_name', 'event_type', 'button_id'])->get();
         $jsonData = json_encode($urls);
 
         $domainName = $domain->domain;
@@ -79,10 +80,11 @@ class DomainUrlController extends Controller
             'action' => $request->action,
             'role' => $request->role,
             'event_name' => $request->event_name,
-            'event_type' => $request->event_type
+            'event_type' => $request->event_type,
+            'button_id' => $request->button_id
         ]);
 
-        $urls = $domain->urls()->select(['id', 'domain_id', 'url', 'action', 'role', 'event_name', 'event_type'])->get();
+        $urls = $domain->urls()->select(['id', 'domain_id', 'url', 'action', 'role', 'event_name', 'event_type', 'button_id'])->get();
         $jsonData = json_encode($urls);
 
         $domainName = $domain->domain;
@@ -100,7 +102,7 @@ class DomainUrlController extends Controller
             'status' => $request->status
         ]);
 
-        $urls = $domain->urls()->select(['id', 'domain_id', 'url', 'action', 'role', 'event_name', 'event_type'])->get();
+        $urls = $domain->urls()->select(['id', 'domain_id', 'url', 'action', 'role', 'event_name', 'event_type', 'button_id'])->get();
         $jsonData = json_encode($urls);
 
         $domainName = $domain->domain;
@@ -123,7 +125,7 @@ class DomainUrlController extends Controller
 
 
         //Create Fresh new json
-        $urls = $domain->urls()->select(['id', 'domain_id', 'url', 'action', 'role', 'event_name', 'event_type'])->get();
+        $urls = $domain->urls()->select(['id', 'domain_id', 'url', 'action', 'role', 'event_name', 'event_type', 'button_id'])->get();
         $jsonData = json_encode($urls);
 
         $domainName = $domain->domain;

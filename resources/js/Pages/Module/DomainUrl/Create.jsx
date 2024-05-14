@@ -1,22 +1,28 @@
 import { Link, router, usePage } from "@inertiajs/react";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import MainLayout from "../../Layout/Mainlayout";
 import { useForm } from "react-hook-form";
 
 function Create() {
+    const [showButtonIdOption, setShowButtonIdOption] = useState(false);
     const {
         register: addRegister,
         handleSubmit: handleAddSubmit,
         formState: addFormState,
         reset: addReset,
+        setValue,
     } = useForm();
 
     const { base_url, domain_id } = usePage().props;
     const onSubmit = (data) => {
+        console.log(data);
         router.post("/admin/domain/domain-url/store", data);
         addReset();
     };
-
+    useEffect(() => {
+        // Perform any side effects or logic that depends on the updated value of showButtonIdOption
+        console.log("showButtonIdOption changed:", showButtonIdOption);
+    }, [showButtonIdOption]);
     return (
         <>
             <div className="domains-header grid grid-cols-12 gap-4">
@@ -66,7 +72,9 @@ function Create() {
                 <div className="col-span-12 pt-4">
                     <div className="panel">
                         <div className="mb-2">
-                            <h5 className="mb-2 font-bold">Add New Domain Url</h5>
+                            <h5 className="mb-2 font-bold">
+                                Add New Domain Url
+                            </h5>
                             <hr />
                         </div>
                         <form
@@ -74,7 +82,12 @@ function Create() {
                             method="post"
                         >
                             <div className=" grid grid-cols-2 gap-x-3 gap-y-2">
-                                <input type="hidden" {...addRegister("domain_id", { value: domain_id })}/>
+                                <input
+                                    type="hidden"
+                                    {...addRegister("domain_id", {
+                                        value: domain_id,
+                                    })}
+                                />
                                 <div>
                                     <label className="font-normal">URL</label>
                                     <input
@@ -130,8 +143,22 @@ function Create() {
                                         {...addRegister("event_type", {
                                             required: "Event type is required",
                                         })}
+                                        onChange={(event) => {
+                                            const selectedValue =
+                                                event.target.value;
+                                            console.log(selectedValue);
+                                            setValue(
+                                                "event_type",
+                                                selectedValue
+                                            );
+                                            if (selectedValue == "click") {
+                                                setShowButtonIdOption(true);
+                                            } else {
+                                                setShowButtonIdOption(false);
+                                            }
+                                        }}
                                     >
-                                        <option disabled>
+                                        <option disabled selected>
                                             Select event type
                                         </option>
                                         <option value="click">Click</option>
@@ -149,6 +176,30 @@ function Create() {
                                         </p>
                                     )}
                                 </div>
+
+                                {showButtonIdOption && (
+                                    <div>
+                                        <label className="font-normal pt-2">
+                                            Button ID
+                                        </label>
+                                        <input
+                                            type="text"
+                                            {...addRegister("button_id")}
+                                            className="form-input"
+                                        />
+                                        {addFormState.errors.button_id && (
+                                            <p
+                                                className="text-red-500"
+                                                role="alert"
+                                            >
+                                                {
+                                                    addFormState.errors
+                                                        .button_id.message
+                                                }
+                                            </p>
+                                        )}
+                                    </div>
+                                )}
 
                                 <div>
                                     <label className="font-normal pt-2">

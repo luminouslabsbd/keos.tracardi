@@ -13,9 +13,14 @@ function Create() {
     } = useForm();
     const { base_url } = usePage().props;
     const onSubmit = (data) => {
+        data.domain = extractDomain(data.domain);
         router.post("/admin/domain/store", data);
     };
-
+    const extractDomain = (domain) => {
+        // Remove 'http://' or 'https://' and split by '/'
+        const parts = domain.replace(/(^\w+:|^)\/\//, "").split("/");
+        return parts[0];
+    };
     return (
         <>
             <div className="domains-header grid grid-cols-12 gap-4">

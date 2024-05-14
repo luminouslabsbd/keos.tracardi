@@ -1,0 +1,11 @@
+[
+    {
+        "id": 5,
+        "domain_id": 16,
+        "url": "asfasdf",
+        "action": "client",
+        "role": "scanner",
+        "event_name": "sdfgsdfd",
+        "event_type": "click"
+    }
+]

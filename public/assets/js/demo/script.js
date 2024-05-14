@@ -311,7 +311,7 @@ function checkUrlRoleMapping() {
 
                 // Load the script dynamically
                 loadScript(
-                    "http://localhost/assets/js/test.tracardi.js",
+                    "<APP-URL>/assets/js/<domain-name>.tracardi.js",
                     scriptLoaded
                 );
             }
@@ -364,7 +364,7 @@ function checkUrlRoleMapping() {
 
                                     // Load the script dynamically
                                     loadScript(
-                                        "http://localhost/assets/js/test.tracardi.js",
+                                        "<APP-URL>/assets/js/<domain-name>.tracardi.js",
                                         scriptLoaded
                                     );
 
@@ -382,7 +382,7 @@ function checkUrlRoleMapping() {
     }
     console.log("No matching role found for URL: " + currentUrl);
 }
-var url = "http://localhost/assets/json/test.json";
+var url = "<APP-URL>/assets/json/<domain-name>.json";
 
 fetch(url)
     .then((response) => response.json())
