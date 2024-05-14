@@ -75,8 +75,7 @@ class DomainController extends Controller
 
     public function domainDelete($id)
     {
-        $domain = Domain::where('id', $id)->first();
-        $this->DomainRepository->delete($domain);
+        $this->DomainRepository->domainDelete($id);
         return back()->with('success', 'Domain Delete Successfully');
     }
 
