@@ -57,7 +57,7 @@ class Admin extends Authenticatable
 
     public function permission()
     {
-        return $this->belongsToMany(Permission::class, 'user_permissions');
+        return $this->belongsToMany(Permission::class, 'user_role_permissions');
     }
     public static function groupByName()
     {

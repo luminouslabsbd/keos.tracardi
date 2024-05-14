@@ -16,9 +16,9 @@ class UserTableSeeder extends Seeder
     {
 
         Admin::create([
-            'username'=>'sajjad294',
-            'first_name'=>'Sajjad',
-            'last_name'=>'Hossain',
+            'username'=>'admin',
+            'first_name'=>'Supper',
+            'last_name'=>'Admin',
             'email'=>'admin@gmail.com',
             'password'=>Hash::make('12345678'),
             'status'=>1,

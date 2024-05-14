@@ -250,7 +250,7 @@ function Add() {
 }
 
 Add.layout = (page) => (
-    <MainLayout children={page} title="Luminous E-Shop || Add Permission" />
+    <MainLayout children={page} title="Tacardi || Add Permission" />
 );
 
 export default Add;

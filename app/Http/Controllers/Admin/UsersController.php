@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\PermissionRequest;
 use App\Models\Front\Permission;
 use App\Models\Front\Role;
 use App\Models\User;
@@ -155,7 +154,7 @@ class UsersController extends Controller
 
 
         foreach($finalPermissions as $permissionID){
-            DB::table('user_permissions')->insert([
+            DB::table('user_role_permissions')->insert([
                 'user_id' => $createuser,
                 'permission_id' => $permissionID
             ]);
@@ -181,7 +180,7 @@ class UsersController extends Controller
 
         $user = DB::table('users')->where('id', $userid)->first();
         // $userroles = DB::table('user_roles')->where('user_id', $userid)->get();
-        $userpermissions = DB::table('user_permissions')->where('user_id', $userid)->get();
+        $userpermissions = DB::table('user_role_permissions')->where('user_id', $userid)->get();
 
         // Get user roles from the 'user_roles' table
         $userRoles = DB::table('user_roles')->where('user_id', $userid)->get();
@@ -390,11 +389,11 @@ class UsersController extends Controller
         DB::table('user_roles')->insert($newuserRoleRecords);
 
 
-        $userPermissionExists = DB::table('user_permissions')->where('user_id', $userid)->exists();
+        $userPermissionExists = DB::table('user_role_permissions')->where('user_id', $userid)->exists();
 
         if ($userPermissionExists) {
             // If the user ID exists, delete old records
-            DB::table('user_permissions')->where('user_id', $userid)->delete();
+            DB::table('user_role_permissions')->where('user_id', $userid)->delete();
         }
 
         $newUserPermissionRecords = [];
@@ -405,7 +404,7 @@ class UsersController extends Controller
             ];
         }
 
-        DB::table('user_permissions')->insert($newUserPermissionRecords);
+        DB::table('user_role_permissions')->insert($newUserPermissionRecords);
 
 
         $credentials = $request->only('email', 'password');
@@ -426,7 +425,7 @@ class UsersController extends Controller
 
         $deletedUserRoles = DB::table('user_roles')->where('user_id', $userid)->delete();
 
-        $deletedUserHasPermission = DB::table('user_permissions')->where('user_id', $userid)->delete();
+        $deletedUserHasPermission = DB::table('user_role_permissions')->where('user_id', $userid)->delete();
         $deleted = DB::table('users')->where('id', $userid)->delete();
 
 
