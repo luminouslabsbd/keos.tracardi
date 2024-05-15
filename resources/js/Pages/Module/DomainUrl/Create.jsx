@@ -23,6 +23,12 @@ function Create() {
         // Perform any side effects or logic that depends on the updated value of showButtonIdOption
         console.log("showButtonIdOption changed:", showButtonIdOption);
     }, [showButtonIdOption]);
+
+
+    const handleCsv = (id) => {
+        router.get(`/admin/domain/csv/${id}`);
+    };
+
     return (
         <>
             <div className="domains-header grid grid-cols-12 gap-4">
@@ -64,6 +70,21 @@ function Create() {
                                 <span>Manual URL Create</span>
                             </li>
                         </ul>
+                        <div className="ml-auto">
+                            <a
+                                href="#"
+                                className="inline-block px-2 py-1 leading-none border border-green-500 text-green-500 rounded-md hover:text-white hover:bg-green-500 mr-2"
+                                title="Csv"
+                                onClick={() =>
+                                    handleCsv(
+                                        domain_id
+                                    )
+                                }
+                            >
+                                <i className="las la-delete"></i>
+                                CSV Upload
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
