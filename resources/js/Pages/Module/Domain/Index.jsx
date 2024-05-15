@@ -215,17 +215,6 @@ function Index() {
                                                 </a>
                                                 <a
                                                     href="#"
-                                                    className="inline-block px-2 py-1 leading-none border border-green-500 text-green-500 rounded-md hover:text-white hover:bg-green-500 mr-2"
-                                                    title="Csv"
-                                                    onClick={() =>
-                                                        handleCsv(domain.id)
-                                                    }
-                                                >
-                                                    <i className="las la-delete"></i>
-                                                    CSV Upload
-                                                </a>
-                                                <a
-                                                    href="#"
                                                     className="inline-block px-2 py-1 leading-none border border-blue-500 text-blue-500 rounded-md hover:text-white hover:bg-blue-500 mr-2"
                                                     title="Details"
                                                     onClick={() =>

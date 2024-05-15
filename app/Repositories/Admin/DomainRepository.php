@@ -198,7 +198,7 @@ class DomainRepository
 
             $domainName = $domain->domain;
             $fileName = str_replace(' ', '_', strtolower($domainName)) . '.json';
-            $filePath = public_path('json/' . $fileName);
+            $filePath = public_path('assets/json/' . $fileName);
             file_put_contents($filePath, $jsonData);
 
             $message = "CSV data imported successfully";
