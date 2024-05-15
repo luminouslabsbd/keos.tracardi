@@ -22,10 +22,6 @@ function Index() {
         router.get(`/admin/domain/domain-url/create/${id}`);
     };
 
-    const handleCsv = (id) => {
-        router.get(`/admin/domain/csv/${id}`);
-    };
-
     const handleDetails = (id) => {
         router.get(`/admin/domain/details/${id}`);
     };
