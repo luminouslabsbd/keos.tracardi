@@ -153,7 +153,7 @@ class DomainRepository
 
         $domainName = $domain->domain;
         $fileName = str_replace(' ', '_', strtolower($domainName)) . '.json';
-        $filePath = public_path('json/' . $fileName);
+        $filePath = public_path('assets/json/' . $fileName);
         file_put_contents($filePath, '');
     }
 
@@ -166,7 +166,7 @@ class DomainRepository
         $domain = Domain::findOrFail($request['id']);
         $domainName = $domain->domain;
         $fileName = str_replace(' ', '_', strtolower($domainName)) . '.json';
-        $filePath = public_path('json/' . $fileName);
+        $filePath = public_path('assets/json/' . $fileName);
 
         if ($request->status == 1) {
             $urls = $domain->urls()->select(['id', 'domain_id', 'url', 'action', 'role', 'event_name', 'event_type', 'button_id'])->get();
