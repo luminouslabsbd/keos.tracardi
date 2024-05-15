@@ -1,7 +1,13 @@
 import { Link, router, usePage } from "@inertiajs/react";
 import MainLayout from "../../Layout/Mainlayout";
+import { CopyToClipboard } from "react-copy-to-clipboard";
+import { useState } from "react";
 
 function Index() {
+    const [clipboard, setClipboard] = useState({
+        value: "",
+        copied: false,
+    });
     const { domains, base_url } = usePage().props;
 
     const handleCreate = () => {
@@ -96,8 +102,13 @@ function Index() {
             <div className="pt-5">
                 <div className="col-span-12 pt-4">
                     <div className="panel">
-                        <div className="mb-2">
+                        <div className="mb-2 flex justify-between items-center">
                             <h5 className="font-bold">Domain list</h5>
+                            {clipboard.copied ? (
+                                <span style={{ color: "red" }}>
+                                    Url copied.
+                                </span>
+                            ) : null}
                         </div>
                         <hr />
 
@@ -142,6 +153,31 @@ function Index() {
                                         </td>
                                         <td className="!tex-right">
                                             <div className="flex justify-end">
+                                                <CopyToClipboard
+                                                    className="inline-block px-2 py-1 leading-none border border-yellow-500 text-yellow-500 rounded-md hover:text-black hover:bg-yellow-500 mr-2"
+                                                    text={`${
+                                                        base_url +
+                                                        "/assets/js/" +
+                                                        domain.domain
+                                                            .toLowerCase()
+                                                            .replace(/ /g, "_")
+                                                    }.js`}
+                                                    onCopy={() => {
+                                                        setClipboard({
+                                                            copied: true,
+                                                        });
+
+                                                        setTimeout(
+                                                            () =>
+                                                                setClipboard({
+                                                                    copied: false,
+                                                                }),
+                                                            500
+                                                        );
+                                                    }}
+                                                >
+                                                    <button>Copy URL</button>
+                                                </CopyToClipboard>
                                                 <a
                                                     href="#"
                                                     className="inline-block px-2 py-1 leading-none border border-blue-500 text-blue-500 rounded-md hover:text-white hover:bg-blue-500 mr-2"
@@ -182,9 +218,7 @@ function Index() {
                                                     className="inline-block px-2 py-1 leading-none border border-green-500 text-green-500 rounded-md hover:text-white hover:bg-green-500 mr-2"
                                                     title="Csv"
                                                     onClick={() =>
-                                                        handleCsv(
-                                                            domain.id
-                                                        )
+                                                        handleCsv(domain.id)
                                                     }
                                                 >
                                                     <i className="las la-delete"></i>
@@ -195,9 +229,7 @@ function Index() {
                                                     className="inline-block px-2 py-1 leading-none border border-blue-500 text-blue-500 rounded-md hover:text-white hover:bg-blue-500 mr-2"
                                                     title="Details"
                                                     onClick={() =>
-                                                        handleDetails(
-                                                            domain.id
-                                                        )
+                                                        handleDetails(domain.id)
                                                     }
                                                 >
                                                     <i className="las la-delete"></i>
