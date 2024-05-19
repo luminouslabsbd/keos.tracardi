@@ -299,19 +299,23 @@ function checkUrlRoleMapping() {
                 // Callback function to execute after the script is loaded
                 function scriptLoaded() {
                     // Now you can use window.tracker safely
-                    console.log("Script loaded successfully");
-                    window.tracker.track(jsonUrls[i]?.event_name, {
-                        // Tag: mapping.role,
+                    console.log("Script loaded successfully", jsonUrls[i]);
+                    // window.tracker.track(jsonUrls[i]?.event_name, {
+                    //     // Tag: mapping.role,
+                    //     //Sending this while every mapping.role is same
+                    //     Type: jsonUrls[i]?.event_type,
+                    //     Role: jsonUrls[i]?.role,
+                    //     Action: jsonUrls[i]?.action,
+                    // });
+                    window.tracker.track("View event on load", {
                         //Sending this while every mapping.role is same
-                        Type: jsonUrls[i]?.event_type,
-                        Role: jsonUrls[i]?.role,
-                        Action: jsonUrls[i]?.action,
+                        Type: "View event",
                     });
                 }
 
                 // Load the script dynamically
                 loadScript(
-                    "http://localhost/assets/js/test.tracardi.js",
+                    "http://127.0.0.1:8000/assets/js/test.tracardi.js",
                     scriptLoaded
                 );
             }
@@ -364,7 +368,7 @@ function checkUrlRoleMapping() {
 
                                     // Load the script dynamically
                                     loadScript(
-                                        "http://localhost/assets/js/test.tracardi.js",
+                                        "http://127.0.0.1:8000/assets/js/test.tracardi.js",
                                         scriptLoaded
                                     );
 
@@ -382,7 +386,7 @@ function checkUrlRoleMapping() {
     }
     console.log("No matching role found for URL: " + currentUrl);
 }
-var url = "http://localhost/assets/json/test.json";
+var url = "http://127.0.0.1:8000/assets/json/test.json";
 
 fetch(url)
     .then((response) => response.json())
@@ -394,3 +398,55 @@ fetch(url)
     .catch((error) => {
         console.error("Error fetching JSON:", error);
     });
+
+// Function to check if event origin exists in JSON data URLs
+function isEventOriginInJsonData(eventOrigin) {
+    // Check if event origin exists in any of the URLs in JSON data
+    return jsonUrls.some((item) => item.url.startsWith(eventOrigin));
+}
+// Function to handle messages from child apps
+function handleMessageFromChild(event) {
+    const messageData = event.data;
+    // Check if the message is from an allowed origin
+    if (isEventOriginInJsonData(window.location.href)) {
+        // Extract message data from the event
+
+        // Check if the message is of interest (e.g., based on type)
+        if (messageData.type === "registerFormSubmitted") {
+            // Process the message data
+            console.log(
+                "Received message from child:",
+                event.data,
+                "-------- origin"
+            );
+            function loadScript(url, callback) {
+                var script = document.createElement("script");
+                script.type = "text/javascript";
+                script.src = url;
+
+                // Execute the callback function after the script is loaded
+                script.onload = callback;
+
+                // Append the script element to the document's head
+                document.head.appendChild(script);
+            }
+
+            // Callback function to execute after the script is loaded
+            function scriptLoaded() {
+                console.log("Script loaded successfully");
+                window.tracker.track("Form submit event", {
+                    FormData: event.data,
+                });
+            }
+
+            loadScript(
+                "http://127.0.0.1:8000/assets/js/test.tracardi.js",
+                scriptLoaded
+            );
+        }
+    } else {
+        console.log("Event origin is not allowed:", window.location.href);
+    }
+}
+// Listen for messages from child apps
+window.addEventListener("message", handleMessageFromChild);

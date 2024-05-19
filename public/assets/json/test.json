@@ -2,11 +2,21 @@
     {
         "id": 1,
         "domain_id": 1,
-        "url": "Delectus reiciendis",
+        "url": "http://127.0.0.1:8001/admin/app",
         "action": "lead",
         "role": "assistant",
         "event_name": "Gary Moody",
         "event_type": "click",
         "button_id": "up"
+    },
+    {
+        "id": 2,
+        "domain_id": 1,
+        "url": "http://127.0.0.1:8001/admin/dashboard",
+        "action": "lead",
+        "role": "assistant",
+        "event_name": "Blaine Boyer",
+        "event_type": "view",
+        "button_id": null
     }
 ]

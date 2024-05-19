@@ -253,8 +253,8 @@ var options = {
     tracker: {
         url: {
             // This is url to tracardi backend. Please mind the correct port.
-            script: "Nostrud aute ea ut e/tracker",
-            api: "Nostrud aute ea ut e",
+            script: "https://stg-bdp-api.keos.co/tracker",
+            api: "https://stg-bdp-api.keos.co",
         },
         source: {
             id: "c924ba93-9a58-4c05-b0bc-eb0553dc2e07",
