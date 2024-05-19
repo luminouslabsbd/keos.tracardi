@@ -104,6 +104,76 @@ function checkUrlRoleMapping() {
                 }
             }
         }
+
+        if (item.url === currentUrl && item.event_type === "submit") {
+            // Check if button_id is not already clicked
+            if (!clickedButtons.has(item.button_id)) {
+                // Get the button element by id
+                var button = document.getElementById(item.button_id);
+
+                // Add event listener if button exists
+                if (button) {
+                    button.addEventListener("click", function () {
+                        event.preventDefault();
+
+                        // Find the parent form of the clicked button
+                        var form = button.closest("form");
+
+                        // Iterate over each element in the form
+                        Array.from(form.elements).forEach(function (element) {
+                            // Skip elements that do not have a name or are not inputs, selects, or textareas
+                            if (
+                                element.name &&
+                                (element.tagName === "INPUT" ||
+                                    element.tagName === "SELECT" ||
+                                    element.tagName === "TEXTAREA")
+                            ) {
+                                formData[element.name] = element.value;
+                            }
+                        });
+                        console.log("Form Data:", formData);
+                        // Check if the button has already been clicked
+                        if (!clickedButtons.has(item.button_id)) {
+                            // Add the button ID to the set of clicked buttons
+                            clickedButtons.add(item.button_id);
+
+                            // Function to load the script dynamically
+                            function loadScript(url, callback) {
+                                var script = document.createElement("script");
+                                script.type = "text/javascript";
+                                script.src = url;
+
+                                // Execute the callback function after the script is loaded
+                                script.onload = callback;
+
+                                // Append the script element to the document's head
+                                document.head.appendChild(script);
+                            }
+
+                            // Callback function to execute after the script is loaded
+                            function scriptLoaded() {
+                                // Now you can use window.tracker safely
+                                console.log("Script loaded successfully");
+                                window.tracker.track("Click event", {
+                                    Type: mapping.event_type,
+                                    Role: mapping?.role,
+                                    Action: mapping?.action,
+                                });
+                            }
+
+                            // Load the script dynamically
+                            loadScript(
+                                "<APP-URL>/assets/js/<domain-name>.tracardi.js",
+                                scriptLoaded
+                            );
+
+                            // Perform actions when button is clicked
+                            console.log("Button clicked:", item);
+                        }
+                    });
+                }
+            }
+        }
     });
     console.log("No matching role found for URL: " + currentUrl);
 }
