@@ -20,4 +20,5 @@ yarn-error.log
 /public/build
 /public/assets/json/*
 /public/assets/js/*
+!/public/assets/js/demo/
 /public/json/*

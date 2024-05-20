@@ -175,6 +175,7 @@ function Edit() {
                                         </option>
                                         <option value="click">Click</option>
                                         <option value="view">View</option>
+                                        <option value="submit">Submit</option>
                                     </select>
                                     {addFormState.errors.event_type && (
                                         <p
