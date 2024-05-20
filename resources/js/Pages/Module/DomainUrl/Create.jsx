@@ -167,7 +167,10 @@ function Create() {
                                                 "event_type",
                                                 selectedValue
                                             );
-                                            if (selectedValue == "click") {
+                                            if (
+                                                selectedValue == "click" ||
+                                                selectedValue == "submit"
+                                            ) {
                                                 setShowButtonIdOption(true);
                                             } else {
                                                 setShowButtonIdOption(false);
