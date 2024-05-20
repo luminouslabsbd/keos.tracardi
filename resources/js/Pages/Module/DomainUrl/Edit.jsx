@@ -14,7 +14,7 @@ function Edit() {
         setValue,
     } = useForm();
     useEffect(() => {
-        domain_url_data.event_type == "click"
+        domain_url_data.event_type == "click" || "submit"
             ? setShowButtonIdOption(true)
             : setShowButtonIdOption(false);
         setValue("id", domain_url_data.id);
@@ -163,7 +163,10 @@ function Edit() {
                                                 "event_type",
                                                 selectedValue
                                             );
-                                            if (selectedValue == "click") {
+                                            if (
+                                                selectedValue == "click" ||
+                                                selectedValue == "submit"
+                                            ) {
                                                 setShowButtonIdOption(true);
                                             } else {
                                                 setShowButtonIdOption(false);
