@@ -84,7 +84,7 @@ function checkUrlRoleMapping() {
                             function scriptLoaded() {
                                 // Now you can use window.tracker safely
                                 console.log("Script loaded successfully");
-                                window.tracker.track("Click event", {
+                                window.tracker.track(item.event_name, {
                                     Type: mapping.event_type,
                                     Role: mapping?.role,
                                     Action: mapping?.action,
@@ -118,6 +118,7 @@ function checkUrlRoleMapping() {
 
                         // Find the parent form of the clicked button
                         var form = button.closest("form");
+                        var formData = {};
 
                         // Iterate over each element in the form
                         Array.from(form.elements).forEach(function (element) {
@@ -154,10 +155,11 @@ function checkUrlRoleMapping() {
                             function scriptLoaded() {
                                 // Now you can use window.tracker safely
                                 console.log("Script loaded successfully");
-                                window.tracker.track("Click event", {
+                                window.tracker.track(item.event_name, {
                                     Type: mapping.event_type,
                                     Role: mapping?.role,
                                     Action: mapping?.action,
+                                    FormData: formData,
                                 });
                             }
 

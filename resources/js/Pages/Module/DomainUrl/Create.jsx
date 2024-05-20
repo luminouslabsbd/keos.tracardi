@@ -24,7 +24,6 @@ function Create() {
         console.log("showButtonIdOption changed:", showButtonIdOption);
     }, [showButtonIdOption]);
 
-
     const handleCsv = (id) => {
         router.get(`/admin/domain/csv/${id}`);
     };
@@ -75,11 +74,7 @@ function Create() {
                                 href="#"
                                 className="inline-block px-2 py-1 leading-none border border-green-500 text-green-500 rounded-md hover:text-white hover:bg-green-500 mr-2"
                                 title="Csv"
-                                onClick={() =>
-                                    handleCsv(
-                                        domain_id
-                                    )
-                                }
+                                onClick={() => handleCsv(domain_id)}
                             >
                                 <i className="las la-delete"></i>
                                 CSV Upload
@@ -184,6 +179,7 @@ function Create() {
                                         </option>
                                         <option value="click">Click</option>
                                         <option value="view">View</option>
+                                        <option value="submit">Submit</option>
                                     </select>
                                     {addFormState.errors.event_type && (
                                         <p
