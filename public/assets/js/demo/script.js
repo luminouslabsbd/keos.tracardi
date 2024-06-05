@@ -27,16 +27,10 @@ function checkUrlRoleMapping() {
             function scriptLoaded() {
                 // Now you can use window.tracker safely
                 console.log("Script loaded successfully");
-                // window.tracker.track(jsonUrls[i]?.event_name, {
-                //     //Sending this while every mapping.role is same
-                //     Type: jsonUrls[i]?.event_type,
-                //     Role: jsonUrls[i]?.role,
-                //     Action: jsonUrls[i]?.action,
-                // });
-
-                window.tracker.track("View event on load", {
-                    //Sending this while every mapping.role is same
-                    Type: "View event",
+                window.tracker.track(jsonUrls[i]?.event_name, {
+                    Type: jsonUrls[i]?.event_type,
+                    Role: jsonUrls[i]?.role,
+                    Action: jsonUrls[i]?.action,
                 });
             }
 
