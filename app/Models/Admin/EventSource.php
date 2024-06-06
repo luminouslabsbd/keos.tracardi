@@ -11,6 +11,8 @@ class EventSource extends Model
 
     protected $fillable = [
         'name',
+        'user_id',
+        'status',
         'script_code'
     ];
 }

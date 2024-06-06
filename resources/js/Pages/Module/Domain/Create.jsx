@@ -2,6 +2,7 @@ import { Link, router, usePage } from "@inertiajs/react";
 import React, { useState } from "react";
 import MainLayout from "../../Layout/Mainlayout";
 import { useForm } from "react-hook-form";
+import ReactSelect from "react-select";
 
 function Create() {
     const [inputValue, setInputValue] = useState("");
@@ -10,8 +11,9 @@ function Create() {
         handleSubmit: handleAddSubmit,
         formState: addFormState,
         reset: addReset,
+        setValue,
     } = useForm();
-    const { base_url } = usePage().props;
+    const { base_url, eventSources } = usePage().props;
     const onSubmit = (data) => {
         data.domain = extractDomain(data.domain);
         router.post("/admin/domain/store", data);
@@ -21,6 +23,11 @@ function Create() {
         const parts = domain.replace(/(^\w+:|^)\/\//, "").split("/");
         return parts[0];
     };
+    console.log(eventSources);
+    const eventSourcesOptions = eventSources.map((es) => ({
+        label: es.name,
+        value: es.id,
+    }));
     return (
         <>
             <div className="domains-header grid grid-cols-12 gap-4">
@@ -77,84 +84,135 @@ function Create() {
                             onSubmit={handleAddSubmit(onSubmit)}
                             method="post"
                         >
-                            <div>
-                                <label className="font-normal">
-                                    Domain name
-                                </label>
-                                <input
-                                    type="text"
-                                    {...addRegister("domain", {
-                                        required: "Domain name is required",
-                                    })}
-                                    className="form-input"
-                                    placeholder="Enter your domain name"
-                                />
-                                {addFormState.errors.domain && (
-                                    <p className="text-red-500" role="alert">
-                                        {addFormState.errors.domain.message}
-                                    </p>
-                                )}
-                            </div>
-                            <div>
-                                <label className="font-normal pt-2">
-                                    Username
-                                </label>
-                                <input
-                                    type="text"
-                                    {...addRegister("user_name", {
-                                        required: "User name is required",
-                                    })}
-                                    className="form-input"
-                                    placeholder="Enter your username"
-                                />
-                                {addFormState.errors.user_name && (
-                                    <p className="text-red-500" role="alert">
-                                        {addFormState.errors.user_name.message}
-                                    </p>
-                                )}
-                            </div>
-                            <div>
-                                <label className="font-normal pt-2">
-                                    User password
-                                </label>
-                                <input
-                                    type="text"
-                                    {...addRegister("user_pass", {
-                                        required: "User password is required",
-                                    })}
-                                    className="form-input"
-                                    placeholder="Enter your password name"
-                                    value={inputValue}
-                                    onChange={(e) =>
-                                        setInputValue(e.target.value)
-                                    }
-                                />
-                                {addFormState.errors.user_pass && (
-                                    <p className="text-red-500" role="alert">
-                                        {addFormState.errors.user_pass.message}
-                                    </p>
-                                )}
-                            </div>
-                            <div>
-                                <label className="font-normal pt-2">
-                                    Backend API url
-                                </label>
-                                <input
-                                    type="text"
-                                    {...addRegister("backend_api_url", {
-                                        required: "User password is required",
-                                    })}
-                                    className="form-input"
-                                    placeholder="Enter your Backend API url"
-                                />
-                                {addFormState.errors.backend_api_url && (
-                                    <p className="text-red-500" role="alert">
-                                        {
-                                            addFormState.errors.backend_api_url
-                                                .message
+                            <div className=" grid grid-cols-1 sm:grid-cols-2 gap-y-3 sm:gap-x-4">
+                                <div>
+                                    <label className="font-normal">
+                                        Event source
+                                    </label>
+                                    <ReactSelect
+                                        {...addRegister("event_source_id", {
+                                            required:
+                                                "Event source is required",
+                                        })}
+                                        options={eventSourcesOptions}
+                                        onChange={(i) => {
+                                            setValue(
+                                                "event_source_id",
+                                                i.value
+                                            );
+                                        }}
+                                    />
+                                    {addFormState.errors.event_source_id && (
+                                        <p
+                                            className="text-red-500"
+                                            role="alert"
+                                        >
+                                            {
+                                                addFormState.errors
+                                                    .event_source_id.message
+                                            }
+                                        </p>
+                                    )}
+                                </div>
+                                <div>
+                                    <label className="font-normal">
+                                        Domain name
+                                    </label>
+                                    <input
+                                        type="text"
+                                        {...addRegister("domain", {
+                                            required: "Domain name is required",
+                                        })}
+                                        className="form-input"
+                                        placeholder="Enter your domain name"
+                                    />
+                                    {addFormState.errors.domain && (
+                                        <p
+                                            className="text-red-500"
+                                            role="alert"
+                                        >
+                                            {addFormState.errors.domain.message}
+                                        </p>
+                                    )}
+                                </div>
+                                <div>
+                                    <label className="font-normal pt-2">
+                                        Username
+                                    </label>
+                                    <input
+                                        type="text"
+                                        {...addRegister("user_name", {
+                                            required: "User name is required",
+                                        })}
+                                        className="form-input"
+                                        placeholder="Enter your username"
+                                    />
+                                    {addFormState.errors.user_name && (
+                                        <p
+                                            className="text-red-500"
+                                            role="alert"
+                                        >
+                                            {
+                                                addFormState.errors.user_name
+                                                    .message
+                                            }
+                                        </p>
+                                    )}
+                                </div>
+                                <div>
+                                    <label className="font-normal pt-2">
+                                        User password
+                                    </label>
+                                    <input
+                                        type="text"
+                                        {...addRegister("user_pass", {
+                                            required:
+                                                "User password is required",
+                                        })}
+                                        className="form-input"
+                                        placeholder="Enter your password name"
+                                        value={inputValue}
+                                        onChange={(e) =>
+                                            setInputValue(e.target.value)
                                         }
-                                    </p>
-                                )}
+                                    />
+                                    {addFormState.errors.user_pass && (
+                                        <p
+                                            className="text-red-500"
+                                            role="alert"
+                                        >
+                                            {
+                                                addFormState.errors.user_pass
+                                                    .message
+                                            }
+                                        </p>
+                                    )}
+                                </div>
+                                <div>
+                                    <label className="font-normal pt-2">
+                                        Backend API url
+                                    </label>
+                                    <input
+                                        type="text"
+                                        {...addRegister("backend_api_url", {
+                                            required:
+                                                "User password is required",
+                                        })}
+                                        className="form-input"
+                                        placeholder="Enter your Backend API url"
+                                    />
+                                    {addFormState.errors.backend_api_url && (
+                                        <p
+                                            className="text-red-500"
+                                            role="alert"
+                                        >
+                                            {
+                                                addFormState.errors
+                                                    .backend_api_url.message
+                                            }
+                                        </p>
+                                    )}
+                                </div>
                             </div>
                             <button
                                 type="submit"

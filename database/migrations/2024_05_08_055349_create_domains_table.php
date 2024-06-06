@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('domains', function (Blueprint $table) {
             $table->id();
             $table->integer('user_id');
+            $table->foreignId('event_source_id')->constrained();
             $table->string('domain')->unique();
             $table->string('user_name');
             $table->string('user_pass');

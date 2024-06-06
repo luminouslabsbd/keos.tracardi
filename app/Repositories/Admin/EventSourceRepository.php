@@ -26,19 +26,19 @@ class EventSourceRepository
 
     public function store($request)
     {
+        // dd(Auth::guard('admin')->id());
         $data = $this->model::updateOrCreate(
             ['id' => $request->id],
             [
+                'user_id' => Auth::user()->id,
                 'name' => $request->name,
                 'script_code' => $request->script_code,
             ]
         );
-        // dd(!$request->id);
-        if (!$request->id) {
+        if (!$request->id && $data->wasRecentlyCreated) {
             $message = "Event source Created Successfully";
-            $o = $this->createJsFile($request->name, $request->script_code);
+            $this->createJsFile($request->name, $request->script_code);
         } else {
-            // dd($request->name, $request->script_code);
             $message = "Event source Updated Successfully";
             $this->updateJsFile($request->oldName, $request->name, $request->script_code);
         }
@@ -63,7 +63,6 @@ class EventSourceRepository
     private function deleteJsFile($source)
     {
         $file = str_replace(' ', '_', strtolower($source)) . '.source.js';
-        // dd(File::exists(public_path("assets/js/$file")));
         // Generate file names for the domain
         if (File::exists(public_path("assets/js/$file"))) {
             File::delete(public_path("assets/js/$file"));
@@ -79,22 +78,9 @@ class EventSourceRepository
 
     public function statusUpdate($request)
     {
-        DB::table('domains')->where('id', $request->id)->update([
+        $this->model->where('id', $request->id)->update([
             'status' => $request->status
         ]);
-
-        $domain = $this->model::findOrFail($request['id']);
-        $domainName = $domain->domain;
-        $fileName = str_replace(' ', '_', strtolower($domainName)) . '.json';
-        $filePath = public_path('assets/json/' . $fileName);
-
-        if ($request->status == 1) {
-            $urls = $domain->urls()->select(['id', 'domain_id', 'url', 'action', 'role', 'event_name', 'event_type', 'button_id'])->get();
-            $jsonData = json_encode($urls);
-            file_put_contents($filePath, $jsonData);
-        } else {
-            file_put_contents($filePath, '');
-        }
 
         $message = "Domain status updated successfully";
         return ['message' => $message,];

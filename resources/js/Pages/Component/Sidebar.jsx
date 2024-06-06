@@ -265,7 +265,7 @@ function Sidebar({ handleToggleSidebar }) {
                                                         <ul className="sub-menu text-gray-500">
                                                             <li>
                                                                 <Link
-                                                                    href={`${base_url}/admin/domain/create`}
+                                                                    href={`/admin/domain/create`}
                                                                 >
                                                                     {t(
                                                                         "Add Domain"
@@ -274,7 +274,7 @@ function Sidebar({ handleToggleSidebar }) {
                                                             </li>
                                                             <li>
                                                                 <Link
-                                                                    href={`${base_url}/admin/domain/domains`}
+                                                                    href={`/admin/domain/domains`}
                                                                 >
                                                                     {t(
                                                                         "All Domain"

@@ -4,6 +4,7 @@ namespace App\Repositories\Admin;
 
 use App\Imports\CsvImport;
 use App\Models\Admin\Domain;
+use App\Models\Admin\EventSource;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
@@ -45,11 +46,21 @@ class DomainRepository
         }
 
         $oldDomain = Domain::where('id', $id)->select(['id', 'domain'])->first();
-        // dd($oldDomain);
+
+        $eventSource = EventSource::select(['name'])->findOrFail($request->event_source_id);
+
+        $filePath = public_path('assets/js/' . $eventSource->name . '.source.js');
+
+        if (File::exists($filePath)) {
+            dd(File::get($filePath));
+        } else {
+            dd('File does not exist: ' . $filePath);
+        }
 
         $data = $this->model::updateOrCreate(
             ['id' => $id],
             [
+                'event_source_id' => $request->event_source_id,
                 'user_id' => Auth::user()->id,
                 'domain' => $request->domain,
                 'user_name' => $request->user_name,

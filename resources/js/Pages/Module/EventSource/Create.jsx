@@ -106,6 +106,7 @@ function Create() {
                                     {...addRegister("script_code", {
                                         required: "Script code is required",
                                     })}
+                                    rows={10}
                                     className="form-input"
                                 ></textarea>
                                 {addFormState.errors.script_code && (
