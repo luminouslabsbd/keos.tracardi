@@ -49,8 +49,10 @@ class EventSourceController extends Controller
 
     public function edit(EventSource $eventSource)
     {
+        $base_url = config('app.url');
         return Inertia::render('Module/EventSource/Edit', [
-            'eventSource' => $eventSource
+            'eventSource' => $eventSource,
+            'base_url' => $base_url
         ]);
     }
 
@@ -76,7 +78,7 @@ class EventSourceController extends Controller
 
     public function destroy(EventSource $eventSource)
     {
-        $eventSource->delete();
+        $this->repository->delete($eventSource);
         return back()->with('success', 'Domain Delete Successfully');
     }
 

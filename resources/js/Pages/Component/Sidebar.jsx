@@ -362,7 +362,7 @@ function Sidebar({ handleToggleSidebar }) {
                                                         <ul className="sub-menu text-gray-500">
                                                             <li>
                                                                 <Link
-                                                                    href={`${base_url}/admin/event-sources/create`}
+                                                                    href={`/admin/event-sources/create`}
                                                                 >
                                                                     {t(
                                                                         "Add source"
@@ -371,7 +371,7 @@ function Sidebar({ handleToggleSidebar }) {
                                                             </li>
                                                             <li>
                                                                 <Link
-                                                                    href={`${base_url}/admin/event-sources`}
+                                                                    href={`/admin/event-sources`}
                                                                 >
                                                                     {t(
                                                                         "All event sources"

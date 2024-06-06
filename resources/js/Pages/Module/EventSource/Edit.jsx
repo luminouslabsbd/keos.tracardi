@@ -2,12 +2,9 @@ import { Link, router, usePage } from "@inertiajs/react";
 import React, { useEffect, useState } from "react";
 import MainLayout from "../../Layout/Mainlayout";
 import { useForm } from "react-hook-form";
-// import usePage from "@inertiajs/react";
 
 function Edit() {
-    const { domain } = usePage().props;
-    console.log(domain);
-    const [inputValue, setInputValue] = useState("");
+    const { base_url, eventSource } = usePage().props;
     const {
         register: addRegister,
         handleSubmit: handleAddSubmit,
@@ -16,22 +13,19 @@ function Edit() {
         setValue,
     } = useForm();
     useEffect(() => {
-        setValue("id", domain.id);
-        setValue("domain", domain.domain);
-        setValue("user_name", domain.user_name);
-        setValue("user_pass", domain.user_pass);
-        setValue("backend_api_url", domain.backend_api_url);
+        setValue("id", eventSource.id);
+        setValue("name", eventSource.name);
+        setValue("oldName", eventSource.name);
+        setValue("script_code", eventSource.script_code);
     });
-    const { base_url } = usePage().props;
     const onSubmit = (data) => {
-        data.domain = extractDomain(data.domain);
-        router.post("/admin/domain/update", data);
-        addReset();
+        data.script_code = removeScriptTags(data.script_code);
+        console.log(data);
+        router.post("/admin/event-sources/update", data);
     };
-    const extractDomain = (domain) => {
-        // Remove 'http://' or 'https://' and split by '/'
-        const parts = domain.replace(/(^\w+:|^)\/\//, "").split("/");
-        return parts[0];
+    console.log(addFormState.errors);
+    const removeScriptTags = (input) => {
+        return input.replace(/<\/?script\b[^>]*>/gi, "");
     };
     return (
         <>
@@ -64,14 +58,14 @@ function Edit() {
                         <ul className="flex space-x-2 rtl:space-x-reverse">
                             <li>
                                 <Link
-                                    href={`${base_url}/admin/domain/domains`}
+                                    href={`${base_url}/admin/dashboard`}
                                     className="text-[#ff6243] hover:underline"
                                 >
-                                    Domain
+                                    Dashboard
                                 </Link>
                             </li>
                             <li className="before:content-['/'] ltr:before:mr-2 rtl:before:ml-2">
-                                <span>Domain Edit</span>
+                                <span>Event source Create</span>
                             </li>
                         </ul>
                     </div>
@@ -82,7 +76,9 @@ function Edit() {
                 <div className="col-span-12 pt-4">
                     <div className="panel">
                         <div className="mb-2">
-                            <h5 className="mb-2 font-bold">Edit domain</h5>
+                            <h5 className="mb-2 font-bold">
+                                Add New Event source
+                            </h5>
                             <hr />
                         </div>
                         <form
@@ -94,80 +90,45 @@ function Edit() {
                                 type="hidden"
                                 name=""
                             />
+                            <input
+                                {...addRegister("oldName")}
+                                type="hidden"
+                                name=""
+                            />
                             <div>
                                 <label className="font-normal">
-                                    Domain name
+                                    Event source name
                                 </label>
                                 <input
                                     type="text"
-                                    {...addRegister("domain", {
-                                        required: "Domain name is required",
+                                    {...addRegister("name", {
+                                        required:
+                                            "Event source name is required",
                                     })}
                                     className="form-input"
-                                    placeholder="Enter your domain name"
+                                    placeholder="Enter event source name"
                                 />
-                                {addFormState.errors.domain && (
+                                {addFormState.errors.name && (
                                     <p className="text-red-500" role="alert">
-                                        {addFormState.errors.domain.message}
+                                        {addFormState.errors.name.message}
                                     </p>
                                 )}
                             </div>
                             <div>
                                 <label className="font-normal pt-2">
-                                    Username
+                                    Script code (Javascript snippet)
                                 </label>
-                                <input
+                                <textarea
                                     type="text"
-                                    {...addRegister("user_name", {
-                                        required: "User name is required",
+                                    {...addRegister("script_code", {
+                                        required: "Script code is required",
                                     })}
                                     className="form-input"
-                                    placeholder="Enter your username"
-                                />
-                                {addFormState.errors.user_name && (
-                                    <p className="text-red-500" role="alert">
-                                        {addFormState.errors.user_name.message}
-                                    </p>
-                                )}
-                            </div>
-                            <div>
-                                <label className="font-normal pt-2">
-                                    User password
-                                </label>
-                                <input
-                                    type="text"
-                                    {...addRegister("user_pass", {
-                                        required: "User password is required",
-                                    })}
-                                    className="form-input"
-                                    placeholder="Enter your password"
-                                    value={inputValue}
-                                    onChange={(e) =>
-                                        setInputValue(e.target.value)
-                                    }
-                                />
-                                {addFormState.errors.user_pass && (
-                                    <p className="text-red-500" role="alert">
-                                        {addFormState.errors.user_pass.message}
-                                    </p>
-                                )}
-                            </div>
-                            <div>
-                                <label className="font-normal pt-2">
-                                    Backend API url
-                                </label>
-                                <input
-                                    type="text"
-                                    {...addRegister("backend_api_url", {
-                                        required: "User password is required",
-                                    })}
-                                    className="form-input"
-                                    placeholder="Enter your Backend API url"
-                                />
-                                {addFormState.errors.backend_api_url && (
+                                ></textarea>
+                                {addFormState.errors.script_code && (
                                     <p className="text-red-500" role="alert">
                                         {
-                                            addFormState.errors.backend_api_url
+                                            addFormState.errors.script_code
                                                 .message
                                         }
                                     </p>
