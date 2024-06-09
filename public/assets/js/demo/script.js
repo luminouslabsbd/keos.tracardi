@@ -1,4 +1,4 @@
-var jsonUrls = [];
+var jsonUrls = "<json>";
 
 function checkUrlRoleMapping() {
     var currentUrl = window.location.href;
@@ -173,18 +173,18 @@ function checkUrlRoleMapping() {
     });
     console.log("No matching role found for URL: " + currentUrl);
 }
-var url = "<APP-URL>/assets/json/<domain-name>.json";
+// var url = "<APP-URL>/assets/json/<domain-name>.json";
 
-fetch(url)
-    .then((response) => response.json())
-    .then((data) => {
-        jsonUrls = data;
-        console.log(data);
-        checkUrlRoleMapping();
-    })
-    .catch((error) => {
-        console.error("Error fetching JSON:", error);
-    });
+// fetch(url)
+//     .then((response) => response.json())
+//     .then((data) => {
+//         jsonUrls = data;
+//         console.log(data);
+//         checkUrlRoleMapping();
+//     })
+//     .catch((error) => {
+//         console.error("Error fetching JSON:", error);
+//     });
 
 // Function to check if event origin exists in JSON data URLs
 function isEventOriginInJsonData(eventOrigin) {
