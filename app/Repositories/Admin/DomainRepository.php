@@ -5,6 +5,7 @@ namespace App\Repositories\Admin;
 use App\Imports\CsvImport;
 use App\Models\Admin\Domain;
 use App\Models\Admin\EventSource;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
@@ -47,16 +48,6 @@ class DomainRepository
 
         $oldDomain = Domain::where('id', $id)->select(['id', 'domain'])->first();
 
-        $eventSource = EventSource::select(['name'])->findOrFail($request->event_source_id);
-
-        $filePath = public_path('assets/js/' . $eventSource->name . '.source.js');
-
-        if (File::exists($filePath)) {
-            dd(File::get($filePath));
-        } else {
-            dd('File does not exist: ' . $filePath);
-        }
-
         $data = $this->model::updateOrCreate(
             ['id' => $id],
             [
@@ -69,9 +60,10 @@ class DomainRepository
             ]
         );
 
+        $message = '';
         if ($data->wasRecentlyCreated) {
             $message = "Domain Created Successfully";
-            $this->createJsFile($request->domain, $request->backend_api_url);
+            $this->createJsFile($request->domain, $request->backend_api_url, $request->event_source_id);
         } else {
             $message = "Domain Updated Successfully";
             $this->updateJsFile($oldDomain->domain, $request->domain, $request->backend_api_url);
@@ -79,10 +71,17 @@ class DomainRepository
         return response()->json(['message' => $message]);
     }
 
-    private function createJsFile($domain, $apiUrl)
+    private function createJsFile($domain, $apiUrl, $event_source_id = null)
     {
+        $eventSource = EventSource::select(['name'])->findOrFail($event_source_id);
+
+        $filePath = public_path('assets/js/' . $eventSource->name . '.source.js');
+
+        if (File::exists($filePath)) {
+            $sourceJsContent = File::get($filePath);
+        }
         // Read the content of demo js files
-        $demoTracardiJsContent = File::get(public_path('assets/js/demo/demo.tracardi.js'));
+        // $demoTracardiJsContent = File::get(public_path('assets/js/demo/demo.tracardi.js'));
         $demoScriptJsContent = File::get(public_path('assets/js/demo/script.js'));
 
         // Create a new JavaScript file with the content of demo.js
@@ -100,14 +99,14 @@ class DomainRepository
         $baseUrl = config('app.url');
 
         //replacing variables from tracardi js
-        $modifiedJsContent = str_replace('<API-URL>', $apiUrl, $demoTracardiJsContent);
+        // $modifiedJsContent = str_replace('<API-URL>', $apiUrl, $demoTracardiJsContent);
 
         //replacing variables from script js
         // $modifiedJsContent = str_replace('<API-SCRIPT>', $apiUrl . '/tracker', $modifiedJsContent);
         $modifiedScriptJsContent = str_replace('<domain-name>', $domain_name, $demoScriptJsContent);
         $modifiedScriptJsContent = str_replace('<APP-URL>', $baseUrl, $modifiedScriptJsContent);
 
-        File::put(public_path("assets/js/$fileName"), $modifiedJsContent);
+        File::put(public_path("assets/js/$fileName"), $sourceJsContent);
         File::put(public_path("assets/js/$scriptFile"), $modifiedScriptJsContent);
     }
 
@@ -133,7 +132,7 @@ class DomainRepository
     {
         // Generate file names for the domain
         $jsFileName = str_replace(' ', '_', strtolower($domain)) . '.js';
-        $jsConfigFileName = str_replace(' ', '_', strtolower($domain)) . '.config.js';
+        $jsConfigFileName = str_replace(' ', '_', strtolower($domain)) . '.tracardi.js';
         $jsonFileName = "$domain.json";
         if (File::exists(public_path("assets/js/$jsFileName"))) {
             File::delete(public_path("assets/js/$jsFileName"));
@@ -149,8 +148,9 @@ class DomainRepository
         }
     }
 
-    public function delete($domain)
+    public function delete($id)
     {
+        $domain = Domain::findOrFail($id);
         // Check if the file already exists Delete the old JavaScript file
         $this->deleteJsFile($domain->domain);
         $domain->delete();

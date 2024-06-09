@@ -81,7 +81,7 @@ class DomainController extends Controller
 
     public function domainDelete($id)
     {
-        $this->DomainRepository->domainDelete($id);
+        $this->DomainRepository->delete($id);
         return back()->with('success', 'Domain Delete Successfully');
     }
 

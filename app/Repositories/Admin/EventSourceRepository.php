@@ -26,7 +26,6 @@ class EventSourceRepository
 
     public function store($request)
     {
-        // dd(Auth::guard('admin')->id());
         $data = $this->model::updateOrCreate(
             ['id' => $request->id],
             [
