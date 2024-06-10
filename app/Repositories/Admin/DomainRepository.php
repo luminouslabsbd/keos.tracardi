@@ -85,7 +85,8 @@ class DomainRepository
                 throw new \Exception("File not found: " . $filePath);
             }
         } catch (\Exception $e) {
-            Log::error($e->getMessage(), 'Filepath: ' . $filePath);
+            Log::error($e->getMessage());
+            Log::error('Filepath: ' . $filePath);
             return response()->json(['error' => 'Source JavaScript file not found.'], 404);
         }
 
