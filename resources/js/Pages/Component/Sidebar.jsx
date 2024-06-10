@@ -265,7 +265,7 @@ function Sidebar({ handleToggleSidebar }) {
                                                         <ul className="sub-menu text-gray-500">
                                                             <li>
                                                                 <Link
-                                                                    href={`${base_url}/admin/domain/create`}
+                                                                    href={`/admin/domain/create`}
                                                                 >
                                                                     {t(
                                                                         "Add Domain"
@@ -274,7 +274,7 @@ function Sidebar({ handleToggleSidebar }) {
                                                             </li>
                                                             <li>
                                                                 <Link
-                                                                    href={`${base_url}/admin/domain/domains`}
+                                                                    href={`/admin/domain/domains`}
                                                                 >
                                                                     {t(
                                                                         "All Domain"
@@ -284,17 +284,19 @@ function Sidebar({ handleToggleSidebar }) {
                                                         </ul>
                                                     </AnimateHeight>
                                                 </li>
-                                                {/* <li className="menu nav-item">
+                                                <li className="menu nav-item">
                                                     <button
                                                         type="button"
                                                         className={`${
                                                             currentMenu ===
-                                                            "urls"
+                                                            "event-sources"
                                                                 ? "active"
                                                                 : ""
                                                         } nav-link group w-full`}
                                                         onClick={() =>
-                                                            toggleMenu("urls")
+                                                            toggleMenu(
+                                                                "event-sources"
+                                                            )
                                                         }
                                                     >
                                                         <div className="flex items-center">
@@ -316,14 +318,16 @@ function Sidebar({ handleToggleSidebar }) {
                                                             </svg>
 
                                                             <span className="ltr:pl-3 rtl:pr-3 text-black dark:text-[#506690] dark:group-hover:text-white-dark">
-                                                                {t("URL's")}
+                                                                {t(
+                                                                    "Event sources"
+                                                                )}
                                                             </span>
                                                         </div>
 
                                                         <div
                                                             className={
                                                                 currentMenu ===
-                                                                "urls"
+                                                                "event-sources"
                                                                     ? "rotate-90"
                                                                     : "rtl:rotate-180"
                                                             }
@@ -350,7 +354,7 @@ function Sidebar({ handleToggleSidebar }) {
                                                         duration={300}
                                                         height={
                                                             currentMenu ===
-                                                            "urls"
+                                                            "event-sources"
                                                                 ? "auto"
                                                                 : 0
                                                         }
@@ -358,25 +362,25 @@ function Sidebar({ handleToggleSidebar }) {
                                                         <ul className="sub-menu text-gray-500">
                                                             <li>
                                                                 <Link
-                                                                    href={`${base_url}/admin/domain/domainUrl/create`}
+                                                                    href={`/admin/event-sources/create`}
                                                                 >
                                                                     {t(
-                                                                        "Add Url"
+                                                                        "Add source"
                                                                     )}
                                                                 </Link>
                                                             </li>
                                                             <li>
                                                                 <Link
-                                                                    href={`${base_url}/admin/domain/domainUrl`}
+                                                                    href={`/admin/event-sources`}
                                                                 >
                                                                     {t(
-                                                                        "All Url's"
+                                                                        "All event sources"
                                                                     )}
                                                                 </Link>
                                                             </li>
                                                         </ul>
                                                     </AnimateHeight>
-                                                </li> */}
+                                                </li>
                                             </ul>
                                         </li>
                                     </ul>

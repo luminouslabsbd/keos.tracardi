@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use Exception;
 use Inertia\Inertia;
 use App\Models\Admin\Domain;
 use Illuminate\Http\Request;
 use App\Models\Admin\DomainUrl;
-use App\Http\Requests\Admin\DomainUrlRequest;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\File;
+use App\Http\Requests\Admin\DomainUrlRequest;
 
 class DomainUrlController extends Controller
 {
@@ -53,9 +55,46 @@ class DomainUrlController extends Controller
         $fileName = str_replace(' ', '_', strtolower($domainName)) . '.json';
         $filePath = public_path('assets/json/' . $fileName);
         file_put_contents($filePath, $jsonData);
+        $this->minifyJson($domainName);
         return to_route('admin.domain.details', ['id' => $domain_id])->with('success', 'Url successfully added.');
     }
 
+    private function minifyJson($domainName)
+    {
+        // Normalize the domain name for filenames
+        $domainName = str_replace(' ', '_', strtolower($domainName));
+
+        // Construct the filenames
+        $jsonFile = public_path("assets/json/{$domainName}.json");
+        $jsFile = public_path("assets/js/{$domainName}.js");
+        $minJsFile = public_path("assets/js/{$domainName}.min.js");
+
+        // Check if the JSON file exists and read its content
+        if (!File::exists($jsonFile)) {
+            throw new Exception("JSON file not found: {$jsonFile}");
+        }
+        $jsonContent = File::get($jsonFile);
+
+        // Check if the JavaScript file exists and read its content
+        if (!File::exists($jsFile)) {
+            throw new Exception("JavaScript file not found: {$jsFile}");
+        }
+        $scriptJsContent = File::get($jsFile);
+
+        // Escape the JSON content to be embedded in JavaScript
+        $escapedJsonContent = addslashes($jsonContent);
+
+        // Replace the placeholder with the escaped JSON content
+        $modifiedScriptJsContent = str_replace('<json>', $escapedJsonContent, $scriptJsContent);
+
+        // Check if the minified JavaScript file exists and delete it if so
+        if (File::exists($minJsFile)) {
+            File::delete($minJsFile);
+        }
+
+        // Write the modified content to the new minified JavaScript file
+        File::put($minJsFile, $modifiedScriptJsContent);
+    }
 
     /**
      * Show the form for editing the specified resource.
@@ -75,6 +114,10 @@ class DomainUrlController extends Controller
     public function update(Request $request)
     {
         $domain = Domain::findOrFail($request->domain_id);
+        $minJsFile = public_path("assets/js/{$domain->name}.min.js");
+        if (File::exists($minJsFile)) {
+            File::delete($minJsFile);
+        }
         DB::table('domain_urls')->where('id', $request->id)->update([
             'url' => $request->url,
             'action' => $request->action,
@@ -91,6 +134,7 @@ class DomainUrlController extends Controller
         $fileName = str_replace(' ', '_', strtolower($domainName)) . '.json';
         $filePath = public_path('assets/json/' . $fileName);
         file_put_contents($filePath, $jsonData);
+        $this->minifyJson($domainName);
         return to_route('admin.domain.details', ['id' => $request->domain_id])->with('success', 'Url successfully updated.');
     }
 
@@ -132,7 +176,7 @@ class DomainUrlController extends Controller
         $fileName = str_replace(' ', '_', strtolower($domainName)) . '.json';
         $filePath = public_path('assets/json/' . $fileName);
         file_put_contents($filePath, $jsonData);
-
+        $this->minifyJson($domainName);
         return back()->with('success', 'Url successfully deleted.');
     }
 }

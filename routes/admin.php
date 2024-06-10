@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\AdminProfileController;
 use App\Http\Controllers\Admin\DomainController;
 use App\Http\Controllers\DomainUrlController;
+use App\Http\Controllers\Admin\EventSourceController;
 
 Route::get('/login', [AuthController::class, 'login'])->name('login');
 Route::post('/login', [AuthController::class, 'loginPost'])->name('login.post');
@@ -24,7 +25,6 @@ Route::group(['middleware' => ['auth:admin'], 'as' => 'admin.'], function () {
         Route::post('/profile/update', [AdminProfileController::class, 'userProfileUpdate'])->name('user.profile.update');
         Route::post('/profile/change-password', [AdminProfileController::class, 'userProfileChangePassword'])->name('user.profile.update');
     });
-
     Route::group(['prefix' => 'domain'], function () {
         Route::get('/domains', [DomainController::class, 'index'])->name('domains');
         Route::get('/create', [DomainController::class, 'domainCreate'])->name('domain.create');
@@ -43,8 +43,14 @@ Route::group(['middleware' => ['auth:admin'], 'as' => 'admin.'], function () {
         Route::post('/domain-url/update', [DomainUrlController::class, 'update'])->name('domainurl.update');
         Route::post('/domain-url/status', [DomainUrlController::class, 'status'])->name('domainurl.status');
         Route::delete('/domain-url/delete/{id}/{domain_id}', [DomainUrlController::class, 'destroy'])->name('domainurl.delete');
-
     });
-
-
+    Route::group(['prefix' => 'event-sources'], function () {
+        Route::get('/', [EventSourceController::class, 'index'])->name('event-sources.index');
+        Route::get('/create', [EventSourceController::class, 'create'])->name('domainevent-sources.create');
+        Route::post('/store', [EventSourceController::class, 'store'])->name('domainevent-sources.store');
+        Route::get('/edit/{eventSource}', [EventSourceController::class, 'edit'])->name('domainevent-sources.edit');
+        Route::post('/update', [EventSourceController::class, 'update'])->name('domainevent-sources.update');
+        Route::post('/status', [EventSourceController::class, 'status'])->name('domainevent-sources.status');
+        Route::delete('/delete/{eventSource}', [EventSourceController::class, 'destroy'])->name('domainevent-sources.delete');
+    });
 });

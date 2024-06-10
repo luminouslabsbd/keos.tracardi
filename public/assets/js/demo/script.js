@@ -1,15 +1,25 @@
-var jsonUrls = [];
+var jsonUrls = JSON.parse("<json>");
+
+function convertToRegex(url) {
+    // Replace placeholders like {meeting_id} with a regex pattern to match any value
+    return new RegExp("^" + url.replace(/{[^}]+}/g, "[^/]+") + "$");
+}
 
 function checkUrlRoleMapping() {
     var currentUrl = window.location.href;
     console.log(jsonUrls);
-    for (var i = 0; i < jsonUrls.length; i++) {
-        var mapping = jsonUrls[i];
-        if (
-            jsonUrls[i]?.url === currentUrl &&
-            jsonUrls[i]?.event_type == "view"
-        ) {
+
+    // Convert URLs in jsonUrls to regex patterns
+    var regexMappings = jsonUrls.map((mapping) => ({
+        ...mapping,
+        regex: convertToRegex(mapping.url),
+    }));
+
+    for (var i = 0; i < regexMappings.length; i++) {
+        var mapping = regexMappings[i];
+        if (mapping.regex.test(currentUrl) && mapping.event_type === "view") {
             console.log("This is view event on page load");
+
             // Function to load the script dynamically
             function loadScript(url, callback) {
                 var script = document.createElement("script");
@@ -27,16 +37,10 @@ function checkUrlRoleMapping() {
             function scriptLoaded() {
                 // Now you can use window.tracker safely
                 console.log("Script loaded successfully");
-                // window.tracker.track(jsonUrls[i]?.event_name, {
-                //     //Sending this while every mapping.role is same
-                //     Type: jsonUrls[i]?.event_type,
-                //     Role: jsonUrls[i]?.role,
-                //     Action: jsonUrls[i]?.action,
-                // });
-
-                window.tracker.track("View event on load", {
-                    //Sending this while every mapping.role is same
-                    Type: "View event",
+                window.tracker.track(mapping.event_name, {
+                    Type: mapping.event_type,
+                    Role: mapping.role,
+                    Action: mapping.action,
                 });
             }
 
@@ -45,15 +49,15 @@ function checkUrlRoleMapping() {
                 "<APP-URL>/assets/js/<domain-name>.tracardi.js",
                 scriptLoaded
             );
-
-            // return mapping.role;
         }
     }
+
     // Keep track of clicked buttons
     var clickedButtons = new Set();
+
     // Find objects with a matching URL
-    jsonUrls.forEach(function (item) {
-        if (item.url === currentUrl && item.event_type === "click") {
+    regexMappings.forEach(function (item) {
+        if (item.regex.test(currentUrl) && item.event_type === "click") {
             // Check if button_id is not already clicked
             if (!clickedButtons.has(item.button_id)) {
                 // Get the button element by id
@@ -85,9 +89,9 @@ function checkUrlRoleMapping() {
                                 // Now you can use window.tracker safely
                                 console.log("Script loaded successfully");
                                 window.tracker.track(item.event_name, {
-                                    Type: mapping.event_type,
-                                    Role: mapping?.role,
-                                    Action: mapping?.action,
+                                    Type: item.event_type,
+                                    Role: item.role,
+                                    Action: item.action,
                                 });
                             }
 
@@ -105,7 +109,7 @@ function checkUrlRoleMapping() {
             }
         }
 
-        if (item.url === currentUrl && item.event_type === "submit") {
+        if (item.regex.test(currentUrl) && item.event_type === "submit") {
             // Check if button_id is not already clicked
             if (!clickedButtons.has(item.button_id)) {
                 // Get the button element by id
@@ -113,7 +117,7 @@ function checkUrlRoleMapping() {
 
                 // Add event listener if button exists
                 if (button) {
-                    button.addEventListener("click", function () {
+                    button.addEventListener("click", function (event) {
                         event.preventDefault();
 
                         // Find the parent form of the clicked button
@@ -133,6 +137,7 @@ function checkUrlRoleMapping() {
                             }
                         });
                         console.log("Form Data:", formData);
+
                         // Check if the button has already been clicked
                         if (!clickedButtons.has(item.button_id)) {
                             // Add the button ID to the set of clicked buttons
@@ -156,9 +161,9 @@ function checkUrlRoleMapping() {
                                 // Now you can use window.tracker safely
                                 console.log("Script loaded successfully");
                                 window.tracker.track(item.event_name, {
-                                    Type: mapping.event_type,
-                                    Role: mapping?.role,
-                                    Action: mapping?.action,
+                                    Type: item.event_type,
+                                    Role: item.role,
+                                    Action: item.action,
                                     FormData: formData,
                                 });
                             }
@@ -179,18 +184,21 @@ function checkUrlRoleMapping() {
     });
     console.log("No matching role found for URL: " + currentUrl);
 }
-var url = "<APP-URL>/assets/json/<domain-name>.json";
 
-fetch(url)
-    .then((response) => response.json())
-    .then((data) => {
-        jsonUrls = data;
-        console.log(data);
-        checkUrlRoleMapping();
-    })
-    .catch((error) => {
-        console.error("Error fetching JSON:", error);
-    });
+checkUrlRoleMapping();
+
+// var url = "<APP-URL>/assets/json/<domain-name>.json";
+
+// fetch(url)
+//     .then((response) => response.json())
+//     .then((data) => {
+//         jsonUrls = data;
+//         console.log(data);
+//         checkUrlRoleMapping();
+//     })
+//     .catch((error) => {
+//         console.error("Error fetching JSON:", error);
+//     });
 
 // Function to check if event origin exists in JSON data URLs
 function isEventOriginInJsonData(eventOrigin) {

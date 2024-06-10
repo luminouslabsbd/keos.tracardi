@@ -12,6 +12,7 @@ class Domain extends Model
     protected $table = 'domains';
     protected $fillable = [
         'user_id',
+        'event_source_id',
         'domain',
         'user_name',
         'user_pass',

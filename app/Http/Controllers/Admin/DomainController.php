@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Admin\Domain;
+use App\Models\Admin\EventSource;
 use App\Repositories\Admin\DomainRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -31,7 +32,10 @@ class DomainController extends Controller
 
     public function domainCreate()
     {
-        return Inertia::render('Module/Domain/Create');
+        $eventSources = EventSource::where('user_id', Auth::user()->id)->where('status', 1)->get();
+        return Inertia::render('Module/Domain/Create', [
+            'eventSources' => $eventSources
+        ]);
     }
 
     public function domainStore(Request $request)
@@ -77,7 +81,7 @@ class DomainController extends Controller
 
     public function domainDelete($id)
     {
-        $this->DomainRepository->domainDelete($id);
+        $this->DomainRepository->delete($id);
         return back()->with('success', 'Domain Delete Successfully');
     }
 
