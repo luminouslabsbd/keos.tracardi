@@ -18,7 +18,7 @@ yarn-error.log
 /.vscode
 /public/pdfs/*
 /public/build
-/public/assets/json/*
-/public/assets/js/*
-!/public/assets/js/demo/
-/public/json/*
+# /public/assets/json/*
+# /public/assets/js/*
+# !/public/assets/js/demo/
+# /public/json/*
