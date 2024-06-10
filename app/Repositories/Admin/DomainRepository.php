@@ -4,9 +4,10 @@ namespace App\Repositories\Admin;
 
 use App\Imports\CsvImport;
 use App\Models\Admin\Domain;
-use App\Models\Admin\EventSource;
 use Illuminate\Http\Request;
+use App\Models\Admin\EventSource;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 use Maatwebsite\Excel\Facades\Excel;
@@ -77,9 +78,19 @@ class DomainRepository
 
         $filePath = public_path('assets/js/' . $eventSource->name . '.source.js');
 
-        if (File::exists($filePath)) {
-            $sourceJsContent = File::get($filePath);
+        try {
+            if (File::exists($filePath)) {
+                $sourceJsContent = File::get($filePath);
+            } else {
+                throw new \Exception("File not found: " . $filePath);
+            }
+        } catch (\Exception $e) {
+            // Log the error message
+            Log::error($e->getMessage(), 'Filepath: ' . $filePath);
+            // Handle the error appropriately (e.g., return a response or throw a custom exception)
+            return response()->json(['error' => 'Source JavaScript file not found.'], 404);
         }
+
         // Read the content of demo js files
         // $demoTracardiJsContent = File::get(public_path('assets/js/demo/demo.tracardi.js'));
         $demoScriptJsContent = File::get(public_path('assets/js/demo/script.js'));
@@ -98,11 +109,6 @@ class DomainRepository
         $this->deleteJsFile($scriptFile);
         $baseUrl = config('app.url');
 
-        //replacing variables from tracardi js
-        // $modifiedJsContent = str_replace('<API-URL>', $apiUrl, $demoTracardiJsContent);
-
-        //replacing variables from script js
-        // $modifiedJsContent = str_replace('<API-SCRIPT>', $apiUrl . '/tracker', $modifiedJsContent);
         $modifiedScriptJsContent = str_replace('<domain-name>', $domain_name, $demoScriptJsContent);
         $modifiedScriptJsContent = str_replace('<APP-URL>', $baseUrl, $modifiedScriptJsContent);
 
