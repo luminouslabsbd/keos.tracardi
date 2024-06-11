@@ -56,7 +56,7 @@ class EventSourceController extends Controller
         ]);
     }
 
-    public function update(EventSourceRequest $request)
+    public function update(Request $request)
     {
         $result = $this->repository->update($request);
         $data = json_decode($result->getContent(), true);
