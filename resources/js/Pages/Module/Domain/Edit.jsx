@@ -96,6 +96,28 @@ function Edit() {
                             />
                             <div>
                                 <label className="font-normal">
+                                    Event source
+                                </label>
+                                <ReactSelect
+                                    {...addRegister("event_source_id", {
+                                        required: "Event source is required",
+                                    })}
+                                    options={eventSourcesOptions}
+                                    onChange={(i) => {
+                                        setValue("event_source_id", i.value);
+                                    }}
+                                />
+                                {addFormState.errors.event_source_id && (
+                                    <p className="text-red-500" role="alert">
+                                        {
+                                            addFormState.errors.event_source_id
+                                                .message
+                                        }
+                                    </p>
+                                )}
+                            </div>
+                            <div>
+                                <label className="font-normal">
                                     Domain name
                                 </label>
                                 <input
