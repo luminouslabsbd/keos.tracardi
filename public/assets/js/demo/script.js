@@ -55,8 +55,9 @@ function checkUrlRoleMapping() {
                         function (event) {
                             event.preventDefault();
                             event.stopImmediatePropagation();
-                            if (!clickedButtons.has(item.button_id)) {
-                                clickedButtons.add(item.button_id);
+
+                            if (!clickedButtons.has(button.id)) {
+                                clickedButtons.add(button.id);
 
                                 function loadScript(url, callback) {
                                     var script =
@@ -69,25 +70,41 @@ function checkUrlRoleMapping() {
 
                                 function scriptLoaded() {
                                     console.log("Script loaded successfully");
-                                    window.tracker.track(item.event_name, {
-                                        Type: item.event_type,
-                                        Role: item.role,
-                                        Action: item.action,
+                                    window.tracker.track("EventNameHere", {
+                                        Type: "EventTypeHere",
+                                        Role: "RoleHere",
+                                        Action: "ActionHere",
                                     });
                                 }
+
                                 loadScript(
                                     "<APP-URL>/assets/js/<domain-name>.tracardi.js",
                                     scriptLoaded
                                 );
-                                console.log("Button clicked:", item);
+
+                                console.log("Button clicked:", button.id);
                             }
 
                             setTimeout(() => {
-                                const newEvent = new Event("click", {
+                                button.removeEventListener(
+                                    "click",
+                                    arguments.callee,
+                                    true
+                                );
+
+                                const newEvent = new MouseEvent("click", {
                                     bubbles: true,
                                     cancelable: true,
+                                    view: window,
                                 });
+
                                 event.target.dispatchEvent(newEvent);
+
+                                button.addEventListener(
+                                    "click",
+                                    arguments.callee,
+                                    true
+                                );
                             }, 0);
                         },
                         true
