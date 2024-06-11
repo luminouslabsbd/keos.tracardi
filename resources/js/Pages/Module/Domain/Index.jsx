@@ -157,7 +157,7 @@ function Index() {
                                                         domain.domain
                                                             .toLowerCase()
                                                             .replace(/ /g, "_")
-                                                    }.js`}
+                                                    }.min.js`}
                                                     onCopy={() => {
                                                         setClipboard({
                                                             copied: true,
