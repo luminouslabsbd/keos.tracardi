@@ -2,6 +2,7 @@ import { Link, router, usePage } from "@inertiajs/react";
 import React, { useEffect, useState } from "react";
 import MainLayout from "../../Layout/Mainlayout";
 import { useForm } from "react-hook-form";
+import ReactSelect from "react-select";
 // import usePage from "@inertiajs/react";
 
 function Edit() {
