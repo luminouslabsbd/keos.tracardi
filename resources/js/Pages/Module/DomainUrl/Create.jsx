@@ -250,6 +250,7 @@ function Create() {
                                         </label>
                                         <input
                                             type="number"
+                                            placeholder="Enter millisecond value here"
                                             {...addRegister("time_interval")}
                                             className="form-input"
                                         />

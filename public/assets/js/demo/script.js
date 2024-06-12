@@ -102,6 +102,8 @@ function checkUrlRoleMapping() {
                         Type: mapping.event_type,
                         Role: mapping.role,
                         Action: mapping.action,
+                        userActive: eventLog.length > 0 ? true : false,
+                        user: authUser,
                     });
                 }
 
@@ -112,10 +114,10 @@ function checkUrlRoleMapping() {
             }
 
             setInterval(() => {
-                if (eventLog.length > 0) {
-                    sendDataToServer(eventLog);
-                    eventLog = [];
-                }
+                // if (eventLog.length > 0) {
+                sendDataToServer(eventLog);
+                eventLog = [];
+                // }
             }, mapping.time_interval ?? 10000);
         }
     }
