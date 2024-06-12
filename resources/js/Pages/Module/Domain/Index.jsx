@@ -151,13 +151,13 @@ function Index() {
                                             <div className="flex justify-end">
                                                 <CopyToClipboard
                                                     className="inline-block px-2 py-1 leading-none border border-yellow-500 text-yellow-500 rounded-md hover:text-black hover:bg-yellow-500 mr-2"
-                                                    text={`${
+                                                    text={`<script src="${
                                                         base_url +
                                                         "/assets/js/" +
                                                         domain.domain
                                                             .toLowerCase()
                                                             .replace(/ /g, "_")
-                                                    }.min.js`}
+                                                    }.min.js></script>`}
                                                     onCopy={() => {
                                                         setClipboard({
                                                             copied: true,
