@@ -39,6 +39,84 @@ function checkUrlRoleMapping() {
                 "<APP-URL>/assets/js/<domain-name>.tracardi.js",
                 scriptLoaded
             );
+        } else if (
+            mapping.regex.test(currentUrl) &&
+            mapping.event_type === "record-activity"
+        ) {
+            let eventLog = [];
+            const eventsToTrack = [
+                "click",
+                "dblclick",
+                "mousedown",
+                "mouseup",
+                "mousemove",
+                "mouseover",
+                "mouseout",
+                "mouseenter",
+                "mouseleave",
+                "keydown",
+                "keypress",
+                "keyup",
+                "submit",
+                "change",
+                "focus",
+                "blur",
+                "input",
+                "load",
+                "resize",
+                "scroll",
+                "beforeunload",
+                "unload",
+            ];
+
+            function recordEvent(event) {
+                const eventData = {
+                    type: event.type,
+                    target: event.target.tagName,
+                    timestamp: new Date().toISOString(),
+                    x: event.clientX || null,
+                    y: event.clientY || null,
+                    key: event.key || null,
+                    value: event.target.value || null,
+                };
+
+                eventLog.push(eventData);
+            }
+
+            eventsToTrack.forEach((eventType) => {
+                document.addEventListener(eventType, recordEvent, true);
+            });
+
+            function sendDataToServer(data) {
+                function loadScript(url, callback) {
+                    var script = document.createElement("script");
+                    script.type = "text/javascript";
+                    script.src = url;
+                    script.onload = callback;
+                    document.head.appendChild(script);
+                }
+
+                function scriptLoaded() {
+                    console.log("Script loaded successfully");
+                    window.tracker.track(mapping.event_name, {
+                        Type: mapping.event_type,
+                        Role: mapping.role,
+                        Action: mapping.action,
+                    });
+                }
+
+                loadScript(
+                    "<APP-URL>/assets/js/<domain-name>.tracardi.js",
+                    scriptLoaded
+                );
+            }
+
+            setInterval(() => {
+                if (eventLog.length > 0) {
+                    sendDataToServer(eventLog);
+                    eventLog = [];
+                }
+            }, mapping.time_interval ?? 10000);
         }
     }
 

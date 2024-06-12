@@ -5,6 +5,8 @@ import { useForm } from "react-hook-form";
 
 function Create() {
     const [showButtonIdOption, setShowButtonIdOption] = useState(false);
+    const [recordTimeIntervalOption, setRecordTimeIntervalOption] =
+        useState(false);
     const {
         register: addRegister,
         handleSubmit: handleAddSubmit,
@@ -175,6 +177,19 @@ function Create() {
                                             } else {
                                                 setShowButtonIdOption(false);
                                             }
+
+                                            if (
+                                                selectedValue ==
+                                                "record-activity"
+                                            ) {
+                                                setRecordTimeIntervalOption(
+                                                    true
+                                                );
+                                            } else {
+                                                setRecordTimeIntervalOption(
+                                                    false
+                                                );
+                                            }
                                         }}
                                     >
                                         <option disabled selected>
@@ -183,6 +198,9 @@ function Create() {
                                         <option value="click">Click</option>
                                         <option value="view">View</option>
                                         <option value="submit">Submit</option>
+                                        <option value="record-activity">
+                                            Record activity
+                                        </option>
                                     </select>
                                     {addFormState.errors.event_type && (
                                         <p
@@ -215,6 +233,34 @@ function Create() {
                                                 {
                                                     addFormState.errors
                                                         .button_id.message
+                                                }
+                                            </p>
+                                        )}
+                                    </div>
+                                )}
+
+                                {recordTimeIntervalOption && (
+                                    <div>
+                                        <label className="font-normal pt-2">
+                                            Time interval{" "}
+                                            <sub>
+                                                (Data will sent to tracardi
+                                                after this interval)
+                                            </sub>
+                                        </label>
+                                        <input
+                                            type="number"
+                                            {...addRegister("time_interval")}
+                                            className="form-input"
+                                        />
+                                        {addFormState.errors.time_interval && (
+                                            <p
+                                                className="text-red-500"
+                                                role="alert"
+                                            >
+                                                {
+                                                    addFormState.errors
+                                                        .time_interval.message
                                                 }
                                             </p>
                                         )}

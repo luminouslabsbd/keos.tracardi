@@ -45,10 +45,11 @@ class DomainUrlController extends Controller
             'role'       => $request->role,
             'event_name' => $request->event_name,
             'event_type' => $request->event_type,
-            'button_id' => $request->button_id
+            'button_id' => $request->button_id,
+            'time_interval' => $request->time_interval,
         ]);
 
-        $urls = $domain->urls()->select(['id', 'domain_id', 'url', 'action', 'role', 'event_name', 'event_type', 'button_id'])->get();
+        $urls = $domain->urls()->select(['id', 'domain_id', 'url', 'action', 'role', 'event_name', 'event_type', 'button_id', 'time_interval'])->get();
         $jsonData = json_encode($urls);
 
         $domainName = $domain->domain;
@@ -124,10 +125,11 @@ class DomainUrlController extends Controller
             'role' => $request->role,
             'event_name' => $request->event_name,
             'event_type' => $request->event_type,
-            'button_id' => $request->button_id
+            'button_id' => $request->button_id,
+            'time_interval' => $request->time_interval,
         ]);
 
-        $urls = $domain->urls()->select(['id', 'domain_id', 'url', 'action', 'role', 'event_name', 'event_type', 'button_id'])->get();
+        $urls = $domain->urls()->select(['id', 'domain_id', 'url', 'action', 'role', 'event_name', 'event_type', 'button_id', 'time_interval'])->get();
         $jsonData = json_encode($urls);
 
         $domainName = $domain->domain;
