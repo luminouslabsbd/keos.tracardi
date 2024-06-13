@@ -6,7 +6,7 @@ import ReactSelect from "react-select";
 // import usePage from "@inertiajs/react";
 
 function Edit() {
-    const { domain } = usePage().props;
+    const { domain, eventSources } = usePage().props;
     console.log(domain);
     const [inputValue, setInputValue] = useState("");
     const {
@@ -34,6 +34,11 @@ function Edit() {
         const parts = domain.replace(/(^\w+:|^)\/\//, "").split("/");
         return parts[0];
     };
+
+       const eventSourcesOptions = eventSources.map((es) => ({
+           label: es.name,
+           value: es.id,
+       }));
     return (
         <>
             <div className="domains-header grid grid-cols-12 gap-4">

@@ -54,8 +54,10 @@ class DomainController extends Controller
 
     public function edit(Domain $domain)
     {
+        $eventSources = EventSource::where('user_id', Auth::user()->id)->where('status', 1)->get();
         return Inertia::render('Module/Domain/Edit', [
-            'domain' => $domain
+            'domain' => $domain,
+            'eventSources' => $eventSources
         ]);
     }
 
