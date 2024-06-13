@@ -157,7 +157,11 @@ function Index() {
                                                         domain.domain
                                                             .toLowerCase()
                                                             .replace(/ /g, "_")
-                                                    }.min.js></script>`}
+                                                    }.min.js"></script>
+                                                    <script>
+                                                        const authUser = ""; //Paste how you can get your authenticated user from your app
+                                                    </script>
+                                                    `}
                                                     onCopy={() => {
                                                         setClipboard({
                                                             copied: true,
