@@ -130,65 +130,32 @@ function checkUrlRoleMapping() {
                 var button = document.getElementById(item.button_id);
 
                 if (button) {
-                    button.addEventListener(
-                        "click",
-                        function (event) {
-                            event.preventDefault();
-                            event.stopImmediatePropagation();
-
-                            if (!clickedButtons.has(button.id)) {
-                                clickedButtons.add(button.id);
-
-                                function loadScript(url, callback) {
-                                    var script =
-                                        document.createElement("script");
-                                    script.type = "text/javascript";
-                                    script.src = url;
-                                    script.onload = callback;
-                                    document.head.appendChild(script);
-                                }
-
-                                function scriptLoaded() {
-                                    console.log("Script loaded successfully");
-                                    window.tracker.track("EventNameHere", {
-                                        Type: "EventTypeHere",
-                                        Role: "RoleHere",
-                                        Action: "ActionHere",
-                                    });
-                                }
-
-                                loadScript(
-                                    "<APP-URL>/assets/js/<domain-name>.tracardi.js",
-                                    scriptLoaded
-                                );
-
-                                console.log("Button clicked:", button.id);
+                    button.addEventListener("click", function () {
+                        if (!clickedButtons.has(item.button_id)) {
+                            clickedButtons.add(item.button_id);
+                            function loadScript(url, callback) {
+                                var script = document.createElement("script");
+                                script.type = "text/javascript";
+                                script.src = url;
+                                script.onload = callback;
+                                document.head.appendChild(script);
                             }
 
-                            setTimeout(() => {
-                                button.removeEventListener(
-                                    "click",
-                                    arguments.callee,
-                                    true
-                                );
-
-                                const newEvent = new MouseEvent("click", {
-                                    bubbles: true,
-                                    cancelable: true,
-                                    view: window,
+                            function scriptLoaded() {
+                                console.log("Script loaded successfully");
+                                window.tracker.track(item.event_name, {
+                                    Type: item.event_type,
+                                    Role: item.role,
+                                    Action: item.action,
                                 });
-
-                                event.target.dispatchEvent(newEvent);
-
-                                button.addEventListener(
-                                    "click",
-                                    arguments.callee,
-                                    true
-                                );
-                            }, 0);
-                        },
-                        true
-                    );
+                            }
+                            loadScript(
+                                "<APP-URL>/assets/js/<domain-name>.tracardi.js",
+                                scriptLoaded
+                            );
+                            console.log("Button clicked:", item);
+                        }
+                    });
                 }
             }
         }
